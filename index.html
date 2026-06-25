@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adri & Aitor · 06.03.2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ivory: #faf6f0;
+      --ivory-dark: #f0e9de;
+      --gold: #b89a6a;
+      --gold-light: #d4b896;
+      --dark: #2c2520;
+      --muted: #7a6f68;
+      --rose: #c4a09a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--ivory);
+      color: var(--dark);
+      font-weight: 300;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,246,240,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--ivory-dark);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 56px;
+    }
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-style: italic; color: var(--dark);
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--dark); }
+    .lang-switcher { display: flex; gap: 0.5rem; }
+    .lang-btn {
+      font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+      background: none; border: none; cursor: pointer;
+      color: var(--muted); padding: 2px 4px; transition: color 0.2s;
+      font-family: 'Jost', sans-serif;
+    }
+    .lang-btn.active { color: var(--dark); border-bottom: 1px solid var(--gold); }
+    .lang-btn:hover { color: var(--dark); }
+
+    /* ── HERO ── */
+    #hero {
+      height: 100vh; position: relative;
+      display: flex; align-items: flex-end; justify-content: center;
+      overflow: hidden;
+    }
+    #hero img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(44,37,32,0.72) 0%, rgba(44,37,32,0.1) 55%, transparent 100%);
+    }
+    .hero-text {
+      position: relative; z-index: 2;
+      text-align: center; padding: 3rem 1rem 5rem;
+      color: #fff;
+    }
+    .hero-date {
+      font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold-light); margin-bottom: 1rem;
+    }
+    .hero-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 10vw, 6.5rem);
+      font-weight: 300; line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .hero-ampersand { font-style: italic; color: var(--gold-light); }
+    .hero-sub {
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); margin-top: 1.2rem;
+    }
+    .scroll-hint {
+      position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.5); font-size: 0.65rem; letter-spacing: 0.15em;
+      text-transform: uppercase; z-index: 2; animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── COUNTDOWN ── */
+    #countdown {
+      background: var(--dark); color: #fff;
+      padding: 2.5rem 1rem; text-align: center;
+    }
+    .countdown-grid {
+      display: flex; justify-content: center; gap: 2.5rem; margin-top: 0.8rem;
+    }
+    .countdown-item { text-align: center; }
+    .countdown-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300; color: var(--gold-light);
+      line-height: 1;
+    }
+    .countdown-label {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); margin-top: 0.3rem;
+    }
+    .section-eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 1rem; }
+    .section-inner { max-width: 780px; margin: 0 auto; }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 300; text-align: center; margin-bottom: 3rem;
+      color: var(--dark);
+    }
+    .divider {
+      width: 48px; height: 1px; background: var(--gold);
+      margin: 0 auto 2rem;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--ivory-dark);
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 300; color: var(--gold);
+      min-width: 70px; text-align: right; line-height: 1; padding-top: 2px;
+    }
+    .timeline-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0; margin-top: 6px;
+    }
+    .timeline-content { flex: 1; }
+    .timeline-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 400; margin-bottom: 0.3rem;
+    }
+    .timeline-place {
+      font-size: 0.8rem; color: var(--muted); margin-bottom: 0.4rem;
+      letter-spacing: 0.05em;
+    }
+    .timeline-addr {
+      font-size: 0.75rem; color: var(--muted);
+    }
+    .timeline-addr a {
+      color: var(--gold); text-decoration: none;
+      font-size: 0.72rem; letter-spacing: 0.08em;
+      border-bottom: 1px solid transparent; transition: border-color 0.2s;
+    }
+    .timeline-addr a:hover { border-color: var(--gold); }
+
+    /* ── GALLERY ── */
+    #galeria { background: var(--ivory-dark); padding: 5rem 1rem; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-rows: auto auto;
+      gap: 12px; max-width: 860px; margin: 0 auto;
+    }
+    .gallery-grid img {
+      width: 100%; height: 100%; object-fit: cover;
+      border-radius: 2px; display: block;
+    }
+    .gallery-grid .photo-main {
+      grid-row: 1 / 3; height: 520px;
+    }
+    .gallery-grid .photo-sm { height: 250px; }
+
+    /* ── RSVP ── */
+    #rsvp { background: var(--dark); color: #fff; }
+    #rsvp .section-title { color: #fff; }
+    #rsvp .divider { background: var(--gold); }
+    .rsvp-note {
+      text-align: center; font-size: 0.82rem; color: rgba(255,255,255,0.55);
+      margin-bottom: 2.5rem; letter-spacing: 0.05em; max-width: 500px; margin-left: auto; margin-right: auto;
+    }
+    .rsvp-form { max-width: 560px; margin: 0 auto; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .form-group label {
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 2px; padding: 0.75rem 1rem;
+      color: #fff; font-family: 'Jost', sans-serif; font-size: 0.85rem;
+      font-weight: 300; transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-group select option { background: var(--dark); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .attend-btns { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .attend-btn {
+      flex: 1; padding: 0.75rem; border-radius: 2px; cursor: pointer;
+      font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: transparent; color: rgba(255,255,255,0.6);
+    }
+    .attend-btn.selected-yes {
+      background: var(--gold); border-color: var(--gold); color: #fff;
+    }
+    .attend-btn.selected-no {
+      background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); color: #fff;
+    }
+    .form-extra { display: none; }
+    .form-extra.visible { display: block; }
+    .btn-submit {
+      width: 100%; padding: 1rem;
+      background: var(--gold); border: none;
+      color: #fff; font-family: 'Jost', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      cursor: pointer; border-radius: 2px; transition: background 0.2s;
+      font-weight: 400;
+    }
+    .btn-submit:hover { background: var(--gold-light); }
+    .form-success {
+      text-align: center; padding: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; color: var(--gold-light); display: none;
+    }
+
+    /* ── DRESS CODE ── */
+    #dresscode { background: var(--ivory); }
+    .dresscode-content { text-align: center; max-width: 520px; margin: 0 auto; }
+    .dresscode-icon {
+      font-size: 2.5rem; margin-bottom: 1rem; color: var(--gold);
+    }
+    .dresscode-text {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.8;
+    }
+    .color-palette { display: flex; justify-content: center; gap: 12px; margin-top: 1.5rem; flex-wrap: wrap; }
+    .color-chip {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+    }
+    .color-swatch {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .color-name { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.08em; }
+
+    /* ── IBAN ── */
+    #regalo { background: var(--ivory-dark); }
+    .regalo-content { text-align: center; max-width: 520px; margin: 0 auto; }
+    .regalo-text {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem;
+    }
+    .iban-lock {
+      border: 1px solid var(--ivory-dark);
+      background: var(--ivory); border-radius: 4px; padding: 2rem;
+      max-width: 400px; margin: 0 auto;
+    }
+    .iban-lock-msg {
+      font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+    .iban-pwd-row { display: flex; gap: 0.5rem; }
+    .iban-pwd-row input {
+      flex: 1; padding: 0.65rem 1rem;
+      border: 1px solid var(--ivory-dark); border-radius: 2px;
+      font-family: 'Jost', sans-serif; font-size: 0.85rem;
+      background: #fff; outline: none; color: var(--dark);
+      transition: border-color 0.2s;
+    }
+    .iban-pwd-row input:focus { border-color: var(--gold); }
+    .iban-pwd-row button {
+      padding: 0.65rem 1.2rem;
+      background: var(--dark); border: none; color: #fff;
+      font-family: 'Jost', sans-serif; font-size: 0.75rem;
+      letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+      border-radius: 2px; transition: background 0.2s;
+    }
+    .iban-pwd-row button:hover { background: var(--gold); }
+    .iban-error { color: #c0392b; font-size: 0.75rem; margin-top: 0.5rem; display: none; }
+    .iban-revealed { display: none; }
+    .iban-revealed.show { display: block; }
+    .iban-box {
+      background: #fff; border: 1px solid var(--ivory-dark); border-radius: 4px;
+      padding: 1.5rem; max-width: 400px; margin: 0 auto;
+    }
+    .iban-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .iban-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; color: var(--dark); letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+    .iban-holder { font-size: 0.78rem; color: var(--muted); }
+    .copy-btn {
+      margin-top: 1rem; padding: 0.5rem 1.2rem;
+      background: none; border: 1px solid var(--gold);
+      color: var(--gold); font-family: 'Jost', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      cursor: pointer; border-radius: 2px; transition: all 0.2s;
+    }
+    .copy-btn:hover { background: var(--gold); color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.35);
+      text-align: center; padding: 2rem 1rem;
+      font-size: 0.72rem; letter-spacing: 0.1em;
+    }
+    footer strong { color: var(--gold-light); font-weight: 400; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+      }
+      .gallery-grid .photo-main { grid-row: auto; height: 320px; }
+      .gallery-grid .photo-sm { height: 220px; }
+      .countdown-grid { gap: 1.5rem; }
+      .timeline-item { flex-direction: column; gap: 0.5rem; }
+      .timeline-time { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <span class="nav-brand">Adri & Aitor</span>
+  <ul class="nav-links">
+    <li><a href="#programa" data-i18n="nav_programa">Programa</a></li>
+    <li><a href="#rsvp" data-i18n="nav_rsvp">Confirmación</a></li>
+    <li><a href="#dresscode" data-i18n="nav_dresscode">Dress code</a></li>
+    <li><a href="#regalo" data-i18n="nav_regalo">Lista de boda</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('it')">IT</button>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <img src="img/photo1.jpg" alt="Adri y Aitor">
+  <div class="hero-overlay"></div>
+  <div class="hero-text">
+    <p class="hero-date">06 · 03 · 2027 · Madrid</p>
+    <h1 class="hero-names">Adri <span class="hero-ampersand">&</span> Aitor</h1>
+    <p class="hero-sub" data-i18n="hero_sub">¡Nos casamos!</p>
+  </div>
+  <p class="scroll-hint">↓</p>
+</section>
+
+<!-- ── COUNTDOWN ── -->
+<div id="countdown">
+  <p class="section-eyebrow" data-i18n="countdown_label">Faltan</p>
+  <div class="countdown-grid">
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-days">—</div>
+      <div class="countdown-label" data-i18n="cd_days">días</div>
+    </div>
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-hours">—</div>
+      <div class="countdown-label" data-i18n="cd_hours">horas</div>
+    </div>
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-mins">—</div>
+      <div class="countdown-label" data-i18n="cd_mins">minutos</div>
+    </div>
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-secs">—</div>
+      <div class="countdown-label" data-i18n="cd_secs">segundos</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROGRAMA ── -->
+<section id="programa">
+  <div class="section-inner">
+    <p class="section-eyebrow" style="text-align:center" data-i18n="eyebrow_programa">06 de marzo de 2027</p>
+    <h2 class="section-title" data-i18n="title_programa">El gran día</h2>
+    <div class="divider"></div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">11:30</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3 class="timeline-heading" data-i18n="prog1_title">Ceremonia religiosa</h3>
+          <p class="timeline-place">Iglesia Santa Bárbara</p>
+          <p class="timeline-addr">
+            Plaza de Alonso Martínez, 6, 28004 Madrid<br>
+            <a href="https://maps.google.com/?q=Iglesia+Santa+Barbara+Madrid+Plaza+Alonso+Martinez" target="_blank" rel="noopener" data-i18n="ver_mapa">Ver en Google Maps ↗</a>
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">13:30</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3 class="timeline-heading" data-i18n="prog2_title">Cóctel, banquete y baile</h3>
+          <p class="timeline-place">Finca Astilbe by Eneldo Catering</p>
+          <p class="timeline-addr">
+            Carr. de Fuencarral, km 1,9, 28049 Madrid<br>
+            <a href="https://maps.google.com/?q=Finca+Astilbe+Eneldo+Fuencarral+Madrid" target="_blank" rel="noopener" data-i18n="ver_mapa">Ver en Google Maps ↗</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALERÍA ── -->
+<section id="galeria">
+  <div class="section-inner" style="text-align:center; margin-bottom:2rem;">
+    <p class="section-eyebrow" data-i18n="eyebrow_galeria">Nosotros</p>
+    <h2 class="section-title" data-i18n="title_galeria">Adri & Aitor</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="gallery-grid">
+    <img src="img/photo2.jpg" alt="Adri y Aitor" class="photo-main">
+    <img src="img/photo3.jpg" alt="Adri y Aitor" class="photo-sm">
+    <img src="img/photo1.jpg" alt="Adri y Aitor" class="photo-sm">
+  </div>
+</section>
+
+<!-- ── RSVP ── -->
+<section id="rsvp">
+  <div class="section-inner">
+    <p class="section-eyebrow" style="text-align:center; color:var(--gold);" data-i18n="eyebrow_rsvp">Antes del 1 de diciembre de 2026</p>
+    <h2 class="section-title" data-i18n="title_rsvp">Confirmación de asistencia</h2>
+    <div class="divider"></div>
+    <p class="rsvp-note" data-i18n="rsvp_note">Por favor, confirma tu asistencia antes del 1 de diciembre de 2026. ¡Te esperamos!</p>
+
+    <form class="rsvp-form" id="rsvp-form"
+          action="https://formspree.io/f/xdarezpr"
+          method="POST">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="label_nombre">Nombre</label>
+          <input type="text" name="nombre" required placeholder="María">
+        </div>
+        <div class="form-group">
+          <label data-i18n="label_apellido">Apellido</label>
+          <input type="text" name="apellido" required placeholder="García">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label data-i18n="label_asistencia">¿Podrás venir?</label>
+        <div class="attend-btns">
+          <button type="button" class="attend-btn" id="btn-yes" onclick="selectAttend('yes')" data-i18n="btn_yes">Sí, allí estaré</button>
+          <button type="button" class="attend-btn" id="btn-no" onclick="selectAttend('no')" data-i18n="btn_no">Lo siento, no podré</button>
+        </div>
+        <input type="hidden" name="asistencia" id="input-asistencia">
+      </div>
+
+      <div class="form-extra" id="form-extra-yes">
+        <div class="form-row">
+          <div class="form-group">
+            <label data-i18n="label_personas">Número de personas</label>
+            <select name="personas">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5+">5+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label data-i18n="label_menu">Menú especial</label>
+            <select name="menu">
+              <option value="ninguno" data-i18n="menu_ninguno">Sin restricciones</option>
+              <option value="vegetariano" data-i18n="menu_veg">Vegetariano</option>
+              <option value="vegano" data-i18n="menu_vegan">Vegano</option>
+              <option value="sin_gluten" data-i18n="menu_gluten">Sin gluten</option>
+              <option value="alergia" data-i18n="menu_alergia">Alergia (indicar abajo)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-i18n="label_comentario">Comentario / Alergias</label>
+          <textarea name="comentario" placeholder="..." rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="form-extra" id="form-extra-no">
+        <div class="form-group">
+          <label data-i18n="label_mensaje">Déjanos un mensaje</label>
+          <textarea name="mensaje" placeholder="..." rows="3"></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit" data-i18n="btn_enviar">Enviar confirmación</button>
+    </form>
+    <div class="form-success" id="form-success">
+      <p data-i18n="success_msg">¡Gracias! Hemos recibido tu confirmación.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── DRESS CODE ── -->
+<section id="dresscode">
+  <div class="section-inner">
+    <p class="section-eyebrow" style="text-align:center" data-i18n="eyebrow_dresscode">Dress code</p>
+    <h2 class="section-title" data-i18n="title_dresscode">Elegante</h2>
+    <div class="divider"></div>
+    <div class="dresscode-content">
+      <p class="dresscode-text" data-i18n="dresscode_text">
+        Nos gustaría que vinieras elegante para compartir con nosotros este día tan especial.<br><br>
+        Para los caballeros: traje oscuro o de colores neutros.<br>
+        Para las señoras: vestido de cóctel o de noche, maxi vestido o traje elegante.<br><br>
+        Te pedimos evitar el blanco, marfil y crema (¡reservados para la novia 😉!)<br>
+        así como el negro riguroso.
+      </p>
+      <div class="color-palette">
+        <div class="color-chip"><div class="color-swatch" style="background:#8fa3b1;"></div><span class="color-name">Azul acero</span></div>
+        <div class="color-chip"><div class="color-swatch" style="background:#7a9e7e;"></div><span class="color-name">Verde salvia</span></div>
+        <div class="color-chip"><div class="color-swatch" style="background:#c4a09a;"></div><span class="color-name">Rosa palo</span></div>
+        <div class="color-chip"><div class="color-swatch" style="background:#b89a6a;"></div><span class="color-name">Dorado</span></div>
+        <div class="color-chip"><div class="color-swatch" style="background:#9b8ea8;"></div><span class="color-name">Malva</span></div>
+        <div class="color-chip"><div class="color-swatch" style="background:#c8a97e;"></div><span class="color-name">Arena</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LISTA DE BODA / IBAN ── -->
+<section id="regalo">
+  <div class="section-inner">
+    <p class="section-eyebrow" style="text-align:center" data-i18n="eyebrow_regalo">Lista de boda</p>
+    <h2 class="section-title" data-i18n="title_regalo">El mejor regalo</h2>
+    <div class="divider"></div>
+    <div class="regalo-content">
+      <p class="regalo-text" data-i18n="regalo_text">
+        Vuestra presencia es el mejor regalo que podéis hacernos.<br>
+        Si queréis contribuir a nuestra luna de miel o a nuestro nuevo hogar,<br>
+        podéis hacer una transferencia con el concepto <strong>"Tu nombre – Boda"</strong>.
+      </p>
+
+      <div class="iban-lock" id="iban-lock">
+        <p class="iban-lock-msg" data-i18n="iban_lock_msg">Introduce la contraseña para ver los datos bancarios:</p>
+        <div class="iban-pwd-row">
+          <input type="password" id="iban-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter') checkIban()">
+          <button onclick="checkIban()" data-i18n="iban_btn">Ver</button>
+        </div>
+        <p class="iban-error" id="iban-error" data-i18n="iban_error">Contraseña incorrecta. Prueba de nuevo.</p>
+      </div>
+
+      <div class="iban-revealed" id="iban-revealed">
+        <div class="iban-box">
+          <p class="iban-label">IBAN</p>
+          <p class="iban-number" id="iban-display">ES12 3456 7890 1234 5678 9012</p>
+          <p class="iban-holder" data-i18n="iban_holder">Titular: Adriana López / Aitor Laborde</p>
+          <br>
+          <p class="iban-label" data-i18n="iban_concepto_label">Concepto</p>
+          <p style="font-size:0.82rem; color:var(--muted);" data-i18n="iban_concepto">Tu nombre + Apellido – Boda</p>
+          <button class="copy-btn" onclick="copyIban()" data-i18n="copy_btn">Copiar IBAN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p><strong>Adri & Aitor</strong> · 06.03.2027 · Madrid</p>
+  <p style="margin-top:0.5rem;" data-i18n="footer_msg">Con todo nuestro amor, os esperamos.</p>
+</footer>
+
+<script>
+/* ── TRANSLATIONS ── */
+const i18n = {
+  es: {
+    nav_programa: "Programa", nav_rsvp: "Confirmación", nav_dresscode: "Dress code", nav_regalo: "Lista de boda",
+    hero_sub: "¡Nos casamos!",
+    countdown_label: "Faltan", cd_days: "días", cd_hours: "horas", cd_mins: "minutos", cd_secs: "segundos",
+    eyebrow_programa: "06 de marzo de 2027", title_programa: "El gran día",
+    prog1_title: "Ceremonia religiosa", prog2_title: "Cóctel, banquete y baile",
+    ver_mapa: "Ver en Google Maps ↗",
+    eyebrow_galeria: "Nosotros", title_galeria: "Adri & Aitor",
+    eyebrow_rsvp: "Antes del 1 de diciembre de 2026", title_rsvp: "Confirmación de asistencia",
+    rsvp_note: "Por favor, confirma tu asistencia antes del 1 de diciembre de 2026. ¡Te esperamos!",
+    label_nombre: "Nombre", label_apellido: "Apellido", label_asistencia: "¿Podrás venir?",
+    btn_yes: "Sí, allí estaré", btn_no: "Lo siento, no podré",
+    label_personas: "Número de personas", label_menu: "Menú especial",
+    menu_ninguno: "Sin restricciones", menu_veg: "Vegetariano", menu_vegan: "Vegano",
+    menu_gluten: "Sin gluten", menu_alergia: "Alergia (indicar abajo)",
+    label_comentario: "Comentario / Alergias", label_mensaje: "Déjanos un mensaje",
+    btn_enviar: "Enviar confirmación",
+    success_msg: "¡Gracias! Hemos recibido tu confirmación.",
+    eyebrow_dresscode: "Dress code", title_dresscode: "Elegante",
+    dresscode_text: "Nos gustaría que vinieras elegante para compartir con nosotros este día tan especial.<br><br>Para los caballeros: traje oscuro o de colores neutros.<br>Para las señoras: vestido de cóctel o de noche, maxi vestido o traje elegante.<br><br>Te pedimos evitar el blanco, marfil y crema (¡reservados para la novia 😉!)<br>así como el negro riguroso.",
+    eyebrow_regalo: "Lista de boda", title_regalo: "El mejor regalo",
+    regalo_text: "Vuestra presencia es el mejor regalo que podéis hacernos.<br>Si queréis contribuir a nuestra luna de miel o a nuestro nuevo hogar,<br>podéis hacer una transferencia con el concepto <strong>\"Tu nombre – Boda\"</strong>.",
+    iban_lock_msg: "Introduce la contraseña para ver los datos bancarios:", iban_btn: "Ver",
+    iban_error: "Contraseña incorrecta. Prueba de nuevo.",
+    iban_holder: "Titular: Adriana López / Aitor Laborde",
+    iban_concepto_label: "Concepto", iban_concepto: "Tu nombre + Apellido – Boda",
+    copy_btn: "Copiar IBAN",
+    footer_msg: "Con todo nuestro amor, os esperamos."
+  },
+  fr: {
+    nav_programa: "Programme", nav_rsvp: "Confirmation", nav_dresscode: "Dress code", nav_regalo: "Liste de mariage",
+    hero_sub: "Nous nous marions !",
+    countdown_label: "Plus que", cd_days: "jours", cd_hours: "heures", cd_mins: "minutes", cd_secs: "secondes",
+    eyebrow_programa: "6 mars 2027", title_programa: "Le grand jour",
+    prog1_title: "Cérémonie religieuse", prog2_title: "Cocktail, banquet et bal",
+    ver_mapa: "Voir sur Google Maps ↗",
+    eyebrow_galeria: "Nous", title_galeria: "Adri & Aitor",
+    eyebrow_rsvp: "Avant le 1er décembre 2026", title_rsvp: "Confirmation de présence",
+    rsvp_note: "Merci de confirmer votre présence avant le 1er décembre 2026. On vous attend !",
+    label_nombre: "Prénom", label_apellido: "Nom", label_asistencia: "Serez-vous là ?",
+    btn_yes: "Oui, j'y serai !", btn_no: "Désolé(e), je ne pourrai pas",
+    label_personas: "Nombre de personnes", label_menu: "Menu spécial",
+    menu_ninguno: "Sans restriction", menu_veg: "Végétarien", menu_vegan: "Végétalien",
+    menu_gluten: "Sans gluten", menu_alergia: "Allergie (préciser ci-dessous)",
+    label_comentario: "Commentaire / Allergies", label_mensaje: "Laissez-nous un message",
+    btn_enviar: "Envoyer la confirmation",
+    success_msg: "Merci ! Nous avons bien reçu votre confirmation.",
+    eyebrow_dresscode: "Dress code", title_dresscode: "Élégant",
+    dresscode_text: "Nous vous invitons à venir élégant(e) pour partager avec nous ce jour si spécial.<br><br>Pour les messieurs : costume sombre ou tons neutres.<br>Pour les dames : robe de cocktail ou de soirée, robe longue ou tailleur élégant.<br><br>Merci d'éviter le blanc, l'ivoire et le crème (réservés à la mariée 😉 !)<br>ainsi que le noir strict.",
+    eyebrow_regalo: "Liste de mariage", title_regalo: "Le plus beau cadeau",
+    regalo_text: "Votre présence est le plus beau cadeau que vous puissiez nous offrir.<br>Si vous souhaitez contribuer à notre lune de miel ou à notre nouveau foyer,<br>vous pouvez effectuer un virement avec le libellé <strong>\"Votre prénom – Mariage\"</strong>.",
+    iban_lock_msg: "Entrez le mot de passe pour voir les coordonnées bancaires :", iban_btn: "Voir",
+    iban_error: "Mot de passe incorrect. Réessayez.",
+    iban_holder: "Titulaire : Adriana López / Aitor Laborde",
+    iban_concepto_label: "Libellé", iban_concepto: "Votre prénom + Nom – Mariage",
+    copy_btn: "Copier l'IBAN",
+    footer_msg: "Avec tout notre amour, nous vous attendons."
+  },
+  en: {
+    nav_programa: "Programme", nav_rsvp: "RSVP", nav_dresscode: "Dress code", nav_regalo: "Gift list",
+    hero_sub: "We're getting married!",
+    countdown_label: "Counting down", cd_days: "days", cd_hours: "hours", cd_mins: "minutes", cd_secs: "seconds",
+    eyebrow_programa: "March 6, 2027", title_programa: "The big day",
+    prog1_title: "Wedding ceremony", prog2_title: "Cocktail, dinner & dancing",
+    ver_mapa: "View on Google Maps ↗",
+    eyebrow_galeria: "Us", title_galeria: "Adri & Aitor",
+    eyebrow_rsvp: "By December 1st, 2026", title_rsvp: "RSVP",
+    rsvp_note: "Please let us know if you can make it by December 1st, 2026. We can't wait to see you!",
+    label_nombre: "First name", label_apellido: "Last name", label_asistencia: "Will you be joining us?",
+    btn_yes: "Yes, I'll be there!", btn_no: "Sorry, I can't make it",
+    label_personas: "Number of guests", label_menu: "Special menu",
+    menu_ninguno: "No restrictions", menu_veg: "Vegetarian", menu_vegan: "Vegan",
+    menu_gluten: "Gluten-free", menu_alergia: "Allergy (specify below)",
+    label_comentario: "Comments / Allergies", label_mensaje: "Leave us a message",
+    btn_enviar: "Send RSVP",
+    success_msg: "Thank you! We've received your reply.",
+    eyebrow_dresscode: "Dress code", title_dresscode: "Smart elegant",
+    dresscode_text: "We'd love for you to dress elegantly to share this special day with us.<br><br>For gentlemen: dark or neutral-toned suit.<br>For ladies: cocktail or evening dress, maxi dress, or elegant trouser suit.<br><br>Please avoid white, ivory and cream (reserved for the bride 😉!)<br>and strict black.",
+    eyebrow_regalo: "Gift list", title_regalo: "The best gift",
+    regalo_text: "Your presence is the greatest gift you can give us.<br>If you'd like to contribute to our honeymoon or new home,<br>you can make a bank transfer with the reference <strong>\"Your name – Wedding\"</strong>.",
+    iban_lock_msg: "Enter the password to see the bank details:", iban_btn: "View",
+    iban_error: "Incorrect password. Please try again.",
+    iban_holder: "Account holder: Adriana López / Aitor Laborde",
+    iban_concepto_label: "Reference", iban_concepto: "Your first name + Last name – Wedding",
+    copy_btn: "Copy IBAN",
+    footer_msg: "With all our love, we look forward to seeing you."
+  },
+  it: {
+    nav_programa: "Programma", nav_rsvp: "Conferma", nav_dresscode: "Dress code", nav_regalo: "Lista nozze",
+    hero_sub: "Ci sposiamo!",
+    countdown_label: "Mancano", cd_days: "giorni", cd_hours: "ore", cd_mins: "minuti", cd_secs: "secondi",
+    eyebrow_programa: "6 marzo 2027", title_programa: "Il grande giorno",
+    prog1_title: "Cerimonia religiosa", prog2_title: "Cocktail, banchetto e ballo",
+    ver_mapa: "Vedi su Google Maps ↗",
+    eyebrow_galeria: "Noi", title_galeria: "Adri & Aitor",
+    eyebrow_rsvp: "Entro il 1° dicembre 2026", title_rsvp: "Conferma di partecipazione",
+    rsvp_note: "Ti chiediamo di confermare la tua partecipazione entro il 1° dicembre 2026. Non vediamo l'ora di vederti!",
+    label_nombre: "Nome", label_apellido: "Cognome", label_asistencia: "Riuscirai a venire?",
+    btn_yes: "Sì, ci sarò!", btn_no: "Purtroppo non posso",
+    label_personas: "Numero di persone", label_menu: "Menu speciale",
+    menu_ninguno: "Nessuna restrizione", menu_veg: "Vegetariano", menu_vegan: "Vegano",
+    menu_gluten: "Senza glutine", menu_alergia: "Allergia (specificare sotto)",
+    label_comentario: "Commento / Allergie", label_mensaje: "Lasciaci un messaggio",
+    btn_enviar: "Invia conferma",
+    success_msg: "Grazie! Abbiamo ricevuto la tua conferma.",
+    eyebrow_dresscode: "Dress code", title_dresscode: "Elegante",
+    dresscode_text: "Ci farebbe piacere che tu venissi elegante per condividere con noi questo giorno speciale.<br><br>Per gli uomini: abito scuro o in toni neutri.<br>Per le donne: abito da cocktail o da sera, abito lungo o tailleur elegante.<br><br>Ti chiediamo di evitare il bianco, l'avorio e il crema (riservati alla sposa 😉!)<br>così come il nero rigoroso.",
+    eyebrow_regalo: "Lista nozze", title_regalo: "Il regalo più bello",
+    regalo_text: "La vostra presenza è il regalo più bello che possiate farci.<br>Se volete contribuire alla nostra luna di miele o alla nostra nuova casa,<br>potete fare un bonifico con la causale <strong>\"Nome – Matrimonio\"</strong>.",
+    iban_lock_msg: "Inserisci la password per vedere i dati bancari:", iban_btn: "Mostra",
+    iban_error: "Password errata. Riprova.",
+    iban_holder: "Intestatario: Adriana López / Aitor Laborde",
+    iban_concepto_label: "Causale", iban_concepto: "Nome + Cognome – Matrimonio",
+    copy_btn: "Copia IBAN",
+    footer_msg: "Con tutto il nostro amore, vi aspettiamo."
+  }
+};
+
+let currentLang = 'es';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lang-btn').forEach(b => { if(b.textContent === lang.toUpperCase()) b.classList.add('active'); });
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang][key] !== undefined) {
+      el.innerHTML = i18n[lang][key];
+    }
+  });
+  document.documentElement.lang = lang;
+}
+
+/* ── COUNTDOWN ── */
+function updateCountdown() {
+  const target = new Date('2027-03-06T11:30:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) {
+    document.getElementById('cd-days').textContent = '0';
+    document.getElementById('cd-hours').textContent = '0';
+    document.getElementById('cd-mins').textContent = '0';
+    document.getElementById('cd-secs').textContent = '0';
+    return;
+  }
+  document.getElementById('cd-days').textContent = Math.floor(diff / 86400000);
+  document.getElementById('cd-hours').textContent = Math.floor((diff % 86400000) / 3600000);
+  document.getElementById('cd-mins').textContent = Math.floor((diff % 3600000) / 60000);
+  document.getElementById('cd-secs').textContent = Math.floor((diff % 60000) / 1000);
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* ── RSVP ATTEND TOGGLE ── */
+function selectAttend(choice) {
+  document.getElementById('input-asistencia').value = choice;
+  const btnYes = document.getElementById('btn-yes');
+  const btnNo = document.getElementById('btn-no');
+  const extraYes = document.getElementById('form-extra-yes');
+  const extraNo = document.getElementById('form-extra-no');
+  btnYes.className = 'attend-btn' + (choice === 'yes' ? ' selected-yes' : '');
+  btnNo.className = 'attend-btn' + (choice === 'no' ? ' selected-no' : '');
+  extraYes.className = 'form-extra' + (choice === 'yes' ? ' visible' : '');
+  extraNo.className = 'form-extra' + (choice === 'no' ? ' visible' : '');
+}
+
+/* ── RSVP FORM SUBMIT ── */
+document.getElementById('rsvp-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  if (!document.getElementById('input-asistencia').value) {
+    alert(currentLang === 'fr' ? 'Veuillez indiquer si vous serez présent(e).' :
+          currentLang === 'en' ? 'Please indicate whether you will attend.' :
+          currentLang === 'it' ? 'Indica se parteciperai.' :
+          'Por favor, indica si podrás venir.');
+    return;
+  }
+  const btn = this.querySelector('.btn-submit');
+  btn.textContent = '...';
+  btn.disabled = true;
+  try {
+    const res = await fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      this.style.display = 'none';
+      const succ = document.getElementById('form-success');
+      succ.style.display = 'block';
+    } else {
+      btn.textContent = i18n[currentLang].btn_enviar;
+      btn.disabled = false;
+      alert('Error al enviar. Por favor inténtalo de nuevo.');
+    }
+  } catch(err) {
+    btn.textContent = i18n[currentLang].btn_enviar;
+    btn.disabled = false;
+  }
+});
+
+/* ── IBAN PASSWORD ── */
+const IBAN_PASSWORD = 'boda2027';
+const REAL_IBAN = 'ES12 3456 7890 1234 5678 9012'; // <-- REEMPLAZAR CON IBAN REAL
+
+function checkIban() {
+  const pwd = document.getElementById('iban-pwd').value;
+  const err = document.getElementById('iban-error');
+  if (pwd === IBAN_PASSWORD) {
+    document.getElementById('iban-lock').style.display = 'none';
+    document.getElementById('iban-display').textContent = REAL_IBAN;
+    document.getElementById('iban-revealed').classList.add('show');
+    err.style.display = 'none';
+  } else {
+    err.style.display = 'block';
+    document.getElementById('iban-pwd').value = '';
+    document.getElementById('iban-pwd').focus();
+  }
+}
+
+function copyIban() {
+  navigator.clipboard.writeText(REAL_IBAN.replace(/\s/g, '')).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    const prev = btn.textContent;
+    btn.textContent = '✓ Copiado';
+    setTimeout(() => btn.textContent = prev, 2000);
+  });
+}
+</script>
+</body>
+</html>
