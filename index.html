@@ -175,20 +175,13 @@
 
     /* ── GALLERY ── */
     #galeria { background: var(--ivory-dark); padding: 5rem 1rem; }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      grid-template-rows: auto auto;
-      gap: 12px; max-width: 860px; margin: 0 auto;
+    .gallery-flex {
+      display: flex; gap: 12px; max-width: 860px; margin: 0 auto;
     }
-    .gallery-grid img {
-      width: 100%; height: 100%; object-fit: cover;
-      border-radius: 2px; display: block;
-    }
-    .gallery-grid .photo-main {
-      grid-row: 1 / 3; height: 520px;
-    }
-    .gallery-grid .photo-sm { height: 250px; }
+    .gallery-flex .col-left { flex: 1.2; overflow: hidden; border-radius: 2px; }
+    .gallery-flex .col-right { flex: 0.8; display: flex; flex-direction: column; gap: 12px; }
+    .gallery-flex .col-right div { overflow: hidden; border-radius: 2px; }
+    .gallery-flex img { display: block; width: 100%; }
 
     /* ── RSVP ── */
     #rsvp { background: var(--dark); color: #fff; }
@@ -339,12 +332,11 @@
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .form-row { grid-template-columns: 1fr; }
-      .gallery-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-      }
-      .gallery-grid .photo-main { grid-row: auto; height: 320px; }
-      .gallery-grid .photo-sm { height: 220px; }
+      .gallery-flex { flex-direction: column; }
+      .gallery-flex .col-left img { height: 300px !important; }
+      .gallery-flex .col-right { flex-direction: row; }
+      .gallery-flex .col-right div { flex: 1; }
+      .gallery-flex .col-right img { height: 160px !important; }
       .countdown-grid { gap: 1.5rem; }
       .timeline-item { flex-direction: column; gap: 0.5rem; }
       .timeline-time { text-align: left; }
@@ -447,10 +439,18 @@
     <h2 class="section-title" data-i18n="title_galeria">Adri & Aitor</h2>
     <div class="divider"></div>
   </div>
-  <div class="gallery-grid">
-    <img src="img/photo2.jpg" alt="Adri y Aitor" class="photo-main" style="object-position: center top;">
-    <img src="img/photo3.jpg" alt="Adri y Aitor" class="photo-sm">
-    <img src="img/photo1.jpg" alt="Adri y Aitor" class="photo-sm">
+  <div class="gallery-flex">
+    <div class="col-left">
+      <img src="img/photo2.jpg" alt="Adri y Aitor" style="height: 420px; object-fit: cover; object-position: center top;">
+    </div>
+    <div class="col-right">
+      <div>
+        <img src="img/photo3.jpg" alt="Adri y Aitor" style="height: 204px; object-fit: contain; background: #f0e9de;">
+      </div>
+      <div>
+        <img src="img/photo1.jpg" alt="Adri y Aitor" style="height: 204px; object-fit: contain; background: #f0e9de;">
+      </div>
+    </div>
   </div>
 </section>
 
