@@ -100,27 +100,24 @@
 
     .mono-img {
       width:clamp(140px,28vw,200px); height:auto;
-      filter: invert(1) brightness(1.6) contrast(1.2);
+      /* contrast(50) pousse gris→noir, blanc→blanc; invert → lettres blanches sur noir; screen → noir transparent */
+      filter: contrast(50) invert(1);
       mix-blend-mode: screen;
-      opacity:.9;
       margin-bottom:1.6rem;
       display:block;
     }
 
-    /* ── MARIÉS SCROLL ── */
-    #maries-walk {
-      position:fixed;
-      bottom:0;
-      left:0;
-      width:clamp(100px,14vw,160px);
-      height:auto;
-      z-index:150;
-      pointer-events:none;
-      will-change:transform;
-      filter: drop-shadow(2px 0 6px rgba(0,0,0,.08));
+    /* ── MARIÉS DIVIDER ── */
+    #maries-divider {
+      background:var(--cream);
+      text-align:center;
+      padding:3.5rem 2rem 0;
+      overflow:hidden;
     }
-    @media(max-width:600px){
-      #maries-walk { width:80px; }
+    #maries-divider img {
+      width:clamp(160px,30vw,260px);
+      height:auto;
+      display:inline-block;
     }
 
     .hero-tagline {
@@ -438,9 +435,6 @@
 </head>
 <body>
 
-<!-- ── MARIÉS QUI MARCHENT ── -->
-<img id="maries-walk" src="img/maries.png" alt="">
-
 <!-- ── NAV ── -->
 <nav id="main-nav">
   <span class="nav-brand">Adri &amp; Aitor</span>
@@ -523,6 +517,11 @@
 
   <div class="scroll-hint" data-i18n="scroll_hint">scroll</div>
 </section>
+
+<!-- ── MARIÉS DIVIDER ── -->
+<div id="maries-divider">
+  <img src="img/maries.png" alt="Adri & Aitor">
+</div>
 
 <!-- ── INVITATION ── -->
 <section id="invitation">
@@ -999,25 +998,6 @@ document.getElementById('rsvp-form').addEventListener('submit',async function(e)
     else{btn.textContent=T[lang].btn_send;btn.disabled=false;}
   }catch{btn.textContent=T[lang].btn_send;btn.disabled=false;}
 });
-
-/* ─── MARIÉS SCROLL ─── */
-(function(){
-  const el = document.getElementById('maries-walk');
-  let ticking = false;
-  function update(){
-    const scrolled = window.scrollY;
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
-    const pct = Math.min(scrolled / maxScroll, 1);
-    const imgW = el.offsetWidth;
-    const maxX = window.innerWidth - imgW;
-    el.style.transform = `translateX(${pct * maxX}px)`;
-    ticking = false;
-  }
-  window.addEventListener('scroll', () => {
-    if(!ticking){ requestAnimationFrame(update); ticking=true; }
-  }, {passive:true});
-  update();
-})();
 
 /* ─── IBAN ─── */
 const IBAN_PWD='boda2027';
