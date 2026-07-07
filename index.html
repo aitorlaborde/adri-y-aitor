@@ -3,436 +3,462 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adri & Aitor · 06.03.2027</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Adriana & Aitor · 06.03.2027</title>
   <style>
     :root {
-      --ivory:      #faf6f0;
-      --ivory-dark: #f0e8db;
-      --ivory-mid:  #e8ddd0;
-      --gold:       #b89a6a;
-      --gold-light: #d4b896;
-      --dark:       #2c2520;
-      --muted:      #7a6f68;
-      --rose:       #c4a09a;
+      --sage:       #5c6b4a;
+      --sage-light: #7a8e65;
+      --sage-pale:  #dde3d5;
+      --cream:      #f5f0e8;
+      --cream-mid:  #ece5d8;
+      --cream-dark: #e0d8cc;
+      --stone:      #b8a99a;
+      --char:       #2c2824;
+      --muted:      #7a7068;
+      --white:      #ffffff;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body { font-family:'Jost',sans-serif; background:var(--ivory); color:var(--dark); font-weight:300; }
+    body {
+      font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight:200;
+      background:var(--cream);
+      color:var(--char);
+      -webkit-font-smoothing:antialiased;
+    }
 
     /* ── NAV ── */
     nav {
-      position:fixed; top:0; left:0; right:0; z-index:100;
-      background:rgba(250,246,240,0.93); backdrop-filter:blur(8px);
-      border-bottom:1px solid var(--ivory-dark);
+      position:fixed; top:0; left:0; right:0; z-index:200;
       display:flex; align-items:center; justify-content:space-between;
-      padding:0 2rem; height:54px;
+      padding:0 2.5rem; height:52px;
+      background:rgba(245,240,232,0.92); backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(184,169,154,0.25);
+      transition:background .3s;
     }
-    .nav-brand { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-style:italic; color:var(--dark); letter-spacing:0.05em; }
-    .nav-links { display:flex; gap:1.8rem; list-style:none; }
-    .nav-links a { font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
-    .nav-links a:hover { color:var(--dark); }
-    .lang-switcher { display:flex; gap:0.4rem; }
-    .lang-btn { font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; background:none; border:none; cursor:pointer; color:var(--muted); padding:2px 4px; font-family:'Jost',sans-serif; transition:color .2s; }
-    .lang-btn.active { color:var(--dark); border-bottom:1px solid var(--gold); }
+    nav.on-sage {
+      background:rgba(92,107,74,0.92);
+      border-bottom-color:rgba(255,255,255,0.15);
+    }
+    .nav-brand {
+      font-size:.75rem; letter-spacing:.22em; text-transform:uppercase;
+      color:var(--char); font-weight:300;
+    }
+    nav.on-sage .nav-brand { color:rgba(255,255,255,.8); }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); text-decoration:none; font-weight:300; transition:color .2s; }
+    nav.on-sage .nav-links a { color:rgba(255,255,255,.55); }
+    .nav-links a:hover { color:var(--char); }
+    nav.on-sage .nav-links a:hover { color:#fff; }
+    .lang-sw { display:flex; gap:.35rem; }
+    .lb { font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; background:none; border:none; cursor:pointer; color:var(--muted); padding:2px 5px; font-family:inherit; font-weight:300; transition:color .2s; }
+    .lb.active { color:var(--char); border-bottom:1px solid var(--sage-light); }
+    nav.on-sage .lb { color:rgba(255,255,255,.45); }
+    nav.on-sage .lb.active { color:#fff; border-bottom-color:rgba(255,255,255,.5); }
 
     /* ── HERO ── */
     #hero {
-      min-height:100vh; background:var(--ivory);
+      height:100vh; min-height:580px;
+      background:var(--sage);
       display:flex; flex-direction:column; align-items:center; justify-content:center;
-      text-align:center; padding:80px 2rem 4rem; gap:0;
+      text-align:center; position:relative; overflow:hidden;
     }
-    .monogram-wrap { margin-bottom:2rem; }
-    .monogram-wrap svg { width:160px; height:168px; }
-    .hero-names {
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(2.4rem,7vw,4.2rem);
-      font-weight:300; letter-spacing:0.04em; color:var(--dark); line-height:1;
+    #hero::after {
+      content:'';
+      position:absolute; inset:0;
+      background:radial-gradient(ellipse at 50% 40%, rgba(255,255,255,.04) 0%, transparent 70%);
+      pointer-events:none;
     }
-    .hero-names .amp { font-style:italic; color:var(--gold); }
+    .hero-mono { position:relative; z-index:1; margin-bottom:2rem; }
+    .hero-mono svg { width:clamp(180px,38vw,260px); height:auto; filter:drop-shadow(0 2px 24px rgba(0,0,0,.18)); }
     .hero-date {
-      font-size:0.78rem; letter-spacing:0.28em; text-transform:uppercase;
-      color:var(--muted); margin-top:0.9rem;
+      position:relative; z-index:1;
+      font-size:clamp(.7rem,.9vw,.85rem); letter-spacing:.35em; text-transform:uppercase;
+      color:rgba(255,255,255,.75); font-weight:200;
     }
-    .hero-divider { width:40px; height:1px; background:var(--gold); margin:1.6rem auto; }
-    .hero-welcome {
-      font-family:'Cormorant Garamond',serif; font-style:italic;
-      font-size:clamp(1.2rem,3vw,1.7rem); font-weight:300; color:var(--muted);
-      margin-bottom:2.4rem;
+    .hero-names {
+      position:relative; z-index:1;
+      font-size:clamp(1.1rem,1.8vw,1.4rem); letter-spacing:.22em; text-transform:uppercase;
+      color:rgba(255,255,255,.9); font-weight:100; margin-bottom:1rem;
     }
+    .scroll-down {
+      position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
+      color:rgba(255,255,255,.35); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase;
+      display:flex; flex-direction:column; align-items:center; gap:.5rem; z-index:1;
+      animation:float 2.5s ease-in-out infinite;
+    }
+    .scroll-down::after { content:''; display:block; width:1px; height:28px; background:rgba(255,255,255,.25); }
+    @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
 
-    /* ── COUNTDOWN ── */
-    .countdown-grid { display:flex; justify-content:center; gap:2.2rem; }
-    .cd-item { text-align:center; min-width:52px; }
-    .cd-num { font-family:'Cormorant Garamond',serif; font-size:2.6rem; font-weight:300; color:var(--dark); line-height:1; }
-    .cd-label { font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); margin-top:0.3rem; }
+    /* ── INTRO ── */
+    #intro {
+      padding:5.5rem 2rem 5rem;
+      background:var(--cream); text-align:center;
+    }
+    .intro-names {
+      font-size:clamp(1.8rem,5vw,3.2rem); font-weight:100; letter-spacing:.06em;
+      color:var(--char); margin-bottom:.8rem; line-height:1;
+    }
+    .intro-amp { color:var(--sage-light); font-weight:200; }
+    .intro-sub {
+      font-size:clamp(.8rem,1.2vw,1rem); letter-spacing:.22em; text-transform:uppercase;
+      color:var(--muted); font-weight:200; margin-bottom:2.5rem;
+    }
+    .intro-divider { width:36px; height:1px; background:var(--stone); margin:0 auto 2.5rem; }
+    .countdown-row { display:flex; justify-content:center; gap:2.5rem; }
+    .cd-item { text-align:center; }
+    .cd-num { font-size:clamp(2rem,4vw,3rem); font-weight:100; color:var(--char); line-height:1; }
+    .cd-lbl { font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; color:var(--stone); margin-top:.4rem; font-weight:300; }
 
-    /* ── SECTION COMMONS ── */
-    .section-eyebrow { font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:0.6rem; }
-    .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,4vw,2.6rem); font-weight:300; color:var(--dark); margin-bottom:1rem; }
-    .divider { width:40px; height:1px; background:var(--gold); margin:0 0 1.6rem; }
-
-    /* ── VENUE SECTIONS ── */
-    .venue-section { display:flex; min-height:480px; }
-    .venue-section.reverse { flex-direction:row-reverse; }
-    .venue-img { flex:1; overflow:hidden; }
-    .venue-img img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
-    .venue-img.illustration img { object-fit:contain; background:var(--ivory); padding:2rem; }
-    .venue-text {
+    /* ── VENUE SPLIT ── */
+    .venue-split { display:flex; min-height:500px; }
+    .venue-split.flip { flex-direction:row-reverse; }
+    .venue-img { flex:1.1; overflow:hidden; background:var(--cream); }
+    .venue-img img { width:100%; height:100%; object-fit:contain; object-position:center; display:block; padding:2rem; }
+    .venue-body-wrap {
       flex:1; display:flex; flex-direction:column; justify-content:center;
-      padding:4rem 3.5rem; background:var(--ivory);
+      padding:4rem 3.5rem; background:var(--cream-mid);
     }
-    .venue-body { font-size:0.9rem; color:var(--muted); line-height:1.9; margin-bottom:1.4rem; }
-    .venue-address { font-size:0.78rem; color:var(--muted); line-height:1.7; }
-    .venue-address a { color:var(--gold); text-decoration:none; font-size:0.72rem; letter-spacing:0.08em; border-bottom:1px solid transparent; transition:border-color .2s; }
-    .venue-address a:hover { border-color:var(--gold); }
-    .venue-tag { display:inline-block; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ivory); background:var(--gold); padding:4px 12px; border-radius:1px; margin-bottom:1.2rem; }
+    .venue-split.flip .venue-body-wrap { background:var(--cream); }
+    .v-tag {
+      display:inline-block; font-size:.58rem; letter-spacing:.2em; text-transform:uppercase;
+      color:var(--sage); border:1px solid var(--sage-pale); padding:4px 12px; margin-bottom:1.4rem; align-self:flex-start;
+    }
+    .v-eyebrow { font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--stone); font-weight:300; margin-bottom:.5rem; }
+    .v-title { font-size:clamp(1.4rem,2.5vw,2rem); font-weight:100; color:var(--char); margin-bottom:1.2rem; letter-spacing:.03em; }
+    .v-line { width:28px; height:1px; background:var(--stone); margin-bottom:1.4rem; }
+    .v-text { font-size:.85rem; color:var(--muted); line-height:1.9; margin-bottom:1.4rem; font-weight:300; }
+    .v-addr { font-size:.75rem; color:var(--muted); line-height:1.8; font-weight:300; }
+    .v-addr a { color:var(--sage-light); text-decoration:none; font-size:.68rem; letter-spacing:.08em; border-bottom:1px solid transparent; transition:border-color .2s; }
+    .v-addr a:hover { border-color:var(--sage-light); }
 
     /* ── NOSOTROS ── */
-    #nosotros { padding:5rem 1rem; background:var(--ivory-dark); }
-    .nosotros-inner { max-width:900px; margin:0 auto; }
-    .nosotros-header { text-align:center; margin-bottom:2.8rem; }
-    .nosotros-grid {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      grid-template-rows:auto auto;
-      gap:10px;
-    }
-    .nosotros-grid img { width:100%; display:block; border-radius:1px; }
-    .photo-tall { grid-row:1/3; height:600px; object-fit:cover; object-position:center top; }
-    .photo-sq { height:292px; object-fit:cover; }
+    #nosotros { background:var(--cream-dark); padding:5rem 2rem; }
+    .nos-header { text-align:center; margin-bottom:3rem; }
+    .eyebrow { font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:var(--stone); font-weight:300; margin-bottom:.5rem; }
+    .section-h { font-size:clamp(1.6rem,3vw,2.2rem); font-weight:100; color:var(--char); margin-bottom:1.2rem; }
+    .nos-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; max-width:1000px; margin:0 auto; align-items:start; }
+    .nos-grid img { width:100%; height:auto; display:block; border-radius:1px; }
 
     /* ── RSVP ── */
-    #rsvp { background:var(--dark); color:#fff; padding:5rem 1rem; }
-    .rsvp-inner { max-width:560px; margin:0 auto; }
-    #rsvp .section-eyebrow { color:var(--gold); text-align:center; }
-    #rsvp .section-title { color:#fff; text-align:center; }
-    #rsvp .divider { margin:0 auto 1.6rem; }
-    .rsvp-note { text-align:center; font-size:0.82rem; color:rgba(255,255,255,0.5); margin-bottom:2.5rem; line-height:1.7; }
+    #rsvp { background:var(--char); color:#fff; padding:5.5rem 2rem; }
+    .rsvp-inner { max-width:540px; margin:0 auto; }
+    #rsvp .eyebrow { color:rgba(255,255,255,.35); }
+    #rsvp .section-h { color:#fff; }
+    .rsvp-divider { width:28px; height:1px; background:var(--stone); margin:0 auto 1.6rem; }
+    .rsvp-note { text-align:center; font-size:.8rem; color:rgba(255,255,255,.45); margin-bottom:2.5rem; line-height:1.8; font-weight:300; }
     .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
-    .form-group { display:flex; flex-direction:column; gap:0.4rem; margin-bottom:1rem; }
-    .form-group label { font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.5); }
-    .form-group input, .form-group select, .form-group textarea {
-      background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15);
-      border-radius:2px; padding:.75rem 1rem; color:#fff;
-      font-family:'Jost',sans-serif; font-size:.85rem; font-weight:300;
+    .fg { display:flex; flex-direction:column; gap:.4rem; margin-bottom:1rem; }
+    .fg label { font-size:.58rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.35); font-weight:300; }
+    .fg input, .fg select, .fg textarea {
+      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12);
+      border-radius:1px; padding:.7rem 1rem; color:#fff;
+      font-family:inherit; font-size:.82rem; font-weight:200;
       transition:border-color .2s; outline:none;
     }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--gold); }
-    .form-group select option { background:var(--dark); }
-    .form-group textarea { resize:vertical; min-height:80px; }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color:rgba(255,255,255,.35); }
+    .fg select option { background:var(--char); }
+    .fg textarea { resize:vertical; min-height:76px; }
     .attend-btns { display:flex; gap:.75rem; margin-bottom:1.5rem; }
-    .attend-btn { flex:1; padding:.75rem; border-radius:2px; cursor:pointer; font-family:'Jost',sans-serif; font-size:.78rem; font-weight:400; letter-spacing:.1em; text-transform:uppercase; transition:all .2s; border:1px solid rgba(255,255,255,0.2); background:transparent; color:rgba(255,255,255,0.6); }
-    .attend-btn.selected-yes { background:var(--gold); border-color:var(--gold); color:#fff; }
-    .attend-btn.selected-no { background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.4); color:#fff; }
+    .att-btn {
+      flex:1; padding:.7rem; border-radius:1px; cursor:pointer;
+      font-family:inherit; font-size:.65rem; font-weight:300; letter-spacing:.14em; text-transform:uppercase;
+      transition:all .2s; border:1px solid rgba(255,255,255,.18);
+      background:transparent; color:rgba(255,255,255,.45);
+    }
+    .att-btn.yes { background:var(--sage); border-color:var(--sage); color:#fff; }
+    .att-btn.no  { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.3); color:#fff; }
     .form-extra { display:none; }
-    .form-extra.visible { display:block; }
-    .btn-submit { width:100%; padding:1rem; background:var(--gold); border:none; color:#fff; font-family:'Jost',sans-serif; font-size:.78rem; letter-spacing:.18em; text-transform:uppercase; cursor:pointer; border-radius:2px; transition:background .2s; font-weight:400; }
-    .btn-submit:hover { background:var(--gold-light); }
-    .form-success { text-align:center; padding:2rem; font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:var(--gold-light); display:none; }
+    .form-extra.on { display:block; }
+    .btn-sub {
+      width:100%; padding:.9rem; background:var(--sage-light); border:none;
+      color:#fff; font-family:inherit; font-size:.65rem; letter-spacing:.2em;
+      text-transform:uppercase; cursor:pointer; border-radius:1px; font-weight:300;
+      transition:background .2s;
+    }
+    .btn-sub:hover { background:var(--sage); }
+    .form-ok { text-align:center; padding:2rem; font-size:1.2rem; font-weight:100; color:rgba(255,255,255,.6); display:none; }
 
     /* ── DRESS CODE ── */
-    #dresscode { padding:5rem 1rem; background:var(--ivory); }
-    .dresscode-inner { max-width:560px; margin:0 auto; text-align:center; }
-    .dresscode-text { font-size:.85rem; color:var(--muted); line-height:1.9; }
-    .color-palette { display:flex; justify-content:center; gap:12px; margin-top:1.5rem; flex-wrap:wrap; }
-    .color-chip { display:flex; flex-direction:column; align-items:center; gap:6px; }
-    .color-swatch { width:34px; height:34px; border-radius:50%; border:1px solid rgba(0,0,0,0.08); }
-    .color-name { font-size:.6rem; color:var(--muted); letter-spacing:.06em; }
+    #dresscode { background:var(--cream-mid); padding:5rem 2rem; text-align:center; }
+    .dc-inner { max-width:520px; margin:0 auto; }
+    .dc-text { font-size:.83rem; color:var(--muted); line-height:1.95; font-weight:300; }
+    .swatches { display:flex; justify-content:center; gap:14px; margin-top:1.8rem; flex-wrap:wrap; }
+    .sw { display:flex; flex-direction:column; align-items:center; gap:7px; }
+    .sw-dot { width:32px; height:32px; border-radius:50%; border:1px solid rgba(0,0,0,.07); }
+    .sw-name { font-size:.55rem; letter-spacing:.1em; text-transform:uppercase; color:var(--stone); }
 
     /* ── IBAN ── */
-    #regalo { padding:5rem 1rem; background:var(--ivory-dark); }
-    .regalo-inner { max-width:520px; margin:0 auto; text-align:center; }
-    .regalo-text { font-size:.85rem; color:var(--muted); line-height:1.9; margin-bottom:2rem; }
-    .iban-lock { border:1px solid var(--ivory-mid); background:var(--ivory); border-radius:4px; padding:2rem; max-width:400px; margin:0 auto; }
-    .iban-lock-msg { font-size:.78rem; color:var(--muted); margin-bottom:1rem; }
-    .iban-pwd-row { display:flex; gap:.5rem; }
-    .iban-pwd-row input { flex:1; padding:.65rem 1rem; border:1px solid var(--ivory-mid); border-radius:2px; font-family:'Jost',sans-serif; font-size:.85rem; background:#fff; outline:none; color:var(--dark); transition:border-color .2s; }
-    .iban-pwd-row input:focus { border-color:var(--gold); }
-    .iban-pwd-row button { padding:.65rem 1.2rem; background:var(--dark); border:none; color:#fff; font-family:'Jost',sans-serif; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; border-radius:2px; transition:background .2s; }
-    .iban-pwd-row button:hover { background:var(--gold); }
-    .iban-error { color:#c0392b; font-size:.75rem; margin-top:.5rem; display:none; }
-    .iban-revealed { display:none; }
-    .iban-revealed.show { display:block; }
-    .iban-box { background:#fff; border:1px solid var(--ivory-mid); border-radius:4px; padding:1.5rem; max-width:400px; margin:0 auto; }
-    .iban-label { font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:.5rem; }
-    .iban-number { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--dark); letter-spacing:.1em; margin-bottom:.8rem; }
-    .iban-holder { font-size:.78rem; color:var(--muted); }
-    .copy-btn { margin-top:1rem; padding:.5rem 1.2rem; background:none; border:1px solid var(--gold); color:var(--gold); font-family:'Jost',sans-serif; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; border-radius:2px; transition:all .2s; }
-    .copy-btn:hover { background:var(--gold); color:#fff; }
+    #regalo { background:var(--cream); padding:5rem 2rem; text-align:center; }
+    .ib-inner { max-width:480px; margin:0 auto; }
+    .ib-text { font-size:.83rem; color:var(--muted); line-height:1.95; margin-bottom:2rem; font-weight:300; }
+    .ib-lock { border:1px solid var(--cream-dark); background:var(--cream-mid); border-radius:2px; padding:2rem; max-width:380px; margin:0 auto; }
+    .ib-msg { font-size:.75rem; color:var(--muted); margin-bottom:1rem; letter-spacing:.03em; font-weight:300; }
+    .ib-row { display:flex; gap:.5rem; }
+    .ib-row input { flex:1; padding:.6rem .9rem; border:1px solid var(--cream-dark); border-radius:1px; font-family:inherit; font-size:.82rem; font-weight:200; background:#fff; outline:none; color:var(--char); transition:border-color .2s; }
+    .ib-row input:focus { border-color:var(--sage-light); }
+    .ib-row button { padding:.6rem 1.1rem; background:var(--char); border:none; color:#fff; font-family:inherit; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; border-radius:1px; transition:background .2s; font-weight:300; }
+    .ib-row button:hover { background:var(--sage); }
+    .ib-err { color:#b04040; font-size:.72rem; margin-top:.5rem; display:none; }
+    .ib-shown { display:none; }
+    .ib-shown.on { display:block; }
+    .ib-box { background:#fff; border:1px solid var(--cream-dark); border-radius:2px; padding:1.6rem; max-width:380px; margin:0 auto; }
+    .ib-label { font-size:.55rem; letter-spacing:.18em; text-transform:uppercase; color:var(--stone); margin-bottom:.5rem; font-weight:300; }
+    .ib-num { font-size:1.25rem; font-weight:200; color:var(--char); letter-spacing:.1em; margin-bottom:.8rem; }
+    .ib-holder { font-size:.75rem; color:var(--muted); font-weight:300; }
+    .cp-btn { margin-top:1.2rem; padding:.5rem 1.1rem; background:none; border:1px solid var(--sage-light); color:var(--sage-light); font-family:inherit; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; border-radius:1px; transition:all .2s; font-weight:300; }
+    .cp-btn:hover { background:var(--sage-light); color:#fff; }
 
     /* ── FOOTER ── */
-    footer { background:var(--dark); color:rgba(255,255,255,0.35); text-align:center; padding:2rem 1rem; font-size:.72rem; letter-spacing:.1em; }
-    footer strong { color:var(--gold-light); font-weight:400; }
+    footer { background:var(--sage); color:rgba(255,255,255,.45); text-align:center; padding:2.2rem 1rem; font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; font-weight:300; }
+    footer span { color:rgba(255,255,255,.7); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .85s cubic-bezier(.22,1,.36,1), transform .85s cubic-bezier(.22,1,.36,1); }
+    .reveal.up { opacity:1; transform:translateY(0); }
+    .reveal-left { opacity:0; transform:translateX(-30px); transition:opacity .85s cubic-bezier(.22,1,.36,1) .1s, transform .85s cubic-bezier(.22,1,.36,1) .1s; }
+    .reveal-left.up { opacity:1; transform:translateX(0); }
+    .reveal-right { opacity:0; transform:translateX(30px); transition:opacity .85s cubic-bezier(.22,1,.36,1) .15s, transform .85s cubic-bezier(.22,1,.36,1) .15s; }
+    .reveal-right.up { opacity:1; transform:translateX(0); }
+    .reveal-d1 { transition-delay:.15s; }
+    .reveal-d2 { transition-delay:.28s; }
+    .reveal-d3 { transition-delay:.42s; }
 
     /* ── RESPONSIVE ── */
     @media(max-width:768px){
       .nav-links { display:none; }
-      .venue-section, .venue-section.reverse { flex-direction:column; }
-      .venue-img { height:260px; }
-      .venue-img.illustration { height:220px; }
-      .venue-text { padding:2.5rem 1.5rem; }
-      .nosotros-grid { grid-template-columns:1fr; grid-template-rows:auto auto auto; }
-      .photo-tall { grid-row:auto; height:340px; }
-      .photo-sq { height:260px; }
+      nav { padding:0 1.5rem; }
+      .venue-split, .venue-split.flip { flex-direction:column; }
+      .venue-img { min-height:220px; }
+      .venue-img img { padding:1.2rem; }
+      .venue-body-wrap { padding:2.5rem 1.5rem; }
+      .nos-grid { grid-template-columns:1fr; }
       .form-row { grid-template-columns:1fr; }
-      .countdown-grid { gap:1.4rem; }
+      .countdown-row { gap:1.5rem; }
     }
   </style>
 </head>
 <body>
 
 <!-- ── NAV ── -->
-<nav>
-  <span class="nav-brand">Adri & Aitor</span>
+<nav id="main-nav" class="on-sage">
+  <span class="nav-brand">A & A · 2027</span>
   <ul class="nav-links">
-    <li><a href="#ceremonia" data-i18n="nav_ceremonia">Ceremonia</a></li>
-    <li><a href="#nosotros" data-i18n="nav_nosotros">Nosotros</a></li>
-    <li><a href="#rsvp" data-i18n="nav_rsvp">Confirmación</a></li>
-    <li><a href="#dresscode" data-i18n="nav_dresscode">Dress code</a></li>
-    <li><a href="#regalo" data-i18n="nav_regalo">Lista de boda</a></li>
+    <li><a href="#intro"    data-i18n="nav_intro">Inicio</a></li>
+    <li><a href="#ceremonia" data-i18n="nav_cer">Ceremonia</a></li>
+    <li><a href="#nosotros" data-i18n="nav_nos">Nosotros</a></li>
+    <li><a href="#rsvp"    data-i18n="nav_rsvp">Confirmación</a></li>
+    <li><a href="#regalo"  data-i18n="nav_gift">Lista de boda</a></li>
   </ul>
-  <div class="lang-switcher">
-    <button class="lang-btn active" onclick="setLang('es')">ES</button>
-    <button class="lang-btn" onclick="setLang('fr')">FR</button>
-    <button class="lang-btn" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" onclick="setLang('it')">IT</button>
+  <div class="lang-sw">
+    <button class="lb active" onclick="setLang('es')">ES</button>
+    <button class="lb" onclick="setLang('fr')">FR</button>
+    <button class="lb" onclick="setLang('en')">EN</button>
+    <button class="lb" onclick="setLang('it')">IT</button>
   </div>
 </nav>
 
 <!-- ── HERO ── -->
 <section id="hero">
+
   <!-- MONOGRAM SVG -->
-  <div class="monogram-wrap">
-    <svg viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Monograma AA">
+  <div class="hero-mono">
+    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" aria-label="Monograma AA">
       <defs>
-        <filter id="emb" x="-25%" y="-25%" width="150%" height="150%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="ab"/>
-          <feOffset dx="-2" dy="-3" in="ab" result="o1"/>
-          <feOffset dx="2"  dy="3"  in="ab" result="o2"/>
-          <feFlood flood-color="#ffffff" flood-opacity="0.9"  result="hi_c"/>
-          <feFlood flood-color="#3d2e1e" flood-opacity="0.22" result="sh_c"/>
-          <feComposite in="hi_c" in2="o1" operator="in" result="hi"/>
-          <feComposite in="sh_c" in2="o2" operator="in" result="sh"/>
-          <feMerge>
-            <feMergeNode in="hi"/>
-            <feMergeNode in="sh"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
+        <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="sharp">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/>
+          <feOffset dx="-1.5" dy="-2.5" in="b" result="o1"/>
+          <feOffset dx="1.5"  dy="2.5"  in="b" result="o2"/>
+          <feFlood flood-color="#fff"     flood-opacity=".55" result="wh"/>
+          <feFlood flood-color="#1a1a0e" flood-opacity=".25" result="dk"/>
+          <feComposite in="wh" in2="o1" operator="in" result="hi"/>
+          <feComposite in="dk" in2="o2" operator="in" result="sh"/>
+          <feMerge><feMergeNode in="hi"/><feMergeNode in="sh"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
       </defs>
-      <!-- outer circle -->
-      <circle cx="100" cy="104" r="92" fill="none" stroke="#c8b89a" stroke-width="0.8" opacity="0.65"/>
-      <!-- inner thin circle -->
-      <circle cx="100" cy="104" r="84" fill="none" stroke="#c8b89a" stroke-width="0.4" opacity="0.35"/>
-      <!-- monogram AA -->
-      <g filter="url(#emb)" fill="#cec0ac">
-        <!-- left A, normal italic -->
-        <text x="90" y="152"
-              text-anchor="middle"
-              font-family="Cormorant Garamond, serif"
-              font-size="115" font-style="italic" font-weight="300">A</text>
-        <!-- right A, mirrored italic -->
-        <text x="90" y="152"
-              text-anchor="middle"
-              font-family="Cormorant Garamond, serif"
-              font-size="115" font-style="italic" font-weight="300"
-              transform="matrix(-1,0,0,1,200,0)">A</text>
+
+      <!-- thin outer ring -->
+      <circle cx="150" cy="150" r="136" fill="none" stroke="rgba(255,255,255,.18)" stroke-width=".8"/>
+      <!-- inner ring -->
+      <circle cx="150" cy="150" r="124" fill="none" stroke="rgba(255,255,255,.1)" stroke-width=".5"/>
+
+      <!-- A pointing UP (Adriana) — thin strokes, full white -->
+      <g filter="url(#glow)">
+        <path d="M 62,248 L 150,46 L 238,248" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="1.6" stroke-linejoin="miter" stroke-linecap="butt"/>
+        <line x1="88"  y1="183" x2="212" y2="183" stroke="rgba(255,255,255,.95)" stroke-width="1.6"/>
       </g>
-      <!-- small ornament dots -->
-      <circle cx="100" cy="18" r="2" fill="#c8b89a" opacity="0.5"/>
-      <circle cx="100" cy="190" r="2" fill="#c8b89a" opacity="0.5"/>
+
+      <!-- A pointing DOWN (Aitor) — mirrored, slightly transparent -->
+      <g filter="url(#glow)" transform="translate(300,300) rotate(180)">
+        <path d="M 62,248 L 150,46 L 238,248" fill="none" stroke="rgba(255,255,255,.52)" stroke-width="1.6" stroke-linejoin="miter" stroke-linecap="butt"/>
+        <line x1="88" y1="183" x2="212" y2="183" stroke="rgba(255,255,255,.52)" stroke-width="1.6"/>
+      </g>
+
+      <!-- center ornament dot -->
+      <circle cx="150" cy="150" r="2.2" fill="rgba(255,255,255,.6)"/>
     </svg>
   </div>
 
-  <h1 class="hero-names">Adriana <span class="amp">&</span> Aitor</h1>
-  <p class="hero-date">06 · 03 · 2027 · Madrid</p>
-  <div class="hero-divider"></div>
-  <p class="hero-welcome" data-i18n="hero_welcome">Bienvenidos a nuestra boda</p>
+  <p class="hero-names">Adriana &nbsp;&amp;&nbsp; Aitor</p>
+  <p class="hero-date">06 · 03 · 2027</p>
 
-  <!-- COUNTDOWN -->
-  <div class="countdown-grid">
-    <div class="cd-item"><div class="cd-num" id="cd-days">—</div><div class="cd-label" data-i18n="cd_days">días</div></div>
-    <div class="cd-item"><div class="cd-num" id="cd-hours">—</div><div class="cd-label" data-i18n="cd_hours">horas</div></div>
-    <div class="cd-item"><div class="cd-num" id="cd-mins">—</div><div class="cd-label" data-i18n="cd_mins">minutos</div></div>
-    <div class="cd-item"><div class="cd-num" id="cd-secs">—</div><div class="cd-label" data-i18n="cd_secs">segundos</div></div>
+  <div class="scroll-down" data-i18n="scroll_hint">scroll</div>
+</section>
+
+<!-- ── INTRO ── -->
+<section id="intro">
+  <h1 class="intro-names reveal">Adriana <span class="intro-amp">&amp;</span> Aitor</h1>
+  <p class="intro-sub reveal reveal-d1" data-i18n="hero_welcome">¡Nos casamos!</p>
+  <div class="intro-divider reveal reveal-d2"></div>
+  <div class="countdown-row reveal reveal-d3">
+    <div class="cd-item"><div class="cd-num" id="cd-d">—</div><div class="cd-lbl" data-i18n="cd_days">días</div></div>
+    <div class="cd-item"><div class="cd-num" id="cd-h">—</div><div class="cd-lbl" data-i18n="cd_hours">horas</div></div>
+    <div class="cd-item"><div class="cd-num" id="cd-m">—</div><div class="cd-lbl" data-i18n="cd_mins">minutos</div></div>
+    <div class="cd-item"><div class="cd-num" id="cd-s">—</div><div class="cd-lbl" data-i18n="cd_secs">segundos</div></div>
   </div>
 </section>
 
 <!-- ── CEREMONIA ── -->
-<div id="ceremonia" class="venue-section">
-  <div class="venue-text">
-    <p class="venue-tag" data-i18n="tag_11h30">11:30 h</p>
-    <p class="section-eyebrow" data-i18n="eyebrow_ceremonia">La ceremonia</p>
-    <h2 class="section-title" data-i18n="title_ceremonia">Iglesia Santa Bárbara</h2>
-    <div class="divider"></div>
-    <p class="venue-body" data-i18n="body_ceremonia">
-      La ceremonia religiosa tendrá lugar el sábado 6 de marzo de 2027 a las 11:30 de la mañana en la Iglesia Santa Bárbara, Madrid, España.
-    </p>
-    <p class="venue-address">
+<div id="ceremonia" class="venue-split">
+  <div class="venue-body-wrap reveal-left">
+    <span class="v-tag" data-i18n="tag_11h30">11:30 h · Sábado</span>
+    <p class="v-eyebrow" data-i18n="eyebrow_cer">La ceremonia</p>
+    <h2 class="v-title" data-i18n="title_cer">Iglesia Santa Bárbara</h2>
+    <div class="v-line"></div>
+    <p class="v-text" data-i18n="body_cer">La ceremonia religiosa tendrá lugar el sábado 6 de marzo de 2027 a las 11:30 de la mañana en la Iglesia Santa Bárbara, Madrid, España.</p>
+    <p class="v-addr">
       Plaza de Alonso Martínez, 6<br>Centro, 28004 Madrid, España<br><br>
       <a href="https://maps.google.com/?q=Iglesia+Santa+Barbara+Plaza+Alonso+Martinez+6+Madrid" target="_blank" rel="noopener" data-i18n="ver_mapa">Ver en Google Maps ↗</a>
     </p>
   </div>
-  <div class="venue-img illustration">
-    <img src="img/eglise.jpeg" alt="Iglesia Santa Bárbara, Madrid">
+  <div class="venue-img reveal-right">
+    <img src="img/eglise.jpeg" alt="Iglesia Santa Bárbara">
   </div>
 </div>
 
 <!-- ── FINCA ── -->
-<div id="finca" class="venue-section reverse" style="background:var(--ivory-dark);">
-  <div class="venue-text" style="background:var(--ivory-dark);">
-    <p class="venue-tag" data-i18n="tag_13h30">13:30 h</p>
-    <p class="section-eyebrow" data-i18n="eyebrow_finca">La celebración</p>
-    <h2 class="section-title" data-i18n="title_finca">Finca Astilbe by Eneldo</h2>
-    <div class="divider"></div>
-    <p class="venue-body" data-i18n="body_finca">
-      La celebración continuará en la Finca Astilbe by Eneldo Catering en Madrid, donde compartiremos el cóctel, el banquete y el baile.
-    </p>
-    <p class="venue-address">
+<div id="finca" class="venue-split flip">
+  <div class="venue-body-wrap reveal-right">
+    <span class="v-tag" data-i18n="tag_13h30">13:30 h · Sábado</span>
+    <p class="v-eyebrow" data-i18n="eyebrow_finca">La celebración</p>
+    <h2 class="v-title" data-i18n="title_finca">Finca Astilbe by Eneldo</h2>
+    <div class="v-line"></div>
+    <p class="v-text" data-i18n="body_finca">La celebración continuará en la Finca Astilbe by Eneldo Catering en Madrid, donde compartiremos el cóctel, el banquete y el baile.</p>
+    <p class="v-addr">
       Carr. de Fuencarral, km 1,9<br>Fuencarral-El Pardo, 28049 Madrid, España<br><br>
       <a href="https://maps.google.com/?q=Finca+Astilbe+Eneldo+Fuencarral+Madrid" target="_blank" rel="noopener" data-i18n="ver_mapa">Ver en Google Maps ↗</a>
     </p>
   </div>
-  <div class="venue-img illustration">
+  <div class="venue-img reveal-left">
     <img src="img/finca.jpeg" alt="Finca Astilbe by Eneldo">
   </div>
 </div>
 
 <!-- ── NOSOTROS ── -->
 <section id="nosotros">
-  <div class="nosotros-inner">
-    <div class="nosotros-header">
-      <p class="section-eyebrow" data-i18n="eyebrow_nosotros">Nosotros</p>
-      <h2 class="section-title" data-i18n="title_nosotros">Adriana & Aitor</h2>
-      <div class="divider" style="margin:0 auto;"></div>
-    </div>
-    <div class="nosotros-grid">
-      <img src="img/photo2.jpeg" alt="Adri y Aitor" class="photo-tall">
-      <img src="img/photo3.jpeg" alt="Adri y Aitor" class="photo-sq" style="object-position:center top;">
-      <img src="img/photo1.jpg"  alt="Adri y Aitor" class="photo-sq" style="object-position:center 35%;">
-    </div>
+  <div class="nos-header">
+    <p class="eyebrow reveal" data-i18n="eyebrow_nos">Nosotros</p>
+    <h2 class="section-h reveal reveal-d1" data-i18n="title_nos">Adriana &amp; Aitor</h2>
+    <div class="intro-divider reveal reveal-d2" style="margin:0 auto;"></div>
+  </div>
+  <div class="nos-grid">
+    <img src="img/photo2.jpeg" alt="Adriana y Aitor" class="reveal reveal-d1">
+    <img src="img/photo3.jpeg" alt="Adriana y Aitor" class="reveal reveal-d2">
+    <img src="img/photo1.jpg"  alt="Adriana y Aitor" class="reveal reveal-d3">
   </div>
 </section>
 
 <!-- ── RSVP ── -->
 <section id="rsvp">
   <div class="rsvp-inner">
-    <p class="section-eyebrow" data-i18n="eyebrow_rsvp">Antes del 1 de diciembre de 2026</p>
-    <h2 class="section-title" data-i18n="title_rsvp">Confirmación de asistencia</h2>
-    <div class="divider"></div>
-    <p class="rsvp-note" data-i18n="rsvp_note">Por favor, confirma tu asistencia antes del 1 de diciembre de 2026. ¡Te esperamos!</p>
+    <p class="eyebrow reveal" style="text-align:center;" data-i18n="eyebrow_rsvp">Antes del 1 de diciembre de 2026</p>
+    <h2 class="section-h reveal reveal-d1" style="text-align:center;" data-i18n="title_rsvp">Confirmación de asistencia</h2>
+    <div class="rsvp-divider reveal reveal-d2"></div>
+    <p class="rsvp-note reveal reveal-d3" data-i18n="rsvp_note">Por favor, confirma tu asistencia antes del 1 de diciembre de 2026.</p>
 
-    <form id="rsvp-form" action="https://formspree.io/f/xdarezpr" method="POST">
+    <form id="rsvp-form" class="reveal" action="https://formspree.io/f/xdarezpr" method="POST">
       <div class="form-row">
-        <div class="form-group">
-          <label data-i18n="label_nombre">Nombre</label>
-          <input type="text" name="nombre" required placeholder="María">
-        </div>
-        <div class="form-group">
-          <label data-i18n="label_apellido">Apellido</label>
-          <input type="text" name="apellido" required placeholder="García">
-        </div>
+        <div class="fg"><label data-i18n="label_nombre">Nombre</label><input type="text" name="nombre" required placeholder="María"></div>
+        <div class="fg"><label data-i18n="label_apellido">Apellido</label><input type="text" name="apellido" required placeholder="García"></div>
       </div>
-      <div class="form-group">
-        <label data-i18n="label_asistencia">¿Podrás venir?</label>
+      <div class="fg">
+        <label data-i18n="label_asist">¿Podrás venir?</label>
         <div class="attend-btns">
-          <button type="button" class="attend-btn" id="btn-yes" onclick="selectAttend('yes')" data-i18n="btn_yes">Sí, allí estaré</button>
-          <button type="button" class="attend-btn" id="btn-no"  onclick="selectAttend('no')"  data-i18n="btn_no">Lo siento, no podré</button>
+          <button type="button" class="att-btn" id="btn-y" onclick="pick('yes')" data-i18n="btn_yes">Sí, allí estaré</button>
+          <button type="button" class="att-btn" id="btn-n" onclick="pick('no')"  data-i18n="btn_no">Lo siento, no podré</button>
         </div>
-        <input type="hidden" name="asistencia" id="input-asistencia">
+        <input type="hidden" name="asistencia" id="hid-asist">
       </div>
-      <div class="form-extra" id="form-extra-yes">
+      <div class="form-extra" id="ex-yes">
         <div class="form-row">
-          <div class="form-group">
-            <label data-i18n="label_personas">Número de personas</label>
-            <select name="personas">
-              <option>1</option><option>2</option><option>3</option><option>4</option><option value="5+">5+</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label data-i18n="label_menu">Menú especial</label>
+          <div class="fg"><label data-i18n="label_personas">Número de personas</label><select name="personas"><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></div>
+          <div class="fg"><label data-i18n="label_menu">Menú especial</label>
             <select name="menu">
-              <option value="ninguno"     data-i18n="menu_ninguno">Sin restricciones</option>
-              <option value="vegetariano" data-i18n="menu_veg">Vegetariano</option>
-              <option value="vegano"      data-i18n="menu_vegan">Vegano</option>
-              <option value="sin_gluten"  data-i18n="menu_gluten">Sin gluten</option>
-              <option value="alergia"     data-i18n="menu_alergia">Alergia (indicar abajo)</option>
+              <option value="ninguno"     data-i18n="menu_0">Sin restricciones</option>
+              <option value="vegetariano" data-i18n="menu_1">Vegetariano</option>
+              <option value="vegano"      data-i18n="menu_2">Vegano</option>
+              <option value="sin_gluten"  data-i18n="menu_3">Sin gluten</option>
+              <option value="alergia"     data-i18n="menu_4">Alergia (indicar)</option>
             </select>
           </div>
         </div>
-        <div class="form-group">
-          <label data-i18n="label_comentario">Comentario / Alergias</label>
-          <textarea name="comentario" rows="3" placeholder="..."></textarea>
-        </div>
+        <div class="fg"><label data-i18n="label_com">Comentario / Alergias</label><textarea name="comentario" rows="3"></textarea></div>
       </div>
-      <div class="form-extra" id="form-extra-no">
-        <div class="form-group">
-          <label data-i18n="label_mensaje">Déjanos un mensaje</label>
-          <textarea name="mensaje" rows="3" placeholder="..."></textarea>
-        </div>
+      <div class="form-extra" id="ex-no">
+        <div class="fg"><label data-i18n="label_msg">Déjanos un mensaje</label><textarea name="mensaje" rows="3"></textarea></div>
       </div>
-      <button type="submit" class="btn-submit" data-i18n="btn_enviar">Enviar confirmación</button>
+      <button type="submit" class="btn-sub" data-i18n="btn_send">Enviar confirmación</button>
     </form>
-    <div class="form-success" id="form-success">
-      <p data-i18n="success_msg">¡Gracias! Hemos recibido tu confirmación.</p>
-    </div>
+    <div class="form-ok" id="form-ok"><p data-i18n="success">¡Gracias! Hemos recibido tu confirmación.</p></div>
   </div>
 </section>
 
 <!-- ── DRESS CODE ── -->
 <section id="dresscode">
-  <div class="dresscode-inner">
-    <p class="section-eyebrow" data-i18n="eyebrow_dresscode">Dress code</p>
-    <h2 class="section-title" data-i18n="title_dresscode">Elegante</h2>
-    <div class="divider" style="margin:0 auto 1.6rem;"></div>
-    <p class="dresscode-text" data-i18n="dresscode_text">
-      Nos gustaría que vinieras elegante para compartir con nosotros este día tan especial.<br><br>
-      Para los caballeros: traje oscuro o de colores neutros.<br>
-      Para las señoras: vestido de cóctel o de noche, maxi vestido o traje elegante.<br><br>
-      Te pedimos evitar el blanco, marfil y crema (¡reservados para la novia 😉!)<br>así como el negro riguroso.
-    </p>
-    <div class="color-palette">
-      <div class="color-chip"><div class="color-swatch" style="background:#8fa3b1;"></div><span class="color-name">Azul acero</span></div>
-      <div class="color-chip"><div class="color-swatch" style="background:#7a9e7e;"></div><span class="color-name">Verde salvia</span></div>
-      <div class="color-chip"><div class="color-swatch" style="background:#c4a09a;"></div><span class="color-name">Rosa palo</span></div>
-      <div class="color-chip"><div class="color-swatch" style="background:#b89a6a;"></div><span class="color-name">Dorado</span></div>
-      <div class="color-chip"><div class="color-swatch" style="background:#9b8ea8;"></div><span class="color-name">Malva</span></div>
-      <div class="color-chip"><div class="color-swatch" style="background:#c8a97e;"></div><span class="color-name">Arena</span></div>
+  <div class="dc-inner">
+    <p class="eyebrow reveal" style="text-align:center;" data-i18n="eyebrow_dc">Dress code</p>
+    <h2 class="section-h reveal reveal-d1" style="text-align:center;" data-i18n="title_dc">Elegante</h2>
+    <div class="intro-divider reveal reveal-d2" style="margin:0 auto 2rem;"></div>
+    <p class="dc-text reveal reveal-d3" data-i18n="dc_text">Nos gustaría que vinieras elegante para compartir con nosotros este día tan especial.<br><br>Para los caballeros: traje oscuro o de colores neutros.<br>Para las señoras: vestido de cóctel o de noche, maxi vestido o traje elegante.<br><br>Te pedimos evitar el blanco, marfil y crema (¡reservados para la novia 😉!)<br>así como el negro riguroso.</p>
+    <div class="swatches reveal">
+      <div class="sw"><div class="sw-dot" style="background:#8fa3b1;"></div><span class="sw-name">Azul acero</span></div>
+      <div class="sw"><div class="sw-dot" style="background:#7a9e7e;"></div><span class="sw-name">Verde salvia</span></div>
+      <div class="sw"><div class="sw-dot" style="background:#c4a09a;"></div><span class="sw-name">Rosa palo</span></div>
+      <div class="sw"><div class="sw-dot" style="background:#b89a6a;"></div><span class="sw-name">Dorado</span></div>
+      <div class="sw"><div class="sw-dot" style="background:#9b8ea8;"></div><span class="sw-name">Malva</span></div>
+      <div class="sw"><div class="sw-dot" style="background:#c8a97e;"></div><span class="sw-name">Arena</span></div>
     </div>
   </div>
 </section>
 
-<!-- ── LISTA DE BODA ── -->
+<!-- ── IBAN ── -->
 <section id="regalo">
-  <div class="regalo-inner">
-    <p class="section-eyebrow" data-i18n="eyebrow_regalo">Lista de boda</p>
-    <h2 class="section-title" data-i18n="title_regalo">El mejor regalo</h2>
-    <div class="divider" style="margin:0 auto 1.6rem;"></div>
-    <p class="regalo-text" data-i18n="regalo_text">
-      Vuestra presencia es el mejor regalo que podéis hacernos.<br>
-      Si queréis contribuir a nuestra luna de miel o a nuestro nuevo hogar,<br>
-      podéis hacer una transferencia con el concepto <strong>"Tu nombre – Boda"</strong>.
-    </p>
-    <div class="iban-lock" id="iban-lock">
-      <p class="iban-lock-msg" data-i18n="iban_lock_msg">Introduce la contraseña para ver los datos bancarios:</p>
-      <div class="iban-pwd-row">
-        <input type="password" id="iban-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter') checkIban()">
-        <button onclick="checkIban()" data-i18n="iban_btn">Ver</button>
+  <div class="ib-inner">
+    <p class="eyebrow reveal" style="text-align:center;" data-i18n="eyebrow_gift">Lista de boda</p>
+    <h2 class="section-h reveal reveal-d1" style="text-align:center;" data-i18n="title_gift">El mejor regalo</h2>
+    <div class="intro-divider reveal reveal-d2" style="margin:0 auto 2rem;"></div>
+    <p class="ib-text reveal reveal-d3" data-i18n="gift_text">Vuestra presencia es el mejor regalo que podéis hacernos.<br>Si queréis contribuir a nuestra luna de miel o a nuestro nuevo hogar,<br>podéis hacer una transferencia con el concepto <strong>"Tu nombre – Boda"</strong>.</p>
+    <div class="ib-lock reveal" id="ib-lock">
+      <p class="ib-msg" data-i18n="ib_msg">Introduce la contraseña para ver los datos bancarios:</p>
+      <div class="ib-row">
+        <input type="password" id="ib-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkIb()">
+        <button onclick="checkIb()" data-i18n="ib_btn">Ver</button>
       </div>
-      <p class="iban-error" id="iban-error" data-i18n="iban_error">Contraseña incorrecta. Prueba de nuevo.</p>
+      <p class="ib-err" id="ib-err" data-i18n="ib_err">Contraseña incorrecta.</p>
     </div>
-    <div class="iban-revealed" id="iban-revealed">
-      <div class="iban-box">
-        <p class="iban-label">IBAN</p>
-        <p class="iban-number" id="iban-display">ES12 3456 7890 1234 5678 9012</p>
-        <p class="iban-holder" data-i18n="iban_holder">Titular: Adriana Barcos González / Aitor Laborde</p>
+    <div class="ib-shown" id="ib-shown">
+      <div class="ib-box">
+        <p class="ib-label">IBAN</p>
+        <p class="ib-num" id="ib-num">ES12 3456 7890 1234 5678 9012</p>
+        <p class="ib-holder" data-i18n="ib_holder">Titular: Adriana Barcos González / Aitor Laborde</p>
         <br>
-        <p class="iban-label" data-i18n="iban_concepto_label">Concepto</p>
-        <p style="font-size:.82rem;color:var(--muted);" data-i18n="iban_concepto">Tu nombre + Apellido – Boda</p>
-        <button class="copy-btn" onclick="copyIban()" data-i18n="copy_btn">Copiar IBAN</button>
+        <p class="ib-label" data-i18n="ib_concept_lbl">Concepto</p>
+        <p style="font-size:.75rem;color:var(--muted);font-weight:300;" data-i18n="ib_concept">Tu nombre + Apellido – Boda</p>
+        <button class="cp-btn" onclick="cpIb()" data-i18n="cp_btn">Copiar IBAN</button>
       </div>
     </div>
   </div>
@@ -440,196 +466,214 @@
 
 <!-- ── FOOTER ── -->
 <footer>
-  <p><strong>Adriana & Aitor</strong> · 06.03.2027 · Madrid</p>
-  <p style="margin-top:.5rem;" data-i18n="footer_msg">Con todo nuestro amor, os esperamos.</p>
+  <span>Adriana &amp; Aitor</span> &nbsp;·&nbsp; 06.03.2027 &nbsp;·&nbsp; Madrid<br>
+  <span style="opacity:.5;font-size:.55rem;margin-top:.4rem;display:block;" data-i18n="footer_msg">Con todo nuestro amor, os esperamos.</span>
 </footer>
 
 <script>
-/* ── i18n ── */
-const i18n = {
-  es: {
-    nav_ceremonia:"Ceremonia", nav_nosotros:"Nosotros", nav_rsvp:"Confirmación", nav_dresscode:"Dress code", nav_regalo:"Lista de boda",
-    hero_welcome:"Bienvenidos a nuestra boda",
-    cd_days:"días", cd_hours:"horas", cd_mins:"minutos", cd_secs:"segundos",
-    tag_11h30:"11:30 h", tag_13h30:"13:30 h",
-    eyebrow_ceremonia:"La ceremonia", title_ceremonia:"Iglesia Santa Bárbara",
-    body_ceremonia:"La ceremonia religiosa tendrá lugar el sábado 6 de marzo de 2027 a las 11:30 de la mañana en la Iglesia Santa Bárbara, Madrid, España.",
-    eyebrow_finca:"La celebración", title_finca:"Finca Astilbe by Eneldo",
+/* ─── i18n ─── */
+const T = {
+  es:{
+    nav_intro:"Inicio",nav_cer:"Ceremonia",nav_nos:"Nosotros",nav_rsvp:"Confirmación",nav_gift:"Lista de boda",
+    hero_welcome:"¡Nos casamos!",
+    scroll_hint:"scroll",
+    cd_days:"días",cd_hours:"horas",cd_mins:"minutos",cd_secs:"segundos",
+    tag_11h30:"11:30 h · Sábado",tag_13h30:"13:30 h · Sábado",
+    eyebrow_cer:"La ceremonia",title_cer:"Iglesia Santa Bárbara",
+    body_cer:"La ceremonia religiosa tendrá lugar el sábado 6 de marzo de 2027 a las 11:30 de la mañana en la Iglesia Santa Bárbara, Madrid, España.",
+    eyebrow_finca:"La celebración",title_finca:"Finca Astilbe by Eneldo",
     body_finca:"La celebración continuará en la Finca Astilbe by Eneldo Catering en Madrid, donde compartiremos el cóctel, el banquete y el baile.",
     ver_mapa:"Ver en Google Maps ↗",
-    eyebrow_nosotros:"Nosotros", title_nosotros:"Adriana & Aitor",
-    eyebrow_rsvp:"Antes del 1 de diciembre de 2026", title_rsvp:"Confirmación de asistencia",
-    rsvp_note:"Por favor, confirma tu asistencia antes del 1 de diciembre de 2026. ¡Te esperamos!",
-    label_nombre:"Nombre", label_apellido:"Apellido", label_asistencia:"¿Podrás venir?",
-    btn_yes:"Sí, allí estaré", btn_no:"Lo siento, no podré",
-    label_personas:"Número de personas", label_menu:"Menú especial",
-    menu_ninguno:"Sin restricciones", menu_veg:"Vegetariano", menu_vegan:"Vegano", menu_gluten:"Sin gluten", menu_alergia:"Alergia (indicar abajo)",
-    label_comentario:"Comentario / Alergias", label_mensaje:"Déjanos un mensaje",
-    btn_enviar:"Enviar confirmación", success_msg:"¡Gracias! Hemos recibido tu confirmación.",
-    eyebrow_dresscode:"Dress code", title_dresscode:"Elegante",
-    dresscode_text:"Nos gustaría que vinieras elegante para compartir con nosotros este día tan especial.<br><br>Para los caballeros: traje oscuro o de colores neutros.<br>Para las señoras: vestido de cóctel o de noche, maxi vestido o traje elegante.<br><br>Te pedimos evitar el blanco, marfil y crema (¡reservados para la novia 😉!)<br>así como el negro riguroso.",
-    eyebrow_regalo:"Lista de boda", title_regalo:"El mejor regalo",
-    regalo_text:"Vuestra presencia es el mejor regalo que podéis hacernos.<br>Si queréis contribuir a nuestra luna de miel o a nuestro nuevo hogar,<br>podéis hacer una transferencia con el concepto <strong>\"Tu nombre – Boda\"</strong>.",
-    iban_lock_msg:"Introduce la contraseña para ver los datos bancarios:", iban_btn:"Ver",
-    iban_error:"Contraseña incorrecta. Prueba de nuevo.",
-    iban_holder:"Titular: Adriana Barcos González / Aitor Laborde",
-    iban_concepto_label:"Concepto", iban_concepto:"Tu nombre + Apellido – Boda",
-    copy_btn:"Copiar IBAN", footer_msg:"Con todo nuestro amor, os esperamos."
+    eyebrow_nos:"Nosotros",title_nos:"Adriana & Aitor",
+    eyebrow_rsvp:"Antes del 1 de diciembre de 2026",title_rsvp:"Confirmación de asistencia",
+    rsvp_note:"Por favor, confirma tu asistencia antes del 1 de diciembre de 2026.",
+    label_nombre:"Nombre",label_apellido:"Apellido",label_asist:"¿Podrás venir?",
+    btn_yes:"Sí, allí estaré",btn_no:"Lo siento, no podré",
+    label_personas:"Número de personas",label_menu:"Menú especial",
+    menu_0:"Sin restricciones",menu_1:"Vegetariano",menu_2:"Vegano",menu_3:"Sin gluten",menu_4:"Alergia (indicar)",
+    label_com:"Comentario / Alergias",label_msg:"Déjanos un mensaje",
+    btn_send:"Enviar confirmación",success:"¡Gracias! Hemos recibido tu confirmación.",
+    eyebrow_dc:"Dress code",title_dc:"Elegante",
+    dc_text:"Nos gustaría que vinieras elegante para compartir con nosotros este día tan especial.<br><br>Para los caballeros: traje oscuro o de colores neutros.<br>Para las señoras: vestido de cóctel o de noche, maxi vestido o traje elegante.<br><br>Te pedimos evitar el blanco, marfil y crema (¡reservados para la novia 😉!)<br>así como el negro riguroso.",
+    eyebrow_gift:"Lista de boda",title_gift:"El mejor regalo",
+    gift_text:"Vuestra presencia es el mejor regalo que podéis hacernos.<br>Si queréis contribuir a nuestra luna de miel o a nuestro nuevo hogar,<br>podéis hacer una transferencia con el concepto <strong>\"Tu nombre – Boda\"</strong>.",
+    ib_msg:"Introduce la contraseña para ver los datos bancarios:",ib_btn:"Ver",
+    ib_err:"Contraseña incorrecta.",
+    ib_holder:"Titular: Adriana Barcos González / Aitor Laborde",
+    ib_concept_lbl:"Concepto",ib_concept:"Tu nombre + Apellido – Boda",
+    cp_btn:"Copiar IBAN",footer_msg:"Con todo nuestro amor, os esperamos."
   },
-  fr: {
-    nav_ceremonia:"Cérémonie", nav_nosotros:"Nous", nav_rsvp:"Confirmation", nav_dresscode:"Dress code", nav_regalo:"Liste de mariage",
-    hero_welcome:"Bienvenue à notre mariage",
-    cd_days:"jours", cd_hours:"heures", cd_mins:"minutes", cd_secs:"secondes",
-    tag_11h30:"11h30", tag_13h30:"13h30",
-    eyebrow_ceremonia:"La cérémonie", title_ceremonia:"Iglesia Santa Bárbara",
-    body_ceremonia:"La cérémonie religieuse aura lieu le samedi 6 mars 2027 à 11h30 du matin à l'Iglesia Santa Bárbara, Madrid, Espagne.",
-    eyebrow_finca:"La réception", title_finca:"Finca Astilbe by Eneldo",
+  fr:{
+    nav_intro:"Accueil",nav_cer:"Cérémonie",nav_nos:"Nous",nav_rsvp:"Confirmation",nav_gift:"Liste de mariage",
+    hero_welcome:"Nous nous marions !",
+    scroll_hint:"défiler",
+    cd_days:"jours",cd_hours:"heures",cd_mins:"minutes",cd_secs:"secondes",
+    tag_11h30:"11h30 · Samedi",tag_13h30:"13h30 · Samedi",
+    eyebrow_cer:"La cérémonie",title_cer:"Iglesia Santa Bárbara",
+    body_cer:"La cérémonie religieuse aura lieu le samedi 6 mars 2027 à 11h30 du matin à l'Iglesia Santa Bárbara, Madrid, Espagne.",
+    eyebrow_finca:"La réception",title_finca:"Finca Astilbe by Eneldo",
     body_finca:"La réception se poursuivra à la Finca Astilbe by Eneldo Catering à Madrid, où nous partagerons le cocktail, le dîner et le bal.",
     ver_mapa:"Voir sur Google Maps ↗",
-    eyebrow_nosotros:"Nous", title_nosotros:"Adriana & Aitor",
-    eyebrow_rsvp:"Avant le 1er décembre 2026", title_rsvp:"Confirmation de présence",
-    rsvp_note:"Merci de confirmer votre présence avant le 1er décembre 2026. On vous attend !",
-    label_nombre:"Prénom", label_apellido:"Nom", label_asistencia:"Serez-vous là ?",
-    btn_yes:"Oui, j'y serai !", btn_no:"Désolé(e), je ne pourrai pas",
-    label_personas:"Nombre de personnes", label_menu:"Menu spécial",
-    menu_ninguno:"Sans restriction", menu_veg:"Végétarien", menu_vegan:"Végétalien", menu_gluten:"Sans gluten", menu_alergia:"Allergie (préciser ci-dessous)",
-    label_comentario:"Commentaire / Allergies", label_mensaje:"Laissez-nous un message",
-    btn_enviar:"Envoyer la confirmation", success_msg:"Merci ! Nous avons bien reçu votre confirmation.",
-    eyebrow_dresscode:"Dress code", title_dresscode:"Élégant",
-    dresscode_text:"Nous vous invitons à venir élégant(e) pour partager ce jour si spécial avec nous.<br><br>Pour les messieurs : costume sombre ou tons neutres.<br>Pour les dames : robe de cocktail ou de soirée, robe longue ou tailleur élégant.<br><br>Merci d'éviter le blanc, l'ivoire et le crème (réservés à la mariée 😉 !) ainsi que le noir strict.",
-    eyebrow_regalo:"Liste de mariage", title_regalo:"Le plus beau cadeau",
-    regalo_text:"Votre présence est le plus beau cadeau que vous puissiez nous offrir.<br>Si vous souhaitez contribuer à notre lune de miel ou à notre nouveau foyer,<br>vous pouvez effectuer un virement avec le libellé <strong>\"Votre prénom – Mariage\"</strong>.",
-    iban_lock_msg:"Entrez le mot de passe pour voir les coordonnées bancaires :", iban_btn:"Voir",
-    iban_error:"Mot de passe incorrect. Réessayez.",
-    iban_holder:"Titulaire : Adriana Barcos González / Aitor Laborde",
-    iban_concepto_label:"Libellé", iban_concepto:"Votre prénom + Nom – Mariage",
-    copy_btn:"Copier l'IBAN", footer_msg:"Avec tout notre amour, nous vous attendons."
+    eyebrow_nos:"Nous",title_nos:"Adriana & Aitor",
+    eyebrow_rsvp:"Avant le 1er décembre 2026",title_rsvp:"Confirmation de présence",
+    rsvp_note:"Merci de confirmer votre présence avant le 1er décembre 2026.",
+    label_nombre:"Prénom",label_apellido:"Nom",label_asist:"Serez-vous là ?",
+    btn_yes:"Oui, j'y serai !",btn_no:"Désolé(e), je ne pourrai pas",
+    label_personas:"Nombre de personnes",label_menu:"Menu spécial",
+    menu_0:"Sans restriction",menu_1:"Végétarien",menu_2:"Végétalien",menu_3:"Sans gluten",menu_4:"Allergie (préciser)",
+    label_com:"Commentaire / Allergies",label_msg:"Laissez-nous un message",
+    btn_send:"Envoyer la confirmation",success:"Merci ! Nous avons bien reçu votre confirmation.",
+    eyebrow_dc:"Dress code",title_dc:"Élégant",
+    dc_text:"Nous vous invitons à venir élégant(e) pour partager ce jour si spécial avec nous.<br><br>Pour les messieurs : costume sombre ou tons neutres.<br>Pour les dames : robe de cocktail ou de soirée, robe longue ou tailleur élégant.<br><br>Merci d'éviter le blanc, l'ivoire et le crème (réservés à la mariée 😉 !) ainsi que le noir strict.",
+    eyebrow_gift:"Liste de mariage",title_gift:"Le plus beau cadeau",
+    gift_text:"Votre présence est le plus beau cadeau que vous puissiez nous offrir.<br>Si vous souhaitez contribuer à notre lune de miel ou à notre nouveau foyer,<br>vous pouvez effectuer un virement avec le libellé <strong>\"Votre prénom – Mariage\"</strong>.",
+    ib_msg:"Entrez le mot de passe pour voir les coordonnées bancaires :",ib_btn:"Voir",
+    ib_err:"Mot de passe incorrect.",
+    ib_holder:"Titulaire : Adriana Barcos González / Aitor Laborde",
+    ib_concept_lbl:"Libellé",ib_concept:"Votre prénom + Nom – Mariage",
+    cp_btn:"Copier l'IBAN",footer_msg:"Avec tout notre amour, nous vous attendons."
   },
-  en: {
-    nav_ceremonia:"Ceremony", nav_nosotros:"Us", nav_rsvp:"RSVP", nav_dresscode:"Dress code", nav_regalo:"Gift list",
-    hero_welcome:"Welcome to our wedding",
-    cd_days:"days", cd_hours:"hours", cd_mins:"minutes", cd_secs:"seconds",
-    tag_11h30:"11:30 am", tag_13h30:"1:30 pm",
-    eyebrow_ceremonia:"The ceremony", title_ceremonia:"Iglesia Santa Bárbara",
-    body_ceremonia:"The religious ceremony will take place on Saturday, March 6th 2027 at 11:30 am at Iglesia Santa Bárbara, Madrid, Spain.",
-    eyebrow_finca:"The reception", title_finca:"Finca Astilbe by Eneldo",
+  en:{
+    nav_intro:"Home",nav_cer:"Ceremony",nav_nos:"Us",nav_rsvp:"RSVP",nav_gift:"Gift list",
+    hero_welcome:"We're getting married!",
+    scroll_hint:"scroll",
+    cd_days:"days",cd_hours:"hours",cd_mins:"minutes",cd_secs:"seconds",
+    tag_11h30:"11:30 am · Saturday",tag_13h30:"1:30 pm · Saturday",
+    eyebrow_cer:"The ceremony",title_cer:"Iglesia Santa Bárbara",
+    body_cer:"The religious ceremony will take place on Saturday, March 6th 2027 at 11:30 am at Iglesia Santa Bárbara, Madrid, Spain.",
+    eyebrow_finca:"The reception",title_finca:"Finca Astilbe by Eneldo",
     body_finca:"The celebration will continue at Finca Astilbe by Eneldo Catering in Madrid, where we will share cocktails, dinner and dancing.",
     ver_mapa:"View on Google Maps ↗",
-    eyebrow_nosotros:"Us", title_nosotros:"Adriana & Aitor",
-    eyebrow_rsvp:"By December 1st, 2026", title_rsvp:"RSVP",
-    rsvp_note:"Please let us know if you can make it by December 1st, 2026. We can't wait to see you!",
-    label_nombre:"First name", label_apellido:"Last name", label_asistencia:"Will you join us?",
-    btn_yes:"Yes, I'll be there!", btn_no:"Sorry, I can't make it",
-    label_personas:"Number of guests", label_menu:"Special menu",
-    menu_ninguno:"No restrictions", menu_veg:"Vegetarian", menu_vegan:"Vegan", menu_gluten:"Gluten-free", menu_alergia:"Allergy (specify below)",
-    label_comentario:"Comments / Allergies", label_mensaje:"Leave us a message",
-    btn_enviar:"Send RSVP", success_msg:"Thank you! We've received your reply.",
-    eyebrow_dresscode:"Dress code", title_dresscode:"Smart elegant",
-    dresscode_text:"We'd love for you to dress elegantly to share this special day with us.<br><br>For gentlemen: dark or neutral-toned suit.<br>For ladies: cocktail or evening dress, maxi dress, or elegant trouser suit.<br><br>Please avoid white, ivory and cream (reserved for the bride 😉!) and strict black.",
-    eyebrow_regalo:"Gift list", title_regalo:"The best gift",
-    regalo_text:"Your presence is the greatest gift you can give us.<br>If you'd like to contribute to our honeymoon or new home,<br>you can make a bank transfer with the reference <strong>\"Your name – Wedding\"</strong>.",
-    iban_lock_msg:"Enter the password to see the bank details:", iban_btn:"View",
-    iban_error:"Incorrect password. Please try again.",
-    iban_holder:"Account holder: Adriana Barcos González / Aitor Laborde",
-    iban_concepto_label:"Reference", iban_concepto:"Your first name + Last name – Wedding",
-    copy_btn:"Copy IBAN", footer_msg:"With all our love, we look forward to seeing you."
+    eyebrow_nos:"Us",title_nos:"Adriana & Aitor",
+    eyebrow_rsvp:"By December 1st, 2026",title_rsvp:"RSVP",
+    rsvp_note:"Please let us know if you can make it by December 1st, 2026.",
+    label_nombre:"First name",label_apellido:"Last name",label_asist:"Will you join us?",
+    btn_yes:"Yes, I'll be there!",btn_no:"Sorry, I can't make it",
+    label_personas:"Number of guests",label_menu:"Special menu",
+    menu_0:"No restrictions",menu_1:"Vegetarian",menu_2:"Vegan",menu_3:"Gluten-free",menu_4:"Allergy (specify)",
+    label_com:"Comments / Allergies",label_msg:"Leave us a message",
+    btn_send:"Send RSVP",success:"Thank you! We've received your reply.",
+    eyebrow_dc:"Dress code",title_dc:"Smart elegant",
+    dc_text:"We'd love for you to dress elegantly to share this special day with us.<br><br>For gentlemen: dark or neutral-toned suit.<br>For ladies: cocktail or evening dress, maxi dress, or elegant trouser suit.<br><br>Please avoid white, ivory and cream (reserved for the bride 😉!) and strict black.",
+    eyebrow_gift:"Gift list",title_gift:"The best gift",
+    gift_text:"Your presence is the greatest gift you can give us.<br>If you'd like to contribute to our honeymoon or new home,<br>you can make a bank transfer with the reference <strong>\"Your name – Wedding\"</strong>.",
+    ib_msg:"Enter the password to see the bank details:",ib_btn:"View",
+    ib_err:"Incorrect password.",
+    ib_holder:"Account holder: Adriana Barcos González / Aitor Laborde",
+    ib_concept_lbl:"Reference",ib_concept:"Your first name + Last name – Wedding",
+    cp_btn:"Copy IBAN",footer_msg:"With all our love, we look forward to seeing you."
   },
-  it: {
-    nav_ceremonia:"Cerimonia", nav_nosotros:"Noi", nav_rsvp:"Conferma", nav_dresscode:"Dress code", nav_regalo:"Lista nozze",
-    hero_welcome:"Benvenuti al nostro matrimonio",
-    cd_days:"giorni", cd_hours:"ore", cd_mins:"minuti", cd_secs:"secondi",
-    tag_11h30:"11:30", tag_13h30:"13:30",
-    eyebrow_ceremonia:"La cerimonia", title_ceremonia:"Iglesia Santa Bárbara",
-    body_ceremonia:"La cerimonia religiosa si terrà sabato 6 marzo 2027 alle 11:30 di mattina alla Iglesia Santa Bárbara, Madrid, Spagna.",
-    eyebrow_finca:"Il ricevimento", title_finca:"Finca Astilbe by Eneldo",
+  it:{
+    nav_intro:"Home",nav_cer:"Cerimonia",nav_nos:"Noi",nav_rsvp:"Conferma",nav_gift:"Lista nozze",
+    hero_welcome:"Ci sposiamo!",
+    scroll_hint:"scorri",
+    cd_days:"giorni",cd_hours:"ore",cd_mins:"minuti",cd_secs:"secondi",
+    tag_11h30:"11:30 · Sabato",tag_13h30:"13:30 · Sabato",
+    eyebrow_cer:"La cerimonia",title_cer:"Iglesia Santa Bárbara",
+    body_cer:"La cerimonia religiosa si terrà sabato 6 marzo 2027 alle 11:30 alla Iglesia Santa Bárbara, Madrid, Spagna.",
+    eyebrow_finca:"Il ricevimento",title_finca:"Finca Astilbe by Eneldo",
     body_finca:"I festeggiamenti continueranno alla Finca Astilbe by Eneldo Catering a Madrid, dove condivideremo il cocktail, il banchetto e il ballo.",
     ver_mapa:"Vedi su Google Maps ↗",
-    eyebrow_nosotros:"Noi", title_nosotros:"Adriana & Aitor",
-    eyebrow_rsvp:"Entro il 1° dicembre 2026", title_rsvp:"Conferma di partecipazione",
-    rsvp_note:"Ti chiediamo di confermare la tua partecipazione entro il 1° dicembre 2026. Non vediamo l'ora di vederti!",
-    label_nombre:"Nome", label_apellido:"Cognome", label_asistencia:"Riuscirai a venire?",
-    btn_yes:"Sì, ci sarò!", btn_no:"Purtroppo non posso",
-    label_personas:"Numero di persone", label_menu:"Menu speciale",
-    menu_ninguno:"Nessuna restrizione", menu_veg:"Vegetariano", menu_vegan:"Vegano", menu_gluten:"Senza glutine", menu_alergia:"Allergia (specificare sotto)",
-    label_comentario:"Commento / Allergie", label_mensaje:"Lasciaci un messaggio",
-    btn_enviar:"Invia conferma", success_msg:"Grazie! Abbiamo ricevuto la tua conferma.",
-    eyebrow_dresscode:"Dress code", title_dresscode:"Elegante",
-    dresscode_text:"Ci farebbe piacere che tu venissi elegante per condividere con noi questo giorno speciale.<br><br>Per gli uomini: abito scuro o in toni neutri.<br>Per le donne: abito da cocktail o da sera, abito lungo o tailleur elegante.<br><br>Ti chiediamo di evitare il bianco, l'avorio e il crema (riservati alla sposa 😉!) così come il nero rigoroso.",
-    eyebrow_regalo:"Lista nozze", title_regalo:"Il regalo più bello",
-    regalo_text:"La vostra presenza è il regalo più bello che possiate farci.<br>Se volete contribuire alla nostra luna di miele o alla nostra nuova casa,<br>potete fare un bonifico con la causale <strong>\"Nome – Matrimonio\"</strong>.",
-    iban_lock_msg:"Inserisci la password per vedere i dati bancari:", iban_btn:"Mostra",
-    iban_error:"Password errata. Riprova.",
-    iban_holder:"Intestatario: Adriana Barcos González / Aitor Laborde",
-    iban_concepto_label:"Causale", iban_concepto:"Nome + Cognome – Matrimonio",
-    copy_btn:"Copia IBAN", footer_msg:"Con tutto il nostro amore, vi aspettiamo."
+    eyebrow_nos:"Noi",title_nos:"Adriana & Aitor",
+    eyebrow_rsvp:"Entro il 1° dicembre 2026",title_rsvp:"Conferma di partecipazione",
+    rsvp_note:"Ti chiediamo di confermare la tua partecipazione entro il 1° dicembre 2026.",
+    label_nombre:"Nome",label_apellido:"Cognome",label_asist:"Riuscirai a venire?",
+    btn_yes:"Sì, ci sarò!",btn_no:"Purtroppo non posso",
+    label_personas:"Numero di persone",label_menu:"Menu speciale",
+    menu_0:"Nessuna restrizione",menu_1:"Vegetariano",menu_2:"Vegano",menu_3:"Senza glutine",menu_4:"Allergia (specificare)",
+    label_com:"Commento / Allergie",label_msg:"Lasciaci un messaggio",
+    btn_send:"Invia conferma",success:"Grazie! Abbiamo ricevuto la tua conferma.",
+    eyebrow_dc:"Dress code",title_dc:"Elegante",
+    dc_text:"Ci farebbe piacere che tu venissi elegante per condividere con noi questo giorno speciale.<br><br>Per gli uomini: abito scuro o in toni neutri.<br>Per le donne: abito da cocktail o da sera, abito lungo o tailleur elegante.<br><br>Ti chiediamo di evitare il bianco, l'avorio e il crema (riservati alla sposa 😉!) così come il nero rigoroso.",
+    eyebrow_gift:"Lista nozze",title_gift:"Il regalo più bello",
+    gift_text:"La vostra presenza è il regalo più bello che possiate farci.<br>Se volete contribuire alla nostra luna di miele o alla nostra nuova casa,<br>potete fare un bonifico con la causale <strong>\"Nome – Matrimonio\"</strong>.",
+    ib_msg:"Inserisci la password per vedere i dati bancari:",ib_btn:"Mostra",
+    ib_err:"Password errata.",
+    ib_holder:"Intestatario: Adriana Barcos González / Aitor Laborde",
+    ib_concept_lbl:"Causale",ib_concept:"Nome + Cognome – Matrimonio",
+    cp_btn:"Copia IBAN",footer_msg:"Con tutto il nostro amore, vi aspettiamo."
   }
 };
 
-let currentLang = 'es';
-function setLang(lang) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.lang-btn').forEach(b => { if(b.textContent===lang.toUpperCase()) b.classList.add('active'); });
+let lang = 'es';
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lb').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lb').forEach(b => { if(b.textContent===l.toUpperCase()) b.classList.add('active'); });
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const k = el.getAttribute('data-i18n');
-    if(i18n[lang][k] !== undefined) el.innerHTML = i18n[lang][k];
+    if(T[l][k] !== undefined) el.innerHTML = T[l][k];
   });
-  document.documentElement.lang = lang;
+  document.documentElement.lang = l;
 }
 
-/* ── COUNTDOWN ── */
+/* ─── NAV color swap ─── */
+const nav = document.getElementById('main-nav');
+const hero = document.getElementById('hero');
+function updateNav() {
+  const h = hero.offsetHeight;
+  nav.classList.toggle('on-sage', window.scrollY < h - 60);
+}
+window.addEventListener('scroll', updateNav, {passive:true});
+updateNav();
+
+/* ─── COUNTDOWN ─── */
 function tick() {
   const diff = new Date('2027-03-06T11:30:00') - new Date();
   if(diff <= 0) return;
-  document.getElementById('cd-days').textContent  = Math.floor(diff/86400000);
-  document.getElementById('cd-hours').textContent = Math.floor(diff%86400000/3600000);
-  document.getElementById('cd-mins').textContent  = Math.floor(diff%3600000/60000);
-  document.getElementById('cd-secs').textContent  = Math.floor(diff%60000/1000);
+  document.getElementById('cd-d').textContent = Math.floor(diff/86400000);
+  document.getElementById('cd-h').textContent = Math.floor(diff%86400000/3600000);
+  document.getElementById('cd-m').textContent = Math.floor(diff%3600000/60000);
+  document.getElementById('cd-s').textContent = Math.floor(diff%60000/1000);
 }
 tick(); setInterval(tick, 1000);
 
-/* ── RSVP ── */
-function selectAttend(c) {
-  document.getElementById('input-asistencia').value = c;
-  document.getElementById('btn-yes').className = 'attend-btn'+(c==='yes'?' selected-yes':'');
-  document.getElementById('btn-no').className  = 'attend-btn'+(c==='no'?' selected-no':'');
-  document.getElementById('form-extra-yes').className = 'form-extra'+(c==='yes'?' visible':'');
-  document.getElementById('form-extra-no').className  = 'form-extra'+(c==='no'?' visible':'');
+/* ─── SCROLL REVEAL ─── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('up'); obs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => obs.observe(el));
+
+/* ─── RSVP ─── */
+function pick(c) {
+  document.getElementById('hid-asist').value = c;
+  document.getElementById('btn-y').className = 'att-btn'+(c==='yes'?' yes':'');
+  document.getElementById('btn-n').className = 'att-btn'+(c==='no'?' no':'');
+  document.getElementById('ex-yes').className = 'form-extra'+(c==='yes'?' on':'');
+  document.getElementById('ex-no').className  = 'form-extra'+(c==='no' ?' on':'');
 }
-document.getElementById('rsvp-form').addEventListener('submit', async function(e){
+document.getElementById('rsvp-form').addEventListener('submit', async function(e) {
   e.preventDefault();
-  if(!document.getElementById('input-asistencia').value){
-    alert(currentLang==='fr'?'Veuillez indiquer si vous serez présent(e).':currentLang==='en'?'Please indicate whether you will attend.':currentLang==='it'?'Indica se parteciperai.':'Por favor, indica si podrás venir.');
-    return;
+  if(!document.getElementById('hid-asist').value) {
+    alert(T[lang].label_asist + '?'); return;
   }
-  const btn=this.querySelector('.btn-submit'); btn.textContent='...'; btn.disabled=true;
+  const btn = this.querySelector('.btn-sub'); btn.textContent='...'; btn.disabled=true;
   try {
-    const res = await fetch(this.action,{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});
-    if(res.ok){ this.style.display='none'; document.getElementById('form-success').style.display='block'; }
-    else { btn.textContent=i18n[currentLang].btn_enviar; btn.disabled=false; }
-  } catch(err){ btn.textContent=i18n[currentLang].btn_enviar; btn.disabled=false; }
+    const r = await fetch(this.action,{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});
+    if(r.ok){ this.style.display='none'; document.getElementById('form-ok').style.display='block'; }
+    else { btn.textContent=T[lang].btn_send; btn.disabled=false; }
+  } catch{ btn.textContent=T[lang].btn_send; btn.disabled=false; }
 });
 
-/* ── IBAN ── */
+/* ─── IBAN ─── */
 const IBAN_PWD  = 'boda2027';
 const REAL_IBAN = 'ES12 3456 7890 1234 5678 9012'; // ← REEMPLAZAR CON IBAN REAL
-function checkIban(){
-  const v=document.getElementById('iban-pwd').value;
-  if(v===IBAN_PWD){
-    document.getElementById('iban-lock').style.display='none';
-    document.getElementById('iban-display').textContent=REAL_IBAN;
-    document.getElementById('iban-revealed').classList.add('show');
-    document.getElementById('iban-error').style.display='none';
+function checkIb() {
+  if(document.getElementById('ib-pwd').value === IBAN_PWD) {
+    document.getElementById('ib-lock').style.display = 'none';
+    document.getElementById('ib-num').textContent = REAL_IBAN;
+    document.getElementById('ib-shown').classList.add('on');
+    document.getElementById('ib-err').style.display = 'none';
   } else {
-    document.getElementById('iban-error').style.display='block';
-    document.getElementById('iban-pwd').value='';
-    document.getElementById('iban-pwd').focus();
+    document.getElementById('ib-err').style.display = 'block';
+    document.getElementById('ib-pwd').value = '';
+    document.getElementById('ib-pwd').focus();
   }
 }
-function copyIban(){
+function cpIb() {
   navigator.clipboard.writeText(REAL_IBAN.replace(/\s/g,'')).then(()=>{
-    const b=document.querySelector('.copy-btn'); const p=b.textContent;
-    b.textContent='✓'; setTimeout(()=>b.textContent=p,2000);
+    const b = document.querySelector('.cp-btn'); const p=b.textContent;
+    b.textContent = '✓'; setTimeout(()=>b.textContent=p,2000);
   });
 }
 </script>
