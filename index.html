@@ -6,13 +6,16 @@
   <title>Adriana & Aitor · 06.03.2027</title>
   <style>
     :root {
+      --teal:       #2a7c8e;
+      --teal-dark:  #1a5f6e;
+      --teal-light: #3d9aae;
       --sage:       #4a6342;
       --sage-light: #6a8a5e;
-      --sage-pale:  #dde6d5;
       --stone:      #b8a99a;
       --char:       #2c2420;
       --muted:      #7a6e68;
       --wine:       #6b2d3e;
+      --road:       #e8c070;
     }
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
@@ -30,187 +33,177 @@
       position:fixed; top:0; left:0; right:0; z-index:200;
       display:flex; align-items:center; justify-content:space-between;
       padding:0 2.5rem; height:52px;
-      background:rgba(255,255,255,0); transition:background .5s, box-shadow .5s;
-    }
-    nav.scrolled {
-      background:rgba(255,255,255,0.95);
-      box-shadow:0 1px 16px rgba(0,0,0,.06);
+      background:rgba(255,255,255,.92);
+      box-shadow:0 1px 16px rgba(0,0,0,.05);
+      transition:background .5s, box-shadow .5s;
     }
     .nav-brand {
       font-size:.72rem; letter-spacing:.28em; text-transform:uppercase;
-      color:rgba(255,255,255,.85); font-weight:300; transition:color .5s;
+      color:var(--teal); font-weight:300;
     }
-    nav.scrolled .nav-brand { color:var(--char); }
     .nav-links { display:flex; gap:2rem; list-style:none; }
     .nav-links a {
       font-size:.6rem; letter-spacing:.18em; text-transform:uppercase;
-      color:rgba(255,255,255,.6); text-decoration:none; font-weight:300;
-      transition:color .4s;
+      color:var(--muted); text-decoration:none; font-weight:300;
+      transition:color .3s;
     }
-    nav.scrolled .nav-links a { color:var(--muted); }
-    .nav-links a:hover { color:#fff; }
-    nav.scrolled .nav-links a:hover { color:var(--char); }
+    .nav-links a:hover { color:var(--teal); }
     .lang-sw { display:flex; gap:.3rem; }
     .lb {
       font-size:.58rem; letter-spacing:.08em; text-transform:uppercase;
       background:none; border:none; cursor:pointer;
-      color:rgba(255,255,255,.45); padding:3px 6px;
-      font-family:inherit; font-weight:300; transition:color .4s;
+      color:var(--muted); padding:3px 6px;
+      font-family:inherit; font-weight:300; transition:color .3s;
     }
-    .lb.active { color:rgba(255,255,255,.9); border-bottom:1px solid rgba(255,255,255,.4); }
-    nav.scrolled .lb { color:var(--muted); }
-    nav.scrolled .lb.active { color:var(--char); border-bottom-color:var(--sage-light); }
+    .lb.active { color:var(--teal); border-bottom:1px solid var(--teal); }
 
-    /* ── HERO ── */
+    /* ── HERO / INVITATION PAGE ── */
     #hero {
-      height:100vh; min-height:600px;
-      position:relative; overflow:hidden;
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      text-align:center;
-    }
-    #hero-bg {
-      position:absolute; inset:0;
-      background:url('img/venise.jpeg') center center / cover no-repeat;
-    }
-    /* Voile blanc léger pour lire le texte sur l'aquarelle */
-    #hero-overlay {
-      position:absolute; inset:0;
-      background:linear-gradient(
-        to bottom,
-        rgba(255,255,255,.42) 0%,
-        rgba(255,255,255,.32) 60%,
-        rgba(255,255,255,.70) 100%
-      );
-    }
-    .hero-content {
-      position:relative; z-index:2;
+      min-height:100vh;
+      padding:7rem 1.5rem 3rem;
       display:flex; flex-direction:column; align-items:center;
+      text-align:center; background:#fff;
     }
 
-    /* Logo */
-    .mono-img {
-      width:clamp(120px,22vw,180px); height:auto;
-      mix-blend-mode:multiply;
-      opacity:.85;
+    .hero-logo {
+      width:clamp(90px,16vw,140px); height:auto;
+      mix-blend-mode:multiply; opacity:1;
       margin-bottom:2rem;
+      /* supprime fond crème du logo */
+      filter: contrast(1.1) saturate(0.9);
+    }
+
+    .hero-photo-frame {
+      width:clamp(240px,46vw,380px);
+      aspect-ratio:4/3;
+      overflow:hidden;
+      border:1px solid #d8d0c8;
+      margin-bottom:2.2rem;
+    }
+    .hero-photo-frame img {
+      width:100%; height:100%; object-fit:cover; object-position:center 30%;
       display:block;
     }
 
     .hero-tagline {
-      font-size:clamp(1.2rem,2.8vw,2rem);
-      letter-spacing:.22em; text-transform:uppercase;
-      color:var(--char); font-weight:200;
-      margin-bottom:1.1rem;
+      font-size:clamp(.8rem,1.6vw,1.1rem);
+      letter-spacing:.3em; text-transform:uppercase;
+      color:var(--teal); font-weight:300;
+      margin-bottom:1.3rem;
     }
+
     .hero-names {
-      font-size:clamp(1rem,1.6vw,1.3rem);
-      letter-spacing:.38em; text-transform:uppercase;
-      color:var(--char); font-weight:100;
-      margin-bottom:.8rem;
-    }
-    .hero-line { width:32px; height:1px; background:rgba(44,36,32,.25); margin:.9rem auto; }
-    .hero-date {
-      font-size:clamp(.68rem,.9vw,.85rem); letter-spacing:.3em; text-transform:uppercase;
-      color:var(--muted); font-weight:200;
+      font-size:clamp(2.4rem,7vw,5rem);
+      letter-spacing:.12em; font-weight:700;
+      color:var(--teal); line-height:1;
+      margin-bottom:.7rem;
+      font-style:italic;
     }
 
-    .scroll-hint {
-      position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
-      display:flex; flex-direction:column; align-items:center; gap:.5rem;
-      color:rgba(44,36,32,.35); font-size:.55rem; letter-spacing:.2em; text-transform:uppercase;
-      z-index:2; animation:bob 2.8s ease-in-out infinite;
-    }
-    .scroll-hint::after {
-      content:''; display:block; width:1px; height:28px;
-      background:linear-gradient(to bottom, rgba(44,36,32,.3), transparent);
-    }
-    @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
-
-    /* ── MARIÉS QUI SE DÉPLACENT ── */
-    #maries-walk {
-      position:fixed;
-      bottom:0;
-      left:0;
-      width:clamp(70px,9vw,110px);
-      height:auto;
-      z-index:149;
-      pointer-events:none;
-      will-change:transform;
-    }
-    @media(max-width:600px){ #maries-walk { width:60px; } }
-
-    /* ── MARIÉS DIVIDER ── */
-    #maries-divider {
-      background:#fff;
-      text-align:center;
-      padding:4rem 2rem 0;
-    }
-    #maries-divider img {
-      width:clamp(130px,22vw,200px);
-      height:auto; display:inline-block;
+    .hero-date-line {
+      font-size:clamp(1rem,2.2vw,1.6rem);
+      letter-spacing:.18em; font-weight:400;
+      color:var(--teal);
+      margin-bottom:.4rem;
     }
 
-    /* ── INVITATION ── */
-    #invitation {
-      background:#fff;
-      padding:5rem 2rem 5rem;
-      text-align:center; position:relative;
+    .hero-city {
+      font-size:clamp(.7rem,1.4vw,1rem);
+      letter-spacing:.45em; text-transform:uppercase;
+      color:var(--teal); font-weight:300;
+      margin-bottom:2.8rem;
     }
-    #invitation::before {
-      content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
-      width:1px; height:50px; background:linear-gradient(to bottom, transparent, var(--stone));
+
+    .hero-invite-text {
+      max-width:480px;
+      font-size:clamp(.85rem,1.3vw,1rem);
+      color:var(--muted); line-height:2.2; font-weight:300;
+      font-style:italic;
+      margin-bottom:1rem;
     }
-    .inv-title {
-      font-size:clamp(1.4rem,2.4vw,2rem); font-weight:100;
-      letter-spacing:.04em; color:var(--char);
-      margin-bottom:1.2rem; line-height:1.5;
+
+    .hero-os-esperamos {
+      font-size:clamp(.85rem,1.4vw,1rem);
+      letter-spacing:.15em; text-transform:uppercase;
+      color:var(--teal); font-weight:400;
     }
-    .inv-divider { width:36px; height:1px; background:var(--stone); margin:1.2rem auto; }
-    .inv-text {
-      max-width:580px; margin:0 auto;
-      font-size:clamp(.85rem,1.1vw,1rem);
-      color:var(--muted); line-height:2.1; font-weight:300;
-    }
-    .inv-text strong { color:var(--char); font-weight:400; }
 
     /* countdown */
-    .countdown-block { margin-top:3.5rem; }
+    .countdown-block { margin:3rem 0 0; }
     .countdown-row { display:flex; justify-content:center; gap:3rem; flex-wrap:wrap; }
     .cd-item { text-align:center; }
-    .cd-num { font-size:clamp(2rem,4vw,2.8rem); font-weight:100; color:var(--char); line-height:1; letter-spacing:-.02em; }
+    .cd-num { font-size:clamp(2rem,4vw,2.8rem); font-weight:100; color:var(--teal); line-height:1; letter-spacing:-.02em; }
     .cd-lbl { font-size:.53rem; letter-spacing:.18em; text-transform:uppercase; color:var(--stone); margin-top:.4rem; }
 
-    /* ── VENUE SPLITS ── */
-    .venue-block { display:flex; min-height:500px; border-top:1px solid #f0ece6; }
-    .venue-block.flip { flex-direction:row-reverse; }
-    .venue-img-wrap { flex:1.1; overflow:hidden; background:#faf8f5; }
-    .venue-img-wrap img {
-      width:100%; height:100%; object-fit:contain; object-position:center;
-      display:block; padding:2.5rem;
+    /* ── MAP / VENUES ── */
+    #venues-map {
+      background:#fff;
+      padding:1rem 0 4rem;
+      border-top:1px solid #ece8e3;
+      overflow:hidden;
     }
-    .venue-text {
-      flex:1; display:flex; flex-direction:column; justify-content:center;
-      padding:4.5rem 4rem; background:#fff;
+
+    .map-container {
+      display:flex; align-items:flex-end; justify-content:center;
+      position:relative;
+      min-height:320px;
+      padding:0 1.5rem;
+      gap:0;
     }
-    .v-time {
-      font-size:.6rem; letter-spacing:.22em; text-transform:uppercase;
-      color:var(--stone); margin-bottom:.8rem; font-weight:300;
+
+    /* venue cards */
+    .venue-card {
+      display:flex; flex-direction:column; align-items:center;
+      text-align:center;
+      flex:0 0 auto;
+      width:clamp(160px,28vw,240px);
+      position:relative; z-index:2;
     }
-    .v-title {
-      font-size:clamp(1.6rem,2.8vw,2.4rem); font-weight:100;
-      color:var(--char); margin-bottom:1rem; letter-spacing:.02em;
+    .venue-card.right { align-items:center; }
+
+    .venue-watercolor {
+      width:100%; max-width:220px;
+      height:clamp(110px,18vw,160px);
+      overflow:hidden; margin-bottom:.8rem;
     }
-    .v-line { width:28px; height:1px; background:var(--stone); margin-bottom:1.4rem; }
-    .v-body {
-      font-size:clamp(.9rem,1.2vw,1.05rem);
-      color:var(--muted); line-height:2; margin-bottom:1.4rem; font-weight:300;
+    .venue-watercolor img {
+      width:100%; height:100%; object-fit:contain; object-position:bottom;
+      display:block;
     }
-    .v-addr {
-      font-size:clamp(.8rem,1vw,.92rem);
-      color:var(--muted); line-height:2; font-weight:300;
+
+    .venue-area {
+      font-size:.6rem; letter-spacing:.28em; text-transform:uppercase;
+      color:var(--teal); font-weight:300;
+      margin-bottom:.3rem;
     }
-    .v-addr a { color:var(--sage-light); text-decoration:none; border-bottom:1px solid transparent; transition:border-color .2s; }
-    .v-addr a:hover { border-color:var(--sage-light); }
+    .venue-name-label {
+      font-size:clamp(.82rem,1.4vw,1rem); font-weight:700;
+      letter-spacing:.08em; text-transform:uppercase;
+      color:var(--teal); line-height:1.3;
+      margin-bottom:.6rem;
+    }
+    .venue-time {
+      font-size:.65rem; letter-spacing:.12em; color:var(--muted); font-weight:300;
+      margin-bottom:.5rem;
+    }
+    .venue-ubicacion {
+      font-size:.62rem; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--teal); font-weight:300;
+      text-decoration:none;
+      border:1px solid var(--teal);
+      padding:.18rem .6rem;
+      display:inline-block;
+      transition:background .2s, color .2s;
+    }
+    .venue-ubicacion:hover { background:var(--teal); color:#fff; }
+
+    /* road SVG section */
+    .road-section {
+      flex:1; min-width:120px; max-width:380px;
+      position:relative; align-self:flex-end;
+      padding-bottom:0;
+    }
+    .road-svg { width:100%; display:block; overflow:visible; }
 
     /* ── TIMELINE ── */
     #timeline { background:#faf8f5; padding:5.5rem 2rem; text-align:center; border-top:1px solid #f0ece6; }
@@ -257,7 +250,7 @@
       outline:none; transition:border-color .2s;
     }
     .fg textarea { border-radius:12px; resize:vertical; min-height:72px; }
-    .fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--sage-light); }
+    .fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--teal); }
     .fg select option { background:#fff; }
     .form-row { display:grid; grid-template-columns:1fr 1fr; gap:.9rem; margin-bottom:.9rem; }
     .attend-btns { display:flex; gap:.6rem; }
@@ -267,17 +260,17 @@
       text-transform:uppercase; transition:all .2s;
       border:1px solid #d8d0c8; background:#fff; color:var(--muted);
     }
-    .att-btn.yes { background:var(--sage); border-color:var(--sage); color:#fff; }
+    .att-btn.yes { background:var(--teal); border-color:var(--teal); color:#fff; }
     .att-btn.no  { background:var(--wine); border-color:var(--wine); color:#fff; }
     .form-extra { display:none; }
     .form-extra.on { display:block; }
     .btn-sub {
-      width:100%; padding:.85rem; background:var(--char); border:none;
+      width:100%; padding:.85rem; background:var(--teal); border:none;
       color:#fff; font-family:inherit; font-size:.6rem; letter-spacing:.2em;
       text-transform:uppercase; cursor:pointer; border-radius:50px; font-weight:300;
       margin-top:.5rem; transition:background .2s;
     }
-    .btn-sub:hover { background:var(--sage); }
+    .btn-sub:hover { background:var(--teal-dark); }
     .form-ok { text-align:center; padding:2.5rem; font-size:1rem; font-weight:100; color:var(--muted); display:none; letter-spacing:.06em; }
 
     /* ── DRESS CODE ── */
@@ -300,13 +293,13 @@
       font-family:inherit; font-size:.85rem; font-weight:200;
       background:#fff; outline:none; color:var(--char); transition:border-color .2s;
     }
-    .ib-row input:focus { border-color:var(--sage-light); }
+    .ib-row input:focus { border-color:var(--teal); }
     .ib-row button {
-      padding:.65rem 1.1rem; background:var(--char); border:none; color:#fff;
+      padding:.65rem 1.1rem; background:var(--teal); border:none; color:#fff;
       font-family:inherit; font-size:.58rem; letter-spacing:.1em;
       text-transform:uppercase; cursor:pointer; border-radius:50px; transition:background .2s; font-weight:300;
     }
-    .ib-row button:hover { background:var(--sage); }
+    .ib-row button:hover { background:var(--teal-dark); }
     .ib-err { color:#a03030; font-size:.7rem; margin-top:.5rem; display:none; font-weight:300; }
     .ib-shown { display:none; }
     .ib-shown.on { display:block; }
@@ -316,19 +309,19 @@
     .ib-holder { font-size:.76rem; color:var(--muted); font-weight:300; }
     .cp-btn {
       margin-top:1.2rem; padding:.5rem 1.1rem; background:none;
-      border:1px solid var(--sage-light); color:var(--sage-light);
+      border:1px solid var(--teal); color:var(--teal);
       font-family:inherit; font-size:.58rem; letter-spacing:.1em;
       text-transform:uppercase; cursor:pointer; border-radius:50px; transition:all .2s; font-weight:300;
     }
-    .cp-btn:hover { background:var(--sage-light); color:#fff; }
+    .cp-btn:hover { background:var(--teal); color:#fff; }
 
     /* ── FOOTER ── */
     footer {
-      background:var(--char); color:rgba(255,255,255,.4);
+      background:var(--teal-dark); color:rgba(255,255,255,.4);
       text-align:center; padding:3rem 1rem;
       font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; font-weight:300;
     }
-    footer em { color:rgba(255,255,255,.75); font-style:normal; font-weight:200; }
+    footer em { color:rgba(255,255,255,.85); font-style:normal; font-weight:200; }
 
     /* ── SCROLL REVEAL ── */
     .rv { opacity:0; transform:translateY(28px); transition:opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
@@ -342,14 +335,20 @@
     .d3 { transition-delay:.36s !important; }
     .d4 { transition-delay:.50s !important; }
 
+    /* ── MARIÉS WALK ── */
+    #maries-walk {
+      position:fixed; bottom:0; left:0;
+      width:clamp(60px,8vw,95px); height:auto;
+      z-index:149; pointer-events:none; will-change:transform;
+    }
+
     /* ── RESPONSIVE ── */
     @media(max-width:780px){
       .nav-links { display:none; }
       nav { padding:0 1.2rem; }
-      .venue-block,.venue-block.flip { flex-direction:column; }
-      .venue-img-wrap { min-height:200px; }
-      .venue-img-wrap img { padding:1.2rem; }
-      .venue-text { padding:2.5rem 1.5rem; }
+      .map-container { flex-direction:column; align-items:center; gap:2rem; }
+      .road-section { display:none; }
+      .venue-card { width:clamp(200px,80vw,300px); }
       .nos-grid { grid-template-columns:1fr; }
       .photo-wrap { height:280px; }
       .form-row { grid-template-columns:1fr; }
@@ -368,11 +367,11 @@
 <nav id="main-nav">
   <span class="nav-brand">A &amp; A · 2027</span>
   <ul class="nav-links">
-    <li><a href="#invitation" data-i18n="nav_inv">Inicio</a></li>
-    <li><a href="#ceremonia"  data-i18n="nav_cer">Ceremonia</a></li>
-    <li><a href="#timeline"   data-i18n="nav_tl">Programa</a></li>
-    <li><a href="#rsvp"       data-i18n="nav_rsvp">Confirmación</a></li>
-    <li><a href="#regalo"     data-i18n="nav_gift">Regalo</a></li>
+    <li><a href="#hero"      data-i18n="nav_inv">Inicio</a></li>
+    <li><a href="#ceremonia" data-i18n="nav_cer">Ceremonia</a></li>
+    <li><a href="#timeline"  data-i18n="nav_tl">Programa</a></li>
+    <li><a href="#rsvp"      data-i18n="nav_rsvp">Confirmación</a></li>
+    <li><a href="#regalo"    data-i18n="nav_gift">Regalo</a></li>
   </ul>
   <div class="lang-sw">
     <button class="lb active" onclick="setLang('es')">ES</button>
@@ -382,35 +381,37 @@
   </div>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- ── HERO — carta de invitación ── -->
 <section id="hero">
-  <div id="hero-bg"></div>
-  <div id="hero-overlay"></div>
 
-  <div class="hero-content">
-    <img class="mono-img" src="img/logo.png" alt="Monograma AA">
-    <p class="hero-tagline" data-i18n="inv_tagline">¡Nos casamos!</p>
-    <p class="hero-names">Adriana &nbsp;&amp;&nbsp; Aitor</p>
-    <div class="hero-line"></div>
-    <p class="hero-date">06 · 03 · 2027 · Madrid</p>
+  <!-- Logo AA -->
+  <img class="hero-logo rv" src="img/logo.png" alt="Monograma AA">
+
+  <!-- Pequeña foto de Venecia -->
+  <div class="hero-photo-frame rv d1">
+    <img src="img/venise.jpeg" alt="Venecia">
   </div>
 
-  <div class="scroll-hint" data-i18n="scroll_hint">scroll</div>
-</section>
+  <!-- ¡Nos casamos! -->
+  <p class="hero-tagline rv d2" data-i18n="inv_tagline">¡NOS CASAMOS!</p>
 
-<!-- ── MARIÉS DIVIDER ── -->
-<div id="maries-divider">
-  <img src="img/maries.png" alt="Adri & Aitor">
-</div>
+  <!-- Nombres -->
+  <h1 class="hero-names rv d3" data-i18n="hero_names">ADRI &amp; AITOR</h1>
 
-<!-- ── INVITATION ── -->
-<section id="invitation">
-  <h2 class="inv-title rv" data-i18n="inv_title">¡Nos casamos!</h2>
-  <div class="inv-divider rv d1"></div>
-  <p class="inv-text rv d2" data-i18n="inv_text">
-    Estamos muy ilusionados y queremos compartir contigo este día tan especial y hacer de nuestra boda una <strong>celebración inolvidable</strong>.
+  <!-- Fecha -->
+  <p class="hero-date-line rv d4">6 | 03 | 2027</p>
+  <p class="hero-city rv d4" style="transition-delay:.55s">MADRID</p>
+
+  <!-- Texto de invitación -->
+  <p class="hero-invite-text rv" style="transition-delay:.65s" data-i18n="inv_text_short">
+    Nos gustaría compartir este día tan especial con vosotros.<br>
+    Gracias por todos los momentos compartidos.<br>
+    Nos sentimos muy afortunados de teneros como familia y amigos.
   </p>
-  <div class="countdown-block rv d3">
+  <p class="hero-os-esperamos rv" style="transition-delay:.75s" data-i18n="os_esperamos">¡OS ESPERAMOS!</p>
+
+  <!-- Countdown -->
+  <div class="countdown-block rv" style="transition-delay:.85s">
     <div class="countdown-row">
       <div class="cd-item"><div class="cd-num" id="cd-d">—</div><div class="cd-lbl" data-i18n="cd_days">días</div></div>
       <div class="cd-item"><div class="cd-num" id="cd-h">—</div><div class="cd-lbl" data-i18n="cd_hours">horas</div></div>
@@ -418,41 +419,81 @@
       <div class="cd-item"><div class="cd-num" id="cd-s">—</div><div class="cd-lbl" data-i18n="cd_secs">segundos</div></div>
     </div>
   </div>
+
 </section>
 
-<!-- ── CEREMONIA ── -->
-<div id="ceremonia" class="venue-block">
-  <div class="venue-img-wrap rv-l">
-    <img src="img/eglise.jpeg" alt="Iglesia Santa Bárbara">
-  </div>
-  <div class="venue-text rv-r">
-    <p class="v-time" data-i18n="tag_cer">11:30 h · Sábado 6 de marzo</p>
-    <h2 class="v-title" data-i18n="title_cer">Iglesia Santa Bárbara</h2>
-    <div class="v-line"></div>
-    <p class="v-body" data-i18n="body_cer">La ceremonia religiosa tendrá lugar a las 11:30 de la mañana en la Iglesia Santa Bárbara, en el corazón de Madrid.</p>
-    <p class="v-addr">
-      Plaza de Alonso Martínez, 6 · Centro, 28004 Madrid<br><br>
-      <a href="https://maps.google.com/?q=Iglesia+Santa+Barbara+Plaza+Alonso+Martinez+6+Madrid" target="_blank" rel="noopener" data-i18n="ver_mapa">Ver en Google Maps ↗</a>
-    </p>
-  </div>
-</div>
+<!-- ── MAPA ILUSTRADO — VENUES ── -->
+<section id="venues-map" id="ceremonia">
 
-<!-- ── FINCA ── -->
-<div id="finca" class="venue-block flip">
-  <div class="venue-img-wrap rv-r">
-    <img src="img/finca.jpeg" alt="Finca Astilbe">
+  <div class="map-container">
+
+    <!-- IGLESIA SANTA BÁRBARA -->
+    <div class="venue-card rv-l">
+      <div class="venue-watercolor">
+        <img src="img/eglise.jpeg" alt="Iglesia Santa Bárbara">
+      </div>
+      <p class="venue-area">MADRID CENTRO</p>
+      <h3 class="venue-name-label" data-i18n="title_cer">IGLESIA<br>SANTA BÁRBARA</h3>
+      <p class="venue-time" data-i18n="tag_cer">11:30 h · Sábado 6 de marzo</p>
+      <a class="venue-ubicacion"
+         href="https://maps.google.com/?q=Iglesia+Santa+Barbara+Plaza+Alonso+Martinez+6+Madrid"
+         target="_blank" rel="noopener"
+         data-i18n="ver_mapa">[ UBICACIÓN ]</a>
+    </div>
+
+    <!-- ROAD SVG -->
+    <div class="road-section">
+      <svg class="road-svg" viewBox="0 0 340 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Road shadow -->
+        <path d="M10 155 Q80 130 120 100 Q160 70 200 80 Q240 90 330 60"
+              stroke="rgba(0,0,0,.08)" stroke-width="22" stroke-linecap="round" fill="none"/>
+        <!-- Road fill -->
+        <path id="road-path"
+              d="M10 155 Q80 130 120 100 Q160 70 200 80 Q240 90 330 60"
+              stroke="#e8c070" stroke-width="18" stroke-linecap="round" fill="none"/>
+        <!-- Road center dashes -->
+        <path d="M10 155 Q80 130 120 100 Q160 70 200 80 Q240 90 330 60"
+              stroke="#fff" stroke-width="2" stroke-dasharray="12 10" stroke-linecap="round" fill="none"/>
+
+        <!-- M-30 label -->
+        <text x="88" y="126" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+              font-size="9" font-weight="300" letter-spacing="1" fill="#7a6e68" transform="rotate(-18,88,126)">M-30</text>
+
+        <!-- A-1 label -->
+        <text x="230" y="84" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+              font-size="9" font-weight="300" letter-spacing="1" fill="#7a6e68" transform="rotate(-8,230,84)">A-1</text>
+
+        <!-- Car (simplified) -->
+        <g transform="translate(155,84) rotate(-12)">
+          <rect x="-10" y="-6" width="20" height="12" rx="4" fill="#c0392b"/>
+          <rect x="-6" y="-10" width="12" height="6" rx="2" fill="#c0392b"/>
+          <circle cx="-6" cy="7" r="3" fill="#555"/>
+          <circle cx="6" cy="7" r="3" fill="#555"/>
+        </g>
+
+        <!-- 25 min label -->
+        <text x="155" y="115" text-anchor="middle"
+              font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+              font-size="10" font-weight="300" letter-spacing="1" fill="#7a6e68">25 min.</text>
+      </svg>
+    </div>
+
+    <!-- FINCA ASTILBE -->
+    <div class="venue-card right rv-r">
+      <div class="venue-watercolor">
+        <img src="img/finca.jpeg" alt="Finca Astilbe">
+      </div>
+      <p class="venue-area">LA MORALEJA</p>
+      <h3 class="venue-name-label" data-i18n="title_finca">FINCA ASTILBE<br>by ENELDO</h3>
+      <p class="venue-time" data-i18n="tag_finca">13:30 h · Sábado 6 de marzo</p>
+      <a class="venue-ubicacion"
+         href="https://maps.google.com/?q=Finca+Astilbe+Eneldo+Fuencarral+Madrid"
+         target="_blank" rel="noopener"
+         data-i18n="ver_mapa">[ UBICACIÓN ]</a>
+    </div>
+
   </div>
-  <div class="venue-text rv-l">
-    <p class="v-time" data-i18n="tag_finca">13:30 h · Sábado 6 de marzo</p>
-    <h2 class="v-title" data-i18n="title_finca">Finca Astilbe by Eneldo</h2>
-    <div class="v-line"></div>
-    <p class="v-body" data-i18n="body_finca">La celebración continuará en la Finca Astilbe by Eneldo Catering, donde compartiremos el cóctel, el banquete y el baile.</p>
-    <p class="v-addr">
-      Carr. de Fuencarral, km 1,9 · 28049 Madrid<br><br>
-      <a href="https://maps.google.com/?q=Finca+Astilbe+Eneldo+Fuencarral+Madrid" target="_blank" rel="noopener" data-i18n="ver_mapa">Ver en Google Maps ↗</a>
-    </p>
-  </div>
-</div>
+</section>
 
 <!-- ── TIMELINE ── -->
 <section id="timeline">
@@ -462,7 +503,7 @@
     <div class="tl-line"></div>
     <div class="tl-item rv">
       <div class="tl-icon-wrap">
-        <svg viewBox="0 0 26 26" fill="none"><path d="M13 3L13 6" stroke="#4a6342" stroke-width="1.5" stroke-linecap="round"/><path d="M4 10Q4 4 13 4Q22 4 22 10L22 20L4 20Z" fill="none" stroke="#4a6342" stroke-width="1.5"/><line x1="4" y1="20" x2="22" y2="20" stroke="#4a6342" stroke-width="1.5"/><line x1="2" y1="20" x2="24" y2="20" stroke="#4a6342" stroke-width="1.5"/><rect x="9" y="14" width="8" height="6" rx="1" fill="none" stroke="#4a6342" stroke-width="1.2"/><line x1="13" y1="3" x2="10" y2="6" stroke="#4a6342" stroke-width="1.2"/><line x1="13" y1="3" x2="16" y2="6" stroke="#4a6342" stroke-width="1.2"/></svg>
+        <svg viewBox="0 0 26 26" fill="none"><path d="M13 3L13 6" stroke="#2a7c8e" stroke-width="1.5" stroke-linecap="round"/><path d="M4 10Q4 4 13 4Q22 4 22 10L22 20L4 20Z" fill="none" stroke="#2a7c8e" stroke-width="1.5"/><line x1="4" y1="20" x2="22" y2="20" stroke="#2a7c8e" stroke-width="1.5"/><line x1="2" y1="20" x2="24" y2="20" stroke="#2a7c8e" stroke-width="1.5"/><rect x="9" y="14" width="8" height="6" rx="1" fill="none" stroke="#2a7c8e" stroke-width="1.2"/><line x1="13" y1="3" x2="10" y2="6" stroke="#2a7c8e" stroke-width="1.2"/><line x1="13" y1="3" x2="16" y2="6" stroke="#2a7c8e" stroke-width="1.2"/></svg>
       </div>
       <div class="tl-body">
         <p class="tl-time">11:30 h</p>
@@ -472,7 +513,7 @@
     </div>
     <div class="tl-item rv d1">
       <div class="tl-icon-wrap">
-        <svg viewBox="0 0 26 26" fill="none"><path d="M7 4L19 4L15 14L15 21L11 21L11 14Z" fill="none" stroke="#6b2d3e" stroke-width="1.5" stroke-linejoin="round"/><line x1="9" y1="22" x2="17" y2="22" stroke="#6b2d3e" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 26 26" fill="none"><path d="M7 4L19 4L15 14L15 21L11 21L11 14Z" fill="none" stroke="#2a7c8e" stroke-width="1.5" stroke-linejoin="round"/><line x1="9" y1="22" x2="17" y2="22" stroke="#2a7c8e" stroke-width="1.5" stroke-linecap="round"/></svg>
       </div>
       <div class="tl-body">
         <p class="tl-time">13:30 h</p>
@@ -482,7 +523,7 @@
     </div>
     <div class="tl-item rv d2">
       <div class="tl-icon-wrap">
-        <svg viewBox="0 0 26 26" fill="none"><ellipse cx="13" cy="15" rx="9" ry="4" fill="none" stroke="#4a6342" stroke-width="1.5"/><path d="M4 15Q4 22 13 22Q22 22 22 15" fill="none" stroke="#4a6342" stroke-width="1.5"/><path d="M9 15Q9 10 13 10Q17 10 17 15" fill="none" stroke="#4a6342" stroke-width="1.5"/><circle cx="13" cy="8" r="2.5" fill="none" stroke="#4a6342" stroke-width="1.5"/></svg>
+        <svg viewBox="0 0 26 26" fill="none"><ellipse cx="13" cy="15" rx="9" ry="4" fill="none" stroke="#2a7c8e" stroke-width="1.5"/><path d="M4 15Q4 22 13 22Q22 22 22 15" fill="none" stroke="#2a7c8e" stroke-width="1.5"/><path d="M9 15Q9 10 13 10Q17 10 17 15" fill="none" stroke="#2a7c8e" stroke-width="1.5"/><circle cx="13" cy="8" r="2.5" fill="none" stroke="#2a7c8e" stroke-width="1.5"/></svg>
       </div>
       <div class="tl-body">
         <p class="tl-time">15:00 h</p>
@@ -492,7 +533,7 @@
     </div>
     <div class="tl-item rv d3">
       <div class="tl-icon-wrap">
-        <svg viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="5" fill="none" stroke="#6b2d3e" stroke-width="1.5"/><line x1="13" y1="4" x2="13" y2="7" stroke="#6b2d3e" stroke-width="1.5" stroke-linecap="round"/><line x1="13" y1="19" x2="13" y2="22" stroke="#6b2d3e" stroke-width="1.5" stroke-linecap="round"/><line x1="4" y1="13" x2="7" y2="13" stroke="#6b2d3e" stroke-width="1.5" stroke-linecap="round"/><line x1="19" y1="13" x2="22" y2="13" stroke="#6b2d3e" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="5" fill="none" stroke="#2a7c8e" stroke-width="1.5"/><line x1="13" y1="4" x2="13" y2="7" stroke="#2a7c8e" stroke-width="1.5" stroke-linecap="round"/><line x1="13" y1="19" x2="13" y2="22" stroke="#2a7c8e" stroke-width="1.5" stroke-linecap="round"/><line x1="4" y1="13" x2="7" y2="13" stroke="#2a7c8e" stroke-width="1.5" stroke-linecap="round"/><line x1="19" y1="13" x2="22" y2="13" stroke="#2a7c8e" stroke-width="1.5" stroke-linecap="round"/></svg>
       </div>
       <div class="tl-body">
         <p class="tl-time" data-i18n="tl_fiesta_t">¡Toda la noche!</p>
@@ -616,16 +657,14 @@
 const T = {
   es:{
     nav_inv:"Inicio",nav_cer:"Ceremonia",nav_tl:"Programa",nav_rsvp:"Confirmación",nav_gift:"Regalo",
-    scroll_hint:"scroll",
-    inv_tagline:"¡Nos casamos!",
-    inv_title:"¡Nos casamos!",
-    inv_text:"Estamos muy ilusionados y queremos compartir contigo este día tan especial y hacer de nuestra boda una <strong>celebración inolvidable</strong>.",
+    inv_tagline:"¡NOS CASAMOS!",
+    hero_names:"ADRI &amp; AITOR",
+    inv_text_short:"Nos gustaría compartir este día tan especial con vosotros.<br>Gracias por todos los momentos compartidos.<br>Nos sentimos muy afortunados de teneros como familia y amigos.",
+    os_esperamos:"¡OS ESPERAMOS!",
     cd_days:"días",cd_hours:"horas",cd_mins:"minutos",cd_secs:"segundos",
     tag_cer:"11:30 h · Sábado 6 de marzo",tag_finca:"13:30 h · Sábado 6 de marzo",
-    title_cer:"Iglesia Santa Bárbara",title_finca:"Finca Astilbe by Eneldo",
-    body_cer:"La ceremonia religiosa tendrá lugar a las 11:30 de la mañana en la Iglesia Santa Bárbara, en el corazón de Madrid.",
-    body_finca:"La celebración continuará en la Finca Astilbe by Eneldo Catering, donde compartiremos el cóctel, el banquete y el baile.",
-    ver_mapa:"Ver en Google Maps ↗",
+    title_cer:"IGLESIA<br>SANTA BÁRBARA",title_finca:"FINCA ASTILBE<br>by ENELDO",
+    ver_mapa:"[ UBICACIÓN ]",
     eyebrow_tl:"El gran día",tl_title:"Programa",
     tl_cer:"Ceremonia",tl_cer_desc:"Iglesia Santa Bárbara · Plaza de Alonso Martínez",
     tl_cock:"Cóctel",tl_cock_desc:"Finca Astilbe · Carr. de Fuencarral, km 1,9",
@@ -650,16 +689,14 @@ const T = {
   },
   fr:{
     nav_inv:"Accueil",nav_cer:"Cérémonie",nav_tl:"Programme",nav_rsvp:"Confirmation",nav_gift:"Cadeau",
-    scroll_hint:"défiler",
-    inv_tagline:"Nous nous marions !",
-    inv_title:"Nous nous marions !",
-    inv_text:"Nous sommes très heureux et voulons partager avec toi ce jour si spécial et faire de notre mariage une <strong>célébration inoubliable</strong>.",
+    inv_tagline:"NOUS NOUS MARIONS !",
+    hero_names:"ADRI &amp; AITOR",
+    inv_text_short:"Nous aimerions partager ce jour si spécial avec vous.<br>Merci pour tous les moments partagés.<br>Nous nous sentons très chanceux de vous avoir comme famille et amis.",
+    os_esperamos:"NOUS VOUS ATTENDONS !",
     cd_days:"jours",cd_hours:"heures",cd_mins:"minutes",cd_secs:"secondes",
     tag_cer:"11h30 · Samedi 6 mars",tag_finca:"13h30 · Samedi 6 mars",
-    title_cer:"Iglesia Santa Bárbara",title_finca:"Finca Astilbe by Eneldo",
-    body_cer:"La cérémonie religieuse aura lieu à 11h30 à l'Iglesia Santa Bárbara, au cœur de Madrid.",
-    body_finca:"La réception se poursuivra à la Finca Astilbe by Eneldo Catering, où nous partagerons le cocktail, le dîner et le bal.",
-    ver_mapa:"Voir sur Google Maps ↗",
+    title_cer:"IGLESIA<br>SANTA BÁRBARA",title_finca:"FINCA ASTILBE<br>by ENELDO",
+    ver_mapa:"[ LOCALISATION ]",
     eyebrow_tl:"Le grand jour",tl_title:"Programme",
     tl_cer:"Cérémonie",tl_cer_desc:"Iglesia Santa Bárbara · Plaza de Alonso Martínez",
     tl_cock:"Cocktail",tl_cock_desc:"Finca Astilbe · Carr. de Fuencarral, km 1,9",
@@ -684,16 +721,14 @@ const T = {
   },
   en:{
     nav_inv:"Home",nav_cer:"Ceremony",nav_tl:"Schedule",nav_rsvp:"RSVP",nav_gift:"Gift",
-    scroll_hint:"scroll",
-    inv_tagline:"We're getting married!",
-    inv_title:"We're getting married!",
-    inv_text:"We are so excited and want to share this very special day with you and make our wedding a <strong>celebration to remember</strong>.",
+    inv_tagline:"WE'RE GETTING MARRIED!",
+    hero_names:"ADRI &amp; AITOR",
+    inv_text_short:"We would love to share this very special day with you.<br>Thank you for all the moments we've shared.<br>We feel so lucky to have you as family and friends.",
+    os_esperamos:"WE CAN'T WAIT TO SEE YOU!",
     cd_days:"days",cd_hours:"hours",cd_mins:"minutes",cd_secs:"seconds",
     tag_cer:"11:30 am · Saturday March 6th",tag_finca:"1:30 pm · Saturday March 6th",
-    title_cer:"Iglesia Santa Bárbara",title_finca:"Finca Astilbe by Eneldo",
-    body_cer:"The religious ceremony will take place at 11:30 am at Iglesia Santa Bárbara, in the heart of Madrid.",
-    body_finca:"The celebration continues at Finca Astilbe by Eneldo Catering, where we will share cocktails, dinner and dancing.",
-    ver_mapa:"View on Google Maps ↗",
+    title_cer:"IGLESIA<br>SANTA BÁRBARA",title_finca:"FINCA ASTILBE<br>by ENELDO",
+    ver_mapa:"[ LOCATION ]",
     eyebrow_tl:"The big day",tl_title:"Schedule",
     tl_cer:"Ceremony",tl_cer_desc:"Iglesia Santa Bárbara · Plaza de Alonso Martínez",
     tl_cock:"Cocktail",tl_cock_desc:"Finca Astilbe · Carr. de Fuencarral, km 1,9",
@@ -718,16 +753,14 @@ const T = {
   },
   it:{
     nav_inv:"Home",nav_cer:"Cerimonia",nav_tl:"Programma",nav_rsvp:"Conferma",nav_gift:"Regalo",
-    scroll_hint:"scorri",
-    inv_tagline:"Ci sposiamo!",
-    inv_title:"Ci sposiamo!",
-    inv_text:"Siamo molto emozionati e vogliamo condividere con te questo giorno così speciale e fare del nostro matrimonio una <strong>celebrazione indimenticabile</strong>.",
+    inv_tagline:"CI SPOSIAMO!",
+    hero_names:"ADRI &amp; AITOR",
+    inv_text_short:"Ci piacerebbe condividere con voi questo giorno così speciale.<br>Grazie per tutti i momenti condivisi.<br>Ci sentiamo molto fortunati di avervi come famiglia e amici.",
+    os_esperamos:"VI ASPETTIAMO!",
     cd_days:"giorni",cd_hours:"ore",cd_mins:"minuti",cd_secs:"secondi",
     tag_cer:"11:30 · Sabato 6 marzo",tag_finca:"13:30 · Sabato 6 marzo",
-    title_cer:"Iglesia Santa Bárbara",title_finca:"Finca Astilbe by Eneldo",
-    body_cer:"La cerimonia religiosa si terrà alle 11:30 alla Iglesia Santa Bárbara, nel cuore di Madrid.",
-    body_finca:"I festeggiamenti continueranno alla Finca Astilbe by Eneldo Catering, dove condivideremo il cocktail, il banchetto e il ballo.",
-    ver_mapa:"Vedi su Google Maps ↗",
+    title_cer:"IGLESIA<br>SANTA BÁRBARA",title_finca:"FINCA ASTILBE<br>by ENELDO",
+    ver_mapa:"[ POSIZIONE ]",
     eyebrow_tl:"Il grande giorno",tl_title:"Programma",
     tl_cer:"Cerimonia",tl_cer_desc:"Iglesia Santa Bárbara · Plaza de Alonso Martínez",
     tl_cock:"Cocktail",tl_cock_desc:"Finca Astilbe · Carr. de Fuencarral, km 1,9",
@@ -764,11 +797,6 @@ function setLang(l){
   document.documentElement.lang=l;
 }
 
-/* ─── NAV ─── */
-const nav=document.getElementById('main-nav');
-function updateNav(){nav.classList.toggle('scrolled',window.scrollY>window.innerHeight*0.8);}
-window.addEventListener('scroll',updateNav,{passive:true}); updateNav();
-
 /* ─── MARIÉS : droite → gauche au scroll ─── */
 (function(){
   const el=document.getElementById('maries-walk');
@@ -777,7 +805,6 @@ window.addEventListener('scroll',updateNav,{passive:true}); updateNav();
     const pct=Math.min(window.scrollY/(document.body.scrollHeight-window.innerHeight),1);
     const imgW=el.offsetWidth;
     const maxX=window.innerWidth-imgW;
-    // Commence à droite (maxX), finit à gauche (0)
     el.style.transform=`translateX(${(1-pct)*maxX}px)`;
     ticking=false;
   }
@@ -799,7 +826,7 @@ tick(); setInterval(tick,1000);
 /* ─── SCROLL REVEAL ─── */
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('up');obs.unobserve(e.target);}});
-},{threshold:0.1});
+},{threshold:0.08});
 document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>obs.observe(el));
 
 /* ─── RSVP ─── */
