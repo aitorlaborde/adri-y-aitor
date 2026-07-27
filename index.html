@@ -66,9 +66,8 @@
     }
 
     .hero-logo {
-      width:clamp(90px,16vw,140px); height:auto;
+      width:clamp(100px,18vw,160px); height:auto;
       margin-bottom:2rem;
-      filter: brightness(1.6) saturate(0) contrast(0.9);
     }
 
     .hero-photo-frame {
@@ -383,7 +382,15 @@
 <section id="hero">
 
   <!-- Logo AA -->
-  <img class="hero-logo rv" src="img/logo.png" alt="Monograma AA">
+  <!-- Logo AA — SVG inline, sans fond -->
+  <svg class="hero-logo rv" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- A gauche -->
+    <path d="M 18 112 L 60 8 L 102 112" stroke="#2a7c8e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="34" y1="73" x2="86" y2="73" stroke="#2a7c8e" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- A droite, décalée — s'entrecroise avec la première -->
+    <path d="M 58 112 L 100 8 L 142 112" stroke="#2a7c8e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="74" y1="73" x2="126" y2="73" stroke="#2a7c8e" stroke-width="3.5" stroke-linecap="round"/>
+  </svg>
 
   <!-- Pequeña foto de Venecia -->
   <div class="hero-photo-frame rv d1">
