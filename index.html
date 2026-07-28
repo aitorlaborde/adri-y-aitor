@@ -68,13 +68,13 @@
       padding: clamp(5rem,12vh,9rem) clamp(3rem,18vw,16rem) clamp(3rem,6vh,5rem);
       background:#fff;
     }
-    /* Cadre aquarelle — top/bottom/left/right évite le bug height:100% sur parent min-height */
+    /* Cadre aquarelle — image portrait unique, couvre tout le hero */
     .hero-frame-img {
       position:absolute;
-      top:0; bottom:0; left:0;
-      right:-100%;   /* étend 200% de large → seul le cadre gauche visible (overflow:hidden) */
+      top:0; bottom:0; left:0; right:0;
+      width:100%; height:100%;
       object-fit:cover;
-      object-position:left top;
+      object-position:center top;
       pointer-events:none;
       z-index:0;
     }
@@ -396,7 +396,7 @@
 <section id="hero">
 
   <!-- Cadre aquarelle fond_web — img positionné absolument -->
-  <img class="hero-frame-img" src="img/fond_web.jpeg" alt="" aria-hidden="true">
+  <img class="hero-frame-img" src="img/fond_web2.jpeg" alt="" aria-hidden="true">
 
   <!-- Pequeña foto de Venecia -->
   <div class="hero-photo-frame rv d1">
