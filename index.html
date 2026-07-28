@@ -353,16 +353,19 @@
 
     /* ── RESPONSIVE ── */
     @media(max-width:780px){
-      /* Cadre mobile : contain pour ne pas couper les bords */
+      /* Cadre mobile : hauteur naturelle (pas de rognage sur les côtés) */
       .hero-frame-img {
-        object-fit:contain;
-        object-position:top center;
+        width:100%;
+        height:auto;       /* hauteur proportionnelle à la largeur → pas de crop */
+        top:0; left:0;
+        bottom:auto; right:auto;
+        object-fit:initial;
       }
-      /* Padding-top basé sur la largeur : image ratio ~1.386, AA logo à ~32% de hauteur */
+      /* padding-top : logo AA à ~32% de la hauteur de l'image (ratio 2048/1478 ≈ 1.39) */
       #hero {
-        padding-top: clamp(12rem, 47vw, 18rem);
-        padding-left: clamp(1.5rem, 8vw, 4rem);
-        padding-right: clamp(1.5rem, 8vw, 4rem);
+        padding-top: clamp(10rem, 46vw, 16rem);
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
       }
       .nav-links { display:none; }
       nav { padding:0 1.2rem; }
