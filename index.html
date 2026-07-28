@@ -68,12 +68,11 @@
       padding: clamp(5rem,12vh,9rem) clamp(3rem,18vw,16rem) clamp(3rem,6vh,5rem);
       background:#fff;
     }
-    /* Cadre aquarelle */
+    /* Cadre aquarelle — top/bottom/left/right évite le bug height:100% sur parent min-height */
     .hero-frame-img {
       position:absolute;
-      top:0; left:0;
-      width:200%;   /* image 2x trop large → seul le cadre gauche visible (overflow:hidden) */
-      height:100%;
+      top:0; bottom:0; left:0;
+      right:-100%;   /* étend 200% de large → seul le cadre gauche visible (overflow:hidden) */
       object-fit:cover;
       object-position:left top;
       pointer-events:none;
