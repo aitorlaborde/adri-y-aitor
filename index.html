@@ -68,18 +68,19 @@
       padding: clamp(5rem,12vh,9rem) clamp(3rem,18vw,16rem) clamp(3rem,6vh,5rem);
       background:#fff;
     }
-    /* Cadre aquarelle — pseudo-élément 200% de largeur → seul le cadre gauche est visible */
-    #hero::before {
-      content:'';
+    /* Cadre aquarelle */
+    .hero-frame-img {
       position:absolute;
       top:0; left:0;
-      width:200%; height:100%;
-      background: url('img/fond_web.jpeg') left top / cover no-repeat;
+      width:200%;   /* image 2x trop large → seul le cadre gauche visible (overflow:hidden) */
+      height:100%;
+      object-fit:cover;
+      object-position:left top;
       pointer-events:none;
       z-index:0;
     }
     /* Le contenu passe au-dessus du cadre */
-    #hero > * {
+    #hero > *:not(.hero-frame-img) {
       position:relative;
       z-index:1;
     }
@@ -394,6 +395,9 @@
 
 <!-- ── HERO — carta de invitación ── -->
 <section id="hero">
+
+  <!-- Cadre aquarelle fond_web — img positionné absolument -->
+  <img class="hero-frame-img" src="img/fond_web.jpeg" alt="" aria-hidden="true">
 
   <!-- Pequeña foto de Venecia -->
   <div class="hero-photo-frame rv d1">
