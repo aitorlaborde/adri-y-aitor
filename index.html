@@ -291,6 +291,19 @@
     .sw-dot { width:30px; height:30px; border-radius:50%; border:1px solid rgba(0,0,0,.06); }
     .sw-name { font-size:.5rem; letter-spacing:.1em; text-transform:uppercase; color:var(--stone); }
 
+    /* ── HOTEL ── */
+    #hotel { background:#faf8f5; padding:5.5rem 2rem; text-align:center; border-top:1px solid #f0ece6; }
+    .hotel-text { font-size:clamp(.85rem,1.1vw,1rem); color:var(--muted); line-height:2.1; max-width:520px; margin:0 auto 2rem; font-weight:200; }
+    .hotel-code-box {
+      display:inline-block; border:1px solid var(--teal);
+      border-radius:12px; padding:1.5rem 2.5rem; margin:0 auto 2rem;
+    }
+    .hotel-code-label { font-size:.55rem; letter-spacing:.2em; text-transform:uppercase; color:var(--stone); margin-bottom:.5rem; font-weight:200; }
+    .hotel-code-value { font-size:1.3rem; font-weight:200; color:var(--teal); letter-spacing:.12em; }
+    .hotel-addr { font-size:clamp(.8rem,1vw,.9rem); color:var(--muted); line-height:2; font-weight:200; }
+    .hotel-addr a { color:var(--teal); text-decoration:none; border-bottom:1px solid transparent; transition:border-color .2s; }
+    .hotel-addr a:hover { border-color:var(--teal); }
+
     /* ── IBAN ── */
     #regalo { background:#faf8f5; padding:5.5rem 2rem; text-align:center; border-top:1px solid #f0ece6; }
     .ib-text { font-size:.85rem; color:var(--muted); line-height:2.1; max-width:480px; margin:0 auto 2rem; font-weight:300; }
@@ -394,6 +407,7 @@
     <li><a href="#ceremonia" data-i18n="nav_cer">Ceremonia</a></li>
     <li><a href="#timeline"  data-i18n="nav_tl">Programa</a></li>
     <li><a href="#rsvp"      data-i18n="nav_rsvp">Confirmación</a></li>
+    <li><a href="#hotel"     data-i18n="nav_hotel">Hotel</a></li>
     <li><a href="#regalo"    data-i18n="nav_gift">Regalo</a></li>
   </ul>
   <div class="lang-sw">
@@ -408,7 +422,7 @@
 <section id="hero">
 
   <!-- Cadre aquarelle fond_web — img positionné absolument -->
-  <img class="hero-frame-img" src="img/fond_web2.jpeg" alt="" aria-hidden="true">
+  <img class="hero-frame-img" src="img/fond_web3.jpeg" alt="" aria-hidden="true">
 
   <!-- Pequeña foto de Venecia -->
   <div class="hero-photo-frame rv d1">
@@ -643,6 +657,25 @@
 </section>
 
 <!-- ── IBAN ── -->
+<section id="hotel">
+  <p class="section-eyebrow rv d1" data-i18n="eyebrow_hotel">Alojamiento</p>
+  <h2 class="section-h rv d2" data-i18n="title_hotel">Dónde dormir</h2>
+  <div class="hotel-text rv d3" data-i18n="hotel_text">
+    Hemos conseguido una tarifa especial de <strong>10% de descuento</strong> en el Hotel Sardinero Madrid.<br>
+    Al reservar, indica el código para obtener la reducción.
+  </div>
+  <div class="hotel-code-box rv d4">
+    <div class="hotel-code-label" data-i18n="hotel_code_label">Código de reserva</div>
+    <div class="hotel-code-value">adrianaaitor2027</div>
+  </div>
+  <div class="hotel-addr rv" style="transition-delay:.45s">
+    <strong>Hotel Sardinero Madrid</strong><br>
+    <a href="https://maps.google.com/?q=Plaza+de+Alonso+Mart%C3%ADnez+3+Chamber%C3%AD+28004+Madrid" target="_blank" rel="noopener">
+      Plaza de Alonso Martínez, 3 · Chamberí · 28004 Madrid
+    </a>
+  </div>
+</section>
+
 <section id="regalo">
   <p class="section-eyebrow rv" data-i18n="eyebrow_gift">Lista de boda</p>
   <h2 class="section-h rv d1" data-i18n="title_gift">El mejor regalo</h2>
@@ -679,7 +712,10 @@
 /* ─── i18n ─── */
 const T = {
   es:{
-    nav_inv:"Inicio",nav_cer:"Ceremonia",nav_tl:"Programa",nav_rsvp:"Confirmación",nav_gift:"Regalo",
+    nav_inv:"Inicio",nav_cer:"Ceremonia",nav_tl:"Programa",nav_rsvp:"Confirmación",nav_hotel:"Hotel",nav_gift:"Regalo",
+    eyebrow_hotel:"Alojamiento",title_hotel:"Dónde dormir",
+    hotel_text:"Hemos conseguido una tarifa especial de <strong>10% de descuento</strong> en el Hotel Sardinero Madrid.<br>Al reservar, indica el código para obtener la reducción.",
+    hotel_code_label:"Código de reserva",
     inv_tagline:"¡NOS CASAMOS!",
     hero_names:"ADRI &amp; AITOR",
     inv_text_short:"Nos gustaría compartir este día tan especial con vosotros.<br>Gracias por todos los momentos compartidos.<br>Nos sentimos muy afortunados de teneros como familia y amigos.",
@@ -711,7 +747,10 @@ const T = {
     cp_btn:"Copiar IBAN",footer_msg:"Con todo nuestro amor, os esperamos."
   },
   fr:{
-    nav_inv:"Accueil",nav_cer:"Cérémonie",nav_tl:"Programme",nav_rsvp:"Confirmation",nav_gift:"Cadeau",
+    nav_inv:"Accueil",nav_cer:"Cérémonie",nav_tl:"Programme",nav_rsvp:"Confirmation",nav_hotel:"Hôtel",nav_gift:"Cadeau",
+    eyebrow_hotel:"Hébergement",title_hotel:"Où dormir",
+    hotel_text:"Nous avons obtenu un tarif spécial de <strong>10% de réduction</strong> à l'Hôtel Sardinero Madrid.<br>Lors de votre réservation, indiquez le code pour bénéficier de la réduction.",
+    hotel_code_label:"Code de réservation",
     inv_tagline:"NOUS NOUS MARIONS !",
     hero_names:"ADRI &amp; AITOR",
     inv_text_short:"Nous aimerions partager ce jour si spécial avec vous.<br>Merci pour tous les moments partagés.<br>Nous nous sentons très chanceux de vous avoir comme famille et amis.",
@@ -743,7 +782,10 @@ const T = {
     cp_btn:"Copier l'IBAN",footer_msg:"Avec tout notre amour, nous vous attendons."
   },
   en:{
-    nav_inv:"Home",nav_cer:"Ceremony",nav_tl:"Schedule",nav_rsvp:"RSVP",nav_gift:"Gift",
+    nav_inv:"Home",nav_cer:"Ceremony",nav_tl:"Schedule",nav_rsvp:"RSVP",nav_hotel:"Hotel",nav_gift:"Gift",
+    eyebrow_hotel:"Accommodation",title_hotel:"Where to stay",
+    hotel_text:"We have arranged a special rate of <strong>10% off</strong> at Hotel Sardinero Madrid.<br>When booking, mention the code to get the discount.",
+    hotel_code_label:"Booking code",
     inv_tagline:"WE'RE GETTING MARRIED!",
     hero_names:"ADRI &amp; AITOR",
     inv_text_short:"We would love to share this very special day with you.<br>Thank you for all the moments we've shared.<br>We feel so lucky to have you as family and friends.",
@@ -775,7 +817,10 @@ const T = {
     cp_btn:"Copy IBAN",footer_msg:"With all our love, we look forward to seeing you."
   },
   it:{
-    nav_inv:"Home",nav_cer:"Cerimonia",nav_tl:"Programma",nav_rsvp:"Conferma",nav_gift:"Regalo",
+    nav_inv:"Home",nav_cer:"Cerimonia",nav_tl:"Programma",nav_rsvp:"Conferma",nav_hotel:"Hotel",nav_gift:"Regalo",
+    eyebrow_hotel:"Alloggio",title_hotel:"Dove dormire",
+    hotel_text:"Abbiamo ottenuto una tariffa speciale di <strong>10% di sconto</strong> all'Hotel Sardinero Madrid.<br>Al momento della prenotazione, indica il codice per ottenere lo sconto.",
+    hotel_code_label:"Codice prenotazione",
     inv_tagline:"CI SPOSIAMO!",
     hero_names:"ADRI &amp; AITOR",
     inv_text_short:"Ci piacerebbe condividere con voi questo giorno così speciale.<br>Grazie per tutti i momenti condivisi.<br>Ci sentiamo molto fortunati di avervi come famiglia e amici.",
