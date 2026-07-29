@@ -367,12 +367,12 @@
 
     /* ── RESPONSIVE ── */
     @media(max-width:780px){
-      /* Cadre mobile : hauteur naturelle (pas de rognage sur les côtés) */
+      /* Cadre mobile : pleine largeur, hauteur naturelle, sans décalage desktop */
       .hero-frame-img {
         width:100%;
-        height:auto;       /* hauteur proportionnelle à la largeur → pas de crop */
-        top:0; left:0;
-        bottom:auto; right:auto;
+        height:auto;
+        top:0; left:0; bottom:auto; right:auto;
+        transform:none;
         object-fit:initial;
       }
       /* padding-top : logo AA à ~32% de la hauteur de l'image (ratio 2048/1478 ≈ 1.39) */
