@@ -419,9 +419,10 @@
     .cover-link:nth-child(2) { top: 51.5%; }
     .cover-link:nth-child(3) { top: 57.5%; }
     .cover-link:nth-child(4) { top: 63.5%; }
-    /* décalage du cadre pointillé vers le bas pour items 2-3-4 */
+    /* décalage du cadre pointillé vers le bas pour chaque item */
+    .cover-link:nth-child(1)::after { transform: translateY(8px); }
     .cover-link:nth-child(2)::after { transform: translateY(6px); }
-    .cover-link:nth-child(3)::after { transform: translateY(10px); }
+    .cover-link:nth-child(3)::after { transform: translateY(16px); }
     .cover-link:nth-child(4)::after { transform: translateY(14px); }
 
     /* ── RESPONSIVE ── */
