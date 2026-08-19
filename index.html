@@ -397,7 +397,7 @@
       pointer-events: all;
       transition: filter .2s;
     }
-    .cover-link:hover { filter: brightness(.7); }
+    .cover-link:hover { filter: none; outline: 2px dashed #3a5ca8; outline-offset: 4px; border-radius: 2px; }
     .cover-link img { width: 100%; display: block; }
     .cover-link:nth-child(1) { top: 45%; }
     .cover-link:nth-child(2) { top: 51%; }
@@ -449,11 +449,10 @@
   <span class="nav-brand">A &amp; A · 2027</span>
   <ul class="nav-links">
     <li><a href="#cover"     data-i18n="nav_inv">Inicio</a></li>
-    <li><a href="#ceremonia" data-i18n="nav_cer">Ceremonia</a></li>
-    <li><a href="#timeline"  data-i18n="nav_tl">Programa</a></li>
-    <li><a href="#rsvp"      data-i18n="nav_rsvp">Confirmación</a></li>
-    <li><a href="#hotel"     data-i18n="nav_hotel">Hotel</a></li>
-    <li><a href="#regalo"    data-i18n="nav_gift">Regalo</a></li>
+    <li><a href="#ceremonia" data-i18n="cover_details">Detalles</a></li>
+    <li><a href="#rsvp"      data-i18n="cover_confirm">Confirmación</a></li>
+    <li><a href="#hotel"     data-i18n="cover_hotel">Alojamientos</a></li>
+    <li><a href="#regalo"    data-i18n="cover_gift">Lista de bodas</a></li>
   </ul>
   <div class="lang-sw">
     <button class="lb active" onclick="setLang('es')">ES</button>
