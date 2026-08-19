@@ -387,31 +387,39 @@
       /* masque le logo CamScanner en bas */
       clip-path: inset(0 0 5% 0);
     }
+    /* Rectangle blanc qui masque les mots peints */
     .cover-menu {
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 49%; bottom: 10%;
+      left: 20%; right: 14%;
+      background: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-evenly;
+      padding: 2% 0;
     }
     .cover-link {
-      position: absolute;
-      left: 15%; right: 15%;   /* zone large sur le texte peint */
-      height: 7%;
-      background: transparent;
-      cursor: pointer;
+      font-size: clamp(.6rem, 2.2vmin, .95rem);
+      font-weight: 200;
+      letter-spacing: .28em;
+      color: var(--muted);
       text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s, letter-spacing .2s;
+      position: relative;
     }
-    .cover-link:hover {
-      background: rgba(255,255,255,.18);
-      border-radius: 4px;
+    .cover-link::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -2px;
+      height: 1px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transition: transform .25s;
     }
-    /* positions verticales calées sur les mots peints */
-    .cover-link:nth-child(1) { top: 55%; }
-    .cover-link:nth-child(2) { top: 63%; }
-    .cover-link:nth-child(3) { top: 71%; }
-    .cover-link:nth-child(4) { top: 79%; }
+    .cover-link:hover { color: var(--teal); letter-spacing: .36em; }
+    .cover-link:hover::after { transform: scaleX(1); }
 
     /* ── RESPONSIVE ── */
     @media(max-width:780px){
@@ -477,10 +485,10 @@
   <div class="cover-wrap">
     <img class="cover-img" src="img/portada.jpg" alt="Portada Adri &amp; Aitor">
     <div class="cover-menu">
-      <a class="cover-link" href="#ceremonia" aria-label="Detalles"></a>
-      <a class="cover-link" href="#rsvp"      aria-label="Confirmación"></a>
-      <a class="cover-link" href="#hotel"     aria-label="Alojamientos"></a>
-      <a class="cover-link" href="#regalo"    aria-label="Lista de bodas"></a>
+      <a class="cover-link" href="#ceremonia" data-i18n="cover_details">DETALLES</a>
+      <a class="cover-link" href="#rsvp"      data-i18n="cover_confirm">CONFIRMACIÓN</a>
+      <a class="cover-link" href="#hotel"     data-i18n="cover_hotel">ALOJAMIENTOS</a>
+      <a class="cover-link" href="#regalo"    data-i18n="cover_gift">LISTA DE BODAS</a>
     </div>
   </div>
 </section>
