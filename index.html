@@ -391,8 +391,8 @@
     .cover-link {
       position: absolute;
       /* mots peints : centrés entre 30% et 72% de la largeur de l'image */
-      left: 30%; right: 28%;
-      height: 5.5%;          /* hauteur fixe = 1 ligne */
+      left: 30%; right: 23%;   /* crop : 30%→77% de portada.jpg */
+      height: 5%;              /* hauteur fixe = 1 ligne */
       overflow: hidden;
       display: block;
       text-decoration: none;
@@ -404,10 +404,10 @@
     }
     .cover-link:hover { border-color: #3a5ca8; }
     .cover-link img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-    .cover-link:nth-child(1) { top: 46%; }
-    .cover-link:nth-child(2) { top: 53%; }
-    .cover-link:nth-child(3) { top: 59.5%; }
-    .cover-link:nth-child(4) { top: 66%; }
+    .cover-link:nth-child(1) { top: 45.5%; }
+    .cover-link:nth-child(2) { top: 51.5%; }
+    .cover-link:nth-child(3) { top: 57.5%; }
+    .cover-link:nth-child(4) { top: 63.5%; }
 
     /* ── RESPONSIVE ── */
     @media(max-width:780px){
