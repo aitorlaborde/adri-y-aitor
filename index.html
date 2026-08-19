@@ -397,24 +397,15 @@
     }
     .cover-link {
       position: absolute;
-      left: 50%;
-      transform: translateX(-40%);   /* aligné sur le texte peint légèrement à gauche du centre */
-      font-size: clamp(.7rem, 2.4vmin, 1.05rem);
-      font-weight: 200;
-      letter-spacing: .22em;
-      color: var(--teal);
+      left: 15%; right: 15%;   /* zone large sur le texte peint */
+      height: 7%;
+      background: transparent;
+      cursor: pointer;
       text-decoration: none;
-      text-transform: uppercase;
-      /* masque le texte peint et le remplace */
-      background: rgba(255,255,255,.78);
-      padding: .1em .6em .05em;
-      border-radius: 2px;
-      transition: color .2s, background .2s, letter-spacing .2s;
     }
     .cover-link:hover {
-      color: var(--teal-dark);
-      background: rgba(255,255,255,.95);
-      letter-spacing: .32em;
+      background: rgba(255,255,255,.18);
+      border-radius: 4px;
     }
     /* positions verticales calées sur les mots peints */
     .cover-link:nth-child(1) { top: 55%; }
@@ -466,7 +457,7 @@
 <nav id="main-nav">
   <span class="nav-brand">A &amp; A · 2027</span>
   <ul class="nav-links">
-    <li><a href="#hero"      data-i18n="nav_inv">Inicio</a></li>
+    <li><a href="#cover"     data-i18n="nav_inv">Inicio</a></li>
     <li><a href="#ceremonia" data-i18n="nav_cer">Ceremonia</a></li>
     <li><a href="#timeline"  data-i18n="nav_tl">Programa</a></li>
     <li><a href="#rsvp"      data-i18n="nav_rsvp">Confirmación</a></li>
@@ -486,10 +477,10 @@
   <div class="cover-wrap">
     <img class="cover-img" src="img/portada.jpg" alt="Portada Adri &amp; Aitor">
     <div class="cover-menu">
-      <a class="cover-link" href="#ceremonia" data-i18n="cover_details">DETALLES</a>
-      <a class="cover-link" href="#rsvp"      data-i18n="cover_confirm">CONFIRMACIÓN</a>
-      <a class="cover-link" href="#hotel"     data-i18n="cover_hotel">ALOJAMIENTOS</a>
-      <a class="cover-link" href="#regalo"    data-i18n="cover_gift">LISTA DE BODAS</a>
+      <a class="cover-link" href="#ceremonia" aria-label="Detalles"></a>
+      <a class="cover-link" href="#rsvp"      aria-label="Confirmación"></a>
+      <a class="cover-link" href="#hotel"     aria-label="Alojamientos"></a>
+      <a class="cover-link" href="#regalo"    aria-label="Lista de bodas"></a>
     </div>
   </div>
 </section>
