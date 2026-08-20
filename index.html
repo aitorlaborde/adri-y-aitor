@@ -425,6 +425,21 @@
     .cover-link:nth-child(3)::after { transform: translateY(6px); }
     .cover-link:nth-child(4)::after { transform: translateY(14px); }
 
+    /* ── COVER mobile : plein écran, crop symétrique gauche/droite ── */
+    @media(max-width:780px){
+      #cover { min-height: 100vh; padding: 0; }
+      .cover-wrap {
+        width: 100vw;
+        height: 100vh;
+        /* ratio image 0.707 vs écran ~0.46 → cover croppera ~8% de chaque côté */
+      }
+      .cover-img {
+        object-fit: cover;
+        object-position: center top;
+        clip-path: inset(0 0 9% 0); /* masque logo CamScanner en bas */
+      }
+    }
+
     /* ── RESPONSIVE ── */
     @media(max-width:780px){
       /* Cadre mobile : couvre tout le hero, commence sous la nav fixe (52px) */
