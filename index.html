@@ -376,22 +376,21 @@
     }
     .cover-wrap {
       position: relative;
-      /* ratio exact de portada.jpg : 1240 × 1755 */
-      height: min(100vh, 100vw / 0.7066);
-      width:  min(100vw, 100vh * 0.7066);
+      /* ratio portada.jpg recadré : 1116 × 1614 = 0.6911 */
+      height: min(100vh, 100vw / 0.6911);
+      width:  min(100vw, 100vh * 0.6911);
     }
     .cover-img {
       width: 100%; height: 100%;
       display: block;
       object-fit: fill;
-      clip-path: inset(0 0 4% 0); /* masque CamScanner */
     }
     .cover-menu { pointer-events: none; } /* conteneur neutre */
     /* Chaque lien = découpe de portada.jpg positionnée sur le mot peint */
     .cover-link {
       position: absolute;
       /* mots peints : centrés entre 30% et 72% de la largeur de l'image */
-      left: 30%; right: 23%;   /* crop : 30%→77% de portada.jpg */
+      left: 25.5%; right: 22.2%; /* crop recadré : 25.5%→77.8% de portada.jpg */
       height: 5%;              /* hauteur fixe = 1 ligne */
       display: block;
       text-decoration: none;
@@ -414,11 +413,11 @@
     }
     .cover-link:hover::after { border-color: #3a5ca8; }
     .cover-link img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-    /* positions des images (alignées sur les mots peints) */
-    .cover-link:nth-child(1) { top: 47%; }
-    .cover-link:nth-child(2) { top: 51.5%; }
-    .cover-link:nth-child(3) { top: 57.5%; }
-    .cover-link:nth-child(4) { top: 63.5%; }
+    /* positions % de la nouvelle portada.jpg (1116×1614) */
+    .cover-link:nth-child(1) { top: 49.4%; }
+    .cover-link:nth-child(2) { top: 56.0%; }
+    .cover-link:nth-child(3) { top: 62.5%; }
+    .cover-link:nth-child(4) { top: 69.0%; }
     /* décalage du cadre pointillé vers le bas pour chaque item */
     .cover-link:nth-child(1)::after { transform: translateY(-4px); }
     .cover-link:nth-child(2)::after { transform: translateY(6px); }
@@ -427,17 +426,9 @@
 
     /* ── COVER mobile : plein écran, crop symétrique gauche/droite ── */
     @media(max-width:780px){
-      #cover { min-height: 100vh; padding: 0; }
-      .cover-wrap {
-        width: 100vw;
-        height: 100vh;
-        /* ratio image 0.707 vs écran ~0.46 → cover croppera ~8% de chaque côté */
-      }
-      .cover-img {
-        object-fit: cover;
-        object-position: center top;
-        clip-path: inset(0 0 9% 0); /* masque logo CamScanner en bas */
-      }
+      #cover { min-height: 100svh; padding: 0; }
+      .cover-wrap { width: 100vw; height: 100svh; }
+      .cover-img { object-fit: cover; object-position: center top; }
     }
 
     /* ── RESPONSIVE ── */
