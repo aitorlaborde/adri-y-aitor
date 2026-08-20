@@ -371,14 +371,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #fff;
-      overflow: hidden;
+      /* fond crème pour habiller l'espace autour de la carte sur desktop */
+      background: #f5f2ee;
     }
     .cover-wrap {
       position: relative;
-      /* ratio portada.jpg recadré : 1116 × 1614 = 0.6911 */
-      height: min(100vh, 100vw / 0.6911);
-      width:  min(100vw, 100vh * 0.6911);
+      /* desktop : image pleine hauteur, ratio exact 1116×1614 */
+      height: 100vh;
+      width: calc(100vh * 0.6911);
+      max-width: 100vw;
     }
     .cover-img {
       width: 100%; height: 100%;
@@ -424,11 +425,11 @@
     .cover-link:nth-child(3)::after { transform: translateY(6px); }
     .cover-link:nth-child(4)::after { transform: translateY(14px); }
 
-    /* ── COVER mobile : plein écran, crop symétrique gauche/droite ── */
+    /* ── COVER mobile : pleine largeur, hauteur naturelle, aucun crop ── */
     @media(max-width:780px){
-      #cover { min-height: 100svh; padding: 0; }
-      .cover-wrap { width: 100vw; height: 100svh; }
-      .cover-img { object-fit: cover; object-position: center top; }
+      #cover { min-height: unset; background: #fff; padding: 0; align-items: flex-start; }
+      .cover-wrap { width: 100vw; height: calc(100vw / 0.6911); max-width: 100vw; }
+      .cover-img { object-fit: fill; }
     }
 
     /* ── RESPONSIVE ── */
