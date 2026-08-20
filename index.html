@@ -67,22 +67,6 @@
       padding: clamp(5rem,12vh,8rem) clamp(3rem,14vw,12rem) clamp(3rem,6vh,5rem);
       background:#fff;
     }
-    /* Cadre aquarelle — image portrait unique, couvre tout le hero */
-    .hero-frame-img {
-      position:absolute;
-      top:0; bottom:0;
-      left:50%; transform:translateX(-50%);
-      width:85%; height:100%;
-      object-fit:cover;
-      object-position:center top;
-      pointer-events:none;
-      z-index:0;
-    }
-    /* Le contenu passe au-dessus du cadre */
-    #hero > *:not(.hero-frame-img) {
-      position:relative;
-      z-index:1;
-    }
 
     .hero-photo-frame {
       width:clamp(240px,46vw,380px);
@@ -439,14 +423,6 @@
 
     /* ── RESPONSIVE ── */
     @media(max-width:780px){
-      /* Cadre mobile : couvre tout le hero, commence sous la nav fixe (52px) */
-      .hero-frame-img {
-        width:100%; height:100%;
-        top:52px; left:0; right:0; bottom:0;
-        transform:none;
-        object-fit:cover;
-        object-position:center top;
-      }
       #hero {
         min-height:calc(100vh - 52px);
         padding-top: clamp(8rem, 36vw, 14rem);
