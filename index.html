@@ -87,7 +87,7 @@
     /* Zone de contenu à l'intérieur du cadre bleu, sous le monogramme */
     .page-content {
       position:absolute;
-      top:14.5%; left:20%; right:20%; bottom:17%;
+      top:14.5%; left:22%; right:22%; bottom:17%;
       display:flex; flex-direction:column; align-items:center;
       text-align:center;
       overflow-y:auto; overflow-x:hidden;
@@ -99,6 +99,22 @@
     /* Scrollbar invisible (contenu interne scrollable sans barre visible) */
     .page-content { scrollbar-width:none; -ms-overflow-style:none; }
     .page-content::-webkit-scrollbar { display:none; }
+
+    /* ── LOGO MONOGRAMME ── */
+    /* Positionné dans la zone du monogramme de l'image (y=5.6% à 14.3% de la hauteur du cadre).
+       Le monogramme original dans frame_bg.jpg est en bleu pâle aquarelle — quasi invisible.
+       Cet élément HTML le remplace avec un texte sombre bien visible. */
+    .logo-aa {
+      position:absolute;
+      top:9%; left:0; right:0;
+      text-align:center;
+      font-size:clamp(1rem,2vh,1.5rem);
+      letter-spacing:.45em;
+      color:#1e1e1c;
+      z-index:5;
+      pointer-events:none;
+      font-family:inherit;
+    }
 
     /* ── TYPOGRAPHY ── */
     .big-title {
@@ -390,6 +406,14 @@
       .page-content::before,
       .page-content::after { display:none; }
 
+      /* ── Logo monogramme mobile ── */
+      /* Sur mobile, page-wrap a height:auto → top:% ne marche pas correctement.
+         On convertit : 9% de la hauteur du cadre (141.4vw) = 12.7vw */
+      .logo-aa {
+        top:12.7vw;
+        font-size:clamp(.85rem,3.2vw,1.2rem);
+      }
+
       /* ── Countdown : grille 2×2 pour ne pas déborder en largeur ── */
       .countdown-row {
         display:grid;
@@ -469,6 +493,7 @@
 <section id="inicio">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="logo-aa" aria-hidden="true">A&nbsp;◆&nbsp;A</div>
     <div class="page-content">
       <p class="big-title">ADRI &amp; AITOR</p>
       <p class="date-line" data-i18n="inv_date">SÁBADO | 6 | MARZO | 2027</p>
@@ -495,6 +520,7 @@
 <section id="historia">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="logo-aa" aria-hidden="true">A&nbsp;◆&nbsp;A</div>
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_historia">NUESTRA HISTORIA</h2>
       <p class="body-text" data-i18n="hist_p1">Adri, arquitecta técnica e interiorista, de Pamplona. Aitor, ingeniero y músico, de Bayonne. Dos ciudades hermanadas, dos países, dos caminos y un destino que quiso que nos conociéramos en Madrid en 2024.</p>
@@ -512,6 +538,7 @@
 <section id="detalles">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="logo-aa" aria-hidden="true">A&nbsp;◆&nbsp;A</div>
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_detalles">DETALLES</h2>
 
@@ -567,6 +594,7 @@
 <section id="confirmacion">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="logo-aa" aria-hidden="true">A&nbsp;◆&nbsp;A</div>
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_confirmacion">CONFIRMACIÓN</h2>
       <p class="conf-deadline" data-i18n="conf_deadline">SE RUEGA CONFIRMACIÓN ANTES DEL 20/12/2026</p>
@@ -641,6 +669,7 @@
 <section id="alojamientos">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="logo-aa" aria-hidden="true">A&nbsp;◆&nbsp;A</div>
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_alojamientos">ALOJAMIENTOS</h2>
 
@@ -694,6 +723,7 @@
 <section id="lista">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="logo-aa" aria-hidden="true">A&nbsp;◆&nbsp;A</div>
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_lista">LISTA DE BODAS</h2>
       <p class="body-text" data-i18n="regalo_text">Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros, pero si queréis tener un detalle con nosotros, os dejamos aquí nuestro número de cuenta.</p>
@@ -720,6 +750,7 @@
 <section id="fin">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="logo-aa" aria-hidden="true">A&nbsp;◆&nbsp;A</div>
     <div class="page-content">
       <p class="big-title">ADRI &amp; AITOR</p>
       <p class="date-line" data-i18n="inv_date">SÁBADO | 6 | MARZO | 2027</p>
