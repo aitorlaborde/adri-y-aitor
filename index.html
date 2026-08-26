@@ -85,10 +85,12 @@
       pointer-events:none; user-select:none;
     }
     /* Zone de contenu à l'intérieur du cadre bleu, sous le monogramme AA.
-       Nouvelle zone blanche frame_bg.jpg: y=480-1955 (480/2339=20.5%), x=360-1294 (360/1654=21.8%) */
+       Zone blanche frame_bg.jpg (depuis A&A_(1).pdf):
+         left=395/1654=23.9%, right_margin=400/1654=24.2%, top=580/2339=24.8%, bottom_margin=314/2339=13.4%
+       Illustrations G max col 369px, D min col 1279px → marges 24% chaque côté pour éviter superposition */
     .page-content {
       position:absolute;
-      top:20.5%; left:22%; right:22%; bottom:17%;
+      top:25%; left:24%; right:24%; bottom:14%;
       display:flex; flex-direction:column; align-items:center;
       text-align:center;
       overflow-y:auto; overflow-x:hidden;
@@ -376,16 +378,15 @@
       /* Contenu : flux normal, padding positionne dans la zone sûre du cadre.
          NB : en CSS % sur padding = % de la LARGEUR du bloc parent.
          Le cadre fait 100vw × (100vw/0.7071).
-         Analyse image : illustrations G jusqu'à x=325/1654=19.65%, D à partir de x=1334/1654=80.7%
-         Pour avoir ~25px de marge confortable sur 390px écran, on utilise 26vw (= 101.4px > 76.6px).
-         top 26vw = 18.4% de la hauteur → logo (à 14.3%) visible avec 4% de marge.
-         bottom 24vw = 17% de hauteur (correct). */
+         Zone blanche frame_bg.jpg (A&A_(1).pdf): top=24.8%, L/R=24%, bottom=13.4%
+         Illustrations G max 24%, D min 24% → padding 24vw chaque côté.
+         top 35vw = 24.8% de la hauteur (logos + marges ok), bottom 19vw = 13.4%. */
       .page-content {
         position:relative;
         top:auto; left:auto; right:auto; bottom:auto;
         width:100%; box-sizing:border-box;
-        /* top: 20.5% frame height = 20.5/0.7071 vw = 29vw ; L/R: 22% = 22vw ; bottom: 17% = 24vw */
-        padding:29vw 22vw 24vw 22vw;
+        /* top: 24.8% frame height = 24.8/0.7071 vw = 35vw ; L/R: 24% = 24vw ; bottom: 13.4%/0.7071 = 19vw */
+        padding:35vw 24vw 19vw 24vw;
         overflow:visible;
       }
       /* Supprime les spacers flex de centrage vertical (inutiles en flux normal) */
