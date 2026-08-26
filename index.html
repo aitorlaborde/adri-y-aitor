@@ -84,10 +84,11 @@
       display:block; object-fit:fill;
       pointer-events:none; user-select:none;
     }
-    /* Zone de contenu à l'intérieur du cadre bleu, sous le monogramme */
+    /* Zone de contenu à l'intérieur du cadre bleu, sous le monogramme AA.
+       Nouvelle zone blanche frame_bg.jpg: y=480-1955 (480/2339=20.5%), x=360-1294 (360/1654=21.8%) */
     .page-content {
       position:absolute;
-      top:14.5%; left:22%; right:22%; bottom:17%;
+      top:20.5%; left:22%; right:22%; bottom:17%;
       display:flex; flex-direction:column; align-items:center;
       text-align:center;
       overflow-y:auto; overflow-x:hidden;
@@ -99,17 +100,6 @@
     /* Scrollbar invisible (contenu interne scrollable sans barre visible) */
     .page-content { scrollbar-width:none; -ms-overflow-style:none; }
     .page-content::-webkit-scrollbar { display:none; }
-
-    /* ── LOGO MONOGRAMME (image PNG extraite du cadre) ── */
-    /* Positionné dans la zone du monogramme de l'image frame_bg.jpg.
-       Le logo AA occupe y=95-345 dans l'image 2339px = 4.1% à 14.7% de la hauteur.
-       On positionne top:3.5%, hauteur:11% → logo de 3.5% à 14.5%, juste avant le contenu (top:14.5%). */
-    .logo-aa-img {
-      position:absolute;
-      top:3.5%; left:50%; transform:translateX(-50%);
-      height:11%; width:auto;
-      z-index:5; pointer-events:none;
-    }
 
     /* ── TYPOGRAPHY ── */
     .big-title {
@@ -394,21 +384,13 @@
         position:relative;
         top:auto; left:auto; right:auto; bottom:auto;
         width:100%; box-sizing:border-box;
-        padding:26vw 26vw 24vw 26vw;
+        /* top: 20.5% frame height = 20.5/0.7071 vw = 29vw ; L/R: 22% = 22vw ; bottom: 17% = 24vw */
+        padding:29vw 22vw 24vw 22vw;
         overflow:visible;
       }
       /* Supprime les spacers flex de centrage vertical (inutiles en flux normal) */
       .page-content::before,
       .page-content::after { display:none; }
-
-      /* ── Logo monogramme mobile ── */
-      /* Sur mobile, page-wrap a height:auto → top:% non fiable.
-         On convertit : 3.5% × 141.4vw = 4.9vw ≈ 5vw
-         hauteur : 11% × 141.4vw = 15.5vw */
-      .logo-aa-img {
-        top:5vw;
-        height:15.5vw;
-      }
 
       /* ── Countdown : grille 2×2 pour ne pas déborder en largeur ── */
       .countdown-row {
@@ -489,7 +471,7 @@
 <section id="inicio">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
-    <img class="logo-aa-img" src="img/logo_aa.png" alt="" aria-hidden="true">
+    
     <div class="page-content">
       <p class="big-title">ADRI &amp; AITOR</p>
       <p class="date-line" data-i18n="inv_date">SÁBADO | 6 | MARZO | 2027</p>
@@ -516,7 +498,7 @@
 <section id="historia">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
-    <img class="logo-aa-img" src="img/logo_aa.png" alt="" aria-hidden="true">
+    
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_historia">NUESTRA HISTORIA</h2>
       <p class="body-text" data-i18n="hist_p1">Adri, arquitecta técnica e interiorista, de Pamplona. Aitor, ingeniero y músico, de Bayonne. Dos ciudades hermanadas, dos países, dos caminos y un destino que quiso que nos conociéramos en Madrid en 2024.</p>
@@ -534,7 +516,7 @@
 <section id="detalles">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
-    <img class="logo-aa-img" src="img/logo_aa.png" alt="" aria-hidden="true">
+    
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_detalles">DETALLES</h2>
 
@@ -590,7 +572,7 @@
 <section id="confirmacion">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
-    <img class="logo-aa-img" src="img/logo_aa.png" alt="" aria-hidden="true">
+    
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_confirmacion">CONFIRMACIÓN</h2>
       <p class="conf-deadline" data-i18n="conf_deadline">SE RUEGA CONFIRMACIÓN ANTES DEL 20/12/2026</p>
@@ -665,7 +647,7 @@
 <section id="alojamientos">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
-    <img class="logo-aa-img" src="img/logo_aa.png" alt="" aria-hidden="true">
+    
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_alojamientos">ALOJAMIENTOS</h2>
 
@@ -719,7 +701,7 @@
 <section id="lista">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
-    <img class="logo-aa-img" src="img/logo_aa.png" alt="" aria-hidden="true">
+    
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_lista">LISTA DE BODAS</h2>
       <p class="body-text" data-i18n="regalo_text">Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros, pero si queréis tener un detalle con nosotros, os dejamos aquí nuestro número de cuenta.</p>
@@ -746,7 +728,7 @@
 <section id="fin">
   <div class="page-wrap">
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
-    <img class="logo-aa-img" src="img/logo_aa.png" alt="" aria-hidden="true">
+    
     <div class="page-content">
       <p class="big-title">ADRI &amp; AITOR</p>
       <p class="date-line" data-i18n="inv_date">SÁBADO | 6 | MARZO | 2027</p>
