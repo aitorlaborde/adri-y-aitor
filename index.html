@@ -358,42 +358,79 @@
       .nav-links { display:none; }
       nav { padding:0 1rem; }
       section { min-height:unset; }
+
+      /* Le cadre s'allonge automatiquement pour le contenu — plus de scroll interne */
       .page-wrap {
-        width:100vw; max-width:100vw;
-        height:calc(100vw / 0.7071);
+        width:100vw;
+        min-height:calc(100vw / 0.7071); /* hauteur minimale = proportion A4 */
+        height:auto;                     /* grandit si le contenu dépasse */
       }
-      .page-content { padding:.15rem .1rem; }
-      .form-row { grid-template-columns:1fr; gap:.2rem; }
-      .countdown-row { gap:.8rem; }
-      /* Countdown plus compact sur mobile */
-      .cdown-cell span { font-size:clamp(1.2rem,9vw,2.2rem); }
-      .cdown-cell label { font-size:clamp(.3rem,2.5vw,.55rem); }
-      /* Section title plus petit sur mobile */
-      .section-title { font-size:clamp(.65rem,4.5vw,1.2rem); margin-bottom:.4em; }
-      /* Titres principaux sur mobile */
-      .big-title { font-size:clamp(1.2rem,8vw,2.4rem); }
-      .tagline { font-size:clamp(.85rem,6vw,1.8rem); margin-bottom:.3em; }
-      .body-text { font-size:clamp(.55rem,3.2vw,.9rem); margin-bottom:.3em; }
-      /* CONFIRMACIÓN compact sur mobile */
-      .conf-note { display:none; }  /* cache la note "adultos only" pour gagner de la place */
-      .conf-deadline { font-size:clamp(.4rem,2.8vw,.65rem); margin-bottom:.3em; }
-      .conf-question { font-size:clamp(.42rem,3vw,.68rem); margin-bottom:.2em; }
-      .radio-group { margin-bottom:.25em; gap:.1em; }
-      .radio-opt { font-size:clamp(.38rem,2.8vw,.62rem); }
-      .form-row { margin-bottom:.2em; }
-      .form-label { font-size:clamp(.28rem,2.2vw,.45rem); }
-      .form-input { font-size:clamp(.38rem,2.8vw,.6rem); padding:2px 0; }
-      .conf-bus-label { font-size:clamp(.38rem,2.8vw,.6rem); margin-bottom:.15em; }
-      .check-group { margin-bottom:.2em; gap:.08em; }
-      .check-opt { font-size:clamp(.35rem,2.5vw,.58rem); }
-      .form-textarea { font-size:clamp(.38rem,2.8vw,.6rem); min-height:20px; }
-      .submit-btn { margin-top:.3em; padding:.25em .8em; font-size:clamp(.38rem,2.8vw,.6rem); }
-      /* FIN : photo plus petite sur mobile */
-      .venise-photo { width:55vw; max-width:190px; height:auto; max-height:38vw; object-fit:cover; margin-top:.3em; }
-      /* Hotel blocks plus compacts */
-      .hotel-block { margin-bottom:.4em; }
-      .hotel-name { font-size:clamp(.45rem,3vw,.75rem); }
-      .hotel-sub { font-size:clamp(.38rem,2.5vw,.6rem); }
+      /* L'image cadre couvre tout l'espace (y compris si allongé) */
+      .page-bg {
+        position:absolute;
+        top:0; left:0; width:100%; height:100%;
+        min-height:calc(100vw / 0.7071);
+      }
+      /* Contenu : flux normal, padding positionne dans la zone sûre du cadre */
+      .page-content {
+        position:relative;
+        top:auto; left:auto; right:auto; bottom:auto;
+        width:100%; box-sizing:border-box;
+        padding:14.5% 21% 17% 21%;
+        overflow:visible;
+      }
+      /* Supprime les spacers flex de centrage vertical (inutiles en flux normal) */
+      .page-content::before,
+      .page-content::after { display:none; }
+
+      /* ── Countdown : grille 2×2 pour ne pas déborder en largeur ── */
+      .countdown-row {
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:.35rem .6rem;
+        max-width:78%; margin:0 auto;
+      }
+      .cdown-cell span { font-size:clamp(1.3rem,8vw,2.5rem); }
+      .cdown-cell label { font-size:clamp(.28rem,2vw,.48rem); letter-spacing:.08em; }
+
+      /* ── Typographie mobile (vw-based pour proportionnalité) ── */
+      .big-title    { font-size:clamp(1.3rem,7.5vw,2.8rem); }
+      .section-title{ font-size:clamp(.7rem,4.5vw,1.4rem); margin-bottom:.45em; }
+      .tagline      { font-size:clamp(.85rem,5.5vw,2rem); margin-bottom:.28em; }
+      .body-text    { font-size:clamp(.55rem,3vw,.95rem); margin-bottom:.3em; }
+      .sign         { font-size:clamp(.55rem,3vw,.9rem); }
+      .date-line    { font-size:clamp(.6rem,3.2vw,1rem); }
+      .city-line    { font-size:clamp(.42rem,2vw,.7rem); }
+
+      /* ── Detalles compact ── */
+      .venue-name-title { font-size:clamp(.6rem,3.5vw,1rem); }
+      .venue-sub, .venue-hour { font-size:clamp(.45rem,2.5vw,.75rem); }
+      .venue-img    { width:clamp(55px,16vw,85px); height:clamp(44px,13vw,70px); }
+      .venue-note   { font-size:clamp(.38rem,2.2vw,.6rem); }
+      .ubicacion-btn{ font-size:clamp(.35rem,2.2vw,.58rem); padding:2px 6px; }
+
+      /* ── CONFIRMACIÓN compact (sans note adultos pour tenir) ── */
+      .conf-note { display:none; }
+      .conf-deadline{ font-size:clamp(.4rem,2.5vw,.62rem); margin-bottom:.22em; }
+      .conf-question{ font-size:clamp(.42rem,2.7vw,.66rem); margin-bottom:.15em; }
+      .radio-group  { margin-bottom:.18em; gap:.1em; }
+      .radio-opt    { font-size:clamp(.38rem,2.5vw,.6rem); }
+      .form-row     { grid-template-columns:1fr; gap:.18rem; margin-bottom:.16em; }
+      .form-label   { font-size:clamp(.28rem,2vw,.44rem); }
+      .form-input   { font-size:clamp(.38rem,2.5vw,.6rem); padding:2px 0; }
+      .conf-bus-label{ font-size:clamp(.38rem,2.5vw,.6rem); margin-bottom:.12em; }
+      .check-group  { margin-bottom:.16em; gap:.08em; }
+      .check-opt    { font-size:clamp(.35rem,2.3vw,.58rem); }
+      .form-textarea{ font-size:clamp(.38rem,2.5vw,.6rem); min-height:20px; }
+      .submit-btn   { margin-top:.28em; padding:.2em .7em; font-size:clamp(.38rem,2.5vw,.6rem); }
+
+      /* ── FIN : photo proportionnée ── */
+      .venise-photo { width:56vw; max-width:195px; height:auto; max-height:36vw; margin-top:.25em; }
+
+      /* ── Alojamientos compact ── */
+      .hotel-block  { margin-bottom:.4em; }
+      .hotel-name   { font-size:clamp(.45rem,3vw,.78rem); }
+      .hotel-sub    { font-size:clamp(.38rem,2.5vw,.62rem); }
     }
   </style>
 </head>
