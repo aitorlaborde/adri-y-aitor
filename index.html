@@ -5,997 +5,887 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adriana & Aitor · 06.03.2027</title>
   <style>
-    :root {
-      --teal:       #2a7c8e;
-      --teal-dark:  #1a5f6e;
-      --teal-light: #3d9aae;
-      --sage:       #4a6342;
-      --sage-light: #6a8a5e;
-      --stone:      #b8a99a;
-      --char:       #2c2420;
-      --muted:      #7a6e68;
-      --wine:       #6b2d3e;
-      --road:       #e8c070;
+    /*
+    ══════════════════════════════════════════
+    APPS SCRIPT — colle ce code dans ton Google Sheet
+    (Extensions › Apps Script › Déployer › Application Web)
+    ══════════════════════════════════════════
+    function doPost(e) {
+      var sheet = SpreadsheetApp
+        .openById('1fRyXIwZ1raAdpLpRmLZuAUJhmDz7GgIpSUQmJH7ev1Q')
+        .getSheetByName('RESPUESTAS');
+      var p = e.parameter;
+      sheet.appendRow([
+        new Date(),
+        p.asistir   || '',
+        p.nombre1   || '',
+        p.apellidos1|| '',
+        p.nombre2   || '',
+        p.apellidos2|| '',
+        p.bus       || '',
+        p.alergias  || ''
+      ]);
+      return ContentService.createTextOutput('ok');
     }
+    ══════════════════════════════════════════ */
+
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body {
-      font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-weight:200;
-      background:#fff;
-      color:var(--char);
-      -webkit-font-smoothing:antialiased;
-      overflow-x:hidden;
+      font-family:'Optima','Optima Nova LT','Century Gothic','CenturyGothic','AppleGothic',sans-serif;
+      background:#ede9e2;
+      padding-top:52px; /* fixed nav */
     }
 
     /* ── NAV ── */
     nav {
-      position:fixed; top:0; left:0; right:0; z-index:200;
+      position:fixed; top:0; left:0; right:0; height:52px;
+      background:#fff; border-bottom:.5px solid #ddd8d0;
       display:flex; align-items:center; justify-content:space-between;
-      padding:0 2.5rem; height:52px;
-      background:rgba(255,255,255,.92);
-      box-shadow:0 1px 16px rgba(0,0,0,.05);
-      transition:background .5s, box-shadow .5s;
+      padding:0 1.5rem; z-index:200;
     }
     .nav-brand {
-      font-size:.72rem; letter-spacing:.28em; text-transform:uppercase;
-      color:var(--teal); font-weight:300;
+      font-size:.62rem; letter-spacing:.18em; color:#2c2c2a;
+      text-decoration:none; white-space:nowrap;
     }
-    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links {
+      display:flex; gap:1.2rem; list-style:none; flex:1;
+      justify-content:center; flex-wrap:nowrap;
+    }
     .nav-links a {
-      font-size:.6rem; letter-spacing:.18em; text-transform:uppercase;
-      color:var(--muted); text-decoration:none; font-weight:300;
-      transition:color .3s;
+      font-size:.48rem; letter-spacing:.14em; text-transform:uppercase;
+      color:#8a8480; text-decoration:none; transition:color .2s; white-space:nowrap;
     }
-    .nav-links a:hover { color:var(--teal); }
-    .lang-sw { display:flex; gap:.3rem; }
+    .nav-links a:hover { color:#3a5ca8; }
+    .lang-bar { display:flex; gap:.35rem; flex-shrink:0; }
     .lb {
-      font-size:.58rem; letter-spacing:.08em; text-transform:uppercase;
       background:none; border:none; cursor:pointer;
-      color:var(--muted); padding:3px 6px;
-      font-family:inherit; font-weight:300; transition:color .3s;
+      font-size:.58rem; letter-spacing:.1em; color:#8a8480;
+      font-family:inherit; padding:2px 3px; transition:color .2s;
     }
-    .lb.active { color:var(--teal); border-bottom:1px solid var(--teal); }
+    .lb.active { color:#3a5ca8; border-bottom:1px solid #3a5ca8; }
 
-    /* ── HERO / INVITATION PAGE ── */
-    #hero {
+    /* ── SECTIONS ── */
+    section {
+      min-height:calc(100vh - 52px);
+      display:flex; justify-content:center; align-items:flex-start;
+      background:#ede9e2;
+    }
+
+    /* ── PAGE CARD ── */
+    .page-wrap {
       position:relative;
-      overflow:hidden;
+      height:calc(100vh - 52px);
+      width:calc((100vh - 52px) * 0.7071);
+      max-width:100vw;
+    }
+    .page-bg {
+      width:100%; height:100%;
+      display:block; object-fit:fill;
+      pointer-events:none; user-select:none;
+    }
+    /* Zone de contenu à l'intérieur du cadre bleu, sous le monogramme */
+    .page-content {
+      position:absolute;
+      top:14.5%; left:20%; right:20%; bottom:17%;
       display:flex; flex-direction:column; align-items:center;
       text-align:center;
-      padding: clamp(5rem,12vh,8rem) clamp(3rem,14vw,12rem) clamp(2rem,4vh,3rem);
-      background:#fff;
+      overflow-y:auto; overflow-x:hidden;
+      padding:.3rem .2rem;
+    }
+    /* Scrollbar discrète */
+    .page-content::-webkit-scrollbar { width:3px; }
+    .page-content::-webkit-scrollbar-thumb { background:#c8c0b8; border-radius:2px; }
+
+    /* ── TYPOGRAPHY ── */
+    .big-title {
+      font-size:clamp(1.1rem,3.8vh,2.4rem);
+      letter-spacing:.12em; color:#1e1e1c;
+      margin-bottom:.2em; font-weight:400;
+    }
+    .date-line {
+      font-size:clamp(.52rem,1.3vh,.9rem);
+      letter-spacing:.12em; color:#2c2c2a;
+      margin-bottom:.15em;
+    }
+    .city-line {
+      font-size:clamp(.4rem,.9vh,.65rem);
+      letter-spacing:.32em; color:#7a7470;
+      margin-bottom:.8em;
+    }
+    .separator {
+      font-size:.7rem; color:#3a5ca8;
+      letter-spacing:.05em; margin:.4em 0 .7em;
+    }
+    .tagline {
+      font-size:clamp(.7rem,2vh,1.3rem);
+      letter-spacing:.14em; color:#1e1e1c;
+      margin-bottom:.6em; font-weight:400;
+    }
+    .body-text {
+      font-size:clamp(.48rem,1.1vh,.8rem);
+      line-height:1.65; color:#2c2c2a;
+      margin-bottom:.5em; max-width:100%;
+    }
+    .body-text-left {
+      font-size:clamp(.48rem,1.1vh,.8rem);
+      line-height:1.65; color:#2c2c2a;
+      margin-bottom:.5em; text-align:left; width:100%;
+    }
+    .section-title {
+      font-size:clamp(.6rem,1.6vh,1.05rem);
+      letter-spacing:.2em; text-transform:uppercase;
+      color:#1e1e1c; text-decoration:underline;
+      text-underline-offset:4px; margin-bottom:.8em;
+    }
+    .sign {
+      font-size:clamp(.55rem,1.4vh,.9rem);
+      letter-spacing:.1em; color:#2c2c2a;
+      margin-top:.6em; font-style:italic;
     }
 
-    .hero-photo-frame {
-      width:clamp(240px,46vw,380px);
-      aspect-ratio:4/3;
-      overflow:hidden;
-      border:1px solid #d8d0c8;
-      margin-bottom:2.2rem;
+    /* ── COUNTDOWN ── */
+    .countdown-wrap { margin-top:.7em; width:100%; }
+    .countdown-row { display:flex; justify-content:center; gap:clamp(.6rem,2vw,2rem); }
+    .cdown-cell { display:flex; flex-direction:column; align-items:center; }
+    .cdown-cell span {
+      font-size:clamp(1rem,3.5vh,2.2rem);
+      color:#3a5ca8; font-weight:300; line-height:1;
     }
-    .hero-photo-frame img {
-      width:100%; height:100%; object-fit:cover; object-position:center 30%;
-      display:block;
-    }
-
-    .hero-tagline {
-      font-size:clamp(.8rem,1.6vw,1.1rem);
-      letter-spacing:.3em;
-      color:var(--teal); font-weight:200;
-      margin-bottom:1.3rem;
+    .cdown-cell label {
+      font-size:clamp(.3rem,.7vh,.55rem);
+      letter-spacing:.15em; text-transform:uppercase;
+      color:#8a8480; margin-top:.2em;
     }
 
-    .hero-names {
-      font-size:clamp(2.4rem,7vw,5rem);
-      letter-spacing:.12em; font-weight:200;
-      color:var(--teal); line-height:1;
-      margin-bottom:.7rem;
+    /* ── DETALLES ── */
+    .venue-block {
+      display:flex; align-items:flex-start; gap:.5rem;
+      width:100%; text-align:left; margin-bottom:.4em;
     }
-
-    .hero-date-line {
-      font-size:clamp(1rem,2.2vw,1.6rem);
-      letter-spacing:.18em; font-weight:200;
-      color:var(--teal);
-      margin-bottom:.4rem;
+    .venue-left { flex:1; display:flex; flex-direction:column; }
+    .venue-bullet {
+      width:clamp(6px,1vh,10px); height:clamp(6px,1vh,10px);
+      background:#2c2c2a; border-radius:50%;
+      flex-shrink:0; margin-top:.3em;
     }
-
-    .hero-city {
-      font-size:clamp(.7rem,1.4vw,1rem);
-      letter-spacing:.45em;
-      color:var(--teal); font-weight:200;
-      margin-bottom:2.8rem;
+    .venue-header { display:flex; align-items:center; gap:.4rem; }
+    .venue-name-title {
+      font-size:clamp(.55rem,1.4vh,.95rem);
+      letter-spacing:.12em; color:#1e1e1c; font-weight:400;
     }
-
-    .hero-invite-text {
-      max-width:480px;
-      font-size:clamp(.85rem,1.3vw,1rem);
-      color:var(--muted); line-height:2.2; font-weight:200;
-      margin-bottom:1rem;
+    .venue-sub {
+      font-size:clamp(.45rem,1vh,.7rem);
+      color:#2c2c2a; margin-top:.1em; line-height:1.4;
     }
-
-    .hero-os-esperamos {
-      font-size:clamp(.85rem,1.4vw,1rem);
-      letter-spacing:.15em;
-      color:var(--teal); font-weight:200;
+    .venue-hour {
+      font-size:clamp(.45rem,1vh,.7rem);
+      color:#2c2c2a; margin-top:.05em;
     }
-
-    /* countdown */
-    .countdown-block { margin:1.5rem 0 0; }
-    .countdown-row { display:flex; justify-content:center; gap:3rem; flex-wrap:wrap; }
-    .cd-item { text-align:center; }
-    .cd-num { font-size:clamp(2rem,4vw,2.8rem); font-weight:200; color:var(--teal); line-height:1; letter-spacing:-.02em; }
-    .cd-lbl { font-size:.53rem; letter-spacing:.18em; color:var(--stone); margin-top:.4rem; font-weight:200; }
-
-    /* ── MAP / VENUES ── */
-    #venues-map {
-      background:#fff;
-      padding:1rem 0 4rem;
-      border-top:1px solid #ece8e3;
-      overflow:hidden;
+    .venue-img {
+      width:clamp(55px,12vh,95px); height:clamp(45px,10vh,80px);
+      object-fit:cover; border-radius:2px; flex-shrink:0;
     }
-
-    .map-container {
-      display:flex; align-items:flex-end; justify-content:center;
-      position:relative;
-      min-height:320px;
-      padding:0 1.5rem;
-      gap:0;
+    .road-connector {
+      display:flex; flex-direction:column;
+      align-items:center; margin:.1em 0; gap:.1em; color:#555;
     }
-
-    /* venue cards */
-    .venue-card {
+    .road-dashes {
       display:flex; flex-direction:column; align-items:center;
-      text-align:center;
-      flex:0 0 auto;
-      width:clamp(160px,28vw,240px);
-      position:relative; z-index:2;
+      gap:2px; margin:.1em 0;
     }
-    .venue-card.right { align-items:center; }
-
-    .venue-watercolor {
-      width:100%; max-width:220px;
-      height:clamp(110px,18vw,160px);
-      overflow:hidden; margin-bottom:.8rem;
+    .road-dash { width:1px; height:5px; background:#888; }
+    .car-emoji { font-size:clamp(.6rem,1.4vh,.95rem); }
+    .venue-note {
+      font-size:clamp(.38rem,.85vh,.58rem);
+      color:#7a7470; text-align:left; width:100%;
+      margin-bottom:.4em; line-height:1.5; font-style:italic;
     }
-    .venue-watercolor img {
-      width:100%; height:100%; object-fit:contain; object-position:bottom;
-      display:block;
-    }
-
-    .venue-area {
-      font-size:.6rem; letter-spacing:.28em; text-transform:uppercase;
-      color:var(--teal); font-weight:300;
-      margin-bottom:.3rem;
-    }
-    .venue-name-label {
-      font-size:clamp(.82rem,1.4vw,1rem); font-weight:700;
-      letter-spacing:.08em; text-transform:uppercase;
-      color:var(--teal); line-height:1.3;
-      margin-bottom:.6rem;
-    }
-    .venue-time {
-      font-size:.65rem; letter-spacing:.12em; color:var(--muted); font-weight:300;
-      margin-bottom:.5rem;
-    }
-    .venue-ubicacion {
-      font-size:.62rem; letter-spacing:.1em; text-transform:uppercase;
-      color:var(--teal); font-weight:300;
-      text-decoration:none;
-      border:1px solid var(--teal);
-      padding:.18rem .6rem;
-      display:inline-block;
+    .ubicacion-btn {
+      display:inline-block; margin-top:.3em;
+      font-size:clamp(.38rem,.85vh,.58rem); letter-spacing:.12em;
+      color:#2c2c2a; text-decoration:none;
+      border:1px solid #2c2c2a; padding:3px 8px;
       transition:background .2s, color .2s;
     }
-    .venue-ubicacion:hover { background:var(--teal); color:#fff; }
+    .ubicacion-btn:hover { background:#2c2c2a; color:#fff; }
 
-    /* road SVG section */
-    .road-section {
-      flex:1; min-width:120px; max-width:380px;
-      position:relative; align-self:flex-end;
-      padding-bottom:0;
+    /* ── CONFIRMACIÓN ── */
+    .conf-deadline {
+      font-size:clamp(.45rem,1vh,.7rem);
+      letter-spacing:.1em; color:#1e1e1c;
+      font-weight:600; margin-bottom:.6em; text-align:center;
     }
-    .road-svg { width:100%; display:block; overflow:visible; }
-
-    /* ── TIMELINE ── */
-    #timeline { background:#faf8f5; padding:5.5rem 2rem; text-align:center; border-top:1px solid #f0ece6; }
-    .tl-eyebrow { font-size:.58rem; letter-spacing:.22em; text-transform:uppercase; color:var(--stone); margin-bottom:.6rem; }
-    .tl-title { font-size:clamp(1.5rem,2.5vw,2rem); font-weight:100; color:var(--char); margin-bottom:3rem; letter-spacing:.02em; }
-    .tl-wrap { max-width:540px; margin:0 auto; position:relative; }
-    .tl-line { position:absolute; left:50%; top:0; bottom:0; width:1px; background:#ece6de; transform:translateX(-50%); }
-    .tl-item { display:flex; align-items:flex-start; gap:1.5rem; margin-bottom:3rem; position:relative; text-align:left; }
-    .tl-item:nth-child(even) { flex-direction:row-reverse; text-align:right; }
-    .tl-icon-wrap {
-      width:48px; height:48px; border-radius:50%; background:#fff;
-      border:1px solid #e8e0d8; display:flex; align-items:center; justify-content:center;
-      flex-shrink:0; z-index:2; box-shadow:0 2px 8px rgba(0,0,0,.05);
+    .conf-question {
+      font-size:clamp(.48rem,1.05vh,.75rem);
+      color:#2c2c2a; margin-bottom:.3em; text-align:left; width:100%;
     }
-    .tl-icon-wrap svg { width:22px; height:22px; }
-    .tl-body { flex:1; padding-top:.4rem; }
-    .tl-time { font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; color:var(--stone); margin-bottom:.3rem; }
-    .tl-name { font-size:1.1rem; font-weight:200; color:var(--char); margin-bottom:.25rem; letter-spacing:.04em; }
-    .tl-desc { font-size:.78rem; color:var(--muted); line-height:1.7; font-weight:300; }
-
-    /* ── NOSOTROS ── */
-    #nosotros { background:#fff; padding:5.5rem 2rem; border-top:1px solid #f0ece6; }
-    .nos-header { text-align:center; margin-bottom:2.5rem; }
-    .section-eyebrow { font-size:.58rem; letter-spacing:.22em; text-transform:uppercase; color:var(--stone); margin-bottom:.6rem; }
-    .section-h { font-size:clamp(1.5rem,2.5vw,2rem); font-weight:100; color:var(--char); letter-spacing:.02em; }
-    .section-line { width:32px; height:1px; background:var(--stone); margin:1rem auto; }
-    .nos-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; max-width:960px; margin:0 auto; }
-    .photo-wrap { overflow:hidden; height:400px; }
-    .photo-wrap img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; transition:transform .6s ease; }
-    .photo-wrap:hover img { transform:scale(1.04); }
-
-    /* ── RSVP ── */
-    #rsvp { background:#faf8f5; padding:6rem 2rem; text-align:center; border-top:1px solid #f0ece6; }
-    .rsvp-eyebrow { font-size:.58rem; letter-spacing:.22em; text-transform:uppercase; color:var(--stone); margin-bottom:.6rem; }
-    .rsvp-title { font-size:clamp(1.5rem,2.5vw,2rem); font-weight:100; color:var(--char); margin-bottom:.6rem; letter-spacing:.02em; }
-    .rsvp-sub { font-size:.76rem; color:var(--muted); margin-bottom:2.5rem; font-weight:300; }
-    .rsvp-inner { max-width:520px; margin:0 auto; text-align:left; }
-    .fg { display:flex; flex-direction:column; gap:.35rem; margin-bottom:.9rem; }
-    .fg label { font-size:.55rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:300; }
-    .fg input, .fg select, .fg textarea {
-      background:#fff; border:1px solid #e8e0d8; border-radius:50px;
-      padding:.7rem 1.2rem; color:var(--char);
-      font-family:inherit; font-size:.85rem; font-weight:200;
-      outline:none; transition:border-color .2s;
+    .radio-group { display:flex; flex-direction:column; gap:.15em; width:100%; margin-bottom:.5em; }
+    .radio-opt {
+      display:flex; align-items:center; gap:.4rem;
+      font-size:clamp(.43rem,.95vh,.68rem); color:#2c2c2a; cursor:pointer;
     }
-    .fg textarea { border-radius:12px; resize:vertical; min-height:72px; }
-    .fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--teal); }
-    .fg select option { background:#fff; }
-    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:.9rem; margin-bottom:.9rem; }
-    .attend-btns { display:flex; gap:.6rem; }
-    .att-btn {
-      flex:1; padding:.65rem; border-radius:50px; cursor:pointer;
-      font-family:inherit; font-size:.62rem; font-weight:300; letter-spacing:.12em;
-      text-transform:uppercase; transition:all .2s;
-      border:1px solid #d8d0c8; background:#fff; color:var(--muted);
+    .radio-opt input { accent-color:#3a5ca8; cursor:pointer; }
+    .conf-note {
+      font-size:clamp(.4rem,.88vh,.62rem);
+      color:#7a7470; text-align:left; width:100%;
+      margin-bottom:.6em; line-height:1.5; font-style:italic;
     }
-    .att-btn.yes { background:var(--teal); border-color:var(--teal); color:#fff; }
-    .att-btn.no  { background:var(--wine); border-color:var(--wine); color:#fff; }
-    .form-extra { display:none; }
-    .form-extra.on { display:block; }
-    .btn-sub {
-      width:100%; padding:.85rem; background:var(--teal); border:none;
-      color:#fff; font-family:inherit; font-size:.6rem; letter-spacing:.2em;
-      text-transform:uppercase; cursor:pointer; border-radius:50px; font-weight:300;
-      margin-top:.5rem; transition:background .2s;
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:.4rem; width:100%; margin-bottom:.35em; }
+    .form-group { display:flex; flex-direction:column; text-align:left; }
+    .form-label {
+      font-size:clamp(.35rem,.75vh,.55rem);
+      letter-spacing:.1em; text-transform:uppercase;
+      color:#8a8480; margin-bottom:.15em;
     }
-    .btn-sub:hover { background:var(--teal-dark); }
-    .form-ok { text-align:center; padding:2.5rem; font-size:1rem; font-weight:100; color:var(--muted); display:none; letter-spacing:.06em; }
-
-    /* ── DRESS CODE ── */
-    #dresscode { background:#fff; padding:5.5rem 2rem; text-align:center; border-top:1px solid #f0ece6; }
-    .dc-inner { max-width:500px; margin:0 auto; }
-    .dc-text { font-size:.85rem; color:var(--muted); line-height:2.1; font-weight:300; }
-    .swatches { display:flex; justify-content:center; gap:18px; margin-top:2rem; flex-wrap:wrap; }
-    .sw { display:flex; flex-direction:column; align-items:center; gap:7px; }
-    .sw-dot { width:30px; height:30px; border-radius:50%; border:1px solid rgba(0,0,0,.06); }
-    .sw-name { font-size:.5rem; letter-spacing:.1em; text-transform:uppercase; color:var(--stone); }
-
-    /* ── HOTEL ── */
-    #hotel { background:#faf8f5; padding:5.5rem 2rem; text-align:center; border-top:1px solid #f0ece6; }
-    .hotel-text { font-size:clamp(.85rem,1.1vw,1rem); color:var(--muted); line-height:2.1; max-width:520px; margin:0 auto 2rem; font-weight:200; }
-    .hotel-code-box {
-      display:inline-block; border:1px solid var(--teal);
-      border-radius:12px; padding:1.5rem 2.5rem; margin:0 auto 2rem;
+    .form-input {
+      border:none; border-bottom:.8px solid #c0bbb5;
+      padding:3px 0; font-family:inherit;
+      font-size:clamp(.42rem,.92vh,.65rem);
+      background:transparent; color:#2c2c2a; outline:none;
     }
-    .hotel-code-label { font-size:.55rem; letter-spacing:.2em; text-transform:uppercase; color:var(--stone); margin-bottom:.5rem; font-weight:200; }
-    .hotel-code-value { font-size:1.3rem; font-weight:200; color:var(--teal); letter-spacing:.12em; }
-    .hotel-addr { font-size:clamp(.8rem,1vw,.9rem); color:var(--muted); line-height:2; font-weight:200; }
-    .hotel-addr a { color:var(--teal); text-decoration:none; border-bottom:1px solid transparent; transition:border-color .2s; }
-    .hotel-addr a:hover { border-color:var(--teal); }
-
-    /* ── IBAN ── */
-    #regalo { background:#faf8f5; padding:5.5rem 2rem; text-align:center; border-top:1px solid #f0ece6; }
-    .ib-text { font-size:.85rem; color:var(--muted); line-height:2.1; max-width:480px; margin:0 auto 2rem; font-weight:300; }
-    .ib-lock { border:1px solid #e8e0d8; background:#fff; border-radius:12px; padding:2rem; max-width:340px; margin:0 auto; }
-    .ib-msg { font-size:.76rem; color:var(--muted); margin-bottom:1rem; font-weight:300; }
-    .ib-row { display:flex; gap:.5rem; }
-    .ib-row input {
-      flex:1; padding:.65rem 1rem; border:1px solid #e8e0d8; border-radius:50px;
-      font-family:inherit; font-size:.85rem; font-weight:200;
-      background:#fff; outline:none; color:var(--char); transition:border-color .2s;
+    .form-input:focus { border-bottom-color:#3a5ca8; }
+    .conf-bus-label {
+      font-size:clamp(.42rem,.95vh,.67rem);
+      color:#2c2c2a; text-align:left; width:100%; margin-bottom:.3em;
     }
-    .ib-row input:focus { border-color:var(--teal); }
-    .ib-row button {
-      padding:.65rem 1.1rem; background:var(--teal); border:none; color:#fff;
-      font-family:inherit; font-size:.58rem; letter-spacing:.1em;
-      text-transform:uppercase; cursor:pointer; border-radius:50px; transition:background .2s; font-weight:300;
+    .check-group { display:flex; flex-direction:column; gap:.15em; width:100%; margin-bottom:.45em; }
+    .check-opt {
+      display:flex; align-items:center; gap:.4rem;
+      font-size:clamp(.4rem,.88vh,.62rem); color:#2c2c2a; cursor:pointer;
     }
-    .ib-row button:hover { background:var(--teal-dark); }
-    .ib-err { color:#a03030; font-size:.7rem; margin-top:.5rem; display:none; font-weight:300; }
-    .ib-shown { display:none; }
-    .ib-shown.on { display:block; }
-    .ib-box { background:#fff; border:1px solid #e8e0d8; border-radius:12px; padding:1.8rem; max-width:340px; margin:0 auto; }
-    .ib-lbl { font-size:.5rem; letter-spacing:.18em; text-transform:uppercase; color:var(--stone); margin-bottom:.4rem; font-weight:300; }
-    .ib-num { font-size:1.1rem; font-weight:200; color:var(--char); letter-spacing:.12em; margin-bottom:.6rem; }
-    .ib-holder { font-size:.76rem; color:var(--muted); font-weight:300; }
-    .cp-btn {
-      margin-top:1.2rem; padding:.5rem 1.1rem; background:none;
-      border:1px solid var(--teal); color:var(--teal);
-      font-family:inherit; font-size:.58rem; letter-spacing:.1em;
-      text-transform:uppercase; cursor:pointer; border-radius:50px; transition:all .2s; font-weight:300;
+    .check-opt input { accent-color:#3a5ca8; cursor:pointer; }
+    .form-textarea {
+      width:100%; border:none; border-bottom:.8px solid #c0bbb5;
+      padding:3px 0; font-family:inherit;
+      font-size:clamp(.42rem,.92vh,.65rem);
+      background:transparent; color:#2c2c2a; outline:none;
+      resize:none; min-height:28px;
     }
-    .cp-btn:hover { background:var(--teal); color:#fff; }
-
-    /* ── FOOTER ── */
-    footer {
-      background:var(--teal-dark); color:rgba(255,255,255,.4);
-      text-align:center; padding:3rem 1rem;
-      font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; font-weight:300;
+    .form-textarea:focus { border-bottom-color:#3a5ca8; }
+    .submit-btn {
+      margin-top:.6em;
+      background:none; border:1px solid #2c2c2a;
+      font-family:inherit; cursor:pointer;
+      font-size:clamp(.42rem,.95vh,.68rem);
+      letter-spacing:.16em; text-transform:uppercase;
+      color:#2c2c2a; padding:.35em 1.2em;
+      transition:background .2s, color .2s;
     }
-    footer em { color:rgba(255,255,255,.85); font-style:normal; font-weight:200; }
-
-    /* ── SCROLL REVEAL ── */
-    .rv { opacity:0; transform:translateY(28px); transition:opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
-    .rv.up { opacity:1; transform:translateY(0); }
-    .rv-l { opacity:0; transform:translateX(-32px); transition:opacity .9s cubic-bezier(.22,1,.36,1) .08s, transform .9s cubic-bezier(.22,1,.36,1) .08s; }
-    .rv-l.up { opacity:1; transform:translateX(0); }
-    .rv-r { opacity:0; transform:translateX(32px); transition:opacity .9s cubic-bezier(.22,1,.36,1) .12s, transform .9s cubic-bezier(.22,1,.36,1) .12s; }
-    .rv-r.up { opacity:1; transform:translateX(0); }
-    .d1 { transition-delay:.1s !important; }
-    .d2 { transition-delay:.22s !important; }
-    .d3 { transition-delay:.36s !important; }
-    .d4 { transition-delay:.50s !important; }
-
-    /* ── MARIÉS WALK ── */
-    #maries-walk {
-      position:fixed; bottom:0; left:0;
-      width:clamp(60px,8vw,95px); height:auto;
-      z-index:149; pointer-events:none; will-change:transform;
+    .submit-btn:hover { background:#2c2c2a; color:#fff; }
+    .form-success {
+      display:none; margin-top:.6em;
+      font-size:clamp(.45rem,1vh,.72rem);
+      color:#2a7c8e; letter-spacing:.08em;
     }
 
-    /* ── COVER PAGE ── */
-    #cover {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      /* fond crème pour habiller l'espace autour de la carte sur desktop */
-      background: #f5f2ee;
+    /* ── ALOJAMIENTOS ── */
+    .hotel-block {
+      width:100%; text-align:left; margin-bottom:.7em;
     }
-    .cover-wrap {
-      position: relative;
-      /* desktop : image pleine hauteur sous la nav (52px) */
-      height: calc(100vh - 52px);
-      width: calc((100vh - 52px) * 0.6911);
-      max-width: 100vw;
-      margin-top: 52px;
+    .hotel-header { display:flex; align-items:flex-start; gap:.4rem; }
+    .hotel-dot {
+      width:clamp(7px,1.1vh,11px); height:clamp(7px,1.1vh,11px);
+      background:#2c2c2a; border-radius:50%;
+      flex-shrink:0; margin-top:.25em;
     }
-    .cover-img {
-      width: 100%; height: 100%;
-      display: block;
-      object-fit: fill;
+    .hotel-name {
+      font-size:clamp(.5rem,1.2vh,.82rem);
+      letter-spacing:.1em; color:#1e1e1c; font-weight:400;
     }
-    .cover-menu { pointer-events: none; } /* conteneur neutre */
-    /* Chaque lien = découpe de portada.jpg positionnée sur le mot peint */
-    .cover-link {
-      position: absolute;
-      /* mots peints : centrés entre 30% et 72% de la largeur de l'image */
-      left: 25.5%; right: 22.2%; /* crop recadré : 25.5%→77.8% de portada.jpg */
-      height: 5%;              /* hauteur fixe = 1 ligne */
-      display: block;
-      text-decoration: none;
-      cursor: pointer;
-      pointer-events: all;
-      border: 2px dashed transparent;
-      border-radius: 3px;
-      transition: border-color .2s;
+    .hotel-sub {
+      font-size:clamp(.4rem,.88vh,.62rem);
+      color:#2c2c2a; margin-top:.1em; line-height:1.5;
     }
-    /* pas de border sur l'élément — on utilise ::after pour le décaler indépendamment */
-    .cover-link { border: none; }
-    .cover-link::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 2px dashed transparent;
-      border-radius: 3px;
-      transition: border-color .2s;
-      pointer-events: none;
+    .hotel-link {
+      font-size:clamp(.38rem,.82vh,.58rem);
+      color:#3a5ca8; word-break:break-all;
     }
-    .cover-link:hover::after { border-color: #3a5ca8; }
-    .cover-link-text {
-      display: block;
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Optima', 'Optima Nova LT', 'CenturyGothic', 'Century Gothic', 'AppleGothic', sans-serif;
-      font-weight: 400;
-      font-size: calc((100vh - 52px) * 0.026);
-      letter-spacing: 0.12em;
-      color: #7a7878;
-      text-transform: uppercase;
-      user-select: none;
-    }
-    /* positions % de la nouvelle portada.jpg (1116×1614) */
-    .cover-link:nth-child(1) { top: 51.0%; }
-    .cover-link:nth-child(2) { top: 57.5%; }
-    .cover-link:nth-child(3) { top: 64.0%; }
-    .cover-link:nth-child(4) { top: 70.5%; }
 
-    /* ── COVER mobile : pleine largeur, hauteur naturelle, sous la nav ── */
+    /* ── LISTA DE BODAS ── */
+    .iban-pw-section { width:100%; margin-top:.5em; }
+    .pw-input {
+      border:none; border-bottom:.8px solid #c0bbb5;
+      padding:3px 0; font-family:inherit;
+      font-size:clamp(.45rem,1vh,.72rem);
+      background:transparent; color:#2c2c2a; outline:none;
+      width:140px; text-align:center; letter-spacing:.15em;
+      margin-right:.5em;
+    }
+    .pw-btn {
+      background:none; border:1px solid #2c2c2a; cursor:pointer;
+      font-family:inherit; font-size:clamp(.38rem,.85vh,.6rem);
+      letter-spacing:.12em; text-transform:uppercase;
+      color:#2c2c2a; padding:.25em .8em;
+      transition:background .2s, color .2s;
+    }
+    .pw-btn:hover { background:#2c2c2a; color:#fff; }
+    .pw-error {
+      display:none; font-size:clamp(.38rem,.82vh,.58rem);
+      color:#c0392b; margin-top:.3em;
+    }
+    .iban-block { display:none; margin-top:.7em; }
+    .iban-text {
+      font-size:clamp(.52rem,1.2vh,.82rem);
+      letter-spacing:.1em; color:#2c2c2a;
+      font-style:italic; margin-bottom:.5em;
+    }
+    .copy-btn {
+      background:none; border:1px solid #2c2c2a; cursor:pointer;
+      font-family:inherit; font-size:clamp(.38rem,.85vh,.6rem);
+      letter-spacing:.12em; text-transform:uppercase;
+      color:#2c2c2a; padding:.25em 1em;
+      transition:background .2s, color .2s;
+    }
+    .copy-btn:hover { background:#2c2c2a; color:#fff; }
+    .copy-ok {
+      display:none; font-size:clamp(.4rem,.88vh,.62rem);
+      color:#2a7c8e; margin-top:.3em; letter-spacing:.1em;
+    }
+
+    /* ── FIN ── */
+    .venise-photo {
+      width:clamp(120px,32vh,210px);
+      height:clamp(95px,25vh,165px);
+      object-fit:cover; margin-top:.6em; border-radius:2px;
+    }
+
+    /* ── MOBILE ── */
     @media(max-width:780px){
-      #cover { min-height: unset; background: #fff; padding: 0; align-items: flex-start; }
-      .cover-wrap {
-        width: 100vw;
-        height: calc(100vw / 0.6911);
-        max-width: 100vw;
-        margin-top: 52px;
-      }
-      .cover-img { object-fit: fill; }
-      .cover-link-text { font-size: calc(100vw * 0.038); }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media(max-width:780px){
-      #hero {
-        padding-top: 4rem;
-        padding-left: 3rem;
-        padding-right: 3rem;
-        padding-bottom: 2rem;
-      }
-      /* Photo Venise plus étroite pour rester dans la zone intérieure du cadre */
-      .hero-photo-frame {
-        width: clamp(160px, 58vw, 240px);
-      }
       .nav-links { display:none; }
-      nav { padding:0 1.2rem; }
-      .map-container { flex-direction:column; align-items:center; gap:2rem; }
-      .road-section { display:none; }
-      .venue-card { width:clamp(200px,80vw,300px); }
-      .nos-grid { grid-template-columns:1fr; }
-      .photo-wrap { height:280px; }
-      .form-row { grid-template-columns:1fr; }
-      .countdown-row { gap:1.6rem; }
-      .tl-line { display:none; }
-      .tl-item,.tl-item:nth-child(even) { flex-direction:column; text-align:center; align-items:center; }
+      nav { padding:0 1rem; }
+      section { min-height:unset; }
+      .page-wrap {
+        width:100vw; max-width:100vw;
+        height:calc(100vw / 0.7071);
+      }
+      .page-content { padding:.2rem .1rem; }
+      .form-row { grid-template-columns:1fr; gap:.3rem; }
+      .countdown-row { gap:1rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── MARIÉS QUI SE DÉPLACENT (droite → gauche) ── -->
-<img id="maries-walk" src="img/maries.png" alt="">
-
 <!-- ── NAV ── -->
-<nav id="main-nav">
-  <span class="nav-brand">A &amp; A · 2027</span>
+<nav>
+  <a href="#inicio" class="nav-brand">A & A · 2027</a>
   <ul class="nav-links">
-    <li><a href="#cover"     data-i18n="nav_inv">Inicio</a></li>
-    <li><a href="#ceremonia" data-i18n="cover_details">Detalles</a></li>
-    <li><a href="#rsvp"      data-i18n="cover_confirm">Confirmación</a></li>
-    <li><a href="#hotel"     data-i18n="cover_hotel">Alojamientos</a></li>
-    <li><a href="#regalo"    data-i18n="cover_gift">Lista de bodas</a></li>
+    <li><a href="#inicio"       data-i18n="nav_inicio">INICIO</a></li>
+    <li><a href="#historia"     data-i18n="nav_historia">NUESTRA HISTORIA</a></li>
+    <li><a href="#detalles"     data-i18n="nav_detalles">DETALLES</a></li>
+    <li><a href="#confirmacion" data-i18n="nav_confirmacion">CONFIRMACIÓN</a></li>
+    <li><a href="#alojamientos" data-i18n="nav_alojamientos">ALOJAMIENTOS</a></li>
+    <li><a href="#lista"        data-i18n="nav_lista">LISTA DE BODAS</a></li>
+    <li><a href="#fin"          data-i18n="nav_fin">FIN</a></li>
   </ul>
-  <div class="lang-sw">
+  <div class="lang-bar">
     <button class="lb active" onclick="setLang('es')">ES</button>
-    <button class="lb" onclick="setLang('fr')">FR</button>
-    <button class="lb" onclick="setLang('en')">EN</button>
-    <button class="lb" onclick="setLang('it')">IT</button>
+    <button class="lb"        onclick="setLang('fr')">FR</button>
+    <button class="lb"        onclick="setLang('en')">EN</button>
+    <button class="lb"        onclick="setLang('it')">IT</button>
   </div>
 </nav>
 
-<!-- ── COVER — portada aquarelle ── -->
-<section id="cover">
-  <div class="cover-wrap">
-    <img class="cover-img" src="img/portada2.jpg" alt="Portada Adri &amp; Aitor">
-    <div class="cover-menu">
-      <a class="cover-link" href="#ceremonia"><span class="cover-link-text" data-i18n="cover_details">DETALLES</span></a>
-      <a class="cover-link" href="#rsvp"     ><span class="cover-link-text" data-i18n="cover_confirm">CONFIRMACIÓN</span></a>
-      <a class="cover-link" href="#hotel"    ><span class="cover-link-text" data-i18n="cover_hotel">ALOJAMIENTOS</span></a>
-      <a class="cover-link" href="#regalo"   ><span class="cover-link-text" data-i18n="cover_gift">LISTA DE BODAS</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ── HERO — carta de invitación ── -->
-<section id="hero">
-
-  <!-- Cadre aquarelle fond_web — img positionné absolument -->
-  <!-- ¡Nos casamos! -->
-  <p class="hero-tagline rv d1" data-i18n="inv_tagline">¡NOS CASAMOS!</p>
-
-  <!-- Texto de invitación -->
-  <p class="hero-invite-text rv" style="transition-delay:.65s" data-i18n="inv_text_short">
-    Nos gustaría compartir este día tan especial con vosotros.<br>
-    Gracias por todos los momentos compartidos.<br>
-    Nos sentimos muy afortunados de teneros como familia y amigos.
-  </p>
-  <p class="hero-os-esperamos rv" style="transition-delay:.75s" data-i18n="os_esperamos">¡OS ESPERAMOS!</p>
-
-  <!-- Countdown -->
-  <div class="countdown-block rv" style="transition-delay:.85s">
-    <div class="countdown-row">
-      <div class="cd-item"><div class="cd-num" id="cd-d">—</div><div class="cd-lbl" data-i18n="cd_days">días</div></div>
-      <div class="cd-item"><div class="cd-num" id="cd-h">—</div><div class="cd-lbl" data-i18n="cd_hours">horas</div></div>
-      <div class="cd-item"><div class="cd-num" id="cd-m">—</div><div class="cd-lbl" data-i18n="cd_mins">minutos</div></div>
-      <div class="cd-item"><div class="cd-num" id="cd-s">—</div><div class="cd-lbl" data-i18n="cd_secs">segundos</div></div>
-    </div>
-  </div>
-
-</section>
-
-<!-- ── MAPA ILUSTRADO — VENUES ── -->
-<section id="venues-map" id="ceremonia">
-
-  <div class="map-container">
-
-    <!-- IGLESIA SANTA BÁRBARA -->
-    <div class="venue-card rv-l">
-      <div class="venue-watercolor">
-        <img src="img/eglise.jpeg" alt="Iglesia Santa Bárbara">
-      </div>
-      <p class="venue-area">MADRID CENTRO</p>
-      <h3 class="venue-name-label" data-i18n="title_cer">IGLESIA<br>SANTA BÁRBARA</h3>
-      <p class="venue-time" data-i18n="tag_cer">11:30 h · Sábado 6 de marzo</p>
-      <a class="venue-ubicacion"
-         href="https://maps.google.com/?q=Iglesia+Santa+Barbara+Plaza+Alonso+Martinez+6+Madrid"
-         target="_blank" rel="noopener"
-         data-i18n="ver_mapa">[ UBICACIÓN ]</a>
-    </div>
-
-    <!-- ROAD SVG -->
-    <div class="road-section">
-      <svg class="road-svg" viewBox="0 0 340 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Road shadow -->
-        <path d="M10 155 Q80 130 120 100 Q160 70 200 80 Q240 90 330 60"
-              stroke="rgba(0,0,0,.08)" stroke-width="22" stroke-linecap="round" fill="none"/>
-        <!-- Road fill -->
-        <path id="road-path"
-              d="M10 155 Q80 130 120 100 Q160 70 200 80 Q240 90 330 60"
-              stroke="#e8c070" stroke-width="18" stroke-linecap="round" fill="none"/>
-        <!-- Road center dashes -->
-        <path d="M10 155 Q80 130 120 100 Q160 70 200 80 Q240 90 330 60"
-              stroke="#fff" stroke-width="2" stroke-dasharray="12 10" stroke-linecap="round" fill="none"/>
-
-        <!-- M-30 label -->
-        <text x="88" y="126" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
-              font-size="9" font-weight="300" letter-spacing="1" fill="#7a6e68" transform="rotate(-18,88,126)">M-30</text>
-
-        <!-- A-1 label -->
-        <text x="230" y="84" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
-              font-size="9" font-weight="300" letter-spacing="1" fill="#7a6e68" transform="rotate(-8,230,84)">A-1</text>
-
-        <!-- Car (simplified) -->
-        <g transform="translate(155,84) rotate(-12)">
-          <rect x="-10" y="-6" width="20" height="12" rx="4" fill="#c0392b"/>
-          <rect x="-6" y="-10" width="12" height="6" rx="2" fill="#c0392b"/>
-          <circle cx="-6" cy="7" r="3" fill="#555"/>
-          <circle cx="6" cy="7" r="3" fill="#555"/>
-        </g>
-
-        <!-- 25 min label -->
-        <text x="155" y="115" text-anchor="middle"
-              font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
-              font-size="10" font-weight="300" letter-spacing="1" fill="#7a6e68">25 min.</text>
-      </svg>
-    </div>
-
-    <!-- FINCA ASTILBE -->
-    <div class="venue-card right rv-r">
-      <div class="venue-watercolor">
-        <img src="img/finca.jpeg" alt="Finca Astilbe">
-      </div>
-      <p class="venue-area">LA MORALEJA</p>
-      <h3 class="venue-name-label" data-i18n="title_finca">FINCA ASTILBE<br>by ENELDO</h3>
-      <p class="venue-time" data-i18n="tag_finca">13:30 h · Sábado 6 de marzo</p>
-      <a class="venue-ubicacion"
-         href="https://maps.google.com/?q=Finca+Astilbe+Eneldo+Fuencarral+Madrid"
-         target="_blank" rel="noopener"
-         data-i18n="ver_mapa">[ UBICACIÓN ]</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ── TIMELINE ── -->
-<section id="timeline">
-  <p class="tl-eyebrow rv" data-i18n="eyebrow_tl">El gran día</p>
-  <h2 class="tl-title rv d1" data-i18n="tl_title">Programa</h2>
-  <div class="tl-wrap">
-    <div class="tl-line"></div>
-    <div class="tl-item rv">
-      <div class="tl-icon-wrap">
-        <svg viewBox="0 0 26 26" fill="none"><path d="M13 3L13 6" stroke="#2a7c8e" stroke-width="1.5" stroke-linecap="round"/><path d="M4 10Q4 4 13 4Q22 4 22 10L22 20L4 20Z" fill="none" stroke="#2a7c8e" stroke-width="1.5"/><line x1="4" y1="20" x2="22" y2="20" stroke="#2a7c8e" stroke-width="1.5"/><line x1="2" y1="20" x2="24" y2="20" stroke="#2a7c8e" stroke-width="1.5"/><rect x="9" y="14" width="8" height="6" rx="1" fill="none" stroke="#2a7c8e" stroke-width="1.2"/><line x1="13" y1="3" x2="10" y2="6" stroke="#2a7c8e" stroke-width="1.2"/><line x1="13" y1="3" x2="16" y2="6" stroke="#2a7c8e" stroke-width="1.2"/></svg>
-      </div>
-      <div class="tl-body">
-        <p class="tl-time">11:30 h</p>
-        <p class="tl-name" data-i18n="tl_cer">Ceremonia</p>
-        <p class="tl-desc" data-i18n="tl_cer_desc">Iglesia Santa Bárbara · Plaza de Alonso Martínez</p>
-      </div>
-    </div>
-    <div class="tl-item rv d1">
-      <div class="tl-icon-wrap">
-        <svg viewBox="0 0 26 26" fill="none"><path d="M7 4L19 4L15 14L15 21L11 21L11 14Z" fill="none" stroke="#2a7c8e" stroke-width="1.5" stroke-linejoin="round"/><line x1="9" y1="22" x2="17" y2="22" stroke="#2a7c8e" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </div>
-      <div class="tl-body">
-        <p class="tl-time">13:30 h</p>
-        <p class="tl-name" data-i18n="tl_cock">Cóctel</p>
-        <p class="tl-desc" data-i18n="tl_cock_desc">Finca Astilbe · Carr. de Fuencarral, km 1,9</p>
-      </div>
-    </div>
-    <div class="tl-item rv d2">
-      <div class="tl-icon-wrap">
-        <svg viewBox="0 0 26 26" fill="none"><ellipse cx="13" cy="15" rx="9" ry="4" fill="none" stroke="#2a7c8e" stroke-width="1.5"/><path d="M4 15Q4 22 13 22Q22 22 22 15" fill="none" stroke="#2a7c8e" stroke-width="1.5"/><path d="M9 15Q9 10 13 10Q17 10 17 15" fill="none" stroke="#2a7c8e" stroke-width="1.5"/><circle cx="13" cy="8" r="2.5" fill="none" stroke="#2a7c8e" stroke-width="1.5"/></svg>
-      </div>
-      <div class="tl-body">
-        <p class="tl-time">15:00 h</p>
-        <p class="tl-name" data-i18n="tl_banq">Banquete</p>
-        <p class="tl-desc" data-i18n="tl_banq_desc">Menú de celebración · Finca Astilbe</p>
-      </div>
-    </div>
-    <div class="tl-item rv d3">
-      <div class="tl-icon-wrap">
-        <svg viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="5" fill="none" stroke="#2a7c8e" stroke-width="1.5"/><line x1="13" y1="4" x2="13" y2="7" stroke="#2a7c8e" stroke-width="1.5" stroke-linecap="round"/><line x1="13" y1="19" x2="13" y2="22" stroke="#2a7c8e" stroke-width="1.5" stroke-linecap="round"/><line x1="4" y1="13" x2="7" y2="13" stroke="#2a7c8e" stroke-width="1.5" stroke-linecap="round"/><line x1="19" y1="13" x2="22" y2="13" stroke="#2a7c8e" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </div>
-      <div class="tl-body">
-        <p class="tl-time" data-i18n="tl_fiesta_t">¡Toda la noche!</p>
-        <p class="tl-name" data-i18n="tl_fiesta">¡Fiesta!</p>
-        <p class="tl-desc" data-i18n="tl_fiesta_desc">Baile y celebración · Finca Astilbe</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── NOSOTROS ── -->
-<section id="nosotros">
-  <div class="nos-header">
-    <p class="section-eyebrow rv" data-i18n="eyebrow_nos">Nosotros</p>
-    <h2 class="section-h rv d1" data-i18n="title_nos">Adriana &amp; Aitor</h2>
-    <div class="section-line rv d2"></div>
-  </div>
-  <div class="nos-grid">
-    <div class="photo-wrap rv d1"><img src="img/photo2.jpeg" alt="Adriana y Aitor"></div>
-    <div class="photo-wrap rv d2"><img src="img/photo3.jpeg" alt="Adriana y Aitor"></div>
-    <div class="photo-wrap rv d3"><img src="img/photo1.jpg"  alt="Adriana y Aitor" style="object-position:center 35%;"></div>
-  </div>
-</section>
-
-<!-- ── RSVP ── -->
-<section id="rsvp">
-  <p class="rsvp-eyebrow rv" data-i18n="eyebrow_rsvp">Antes del 1 de diciembre de 2026</p>
-  <h2 class="rsvp-title rv d1" data-i18n="title_rsvp">Confirmación de asistencia</h2>
-  <p class="rsvp-sub rv d2" data-i18n="rsvp_note">Por favor, confirma tu asistencia antes del 1 de diciembre de 2026.</p>
-  <div class="rsvp-inner rv d3">
-    <form id="rsvp-form" action="https://formspree.io/f/xdarezpr" method="POST">
-      <div class="form-row">
-        <div class="fg"><label data-i18n="label_nombre">Nombre</label><input type="text" name="nombre" required placeholder="María"></div>
-        <div class="fg"><label data-i18n="label_apellido">Apellido</label><input type="text" name="apellido" required placeholder="García"></div>
-      </div>
-      <div class="fg">
-        <label data-i18n="label_asist">¿Podrás venir?</label>
-        <div class="attend-btns">
-          <button type="button" class="att-btn" id="btn-y" onclick="pick('yes')" data-i18n="btn_yes">Sí, allí estaré</button>
-          <button type="button" class="att-btn" id="btn-n" onclick="pick('no')"  data-i18n="btn_no">Lo siento, no podré</button>
+<!-- ══════════════════════════════════
+     1. INICIO
+     ══════════════════════════════════ -->
+<section id="inicio">
+  <div class="page-wrap">
+    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="page-content">
+      <p class="big-title">ADRI &amp; AITOR</p>
+      <p class="date-line" data-i18n="inv_date">SÁBADO | 6 | MARZO | 2027</p>
+      <p class="city-line">MADRID</p>
+      <p class="separator">◆·····················◆</p>
+      <p class="tagline" data-i18n="inv_tagline">¡NOS CASAMOS!</p>
+      <p class="body-text" data-i18n="inv_text1">Nos sentimos muy afortunados de teneros como familia y amigos.</p>
+      <p class="body-text" data-i18n="inv_text2">Por eso, nos gustaría invitaros a compartir este día tan especial con nosotros.</p>
+      <div class="countdown-wrap">
+        <div class="countdown-row">
+          <div class="cdown-cell"><span id="cd-d">--</span><label data-i18n="cd_dias">días</label></div>
+          <div class="cdown-cell"><span id="cd-h">--</span><label data-i18n="cd_horas">horas</label></div>
+          <div class="cdown-cell"><span id="cd-m">--</span><label data-i18n="cd_min">minutos</label></div>
+          <div class="cdown-cell"><span id="cd-s">--</span><label data-i18n="cd_seg">segundos</label></div>
         </div>
-        <input type="hidden" name="asistencia" id="hid-asist">
       </div>
-      <div class="form-extra" id="ex-yes">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     2. NUESTRA HISTORIA
+     ══════════════════════════════════ -->
+<section id="historia">
+  <div class="page-wrap">
+    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="page-content">
+      <h2 class="section-title" data-i18n="nav_historia">NUESTRA HISTORIA</h2>
+      <p class="body-text" data-i18n="hist_p1">Adri, arquitecta técnica e interiorista, de Pamplona. Aitor, ingeniero y músico, de Bayonne. Dos ciudades hermanadas, dos países, dos caminos y un destino que quiso que nos conociéramos en Madrid en 2024.</p>
+      <p class="body-text" data-i18n="hist_p2">Desde que comenzó nuestra historia de amor hemos compartido viajes, miradas, risas, idiomas, aventuras y muchos pequeños momentos que nos han hecho elegirnos cada día.</p>
+      <p class="body-text" data-i18n="hist_p3">Un año después, desde el Ponte delle Acque en Venecia, llegó un anillo y un "sí" para toda la vida, que cambió nuestro futuro para siempre.</p>
+      <p class="body-text" data-i18n="hist_p4">Ahora queremos compartir nuestro "para siempre" en Madrid, rodeados de las personas que más queremos, nuestra familia y amigos.</p>
+      <p class="sign">Adri &amp; Aitor</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     3. DETALLES
+     ══════════════════════════════════ -->
+<section id="detalles">
+  <div class="page-wrap">
+    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="page-content">
+      <h2 class="section-title" data-i18n="nav_detalles">DETALLES</h2>
+
+      <!-- Ceremonia -->
+      <div class="venue-block">
+        <div class="venue-left">
+          <div class="venue-header">
+            <div class="venue-bullet"></div>
+            <p class="venue-name-title" data-i18n="det_ceremonia">CEREMONIA</p>
+          </div>
+          <p class="venue-sub">Iglesia Santa Bárbara</p>
+          <p class="venue-hour">11:30h</p>
+          <a href="https://maps.google.com/?q=Iglesia+Santa+Barbara+Madrid" target="_blank" class="ubicacion-btn" data-i18n="det_ubicacion">[ UBICACIÓN ]</a>
+        </div>
+        <img class="venue-img" src="img/eglise.jpeg" alt="Iglesia Santa Bárbara">
+      </div>
+      <p class="venue-note" data-i18n="det_nota">*No está permitido echar pétalos de flores, arroz, ni burbujas a la salida de la Iglesia. ¡Lo sentimos!</p>
+
+      <!-- Conector -->
+      <div class="road-connector">
+        <div class="road-dashes">
+          <div class="road-dash"></div><div class="road-dash"></div>
+          <div class="road-dash"></div><div class="road-dash"></div>
+        </div>
+        <span class="car-emoji">🚗</span>
+        <div class="road-dashes">
+          <div class="road-dash"></div><div class="road-dash"></div>
+          <div class="road-dash"></div><div class="road-dash"></div>
+        </div>
+      </div>
+
+      <!-- Celebración -->
+      <div class="venue-block">
+        <div class="venue-left">
+          <div class="venue-header">
+            <div class="venue-bullet"></div>
+            <p class="venue-name-title" data-i18n="det_celebracion">CELEBRACIÓN</p>
+          </div>
+          <p class="venue-sub">Finca Astilbe By Eneldo</p>
+          <p class="venue-sub">La Moraleja</p>
+          <p class="venue-hour">13:30h</p>
+          <a href="https://maps.google.com/?q=Finca+Astilbe+By+Eneldo+Madrid" target="_blank" class="ubicacion-btn" data-i18n="det_ubicacion">[ UBICACIÓN ]</a>
+        </div>
+        <img class="venue-img" src="img/finca.jpeg" alt="Finca Astilbe">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     4. CONFIRMACIÓN
+     ══════════════════════════════════ -->
+<section id="confirmacion">
+  <div class="page-wrap">
+    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="page-content">
+      <h2 class="section-title" data-i18n="nav_confirmacion">CONFIRMACIÓN</h2>
+      <p class="conf-deadline" data-i18n="conf_deadline">SE RUEGA CONFIRMACIÓN ANTES DEL 20/12/2026</p>
+
+      <form id="rsvpForm" onsubmit="enviarFormulario(event)">
+        <!-- Asistir -->
+        <p class="conf-question" data-i18n="conf_asistir">¿Podrás asistir?</p>
+        <div class="radio-group">
+          <label class="radio-opt">
+            <input type="radio" name="asistir" value="si" required>
+            <span data-i18n="conf_si">Sí, allí estaré</span>
+          </label>
+          <label class="radio-opt">
+            <input type="radio" name="asistir" value="no">
+            <span data-i18n="conf_no">No, lo siento</span>
+          </label>
+        </div>
+
+        <p class="conf-note" data-i18n="conf_adults">Hemos decidido celebrar nuestra boda exclusivamente para adultos, para que todos podamos disfrutar de un día fiesta, baile y celebración hasta el final.</p>
+
+        <!-- Nombres -->
         <div class="form-row">
-          <div class="fg"><label data-i18n="label_personas">Número de personas</label><select name="personas"><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></div>
-          <div class="fg"><label data-i18n="label_menu">Menú especial</label>
-            <select name="menu">
-              <option value="ninguno"     data-i18n="m0">Sin restricciones</option>
-              <option value="vegetariano" data-i18n="m1">Vegetariano</option>
-              <option value="vegano"      data-i18n="m2">Vegano</option>
-              <option value="sin_gluten"  data-i18n="m3">Sin gluten</option>
-              <option value="alergia"     data-i18n="m4">Alergia (indicar)</option>
-            </select>
+          <div class="form-group">
+            <label class="form-label" data-i18n="conf_nombre">Nombre</label>
+            <input class="form-input" type="text" name="nombre1" placeholder="" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="conf_apellidos">Apellidos</label>
+            <input class="form-input" type="text" name="apellidos1" placeholder="" required>
           </div>
         </div>
-        <div class="fg"><label data-i18n="label_com">Comentario / Alergias</label><textarea name="comentario" rows="3"></textarea></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-i18n="conf_nombre_acomp">Nombre acompañante</label>
+            <input class="form-input" type="text" name="nombre2" placeholder="">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="conf_apellidos_acomp">Apellidos acompañante</label>
+            <input class="form-input" type="text" name="apellidos2" placeholder="">
+          </div>
+        </div>
+
+        <!-- Bus -->
+        <p class="conf-bus-label" data-i18n="conf_bus_q">Habrá autobús de la Iglesia a la Finca (20 min). ¿Lo vas a necesitar?</p>
+        <div class="check-group">
+          <label class="check-opt">
+            <input type="checkbox" name="bus" value="si">
+            <span data-i18n="conf_bus_si">Sí, lo usaré</span>
+          </label>
+          <label class="check-opt">
+            <input type="checkbox" name="bus" value="no">
+            <span data-i18n="conf_bus_no">No lo necesito</span>
+          </label>
+        </div>
+
+        <!-- Alergias -->
+        <div class="form-group" style="width:100%;margin-bottom:.4em;">
+          <label class="form-label" data-i18n="conf_alergias">Alergias o dietas especiales</label>
+          <textarea class="form-textarea" name="alergias" rows="2"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" data-i18n="conf_enviar">ENVIAR</button>
+        <p class="form-success" id="formSuccess" data-i18n="conf_ok">¡Gracias! Hemos recibido tu confirmación.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     5. ALOJAMIENTOS
+     ══════════════════════════════════ -->
+<section id="alojamientos">
+  <div class="page-wrap">
+    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="page-content">
+      <h2 class="section-title" data-i18n="nav_alojamientos">ALOJAMIENTOS</h2>
+
+      <div class="hotel-block">
+        <div class="hotel-header">
+          <div class="hotel-dot"></div>
+          <div>
+            <p class="hotel-name">HOTEL SARDINERO MADRID ★★★★</p>
+            <p class="hotel-sub" data-i18n="aloj_cerca_iglesia">(cerca de la Iglesia Santa Bárbara)</p>
+            <p class="hotel-sub" data-i18n="aloj_descuento">Código descuento 10%: <strong>"adrianaitor2027"</strong></p>
+            <p class="hotel-sub"><a class="hotel-link" href="https://www.hotelsardineromadrid.com" target="_blank">www.hotelsardineromadrid.com</a></p>
+            <p class="hotel-sub" data-i18n="aloj_reservar">Para reservar, proporcionar código a Gregori Mayor<br>E: reservas@sardinerohoteles.com</p>
+          </div>
+        </div>
       </div>
-      <div class="form-extra" id="ex-no">
-        <div class="fg"><label data-i18n="label_msg">Déjanos un mensaje</label><textarea name="mensaje" rows="3"></textarea></div>
+
+      <div class="hotel-block">
+        <div class="hotel-header">
+          <div class="hotel-dot"></div>
+          <div>
+            <p class="hotel-name" data-i18n="aloj_prox">PRÓXIMAMENTE</p>
+            <p class="hotel-sub" data-i18n="aloj_cerca_finca">(cerca de la Finca Astilbe)</p>
+          </div>
+        </div>
       </div>
-      <button type="submit" class="btn-sub" data-i18n="btn_send">Enviar confirmación</button>
-    </form>
-    <div class="form-ok" id="form-ok"><p data-i18n="success">¡Gracias! Hemos recibido tu confirmación.</p></div>
-  </div>
-</section>
 
-<!-- ── DRESS CODE ── -->
-<section id="dresscode">
-  <div class="dc-inner">
-    <p class="section-eyebrow rv" data-i18n="eyebrow_dc">Dress code</p>
-    <h2 class="section-h rv d1" data-i18n="title_dc">Elegante</h2>
-    <div class="section-line rv d2" style="margin:1rem auto 1.8rem;"></div>
-    <p class="dc-text rv d3" data-i18n="dc_text">Nos gustaría que vinieras elegante para compartir con nosotros este día tan especial.<br><br>Para los caballeros: traje oscuro o de colores neutros.<br>Para las señoras: vestido de cóctel o de noche, maxi vestido o traje elegante.<br><br>Te pedimos evitar el blanco, marfil y crema (¡reservados para la novia 😉!)<br>así como el negro riguroso.</p>
-    <div class="swatches rv">
-      <div class="sw"><div class="sw-dot" style="background:#8fa3b1;"></div><span class="sw-name">Azul acero</span></div>
-      <div class="sw"><div class="sw-dot" style="background:#7a9e7e;"></div><span class="sw-name">Verde salvia</span></div>
-      <div class="sw"><div class="sw-dot" style="background:#c4a09a;"></div><span class="sw-name">Rosa palo</span></div>
-      <div class="sw"><div class="sw-dot" style="background:#b89a6a;"></div><span class="sw-name">Dorado</span></div>
-      <div class="sw"><div class="sw-dot" style="background:#9b8ea8;"></div><span class="sw-name">Malva</span></div>
-      <div class="sw"><div class="sw-dot" style="background:#c8a97e;"></div><span class="sw-name">Arena</span></div>
+      <div class="hotel-block">
+        <div class="hotel-header">
+          <div class="hotel-dot"></div>
+          <div>
+            <p class="hotel-name" data-i18n="aloj_prox">PRÓXIMAMENTE</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-block">
+        <div class="hotel-header">
+          <div class="hotel-dot"></div>
+          <div>
+            <p class="hotel-name" data-i18n="aloj_prox">PRÓXIMAMENTE</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── IBAN ── -->
-<section id="hotel">
-  <p class="section-eyebrow rv d1" data-i18n="eyebrow_hotel">Alojamiento</p>
-  <h2 class="section-h rv d2" data-i18n="title_hotel">Dónde dormir</h2>
-  <div class="hotel-text rv d3" data-i18n="hotel_text">
-    Hemos conseguido una tarifa especial de <strong>10% de descuento</strong> en el Hotel Sardinero Madrid.<br>
-    Al reservar, indica el código para obtener la reducción.
-  </div>
-  <div class="hotel-code-box rv d4">
-    <div class="hotel-code-label" data-i18n="hotel_code_label">Código de reserva</div>
-    <div class="hotel-code-value">adrianaaitor2027</div>
-  </div>
-  <div class="hotel-addr rv" style="transition-delay:.45s">
-    <strong>Hotel Sardinero Madrid</strong><br>
-    <a href="https://maps.google.com/?q=Plaza+de+Alonso+Mart%C3%ADnez+3+Chamber%C3%AD+28004+Madrid" target="_blank" rel="noopener">
-      Plaza de Alonso Martínez, 3 · Chamberí · 28004 Madrid
-    </a>
-  </div>
-</section>
+<!-- ══════════════════════════════════
+     6. LISTA DE BODAS
+     ══════════════════════════════════ -->
+<section id="lista">
+  <div class="page-wrap">
+    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="page-content">
+      <h2 class="section-title" data-i18n="nav_lista">LISTA DE BODAS</h2>
+      <p class="body-text" data-i18n="regalo_text">Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros, pero si queréis tener un detalle con nosotros, os dejamos aquí nuestro número de cuenta.</p>
 
-<section id="regalo">
-  <p class="section-eyebrow rv" data-i18n="eyebrow_gift">Lista de boda</p>
-  <h2 class="section-h rv d1" data-i18n="title_gift">El mejor regalo</h2>
-  <div class="section-line rv d2" style="margin:1rem auto 1.8rem;"></div>
-  <p class="ib-text rv d3" data-i18n="gift_text">Vuestra presencia es el mejor regalo que podéis hacernos.<br>Si queréis contribuir a nuestra luna de miel o a nuestro nuevo hogar,<br>podéis hacer una transferencia con el concepto <strong>"Tu nombre – Boda"</strong>.</p>
-  <div class="ib-lock rv" id="ib-lock">
-    <p class="ib-msg" data-i18n="ib_msg">Introduce la contraseña para ver los datos bancarios:</p>
-    <div class="ib-row">
-      <input type="password" id="ib-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkIb()">
-      <button onclick="checkIb()" data-i18n="ib_btn">Ver</button>
-    </div>
-    <p class="ib-err" id="ib-err" data-i18n="ib_err">Contraseña incorrecta.</p>
-  </div>
-  <div class="ib-shown" id="ib-shown">
-    <div class="ib-box">
-      <p class="ib-lbl">IBAN</p>
-      <p class="ib-num" id="ib-num">ES12 3456 7890 1234 5678 9012</p>
-      <p class="ib-holder" data-i18n="ib_holder">Titular: Adriana Barcos González / Aitor Laborde</p>
-      <br>
-      <p class="ib-lbl" data-i18n="ib_clbl">Concepto</p>
-      <p style="font-size:.76rem;color:var(--muted);font-weight:300;" data-i18n="ib_concept">Tu nombre + Apellido – Boda</p>
-      <button class="cp-btn" onclick="cpIb()" data-i18n="cp_btn">Copiar IBAN</button>
+      <div class="iban-pw-section">
+        <div id="pwSection">
+          <input id="pwInput" class="pw-input" type="password" data-i18n-placeholder="regalo_pw" placeholder="Contraseña">
+          <button class="pw-btn" onclick="verIBAN()" data-i18n="regalo_ver">VER CUENTA</button>
+          <p class="pw-error" id="pwError" data-i18n="regalo_pw_error">Contraseña incorrecta</p>
+        </div>
+        <div class="iban-block" id="ibanBlock">
+          <p class="iban-text" id="ibanText"></p>
+          <button class="copy-btn" onclick="copiarIBAN()" data-i18n="regalo_copy">COPIAR NÚMERO DE CUENTA</button>
+          <p class="copy-ok" id="copyOk" data-i18n="regalo_copied">¡Copiado!</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
-<footer>
-  <em>Adriana &amp; Aitor</em> &nbsp;·&nbsp; 06.03.2027 &nbsp;·&nbsp; Madrid<br>
-  <span style="opacity:.5;font-size:.52rem;margin-top:.4rem;display:block;" data-i18n="footer_msg">Con todo nuestro amor, os esperamos.</span>
-</footer>
+<!-- ══════════════════════════════════
+     7. FIN
+     ══════════════════════════════════ -->
+<section id="fin">
+  <div class="page-wrap">
+    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <div class="page-content">
+      <p class="big-title">ADRI &amp; AITOR</p>
+      <p class="date-line" data-i18n="inv_date">SÁBADO | 6 | MARZO | 2027</p>
+      <p class="city-line">MADRID</p>
+      <p class="separator">◆·····················◆</p>
+      <p class="tagline" data-i18n="fin_gracias">¡GRACIAS!</p>
+      <p class="tagline" data-i18n="fin_esperamos">¡OS ESPERAMOS!</p>
+      <img class="venise-photo" src="img/venise_final.jpeg" alt="Adri & Aitor en Venecia">
+    </div>
+  </div>
+</section>
 
 <script>
-/* ─── i18n ─── */
+/* ══════════════════════════════════════════════════════
+   CONFIGURACIÓN — sustituye esta URL por la de tu Apps Script
+   ══════════════════════════════════════════════════════ */
+const APPS_SCRIPT_URL = 'PEGAR_URL_APPS_SCRIPT_AQUI';
+
+/* IBAN real (oculto detrás de la contraseña) */
+const IBAN_REAL = 'ES00 0000 0000 0000 0000 0000'; /* ← pon el IBAN real aquí */
+const PW_BODA = 'boda2027';
+
+/* ══════════════════════════════════
+   TRADUCCIONES
+   ══════════════════════════════════ */
 const T = {
-  es:{
-    nav_inv:"Inicio",nav_cer:"Ceremonia",nav_tl:"Programa",nav_rsvp:"Confirmación",nav_hotel:"Hotel",nav_gift:"Regalo",
-    cover_details:"DETALLES",cover_confirm:"CONFIRMACIÓN",cover_hotel:"ALOJAMIENTOS",cover_gift:"LISTA DE BODAS",
-    eyebrow_hotel:"Alojamiento",title_hotel:"Dónde dormir",
-    hotel_text:"Hemos conseguido una tarifa especial de <strong>10% de descuento</strong> en el Hotel Sardinero Madrid.<br>Al reservar, indica el código para obtener la reducción.",
-    hotel_code_label:"Código de reserva",
-    inv_tagline:"¡NOS CASAMOS!",
-    hero_names:"ADRI &amp; AITOR",
-    inv_text_short:"Nos gustaría compartir este día tan especial con vosotros.<br>Gracias por todos los momentos compartidos.<br>Nos sentimos muy afortunados de teneros como familia y amigos.",
-    os_esperamos:"¡OS ESPERAMOS!",
-    cd_days:"días",cd_hours:"horas",cd_mins:"minutos",cd_secs:"segundos",
-    tag_cer:"11:30 h · Sábado 6 de marzo",tag_finca:"13:30 h · Sábado 6 de marzo",
-    title_cer:"IGLESIA<br>SANTA BÁRBARA",title_finca:"FINCA ASTILBE<br>by ENELDO",
-    ver_mapa:"[ UBICACIÓN ]",
-    eyebrow_tl:"El gran día",tl_title:"Programa",
-    tl_cer:"Ceremonia",tl_cer_desc:"Iglesia Santa Bárbara · Plaza de Alonso Martínez",
-    tl_cock:"Cóctel",tl_cock_desc:"Finca Astilbe · Carr. de Fuencarral, km 1,9",
-    tl_banq:"Banquete",tl_banq_desc:"Menú de celebración · Finca Astilbe",
-    tl_fiesta_t:"¡Toda la noche!",tl_fiesta:"¡Fiesta!",tl_fiesta_desc:"Baile y celebración · Finca Astilbe",
-    eyebrow_nos:"Nosotros",title_nos:"Adriana &amp; Aitor",
-    eyebrow_rsvp:"Antes del 1 de diciembre de 2026",title_rsvp:"Confirmación de asistencia",
-    rsvp_note:"Por favor, confirma tu asistencia antes del 1 de diciembre de 2026.",
-    label_nombre:"Nombre",label_apellido:"Apellido",label_asist:"¿Podrás venir?",
-    btn_yes:"Sí, allí estaré",btn_no:"Lo siento, no podré",
-    label_personas:"Número de personas",label_menu:"Menú especial",
-    m0:"Sin restricciones",m1:"Vegetariano",m2:"Vegano",m3:"Sin gluten",m4:"Alergia (indicar)",
-    label_com:"Comentario / Alergias",label_msg:"Déjanos un mensaje",
-    btn_send:"Enviar confirmación",success:"¡Gracias! Hemos recibido tu confirmación.",
-    eyebrow_dc:"Dress code",title_dc:"Elegante",
-    dc_text:"Nos gustaría que vinieras elegante para compartir con nosotros este día tan especial.<br><br>Para los caballeros: traje oscuro o de colores neutros.<br>Para las señoras: vestido de cóctel o de noche, maxi vestido o traje elegante.<br><br>Te pedimos evitar el blanco, marfil y crema (¡reservados para la novia 😉!)<br>así como el negro riguroso.",
-    eyebrow_gift:"Lista de boda",title_gift:"El mejor regalo",
-    gift_text:"Vuestra presencia es el mejor regalo que podéis hacernos.<br>Si queréis contribuir a nuestra luna de miel o a nuestro nuevo hogar,<br>podéis hacer una transferencia con el concepto <strong>\"Tu nombre – Boda\"</strong>.",
-    ib_msg:"Introduce la contraseña para ver los datos bancarios:",ib_btn:"Ver",ib_err:"Contraseña incorrecta.",
-    ib_holder:"Titular: Adriana Barcos González / Aitor Laborde",ib_clbl:"Concepto",ib_concept:"Tu nombre + Apellido – Boda",
-    cp_btn:"Copiar IBAN",footer_msg:"Con todo nuestro amor, os esperamos."
+  es: {
+    nav_inicio:'INICIO', nav_historia:'NUESTRA HISTORIA', nav_detalles:'DETALLES',
+    nav_confirmacion:'CONFIRMACIÓN', nav_alojamientos:'ALOJAMIENTOS',
+    nav_lista:'LISTA DE BODAS', nav_fin:'FIN',
+    inv_date:'SÁBADO | 6 | MARZO | 2027', inv_tagline:'¡NOS CASAMOS!',
+    inv_text1:'Nos sentimos muy afortunados de teneros como familia y amigos.',
+    inv_text2:'Por eso, nos gustaría invitaros a compartir este día tan especial con nosotros.',
+    cd_dias:'días', cd_horas:'horas', cd_min:'minutos', cd_seg:'segundos',
+    hist_p1:'Adri, arquitecta técnica e interiorista, de Pamplona. Aitor, ingeniero y músico, de Bayonne. Dos ciudades hermanadas, dos países, dos caminos y un destino que quiso que nos conociéramos en Madrid en 2024.',
+    hist_p2:'Desde que comenzó nuestra historia de amor hemos compartido viajes, miradas, risas, idiomas, aventuras y muchos pequeños momentos que nos han hecho elegirnos cada día.',
+    hist_p3:'Un año después, desde el Ponte delle Acque en Venecia, llegó un anillo y un "sí" para toda la vida, que cambió nuestro futuro para siempre.',
+    hist_p4:'Ahora queremos compartir nuestro "para siempre" en Madrid, rodeados de las personas que más queremos, nuestra familia y amigos.',
+    det_ceremonia:'CEREMONIA', det_celebracion:'CELEBRACIÓN', det_ubicacion:'[ UBICACIÓN ]',
+    det_nota:'*No está permitido echar pétalos de flores, arroz, ni burbujas a la salida de la Iglesia. ¡Lo sentimos!',
+    conf_deadline:'SE RUEGA CONFIRMACIÓN ANTES DEL 20/12/2026',
+    conf_asistir:'¿Podrás asistir?', conf_si:'Sí, allí estaré', conf_no:'No, lo siento',
+    conf_adults:'Hemos decidido celebrar nuestra boda exclusivamente para adultos, para que todos podamos disfrutar de un día de fiesta, baile y celebración hasta el final.',
+    conf_nombre:'Nombre', conf_apellidos:'Apellidos',
+    conf_nombre_acomp:'Nombre acompañante', conf_apellidos_acomp:'Apellidos acompañante',
+    conf_bus_q:'Habrá autobús de la Iglesia a la Finca (20 min). ¿Lo vas a necesitar?',
+    conf_bus_si:'Sí, lo usaré', conf_bus_no:'No lo necesito',
+    conf_alergias:'Alergias o dietas especiales',
+    conf_enviar:'ENVIAR', conf_ok:'¡Gracias! Hemos recibido tu confirmación.',
+    aloj_cerca_iglesia:'(cerca de la Iglesia Santa Bárbara)',
+    aloj_cerca_finca:'(cerca de la Finca Astilbe)',
+    aloj_descuento:'Código descuento 10%: "adrianaitor2027"',
+    aloj_reservar:'Para reservar, proporcionar código a Gregori Mayor\nE: reservas@sardinerohoteles.com',
+    aloj_prox:'PRÓXIMAMENTE',
+    regalo_text:'Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros, pero si queréis tener un detalle con nosotros, os dejamos aquí nuestro número de cuenta.',
+    regalo_pw:'Contraseña', regalo_ver:'VER CUENTA',
+    regalo_pw_error:'Contraseña incorrecta',
+    regalo_copy:'COPIAR NÚMERO DE CUENTA', regalo_copied:'¡Copiado!',
+    fin_gracias:'¡GRACIAS!', fin_esperamos:'¡OS ESPERAMOS!'
   },
-  fr:{
-    nav_inv:"Accueil",nav_cer:"Cérémonie",nav_tl:"Programme",nav_rsvp:"Confirmation",nav_hotel:"Hôtel",nav_gift:"Cadeau",
-    cover_details:"DÉTAILS",cover_confirm:"CONFIRMATION",cover_hotel:"HÉBERGEMENTS",cover_gift:"LISTE DE MARIAGE",
-    eyebrow_hotel:"Hébergement",title_hotel:"Où dormir",
-    hotel_text:"Nous avons obtenu un tarif spécial de <strong>10% de réduction</strong> à l'Hôtel Sardinero Madrid.<br>Lors de votre réservation, indiquez le code pour bénéficier de la réduction.",
-    hotel_code_label:"Code de réservation",
-    inv_tagline:"NOUS NOUS MARIONS !",
-    hero_names:"ADRI &amp; AITOR",
-    inv_text_short:"Nous aimerions partager ce jour si spécial avec vous.<br>Merci pour tous les moments partagés.<br>Nous nous sentons très chanceux de vous avoir comme famille et amis.",
-    os_esperamos:"NOUS VOUS ATTENDONS !",
-    cd_days:"jours",cd_hours:"heures",cd_mins:"minutes",cd_secs:"secondes",
-    tag_cer:"11h30 · Samedi 6 mars",tag_finca:"13h30 · Samedi 6 mars",
-    title_cer:"IGLESIA<br>SANTA BÁRBARA",title_finca:"FINCA ASTILBE<br>by ENELDO",
-    ver_mapa:"[ LOCALISATION ]",
-    eyebrow_tl:"Le grand jour",tl_title:"Programme",
-    tl_cer:"Cérémonie",tl_cer_desc:"Iglesia Santa Bárbara · Plaza de Alonso Martínez",
-    tl_cock:"Cocktail",tl_cock_desc:"Finca Astilbe · Carr. de Fuencarral, km 1,9",
-    tl_banq:"Dîner",tl_banq_desc:"Menu de célébration · Finca Astilbe",
-    tl_fiesta_t:"Toute la nuit !",tl_fiesta:"Bal !",tl_fiesta_desc:"Danse et célébration · Finca Astilbe",
-    eyebrow_nos:"Nous",title_nos:"Adriana &amp; Aitor",
-    eyebrow_rsvp:"Avant le 1er décembre 2026",title_rsvp:"Confirmation de présence",
-    rsvp_note:"Merci de confirmer votre présence avant le 1er décembre 2026.",
-    label_nombre:"Prénom",label_apellido:"Nom",label_asist:"Serez-vous là ?",
-    btn_yes:"Oui, j'y serai !",btn_no:"Désolé(e), je ne pourrai pas",
-    label_personas:"Nombre de personnes",label_menu:"Menu spécial",
-    m0:"Sans restriction",m1:"Végétarien",m2:"Végétalien",m3:"Sans gluten",m4:"Allergie (préciser)",
-    label_com:"Commentaire / Allergies",label_msg:"Laissez-nous un message",
-    btn_send:"Envoyer la confirmation",success:"Merci ! Nous avons bien reçu votre confirmation.",
-    eyebrow_dc:"Dress code",title_dc:"Élégant",
-    dc_text:"Nous vous invitons à venir élégant(e) pour partager ce jour si spécial.<br><br>Pour les messieurs : costume sombre ou tons neutres.<br>Pour les dames : robe de cocktail ou de soirée, robe longue ou tailleur élégant.<br><br>Merci d'éviter le blanc, l'ivoire et le crème (réservés à la mariée 😉!) ainsi que le noir strict.",
-    eyebrow_gift:"Liste de mariage",title_gift:"Le plus beau cadeau",
-    gift_text:"Votre présence est le plus beau cadeau que vous puissiez nous offrir.<br>Si vous souhaitez contribuer à notre lune de miel ou à notre nouveau foyer,<br>vous pouvez effectuer un virement avec le libellé <strong>\"Votre prénom – Mariage\"</strong>.",
-    ib_msg:"Entrez le mot de passe pour voir les coordonnées bancaires :",ib_btn:"Voir",ib_err:"Mot de passe incorrect.",
-    ib_holder:"Titulaire : Adriana Barcos González / Aitor Laborde",ib_clbl:"Libellé",ib_concept:"Votre prénom + Nom – Mariage",
-    cp_btn:"Copier l'IBAN",footer_msg:"Avec tout notre amour, nous vous attendons."
+  fr: {
+    nav_inicio:'ACCUEIL', nav_historia:'NOTRE HISTOIRE', nav_detalles:'DÉTAILS',
+    nav_confirmacion:'CONFIRMATION', nav_alojamientos:'HÉBERGEMENTS',
+    nav_lista:'LISTE DE MARIAGE', nav_fin:'FIN',
+    inv_date:'SAMEDI | 6 | MARS | 2027', inv_tagline:'ON SE MARIE !',
+    inv_text1:'Nous nous sentons très chanceux de vous avoir comme famille et amis.',
+    inv_text2:"C'est pourquoi nous souhaiterions vous inviter à partager ce jour si spécial avec nous.",
+    cd_dias:'jours', cd_horas:'heures', cd_min:'minutes', cd_seg:'secondes',
+    hist_p1:"Adri, architecte technique et décoratrice d'intérieur, de Pampelune. Aitor, ingénieur et musicien, de Bayonne. Deux villes jumelées, deux pays, deux chemins et un destin qui a voulu qu'on se rencontre à Madrid en 2024.",
+    hist_p2:"Depuis le début de notre histoire d'amour, nous avons partagé des voyages, des regards, des rires, des langues, des aventures et de nombreux petits moments qui nous ont fait nous choisir chaque jour.",
+    hist_p3:"Un an plus tard, depuis le Ponte delle Acque à Venise, est arrivée une bague et un 'oui' pour la vie, qui a changé notre avenir pour toujours.",
+    hist_p4:"Nous voulons maintenant partager notre 'pour toujours' à Madrid, entourés des personnes que nous aimons le plus, notre famille et nos amis.",
+    det_ceremonia:'CÉRÉMONIE', det_celebracion:'CÉLÉBRATION', det_ubicacion:'[ LOCALISATION ]',
+    det_nota:"*Il n'est pas autorisé de jeter des pétales de fleurs, du riz ou des bulles à la sortie de l'Église. Désolés !",
+    conf_deadline:'MERCI DE CONFIRMER AVANT LE 20/12/2026',
+    conf_asistir:'Pourrez-vous être présent(e) ?', conf_si:"Oui, j'y serai", conf_no:'Non, désolé(e)',
+    conf_adults:"Nous avons décidé de célébrer notre mariage exclusivement pour les adultes, afin que tout le monde puisse profiter d'une journée de fête, de danse et de célébration jusqu'à la fin.",
+    conf_nombre:'Prénom', conf_apellidos:'Nom de famille',
+    conf_nombre_acomp:'Prénom accompagnant(e)', conf_apellidos_acomp:'Nom accompagnant(e)',
+    conf_bus_q:"Il y aura un bus de l'Église à la Finca (20 min). En aurez-vous besoin ?",
+    conf_bus_si:"Oui, je l'utiliserai", conf_bus_no:'Non merci',
+    conf_alergias:'Allergies ou régimes spéciaux',
+    conf_enviar:'ENVOYER', conf_ok:'Merci ! Nous avons bien reçu votre confirmation.',
+    aloj_cerca_iglesia:"(près de l'Église Santa Bárbara)",
+    aloj_cerca_finca:'(près de la Finca Astilbe)',
+    aloj_descuento:'Code de réduction 10% : "adrianaitor2027"',
+    aloj_reservar:'Pour réserver, fournir le code à Gregori Mayor\nE: reservas@sardinerohoteles.com',
+    aloj_prox:'PROCHAINEMENT',
+    regalo_text:"Votre présence et votre envie de profiter est le plus beau cadeau de cette journée si spéciale pour nous, mais si vous souhaitez nous faire un petit cadeau, voici notre numéro de compte.",
+    regalo_pw:'Mot de passe', regalo_ver:'VOIR LE COMPTE',
+    regalo_pw_error:'Mot de passe incorrect',
+    regalo_copy:'COPIER LE NUMÉRO DE COMPTE', regalo_copied:'Copié !',
+    fin_gracias:'MERCI !', fin_esperamos:'ON VOUS ATTEND !'
   },
-  en:{
-    nav_inv:"Home",nav_cer:"Ceremony",nav_tl:"Schedule",nav_rsvp:"RSVP",nav_hotel:"Hotel",nav_gift:"Gift",
-    cover_details:"DETAILS",cover_confirm:"CONFIRMATION",cover_hotel:"ACCOMMODATION",cover_gift:"GIFT LIST",
-    eyebrow_hotel:"Accommodation",title_hotel:"Where to stay",
-    hotel_text:"We have arranged a special rate of <strong>10% off</strong> at Hotel Sardinero Madrid.<br>When booking, mention the code to get the discount.",
-    hotel_code_label:"Booking code",
-    inv_tagline:"WE'RE GETTING MARRIED!",
-    hero_names:"ADRI &amp; AITOR",
-    inv_text_short:"We would love to share this very special day with you.<br>Thank you for all the moments we've shared.<br>We feel so lucky to have you as family and friends.",
-    os_esperamos:"WE CAN'T WAIT TO SEE YOU!",
-    cd_days:"days",cd_hours:"hours",cd_mins:"minutes",cd_secs:"seconds",
-    tag_cer:"11:30 am · Saturday March 6th",tag_finca:"1:30 pm · Saturday March 6th",
-    title_cer:"IGLESIA<br>SANTA BÁRBARA",title_finca:"FINCA ASTILBE<br>by ENELDO",
-    ver_mapa:"[ LOCATION ]",
-    eyebrow_tl:"The big day",tl_title:"Schedule",
-    tl_cer:"Ceremony",tl_cer_desc:"Iglesia Santa Bárbara · Plaza de Alonso Martínez",
-    tl_cock:"Cocktail",tl_cock_desc:"Finca Astilbe · Carr. de Fuencarral, km 1,9",
-    tl_banq:"Dinner",tl_banq_desc:"Celebration menu · Finca Astilbe",
-    tl_fiesta_t:"All night long!",tl_fiesta:"Party!",tl_fiesta_desc:"Dancing & celebration · Finca Astilbe",
-    eyebrow_nos:"Us",title_nos:"Adriana &amp; Aitor",
-    eyebrow_rsvp:"By December 1st, 2026",title_rsvp:"RSVP",
-    rsvp_note:"Please let us know if you can make it by December 1st, 2026.",
-    label_nombre:"First name",label_apellido:"Last name",label_asist:"Will you join us?",
-    btn_yes:"Yes, I'll be there!",btn_no:"Sorry, I can't make it",
-    label_personas:"Number of guests",label_menu:"Special menu",
-    m0:"No restrictions",m1:"Vegetarian",m2:"Vegan",m3:"Gluten-free",m4:"Allergy (specify)",
-    label_com:"Comments / Allergies",label_msg:"Leave us a message",
-    btn_send:"Send RSVP",success:"Thank you! We've received your reply.",
-    eyebrow_dc:"Dress code",title_dc:"Smart elegant",
-    dc_text:"We'd love for you to dress elegantly to share this special day with us.<br><br>For gentlemen: dark or neutral-toned suit.<br>For ladies: cocktail or evening dress, maxi dress, or elegant trouser suit.<br><br>Please avoid white, ivory and cream (reserved for the bride 😉!) and strict black.",
-    eyebrow_gift:"Gift list",title_gift:"The best gift",
-    gift_text:"Your presence is the greatest gift you can give us.<br>If you'd like to contribute to our honeymoon or new home,<br>please make a bank transfer with the reference <strong>\"Your name – Wedding\"</strong>.",
-    ib_msg:"Enter the password to see the bank details:",ib_btn:"View",ib_err:"Incorrect password.",
-    ib_holder:"Account holder: Adriana Barcos González / Aitor Laborde",ib_clbl:"Reference",ib_concept:"Your first name + Last name – Wedding",
-    cp_btn:"Copy IBAN",footer_msg:"With all our love, we look forward to seeing you."
+  en: {
+    nav_inicio:'HOME', nav_historia:'OUR STORY', nav_detalles:'DETAILS',
+    nav_confirmacion:'CONFIRMATION', nav_alojamientos:'ACCOMMODATION',
+    nav_lista:'GIFT LIST', nav_fin:'THE END',
+    inv_date:'SATURDAY | 6 | MARCH | 2027', inv_tagline:"WE'RE GETTING MARRIED!",
+    inv_text1:'We feel very lucky to have you as family and friends.',
+    inv_text2:'That is why we would love to invite you to share this very special day with us.',
+    cd_dias:'days', cd_horas:'hours', cd_min:'minutes', cd_seg:'seconds',
+    hist_p1:'Adri, technical architect and interior designer, from Pamplona. Aitor, engineer and musician, from Bayonne. Two twin cities, two countries, two paths and a destiny that brought us together in Madrid in 2024.',
+    hist_p2:'Since our love story began, we have shared travels, glances, laughter, languages, adventures and many small moments that have made us choose each other every day.',
+    hist_p3:"One year later, from the Ponte delle Acque in Venice, came a ring and a 'yes' for life, which changed our future forever.",
+    hist_p4:"We now want to share our 'forever' in Madrid, surrounded by the people we love most, our family and friends.",
+    det_ceremonia:'CEREMONY', det_celebracion:'CELEBRATION', det_ubicacion:'[ LOCATION ]',
+    det_nota:'*Throwing flower petals, rice or blowing bubbles is not allowed at the Church exit. We\'re sorry!',
+    conf_deadline:'PLEASE CONFIRM BY 20/12/2026',
+    conf_asistir:"Will you be able to attend?", conf_si:"Yes, I'll be there", conf_no:"No, sorry",
+    conf_adults:"We've decided to celebrate our wedding exclusively for adults, so that everyone can enjoy a day of celebration, dancing and fun until the end.",
+    conf_nombre:'First name', conf_apellidos:'Last name',
+    conf_nombre_acomp:'Guest first name', conf_apellidos_acomp:'Guest last name',
+    conf_bus_q:'There will be a bus from the Church to the Finca (20 min). Will you need it?',
+    conf_bus_si:"Yes, I'll use it", conf_bus_no:"No, thanks",
+    conf_alergias:'Allergies or special diets',
+    conf_enviar:'SEND', conf_ok:'Thank you! We have received your confirmation.',
+    aloj_cerca_iglesia:'(near Iglesia Santa Bárbara)',
+    aloj_cerca_finca:'(near Finca Astilbe)',
+    aloj_descuento:'10% discount code: "adrianaitor2027"',
+    aloj_reservar:'To book, provide code to Gregori Mayor\nE: reservas@sardinerohoteles.com',
+    aloj_prox:'COMING SOON',
+    regalo_text:"Your presence and joy are the best gift on this very special day for us, but if you'd like to give us something, here is our bank account number.",
+    regalo_pw:'Password', regalo_ver:'VIEW ACCOUNT',
+    regalo_pw_error:'Incorrect password',
+    regalo_copy:'COPY ACCOUNT NUMBER', regalo_copied:'Copied!',
+    fin_gracias:'THANK YOU!', fin_esperamos:"WE CAN'T WAIT TO SEE YOU!"
   },
-  it:{
-    nav_inv:"Home",nav_cer:"Cerimonia",nav_tl:"Programma",nav_rsvp:"Conferma",nav_hotel:"Hotel",nav_gift:"Regalo",
-    cover_details:"DETTAGLI",cover_confirm:"CONFERMA",cover_hotel:"ALLOGGI",cover_gift:"LISTA NOZZE",
-    eyebrow_hotel:"Alloggio",title_hotel:"Dove dormire",
-    hotel_text:"Abbiamo ottenuto una tariffa speciale di <strong>10% di sconto</strong> all'Hotel Sardinero Madrid.<br>Al momento della prenotazione, indica il codice per ottenere lo sconto.",
-    hotel_code_label:"Codice prenotazione",
-    inv_tagline:"CI SPOSIAMO!",
-    hero_names:"ADRI &amp; AITOR",
-    inv_text_short:"Ci piacerebbe condividere con voi questo giorno così speciale.<br>Grazie per tutti i momenti condivisi.<br>Ci sentiamo molto fortunati di avervi come famiglia e amici.",
-    os_esperamos:"VI ASPETTIAMO!",
-    cd_days:"giorni",cd_hours:"ore",cd_mins:"minuti",cd_secs:"secondi",
-    tag_cer:"11:30 · Sabato 6 marzo",tag_finca:"13:30 · Sabato 6 marzo",
-    title_cer:"IGLESIA<br>SANTA BÁRBARA",title_finca:"FINCA ASTILBE<br>by ENELDO",
-    ver_mapa:"[ POSIZIONE ]",
-    eyebrow_tl:"Il grande giorno",tl_title:"Programma",
-    tl_cer:"Cerimonia",tl_cer_desc:"Iglesia Santa Bárbara · Plaza de Alonso Martínez",
-    tl_cock:"Cocktail",tl_cock_desc:"Finca Astilbe · Carr. de Fuencarral, km 1,9",
-    tl_banq:"Banchetto",tl_banq_desc:"Menu di celebrazione · Finca Astilbe",
-    tl_fiesta_t:"Tutta la notte!",tl_fiesta:"Festa!",tl_fiesta_desc:"Ballo e celebrazione · Finca Astilbe",
-    eyebrow_nos:"Noi",title_nos:"Adriana &amp; Aitor",
-    eyebrow_rsvp:"Entro il 1° dicembre 2026",title_rsvp:"Conferma di partecipazione",
-    rsvp_note:"Ti chiediamo di confermare la partecipazione entro il 1° dicembre 2026.",
-    label_nombre:"Nome",label_apellido:"Cognome",label_asist:"Riuscirai a venire?",
-    btn_yes:"Sì, ci sarò!",btn_no:"Purtroppo non posso",
-    label_personas:"Numero di persone",label_menu:"Menu speciale",
-    m0:"Nessuna restrizione",m1:"Vegetariano",m2:"Vegano",m3:"Senza glutine",m4:"Allergia (specificare)",
-    label_com:"Commento / Allergie",label_msg:"Lasciaci un messaggio",
-    btn_send:"Invia conferma",success:"Grazie! Abbiamo ricevuto la tua conferma.",
-    eyebrow_dc:"Dress code",title_dc:"Elegante",
-    dc_text:"Ci farebbe piacere che tu venissi elegante per condividere questo giorno speciale.<br><br>Per gli uomini: abito scuro o in toni neutri.<br>Per le donne: abito da cocktail, abito lungo o tailleur elegante.<br><br>Ti chiediamo di evitare il bianco, l'avorio e il crema (riservati alla sposa 😉!) così come il nero rigoroso.",
-    eyebrow_gift:"Lista nozze",title_gift:"Il regalo più bello",
-    gift_text:"La vostra presenza è il regalo più bello che possiate farci.<br>Se volete contribuire alla nostra luna di miele o alla nostra nuova casa,<br>potete fare un bonifico con la causale <strong>\"Nome – Matrimonio\"</strong>.",
-    ib_msg:"Inserisci la password per vedere i dati bancari:",ib_btn:"Mostra",ib_err:"Password errata.",
-    ib_holder:"Intestatario: Adriana Barcos González / Aitor Laborde",ib_clbl:"Causale",ib_concept:"Nome + Cognome – Matrimonio",
-    cp_btn:"Copia IBAN",footer_msg:"Con tutto il nostro amore, vi aspettiamo."
+  it: {
+    nav_inicio:'INIZIO', nav_historia:'LA NOSTRA STORIA', nav_detalles:'DETTAGLI',
+    nav_confirmacion:'CONFERMA', nav_alojamientos:'ALLOGGI',
+    nav_lista:'LISTA NOZZE', nav_fin:'FINE',
+    inv_date:'SABATO | 6 | MARZO | 2027', inv_tagline:'CI SPOSIAMO!',
+    inv_text1:'Ci sentiamo molto fortunati di avervi come famiglia e amici.',
+    inv_text2:'Per questo, vorremmo invitarvi a condividere questo giorno così speciale con noi.',
+    cd_dias:'giorni', cd_horas:'ore', cd_min:'minuti', cd_seg:'secondi',
+    hist_p1:'Adri, architetta tecnica e interior designer, di Pamplona. Aitor, ingegnere e musicista, di Bayonne. Due città gemelle, due paesi, due cammini e un destino che ha voluto che ci conoscessimo a Madrid nel 2024.',
+    hist_p2:"Da quando è iniziata la nostra storia d'amore abbiamo condiviso viaggi, sguardi, risate, lingue, avventure e tanti piccoli momenti che ci hanno fatto sceglierci ogni giorno.",
+    hist_p3:"Un anno dopo, dal Ponte delle Acque a Venezia, è arrivato un anello e un 'sì' per tutta la vita, che ha cambiato il nostro futuro per sempre.",
+    hist_p4:"Ora vogliamo condividere il nostro 'per sempre' a Madrid, circondati dalle persone che amiamo di più, la nostra famiglia e i nostri amici.",
+    det_ceremonia:'CERIMONIA', det_celebracion:'CELEBRAZIONE', det_ubicacion:'[ POSIZIONE ]',
+    det_nota:'*Non è consentito lanciare petali di fiori, riso o bolle all\'uscita della Chiesa. Ci dispiace!',
+    conf_deadline:'SI PREGA DI CONFERMARE ENTRO IL 20/12/2026',
+    conf_asistir:'Potrete essere presenti?', conf_si:'Sì, ci sarò', conf_no:'No, mi dispiace',
+    conf_adults:"Abbiamo deciso di celebrare le nostre nozze esclusivamente per adulti, in modo che tutti possano godere di una giornata di festa, ballo e celebrazione fino alla fine.",
+    conf_nombre:'Nome', conf_apellidos:'Cognome',
+    conf_nombre_acomp:'Nome accompagnatore/trice', conf_apellidos_acomp:'Cognome accompagnatore/trice',
+    conf_bus_q:'Ci sarà un autobus dalla Chiesa alla Finca (20 min). Ne avrete bisogno?',
+    conf_bus_si:'Sì, lo userò', conf_bus_no:'No, grazie',
+    conf_alergias:'Allergie o diete speciali',
+    conf_enviar:'INVIA', conf_ok:'Grazie! Abbiamo ricevuto la vostra conferma.',
+    aloj_cerca_iglesia:'(vicino alla Chiesa Santa Bárbara)',
+    aloj_cerca_finca:'(vicino alla Finca Astilbe)',
+    aloj_descuento:'Codice sconto 10%: "adrianaitor2027"',
+    aloj_reservar:'Per prenotare, fornire il codice a Gregori Mayor\nE: reservas@sardinerohoteles.com',
+    aloj_prox:'PROSSIMAMENTE',
+    regalo_text:"La vostra presenza e voglia di divertirvi è il regalo migliore in questo giorno così speciale per noi, ma se volete farci un regalo, vi lasciamo qui il nostro numero di conto.",
+    regalo_pw:'Password', regalo_ver:'VEDI CONTO',
+    regalo_pw_error:'Password errata',
+    regalo_copy:'COPIA IL NUMERO DI CONTO', regalo_copied:'Copiato!',
+    fin_gracias:'GRAZIE!', fin_esperamos:'VI ASPETTIAMO!'
   }
 };
 
-let lang='es';
-function setLang(l){
-  lang=l;
-  document.querySelectorAll('.lb').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.lb').forEach(b=>{if(b.textContent===l.toUpperCase())b.classList.add('active');});
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n');
-    if(T[l][k]!==undefined) el.innerHTML=T[l][k];
+let lang = 'es';
+
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lb').forEach(b => b.classList.toggle('active', b.textContent === l.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    if (T[l][k] !== undefined) el.textContent = T[l][k];
   });
-  document.documentElement.lang=l;
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const k = el.dataset.i18nPlaceholder;
+    if (T[l][k] !== undefined) el.placeholder = T[l][k];
+  });
+  document.documentElement.lang = l;
 }
 
-/* ─── MARIÉS : droite → gauche au scroll ─── */
-(function(){
-  const el=document.getElementById('maries-walk');
-  let ticking=false;
-  function update(){
-    const pct=Math.min(window.scrollY/(document.body.scrollHeight-window.innerHeight),1);
-    const imgW=el.offsetWidth;
-    const maxX=window.innerWidth-imgW;
-    el.style.transform=`translateX(${(1-pct)*maxX}px)`;
-    ticking=false;
-  }
-  window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true;}},{passive:true});
-  update();
-})();
-
-/* ─── COUNTDOWN ─── */
-function tick(){
-  const diff=new Date('2027-03-06T11:30:00')-new Date();
-  if(diff<=0)return;
-  document.getElementById('cd-d').textContent=Math.floor(diff/86400000);
-  document.getElementById('cd-h').textContent=Math.floor(diff%86400000/3600000);
-  document.getElementById('cd-m').textContent=Math.floor(diff%3600000/60000);
-  document.getElementById('cd-s').textContent=Math.floor(diff%60000/1000);
+/* ── COUNTDOWN ── */
+function updateCountdown() {
+  const target = new Date('2027-03-06T11:30:00');
+  const now = new Date();
+  let diff = Math.max(0, target - now);
+  const d = Math.floor(diff / 86400000); diff %= 86400000;
+  const h = Math.floor(diff / 3600000);  diff %= 3600000;
+  const m = Math.floor(diff / 60000);    diff %= 60000;
+  const s = Math.floor(diff / 1000);
+  document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
 }
-tick(); setInterval(tick,1000);
+setInterval(updateCountdown, 1000);
+updateCountdown();
 
-/* ─── SCROLL REVEAL ─── */
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('up');obs.unobserve(e.target);}});
-},{threshold:0.08});
-document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>obs.observe(el));
-
-/* ─── RSVP ─── */
-function pick(c){
-  document.getElementById('hid-asist').value=c;
-  document.getElementById('btn-y').className='att-btn'+(c==='yes'?' yes':'');
-  document.getElementById('btn-n').className='att-btn'+(c==='no'?' no':'');
-  document.getElementById('ex-yes').className='form-extra'+(c==='yes'?' on':'');
-  document.getElementById('ex-no').className='form-extra'+(c==='no'?' on':'');
-}
-document.getElementById('rsvp-form').addEventListener('submit',async function(e){
+/* ── FORMULARIO → GOOGLE SHEETS ── */
+async function enviarFormulario(e) {
   e.preventDefault();
-  if(!document.getElementById('hid-asist').value)return;
-  const btn=this.querySelector('.btn-sub');btn.textContent='...';btn.disabled=true;
-  try{
-    const r=await fetch(this.action,{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});
-    if(r.ok){this.style.display='none';document.getElementById('form-ok').style.display='block';}
-    else{btn.textContent=T[lang].btn_send;btn.disabled=false;}
-  }catch{btn.textContent=T[lang].btn_send;btn.disabled=false;}
+  const form = document.getElementById('rsvpForm');
+  const data = new URLSearchParams(new FormData(form));
+
+  if (APPS_SCRIPT_URL === 'PEGAR_URL_APPS_SCRIPT_AQUI') {
+    /* Mode test sans Apps Script configuré */
+    console.log('Form data:', Object.fromEntries(new FormData(form)));
+    document.getElementById('formSuccess').style.display = 'block';
+    return;
+  }
+
+  try {
+    fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', body:data });
+    document.getElementById('formSuccess').style.display = 'block';
+    form.reset();
+  } catch(err) {
+    console.error('Erreur envoi:', err);
+  }
+}
+
+/* ── IBAN PASSWORD ── */
+function verIBAN() {
+  const pw = document.getElementById('pwInput').value;
+  const err = document.getElementById('pwError');
+  if (pw === PW_BODA) {
+    document.getElementById('pwSection').style.display = 'none';
+    document.getElementById('ibanBlock').style.display = 'block';
+    document.getElementById('ibanText').textContent = 'IBAN: ' + IBAN_REAL;
+  } else {
+    err.style.display = 'block';
+  }
+}
+
+document.getElementById('pwInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') { e.preventDefault(); verIBAN(); }
 });
 
-/* ─── IBAN ─── */
-const IBAN_PWD='boda2027';
-const REAL_IBAN='ES12 3456 7890 1234 5678 9012'; // ← REEMPLAZAR CON IBAN REAL
-function checkIb(){
-  if(document.getElementById('ib-pwd').value===IBAN_PWD){
-    document.getElementById('ib-lock').style.display='none';
-    document.getElementById('ib-num').textContent=REAL_IBAN;
-    document.getElementById('ib-shown').classList.add('on');
-    document.getElementById('ib-err').style.display='none';
-  }else{
-    document.getElementById('ib-err').style.display='block';
-    document.getElementById('ib-pwd').value='';
-    document.getElementById('ib-pwd').focus();
-  }
-}
-function cpIb(){
-  navigator.clipboard.writeText(REAL_IBAN.replace(/\s/g,'')).then(()=>{
-    const b=document.querySelector('.cp-btn'),p=b.textContent;
-    b.textContent='✓';setTimeout(()=>b.textContent=p,2000);
+/* ── COPIER IBAN ── */
+function copiarIBAN() {
+  navigator.clipboard.writeText(IBAN_REAL).then(() => {
+    const ok = document.getElementById('copyOk');
+    ok.style.display = 'block';
+    setTimeout(() => ok.style.display = 'none', 2500);
   });
 }
 </script>
