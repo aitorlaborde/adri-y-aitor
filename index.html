@@ -383,7 +383,10 @@
         position:relative;
         top:auto; left:auto; right:auto; bottom:auto;
         width:100%; box-sizing:border-box;
-        padding:20.5vw 20vw 24vw 20vw;
+        /* top  : 14.5% of frame height → 14.5/0.7071 = 20.5vw, +3.5vw breathing room = 24vw
+           L/R  : 20% of frame width = 20vw, +3vw illustration clearance = 23vw
+           bottom: 17% of frame height → 17/0.7071 = 24vw */
+        padding:24vw 23vw 24vw 23vw;
         overflow:visible;
       }
       /* Supprime les spacers flex de centrage vertical (inutiles en flux normal) */
