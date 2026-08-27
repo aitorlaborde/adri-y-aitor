@@ -86,11 +86,12 @@
     }
     /* Zone de contenu à l'intérieur du cadre bleu, sous le monogramme AA.
        Zone blanche frame_bg.jpg (depuis A&A_(1).pdf):
-         left=395/1654=23.9%, right_margin=400/1654=24.2%, top=580/2339=24.8%, bottom_margin=314/2339=13.4%
-       Illustrations G max col 369px, D min col 1279px → marges 24% chaque côté pour éviter superposition */
+         left=395(23.9%), right=1165(marge 29.6%), top=580(24.8%), bottom=1900(marge 18.8%)
+       Hortensia bas-droite col 1200+ → marge droite 30% pour la dégager (35px clearance)
+       Liseré bleu bas row 2034 → bottom 19% laisse 134px de gap visible */
     .page-content {
       position:absolute;
-      top:25%; left:24%; right:24%; bottom:14%;
+      top:25%; left:24%; right:30%; bottom:19%;
       display:flex; flex-direction:column; align-items:center;
       text-align:center;
       overflow-y:auto; overflow-x:hidden;
@@ -378,15 +379,14 @@
       /* Contenu : flux normal, padding positionne dans la zone sûre du cadre.
          NB : en CSS % sur padding = % de la LARGEUR du bloc parent.
          Le cadre fait 100vw × (100vw/0.7071).
-         Zone blanche frame_bg.jpg (A&A_(1).pdf): top=24.8%, L/R=24%, bottom=13.4%
-         Illustrations G max 24%, D min 24% → padding 24vw chaque côté.
-         top 35vw = 24.8% de la hauteur (logos + marges ok), bottom 19vw = 13.4%. */
+         Zone blanche frame_bg.jpg (A&A_(1).pdf): top=24.8%, L=23.9%, R=29.6%, bottom=18.8%
+         top 35vw = 24.8% hauteur ; L: 24vw ; R: 30vw (hortensia dégagée) ; bottom 27vw = 18.8%. */
       .page-content {
         position:relative;
         top:auto; left:auto; right:auto; bottom:auto;
         width:100%; box-sizing:border-box;
-        /* top: 24.8% frame height = 24.8/0.7071 vw = 35vw ; L/R: 24% = 24vw ; bottom: 13.4%/0.7071 = 19vw */
-        padding:35vw 24vw 19vw 24vw;
+        /* top: 24.8%/0.7071=35vw ; L:24vw ; R:29.6%/1=30vw ; bottom: 18.8%/0.7071=27vw */
+        padding:35vw 30vw 27vw 24vw;
         overflow:visible;
       }
       /* Supprime les spacers flex de centrage vertical (inutiles en flux normal) */
