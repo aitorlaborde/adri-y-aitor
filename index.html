@@ -91,7 +91,7 @@
        Logo finit row 487 → clearance 123px ✅  |  Liseré bleu row 2034 → gap 74px ✅ */
     .page-content {
       position:absolute;
-      top:26%; left:24%; right:29%; bottom:16%;
+      top:22%; left:24%; right:29%; bottom:16%;
       display:flex; flex-direction:column; align-items:center;
       text-align:center;
       overflow:hidden;  /* clip x et y */
@@ -117,7 +117,7 @@
       margin-bottom:.12em;
     }
     .city-line {
-      font-size:clamp(.42rem,1vh,.7rem);
+      font-size:clamp(.5rem,1.3vh,.9rem);
       letter-spacing:.32em; color:#7a7470;
       margin-bottom:.7em;
     }
@@ -126,22 +126,22 @@
       letter-spacing:.05em; margin:.35em 0 .6em;
     }
     .tagline {
-      font-size:clamp(1rem,3.6vh,2.3rem);
+      font-size:clamp(.75rem,2.4vh,1.5rem);
       letter-spacing:.12em; color:#1e1e1c;
-      margin-bottom:.45em; font-weight:400;
+      margin-bottom:.35em; font-weight:400;
     }
     .body-text {
-      font-size:clamp(.6rem,1.45vh,1rem);
+      font-size:clamp(.65rem,1.7vh,1.15rem);
       line-height:1.65; color:#2c2c2a;
       margin-bottom:.45em; max-width:100%;
     }
     .body-text-left {
-      font-size:clamp(.6rem,1.45vh,1rem);
+      font-size:clamp(.65rem,1.7vh,1.15rem);
       line-height:1.65; color:#2c2c2a;
       margin-bottom:.45em; text-align:left; width:100%;
     }
     .section-title {
-      font-size:clamp(.75rem,2.3vh,1.5rem);
+      font-size:clamp(.85rem,2.7vh,1.8rem);
       letter-spacing:.22em; text-transform:uppercase;
       color:#1e1e1c; text-decoration:underline;
       text-underline-offset:5px; margin-bottom:.7em;
@@ -153,7 +153,7 @@
     }
 
     /* ── COUNTDOWN ── */
-    .countdown-wrap { margin-top:.6em; width:100%; }
+    .countdown-wrap { display:none; } /* caché pour l'instant — réactiver si besoin */
     .countdown-row { display:flex; justify-content:center; gap:clamp(.25rem,.9vw,.9rem); }
     .cdown-cell { display:flex; flex-direction:column; align-items:center; }
     .cdown-cell span {
