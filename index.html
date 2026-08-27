@@ -152,26 +152,28 @@
       margin-top:.5em; font-style:italic;
     }
 
-    /* ── PAGE 1 (INICIO) : reproduit le PDF — grand espace sous logo, contenu étalé ── */
-    #inicio .page-content {
-      justify-content: space-between;
-      padding-top: 16vh;   /* pousse le titre sous la zone logo (≈38% de la carte) */
-    }
+    /* ── PAGE 1 (INICIO) : groupes partagés desktop+mobile ── */
     #inicio .big-title { margin-bottom: 0; }
     #inicio .separator { margin: 0; }
     #inicio .tagline   { margin-bottom: 0; }
-    /* Groupe : date + MADRID sans écart */
     .inicio-date-group {
       display:flex; flex-direction:column; align-items:center; width:100%;
     }
     .inicio-date-group .date-line { margin-bottom:.12em; white-space:nowrap; }
     .inicio-date-group .city-line { margin-bottom:0; }
-    /* Groupe : 2 paragraphes avec petit écart interne */
     .inicio-text-group {
       display:flex; flex-direction:column; align-items:center; width:100%;
     }
     .inicio-text-group .body-text { margin-bottom:.6em; font-weight:300; }
     .inicio-text-group .body-text:last-child { margin-bottom:0; }
+
+    /* ── PAGE 1 — desktop uniquement : espace sous logo + étalement ── */
+    @media(min-width:781px){
+      #inicio .page-content {
+        justify-content: space-between;
+        padding-top: 16vh;  /* pousse "ADRI & AITOR" à ~38% de la carte, sous le logo */
+      }
+    }
 
     /* ── COUNTDOWN ── */
     .countdown-wrap { display:none; } /* caché pour l'instant — réactiver si besoin */
@@ -424,6 +426,13 @@
       .big-title    { font-size:clamp(.9rem,5.2vw,2rem); white-space:nowrap; }
       .section-title{ font-size:clamp(.7rem,4.5vw,1.4rem); margin-bottom:.45em; }
       .tagline      { font-size:clamp(.85rem,5.5vw,2rem); margin-bottom:.28em; }
+
+      /* ── PAGE 1 — mobile : espace sous logo + espacements manuels ── */
+      #inicio .big-title    { margin-top:18vw; }
+      #inicio .inicio-date-group { margin-top:.5em; }
+      #inicio .separator    { margin:4vw 0; }
+      #inicio .tagline      { font-size:clamp(.7rem,4.8vw,1.5rem); white-space:nowrap; margin-bottom:3vw; }
+      #inicio .inicio-text-group { margin-top:0; }
       .body-text    { font-size:clamp(.55rem,3vw,.95rem); margin-bottom:.3em; }
       .sign         { font-size:clamp(.55rem,3vw,.9rem); }
       .date-line    { font-size:clamp(.6rem,3.2vw,1rem); }
