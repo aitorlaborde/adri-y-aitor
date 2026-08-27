@@ -167,12 +167,15 @@
     .inicio-text-group .body-text { margin-bottom:.6em; font-weight:300; }
     .inicio-text-group .body-text:last-child { margin-bottom:0; }
 
-    /* ── PAGE 1 — desktop uniquement : espace sous logo + étalement ── */
+    /* ── PAGE 1 — desktop : marges précises mesurées depuis le PDF ──
+       ADRI&AITOR=30.6vh, SÁBADO=36.4vh, Separator=51.3vh, ¡NOS!=56.0vh, Para=64.7vh */
     @media(min-width:781px){
-      #inicio .page-content {
-        justify-content: space-between;
-        padding-top: 16vh;  /* pousse "ADRI & AITOR" à ~38% de la carte, sous le logo */
-      }
+      #inicio .page-content  { padding-top: 8.6vh; }
+      #inicio .big-title     { margin-bottom: 0; }
+      #inicio .inicio-date-group { margin-top: 3vh; }
+      #inicio .separator     { margin-top: 10vh; margin-bottom: 0; }
+      #inicio .tagline       { margin-top: 3.5vh; margin-bottom: 0; }
+      #inicio .inicio-text-group { margin-top: 7.5vh; }
     }
 
     /* ── COUNTDOWN ── */
@@ -427,12 +430,13 @@
       .section-title{ font-size:clamp(.7rem,4.5vw,1.4rem); margin-bottom:.45em; }
       .tagline      { font-size:clamp(.85rem,5.5vw,2rem); margin-bottom:.28em; }
 
-      /* ── PAGE 1 — mobile : espace sous logo + espacements manuels ── */
-      #inicio .big-title    { margin-top:18vw; }
-      #inicio .inicio-date-group { margin-top:.5em; }
-      #inicio .separator    { margin:4vw 0; }
-      #inicio .tagline      { font-size:clamp(.7rem,4.8vw,1.5rem); white-space:nowrap; margin-bottom:3vw; }
-      #inicio .inicio-text-group { margin-top:0; }
+      /* ── PAGE 1 — mobile : marges converties en vw (1%card=1.414vw) ──
+         ADRI=43.3vw, SÁBADO=51.5vw, Sep=72.5vw, ¡NOS!=79.2vw, Para=91.5vw depuis haut carte */
+      #inicio .big-title         { margin-top: 6vw; }
+      #inicio .inicio-date-group { margin-top: 4.5vw; }
+      #inicio .separator         { margin-top: 14vw; margin-bottom: 0; }
+      #inicio .tagline           { font-size:clamp(.7rem,4.8vw,1.5rem); white-space:nowrap; margin-top: 5vw; margin-bottom: 0; }
+      #inicio .inicio-text-group { margin-top: 10.5vw; }
       .body-text    { font-size:clamp(.55rem,3vw,.95rem); margin-bottom:.3em; }
       .sign         { font-size:clamp(.55rem,3vw,.9rem); }
       .date-line    { font-size:clamp(.6rem,3.2vw,1rem); }
