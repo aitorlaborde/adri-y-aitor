@@ -84,14 +84,14 @@
       display:block; object-fit:fill;
       pointer-events:none; user-select:none;
     }
-    /* Zone de contenu à l'intérieur du cadre bleu, sous le monogramme AA.
-       Zone blanche frame_bg.jpg (depuis A&A_(1).pdf):
-         left=395(23.9%), right=1165(marge 29.6%), top=580(24.8%), bottom=1900(marge 18.8%)
-       Hortensia bas-droite col 1200+ → marge droite 30% pour la dégager (35px clearance)
-       Liseré bleu bas row 2034 → bottom 19% laisse 134px de gap visible */
+    /* Zone de contenu — calibrée depuis la photo du rectangle rouge (utilisateur).
+       Zone blanche frame_bg.jpg (A&A_(1).pdf):
+         left=390(23.6%), right=1174(marge 29%), top=610(26.1%), bottom=1960(marge 16.2%)
+       Illus G max col 369 → clearance 21px ✅  |  Illus D min col 1200 → clearance 26px ✅
+       Logo finit row 487 → clearance 123px ✅  |  Liseré bleu row 2034 → gap 74px ✅ */
     .page-content {
       position:absolute;
-      top:25%; left:24%; right:30%; bottom:19%;
+      top:26%; left:24%; right:29%; bottom:16%;
       display:flex; flex-direction:column; align-items:center;
       text-align:center;
       overflow-y:auto; overflow-x:visible;
@@ -376,17 +376,13 @@
         top:0; left:0; width:100%; height:100%;
         min-height:calc(100vw / 0.7071);
       }
-      /* Contenu : flux normal, padding positionne dans la zone sûre du cadre.
-         NB : en CSS % sur padding = % de la LARGEUR du bloc parent.
-         Le cadre fait 100vw × (100vw/0.7071).
-         Zone blanche frame_bg.jpg (A&A_(1).pdf): top=24.8%, L=23.9%, R=29.6%, bottom=18.8%
-         top 35vw = 24.8% hauteur ; L: 24vw ; R: 30vw (hortensia dégagée) ; bottom 27vw = 18.8%. */
+      /* Contenu mobile — cadre 100vw × (100vw/0.7071).
+         Padding calé sur la zone blanche : top=26.1%/0.7071=36.9vw, L=23.6vw, R=29vw, B=16.2%/0.7071=22.9vw */
       .page-content {
         position:relative;
         top:auto; left:auto; right:auto; bottom:auto;
         width:100%; box-sizing:border-box;
-        /* top: 24.8%/0.7071=35vw ; L:24vw ; R:29.6%/1=30vw ; bottom: 18.8%/0.7071=27vw */
-        padding:35vw 30vw 27vw 24vw;
+        padding:37vw 29vw 23vw 24vw;
         overflow:visible;
       }
       /* Supprime les spacers flex de centrage vertical (inutiles en flux normal) */
