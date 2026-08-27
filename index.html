@@ -152,6 +152,15 @@
       margin-top:.5em; font-style:italic;
     }
 
+    /* ── PAGE 1 (INICIO) : étaler le contenu sur toute la hauteur de la carte ── */
+    #inicio .page-content { justify-content: space-between; }
+    #inicio .big-title  { margin-bottom: 0; }
+    #inicio .date-line  { margin-bottom: 0; }
+    #inicio .city-line  { margin-bottom: 0; }
+    #inicio .separator  { margin: 0; }
+    #inicio .tagline    { margin-bottom: 0; }
+    #inicio .body-text  { margin-bottom: 0; }
+
     /* ── COUNTDOWN ── */
     .countdown-wrap { display:none; } /* caché pour l'instant — réactiver si besoin */
     .countdown-row { display:flex; justify-content:center; gap:clamp(.25rem,.9vw,.9rem); }
@@ -400,7 +409,7 @@
       .cdown-cell label { font-size:clamp(.28rem,2vw,.48rem); letter-spacing:.08em; }
 
       /* ── Typographie mobile (vw-based pour proportionnalité) ── */
-      .big-title    { font-size:clamp(1.3rem,7.5vw,2.8rem); white-space:normal; }
+      .big-title    { font-size:clamp(.9rem,5.2vw,2rem); white-space:nowrap; }
       .section-title{ font-size:clamp(.7rem,4.5vw,1.4rem); margin-bottom:.45em; }
       .tagline      { font-size:clamp(.85rem,5.5vw,2rem); margin-bottom:.28em; }
       .body-text    { font-size:clamp(.55rem,3vw,.95rem); margin-bottom:.3em; }
