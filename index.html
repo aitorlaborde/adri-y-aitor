@@ -94,7 +94,7 @@
       top:26%; left:24%; right:29%; bottom:16%;
       display:flex; flex-direction:column; align-items:center;
       text-align:center;
-      overflow-y:auto; overflow-x:hidden;
+      overflow:hidden;  /* clip x et y : pas de scroll indicator natif (supprime le "tir") */
       padding:.8rem .4rem .3rem;  /* respiro en haut du cadre — sans centrage vertical */
     }
     /* Pas de centrage vertical : le contenu s'aligne en haut comme sur le PDF */
@@ -106,10 +106,10 @@
 
     /* ── TYPOGRAPHY ── */
     .big-title {
-      font-size:clamp(1.5rem,4.4vh,2.8rem);
+      font-size:clamp(1.3rem,3.8vh,2.2rem);  /* max 2.2rem : tient dans la zone blanche à toute résolution */
       letter-spacing:.08em; color:#1e1e1c;
       margin-bottom:.18em; font-weight:400; line-height:1.1;
-      white-space:nowrap; /* toujours sur une seule ligne */
+      white-space:nowrap;
     }
     .date-line {
       font-size:clamp(.6rem,1.6vh,1.05rem);
@@ -154,7 +154,7 @@
 
     /* ── COUNTDOWN ── */
     .countdown-wrap { margin-top:.6em; width:100%; }
-    .countdown-row { display:flex; justify-content:center; gap:clamp(.4rem,1.8vw,1.8rem); }
+    .countdown-row { display:flex; justify-content:center; gap:clamp(.25rem,.9vw,.9rem); }
     .cdown-cell { display:flex; flex-direction:column; align-items:center; }
     .cdown-cell span {
       font-size:clamp(1.4rem,5vh,3rem);
@@ -500,7 +500,7 @@
       <h2 class="section-title" data-i18n="nav_historia">NUESTRA HISTORIA</h2>
       <p class="body-text" data-i18n="hist_p1">Adri, arquitecta técnica e interiorista, de Pamplona. Aitor, ingeniero y músico, de Bayonne. Dos ciudades hermanadas, dos países, dos caminos y un destino que quiso que nos conociéramos en Madrid en 2024.</p>
       <p class="body-text" data-i18n="hist_p2">Desde que comenzó nuestra historia de amor hemos compartido viajes, miradas, risas, idiomas, aventuras y muchos pequeños momentos que nos han hecho elegirnos cada día.</p>
-      <p class="body-text" data-i18n="hist_p3">Un año después, desde el Ponte delle Acque en Venecia, llegó un anillo y un "sí" para toda la vida, que cambió nuestro futuro para siempre.</p>
+      <p class="body-text" data-i18n="hist_p3">Un año después, desde el Pont de le Acque en Venecia, llegó un anillo y un "sí" para toda la vida, que cambió nuestro futuro para siempre.</p>
       <p class="body-text" data-i18n="hist_p4">Ahora queremos compartir nuestro "para siempre" en Madrid, rodeados de las personas que más queremos, nuestra familia y amigos.</p>
       <p class="sign">Adri &amp; Aitor</p>
     </div>
@@ -762,7 +762,7 @@ const T = {
     cd_dias:'días', cd_horas:'horas', cd_min:'minutos', cd_seg:'segundos',
     hist_p1:'Adri, arquitecta técnica e interiorista, de Pamplona. Aitor, ingeniero y músico, de Bayonne. Dos ciudades hermanadas, dos países, dos caminos y un destino que quiso que nos conociéramos en Madrid en 2024.',
     hist_p2:'Desde que comenzó nuestra historia de amor hemos compartido viajes, miradas, risas, idiomas, aventuras y muchos pequeños momentos que nos han hecho elegirnos cada día.',
-    hist_p3:'Un año después, desde el Ponte delle Acque en Venecia, llegó un anillo y un "sí" para toda la vida, que cambió nuestro futuro para siempre.',
+    hist_p3:'Un año después, desde el Pont de le Acque en Venecia, llegó un anillo y un "sí" para toda la vida, que cambió nuestro futuro para siempre.',
     hist_p4:'Ahora queremos compartir nuestro "para siempre" en Madrid, rodeados de las personas que más queremos, nuestra familia y amigos.',
     det_ceremonia:'CEREMONIA', det_celebracion:'CELEBRACIÓN', det_ubicacion:'[ UBICACIÓN ]',
     det_nota:'*No está permitido echar pétalos de flores, arroz, ni burbujas a la salida de la Iglesia. ¡Lo sentimos!',
@@ -796,7 +796,7 @@ const T = {
     cd_dias:'jours', cd_horas:'heures', cd_min:'minutes', cd_seg:'secondes',
     hist_p1:"Adri, architecte technique et décoratrice d'intérieur, de Pampelune. Aitor, ingénieur et musicien, de Bayonne. Deux villes jumelées, deux pays, deux chemins et un destin qui a voulu qu'on se rencontre à Madrid en 2024.",
     hist_p2:"Depuis le début de notre histoire d'amour, nous avons partagé des voyages, des regards, des rires, des langues, des aventures et de nombreux petits moments qui nous ont fait nous choisir chaque jour.",
-    hist_p3:"Un an plus tard, depuis le Ponte delle Acque à Venise, est arrivée une bague et un 'oui' pour la vie, qui a changé notre avenir pour toujours.",
+    hist_p3:"Un an plus tard, depuis le Pont de le Acque à Venise, est arrivée une bague et un 'oui' pour la vie, qui a changé notre avenir pour toujours.",
     hist_p4:"Nous voulons maintenant partager notre 'pour toujours' à Madrid, entourés des personnes que nous aimons le plus, notre famille et nos amis.",
     det_ceremonia:'CÉRÉMONIE', det_celebracion:'CÉLÉBRATION', det_ubicacion:'[ LOCALISATION ]',
     det_nota:"*Il n'est pas autorisé de jeter des pétales de fleurs, du riz ou des bulles à la sortie de l'Église. Désolés !",
@@ -830,7 +830,7 @@ const T = {
     cd_dias:'days', cd_horas:'hours', cd_min:'minutes', cd_seg:'seconds',
     hist_p1:'Adri, technical architect and interior designer, from Pamplona. Aitor, engineer and musician, from Bayonne. Two twin cities, two countries, two paths and a destiny that brought us together in Madrid in 2024.',
     hist_p2:'Since our love story began, we have shared travels, glances, laughter, languages, adventures and many small moments that have made us choose each other every day.',
-    hist_p3:"One year later, from the Ponte delle Acque in Venice, came a ring and a 'yes' for life, which changed our future forever.",
+    hist_p3:"One year later, from the Pont de le Acque in Venice, came a ring and a 'yes' for life, which changed our future forever.",
     hist_p4:"We now want to share our 'forever' in Madrid, surrounded by the people we love most, our family and friends.",
     det_ceremonia:'CEREMONY', det_celebracion:'CELEBRATION', det_ubicacion:'[ LOCATION ]',
     det_nota:'*Throwing flower petals, rice or blowing bubbles is not allowed at the Church exit. We\'re sorry!',
@@ -864,7 +864,7 @@ const T = {
     cd_dias:'giorni', cd_horas:'ore', cd_min:'minuti', cd_seg:'secondi',
     hist_p1:'Adri, architetta tecnica e interior designer, di Pamplona. Aitor, ingegnere e musicista, di Bayonne. Due città gemelle, due paesi, due cammini e un destino che ha voluto che ci conoscessimo a Madrid nel 2024.',
     hist_p2:"Da quando è iniziata la nostra storia d'amore abbiamo condiviso viaggi, sguardi, risate, lingue, avventure e tanti piccoli momenti che ci hanno fatto sceglierci ogni giorno.",
-    hist_p3:"Un anno dopo, dal Ponte delle Acque a Venezia, è arrivato un anello e un 'sì' per tutta la vita, che ha cambiato il nostro futuro per sempre.",
+    hist_p3:"Un anno dopo, dal Pont de le Acque a Venezia, è arrivato un anello e un 'sì' per tutta la vita, che ha cambiato il nostro futuro per sempre.",
     hist_p4:"Ora vogliamo condividere il nostro 'per sempre' a Madrid, circondati dalle persone che amiamo di più, la nostra famiglia e i nostri amici.",
     det_ceremonia:'CERIMONIA', det_celebracion:'CELEBRAZIONE', det_ubicacion:'[ POSIZIONE ]',
     det_nota:'*Non è consentito lanciare petali di fiori, riso o bolle all\'uscita della Chiesa. Ci dispiace!',
