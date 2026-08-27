@@ -114,7 +114,7 @@
     .date-line {
       font-size:clamp(.6rem,1.6vh,1.05rem);
       letter-spacing:.14em; color:#2c2c2a;
-      margin-bottom:.12em; white-space:nowrap;
+      margin-bottom:.12em;
     }
     .city-line {
       font-size:clamp(.5rem,1.3vh,.9rem);
@@ -155,15 +155,11 @@
     /* ── PAGE 1 (INICIO) : étaler le contenu sur toute la hauteur de la carte ── */
     #inicio .page-content { justify-content: space-between; }
     #inicio .big-title  { margin-bottom: 0; }
+    #inicio .date-line  { margin-bottom: 0; }
+    #inicio .city-line  { margin-bottom: 0; }
     #inicio .separator  { margin: 0; }
     #inicio .tagline    { margin-bottom: 0; }
-    /* Groupes sans écart interne (date+Madrid / paragraphe 1+2) */
-    .inicio-date-group,
-    .inicio-text-group  { display:flex; flex-direction:column; align-items:center; width:100%; }
-    .inicio-date-group .date-line { margin-bottom:.1em; }
-    .inicio-date-group .city-line { margin-bottom: 0; }
-    .inicio-text-group .body-text { margin-bottom:.3em; }
-    .inicio-text-group .body-text:last-child { margin-bottom: 0; }
+    #inicio .body-text  { margin-bottom: 0; }
 
     /* ── COUNTDOWN ── */
     .countdown-wrap { display:none; } /* caché pour l'instant — réactiver si besoin */
@@ -484,16 +480,12 @@
     
     <div class="page-content">
       <p class="big-title">ADRI &amp; AITOR</p>
-      <div class="inicio-date-group">
-        <p class="date-line" data-i18n="inv_date">SÁBADO | 6 | MARZO | 2027</p>
-        <p class="city-line">MADRID</p>
-      </div>
+      <p class="date-line" data-i18n="inv_date">SÁBADO | 6 | MARZO | 2027</p>
+      <p class="city-line">MADRID</p>
       <p class="separator">◆·····················◆</p>
       <p class="tagline" data-i18n="inv_tagline">¡NOS CASAMOS!</p>
-      <div class="inicio-text-group">
-        <p class="body-text" data-i18n="inv_text1">Nos sentimos muy afortunados de teneros como familia y amigos.</p>
-        <p class="body-text" data-i18n="inv_text2">Por eso, nos gustaría invitaros a compartir este día tan especial con nosotros.</p>
-      </div>
+      <p class="body-text" data-i18n="inv_text1">Nos sentimos muy afortunados de teneros como familia y amigos.</p>
+      <p class="body-text" data-i18n="inv_text2">Por eso, nos gustaría invitaros a compartir este día tan especial con nosotros.</p>
       <div class="countdown-wrap">
         <div class="countdown-row">
           <div class="cdown-cell"><span id="cd-d">--</span><label data-i18n="cd_dias">días</label></div>
