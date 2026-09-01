@@ -385,10 +385,11 @@
     .check-opt input { accent-color:#3a5ca8; cursor:pointer; }
     .form-textarea {
       width:100%; border:none; border-bottom:.8px solid #c0bbb5;
-      padding:3px 0; font-family:inherit;
+      padding:0 0 2px; font-family:inherit;
       font-size:clamp(.42rem,.92vh,.65rem);
       background:transparent; color:#2c2c2a; outline:none;
-      resize:none; min-height:28px;
+      resize:none; min-height:0; height:1.6em; overflow:hidden;
+      line-height:1.4; display:block;
     }
     .form-textarea:focus { border-bottom-color:#3a5ca8; }
     .submit-btn {
@@ -431,6 +432,21 @@
     .hotel-link {
       font-size:clamp(.38rem,.82vh,.58rem);
       color:#3a5ca8; word-break:break-all;
+    }
+
+    /* ── DRESS CODE (DETALLES) ── */
+    .dresscode-block {
+      width:100%; text-align:center; margin-top:.7em;
+      padding-top:.55em; border-top:.5px solid #c0bbb5;
+    }
+    .dresscode-title {
+      font-size:clamp(.38rem,.82vh,.58rem);
+      letter-spacing:.18em; color:#1e3a7a; font-weight:400;
+      margin-bottom:.2em;
+    }
+    .dresscode-line {
+      font-size:clamp(.36rem,.78vh,.55rem);
+      color:#2c2c2a; line-height:1.5;
     }
 
     /* ── LISTA DE BODAS ── */
@@ -491,11 +507,14 @@
       nav { padding:0 1rem; }
       section { min-height:unset; }
 
-      /* ── CARD : proportions A4 FIXES — le cadre (dessin) ne s'étire jamais ──
-         Contenu qui dépasse → scroll interne invisible (swipe dans la carte) */
+      /* ── CARD : zoom pour supprimer les bandes latérales ──
+         page-wrap = 130vw centré dans section 100vw overflow:hidden
+         → 15vw croppés de chaque côté, bandes hors écran ✓ */
+      section { overflow:hidden; }
       .page-wrap {
-        width:100vw;
-        height:calc(100vw / 0.7071); /* A4 exact — jamais height:auto */
+        width:130vw;
+        height:calc(130vw / 0.7071);
+        flex-shrink:0;
         overflow:hidden;
       }
       .page-bg {
@@ -580,7 +599,9 @@
       .conf-bus-label{ font-size:clamp(.33rem,1.8vw,.55rem); margin-bottom:.08em; }
       .check-group  { margin-bottom:.1em; gap:.05em; }
       .check-opt    { font-size:clamp(.3rem,1.6vw,.5rem); }
-      .form-textarea{ font-size:clamp(.32rem,1.8vw,.52rem); min-height:16px; }
+      .form-textarea{ font-size:clamp(.32rem,1.8vw,.52rem); height:1.6em; }
+      .dresscode-title { font-size:clamp(.28rem,1.5vw,.46rem); }
+      .dresscode-line  { font-size:clamp(.26rem,1.4vw,.44rem); }
       .submit-btn   { margin-top:.18em; padding:.15em .55em; font-size:clamp(.3rem,1.8vw,.52rem); }
 
       /* ── PAGE 5 ALOJAMIENTOS ── */
@@ -736,6 +757,13 @@
         </div>
         <img class="venue-img" src="img/finca.jpeg" alt="Finca Astilbe">
       </div>
+
+      <!-- Dress Code -->
+      <div class="dresscode-block">
+        <p class="dresscode-title" data-i18n="det_dresscode_title">DRESS CODE</p>
+        <p class="dresscode-line" data-i18n="det_dresscode_line1">Elegante 🎩 · Chicos: traje y corbata · Chicas: vestido</p>
+        <p class="dresscode-line" data-i18n="det_dresscode_line2"><em>El blanco es exclusivo para la novia 🤍</em></p>
+      </div>
     </div>
   </div>
 </section>
@@ -805,7 +833,13 @@
         <!-- Alergias -->
         <div class="form-group" style="width:100%;margin-bottom:.4em;">
           <label class="form-label" data-i18n="conf_alergias">Alergias o dietas especiales</label>
-          <textarea class="form-textarea" name="alergias" rows="2"></textarea>
+          <textarea class="form-textarea" name="alergias" rows="1"></textarea>
+        </div>
+
+        <!-- Canción -->
+        <div class="form-group" style="width:100%;margin-bottom:.4em;">
+          <label class="form-label" data-i18n="conf_cancion">Una canción que no puede faltar</label>
+          <textarea class="form-textarea" name="cancion" rows="1"></textarea>
         </div>
 
         <button type="submit" class="submit-btn" data-i18n="conf_enviar">ENVIAR</button>
@@ -946,6 +980,9 @@ const T = {
     hist_p4:'Ahora queremos compartir nuestro "para siempre" en Madrid, rodeados de las personas que más queremos, nuestra familia y amigos.',
     det_ceremonia:'CEREMONIA', det_celebracion:'CELEBRACIÓN', det_ubicacion:'[ UBICACIÓN ]',
     det_nota:'*No está permitido echar pétalos de flores, arroz, ni burbujas a la salida de la Iglesia. ¡Lo sentimos!',
+    det_dresscode_title:'DRESS CODE',
+    det_dresscode_line1:'Elegante 🎩 · Chicos: traje y corbata · Chicas: vestido',
+    det_dresscode_line2:'El blanco es exclusivo para la novia 🤍',
     conf_deadline:'SE RUEGA CONFIRMACIÓN ANTES DEL 20/12/2026',
     conf_asistir:'¿Podrás asistir?', conf_si:'Sí, allí estaré', conf_no:'No, lo siento',
     conf_adults:'Hemos decidido celebrar nuestra boda exclusivamente para adultos, para que todos podamos disfrutar de un día de fiesta, baile y celebración hasta el final.',
@@ -954,6 +991,7 @@ const T = {
     conf_bus_q:'Habrá autobús de la Iglesia a la Finca (20 min). ¿Lo vas a necesitar?',
     conf_bus_si:'Sí, lo usaré', conf_bus_no:'No lo necesito',
     conf_alergias:'Alergias o dietas especiales',
+    conf_cancion:'Una canción que no puede faltar 🎵',
     conf_enviar:'ENVIAR', conf_ok:'¡Gracias! Hemos recibido tu confirmación.',
     aloj_cerca_iglesia:'(cerca de la Iglesia Santa Bárbara)',
     aloj_cerca_finca:'(cerca de la Finca Astilbe)',
@@ -980,6 +1018,9 @@ const T = {
     hist_p4:"Nous voulons maintenant partager notre 'pour toujours' à Madrid, entourés des personnes que nous aimons le plus, notre famille et nos amis.",
     det_ceremonia:'CÉRÉMONIE', det_celebracion:'CÉLÉBRATION', det_ubicacion:'[ LOCALISATION ]',
     det_nota:"*Il n'est pas autorisé de jeter des pétales de fleurs, du riz ou des bulles à la sortie de l'Église. Désolés !",
+    det_dresscode_title:'DRESS CODE',
+    det_dresscode_line1:'Élégant 🎩 · Messieurs: costume et cravate · Dames: robe',
+    det_dresscode_line2:'Le blanc est réservé à la mariée 🤍',
     conf_deadline:'MERCI DE CONFIRMER AVANT LE 20/12/2026',
     conf_asistir:'Pourrez-vous être présent(e) ?', conf_si:"Oui, j'y serai", conf_no:'Non, désolé(e)',
     conf_adults:"Nous avons décidé de célébrer notre mariage exclusivement pour les adultes, afin que tout le monde puisse profiter d'une journée de fête, de danse et de célébration jusqu'à la fin.",
@@ -988,6 +1029,7 @@ const T = {
     conf_bus_q:"Il y aura un bus de l'Église à la Finca (20 min). En aurez-vous besoin ?",
     conf_bus_si:"Oui, je l'utiliserai", conf_bus_no:'Non merci',
     conf_alergias:'Allergies ou régimes spéciaux',
+    conf_cancion:'Une chanson qui ne peut pas manquer 🎵',
     conf_enviar:'ENVOYER', conf_ok:'Merci ! Nous avons bien reçu votre confirmation.',
     aloj_cerca_iglesia:"(près de l'Église Santa Bárbara)",
     aloj_cerca_finca:'(près de la Finca Astilbe)',
@@ -1014,6 +1056,9 @@ const T = {
     hist_p4:"We now want to share our 'forever' in Madrid, surrounded by the people we love most, our family and friends.",
     det_ceremonia:'CEREMONY', det_celebracion:'CELEBRATION', det_ubicacion:'[ LOCATION ]',
     det_nota:'*Throwing flower petals, rice or blowing bubbles is not allowed at the Church exit. We\'re sorry!',
+    det_dresscode_title:'DRESS CODE',
+    det_dresscode_line1:'Elegant 🎩 · Men: suit and tie · Ladies: dress',
+    det_dresscode_line2:'White is reserved for the bride 🤍',
     conf_deadline:'PLEASE CONFIRM BY 20/12/2026',
     conf_asistir:"Will you be able to attend?", conf_si:"Yes, I'll be there", conf_no:"No, sorry",
     conf_adults:"We've decided to celebrate our wedding exclusively for adults, so that everyone can enjoy a day of celebration, dancing and fun until the end.",
@@ -1022,6 +1067,7 @@ const T = {
     conf_bus_q:'There will be a bus from the Church to the Finca (20 min). Will you need it?',
     conf_bus_si:"Yes, I'll use it", conf_bus_no:"No, thanks",
     conf_alergias:'Allergies or special diets',
+    conf_cancion:'A song that must be played 🎵',
     conf_enviar:'SEND', conf_ok:'Thank you! We have received your confirmation.',
     aloj_cerca_iglesia:'(near Iglesia Santa Bárbara)',
     aloj_cerca_finca:'(near Finca Astilbe)',
@@ -1048,6 +1094,9 @@ const T = {
     hist_p4:"Ora vogliamo condividere il nostro 'per sempre' a Madrid, circondati dalle persone che amiamo di più, la nostra famiglia e i nostri amici.",
     det_ceremonia:'CERIMONIA', det_celebracion:'CELEBRAZIONE', det_ubicacion:'[ POSIZIONE ]',
     det_nota:'*Non è consentito lanciare petali di fiori, riso o bolle all\'uscita della Chiesa. Ci dispiace!',
+    det_dresscode_title:'DRESS CODE',
+    det_dresscode_line1:'Elegante 🎩 · Uomini: abito e cravatta · Donne: abito',
+    det_dresscode_line2:'Il bianco è riservato alla sposa 🤍',
     conf_deadline:'SI PREGA DI CONFERMARE ENTRO IL 20/12/2026',
     conf_asistir:'Potrete essere presenti?', conf_si:'Sì, ci sarò', conf_no:'No, mi dispiace',
     conf_adults:"Abbiamo deciso di celebrare le nostre nozze esclusivamente per adulti, in modo che tutti possano godere di una giornata di festa, ballo e celebrazione fino alla fine.",
@@ -1056,6 +1105,7 @@ const T = {
     conf_bus_q:'Ci sarà un autobus dalla Chiesa alla Finca (20 min). Ne avrete bisogno?',
     conf_bus_si:'Sì, lo userò', conf_bus_no:'No, grazie',
     conf_alergias:'Allergie o diete speciali',
+    conf_cancion:'Una canzone che non può mancare 🎵',
     conf_enviar:'INVIA', conf_ok:'Grazie! Abbiamo ricevuto la vostra conferma.',
     aloj_cerca_iglesia:'(vicino alla Chiesa Santa Bárbara)',
     aloj_cerca_finca:'(vicino alla Finca Astilbe)',
