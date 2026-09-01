@@ -446,14 +446,13 @@
     }
     .dresscode-title {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
-      font-size:clamp(.5rem,1.2vh,.82rem); /* = venue-name-title */
-      letter-spacing:.12em; color:#1e3a7a; font-weight:200; /* Fin pj1 */
-      margin-bottom:.2em;
+      font-size:clamp(.7rem,1.8vh,1.2rem); /* = venue-name-title */
+      letter-spacing:.16em; color:#1e1e1c; font-weight:300; /* Maigre = venue-name-title */
     }
     .dresscode-line {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
-      font-weight:300; /* Maigre pj2 */
-      font-size:clamp(.4rem,.88vh,.62rem); /* = venue-sub */
+      font-weight:200; /* Fin = venue-sub */
+      font-size:clamp(.55rem,1.2vh,.85rem); /* = venue-sub */
       color:#2c2c2a; line-height:1.5;
     }
 
@@ -531,7 +530,7 @@
 
       .page-content {
         position:absolute;
-        top:26%; left:24%; right:28%; bottom:16%;
+        top:22%; left:24%; right:28%; bottom:16%;
         display:flex; flex-direction:column; align-items:center; text-align:center;
         overflow-y:auto; overflow-x:hidden;
         scrollbar-width:none; -ms-overflow-style:none;
@@ -555,7 +554,7 @@
       .city-line    { font-size:clamp(.38rem,1.8vw,.6rem); }
 
       /* ── PAGE 1 INICIO ── */
-      #inicio .page-content      { padding-top:.5rem; }
+      #inicio .page-content      { top:26%; padding-top:.5rem; } /* sauf inicio : garde top:26% */
       #inicio .big-title         { margin-bottom:0; }
       #inicio .inicio-date-group { margin-top:2.5vw; }
       #inicio .separator         { margin-top:2.5vw; margin-bottom:0; }
@@ -588,7 +587,7 @@
       .ubicacion-btn{ font-size:clamp(.3rem,1.6vw,.5rem); padding:2px 4px; }
 
       /* ── PAGE 4 CONFIRMACIÓN ── */
-      #confirmacion .page-content { padding-top:.25rem; padding-left:.4rem; }
+      #confirmacion .page-content { padding-top:.25rem; padding-left:1.8rem; }
       #confirmacion .section-title{ margin-bottom:1.5vw; }
       #confirmacion .conf-deadline{ margin-bottom:1.5vw; }
       .conf-note    { display:none; }
@@ -603,8 +602,8 @@
       .check-group  { margin-bottom:.1em; gap:.05em; }
       .check-opt    { font-size:clamp(.3rem,1.6vw,.5rem); }
       .form-textarea{ font-size:clamp(.32rem,1.8vw,.52rem); height:1.6em; }
-      .dresscode-title { font-size:clamp(.28rem,1.5vw,.46rem); }
-      .dresscode-line  { font-size:clamp(.26rem,1.4vw,.44rem); }
+      .dresscode-title { font-size:clamp(.45rem,2.5vw,.78rem); } /* = venue-name-title mobile */
+      .dresscode-line  { font-size:clamp(.36rem,1.9vw,.6rem); }  /* = venue-sub mobile */
       .submit-btn   { margin-top:.18em; padding:.15em .55em; font-size:clamp(.3rem,1.8vw,.52rem); }
 
       /* ── PAGE 5 ALOJAMIENTOS ── */
@@ -763,7 +762,10 @@
 
       <!-- Dress Code -->
       <div class="dresscode-block">
-        <p class="dresscode-title" data-i18n="det_dresscode_title">DRESS CODE</p>
+        <div class="venue-header" style="justify-content:center;margin-bottom:.2em;">
+          <div class="venue-bullet"></div>
+          <p class="dresscode-title" data-i18n="det_dresscode_title">DRESS CODE</p>
+        </div>
         <p class="dresscode-line" data-i18n="det_dresscode_line1">Elegante 🎩 · Chicos: traje y corbata · Chicas: vestido</p>
         <p class="dresscode-line" data-i18n="det_dresscode_line2"><em>El blanco es exclusivo para la novia 🤍</em></p>
       </div>
