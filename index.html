@@ -513,17 +513,22 @@
     @media(max-width:780px){
       .nav-links { display:none; }
       nav { padding:0 1rem; }
-      section { min-height:unset; }
-
-      /* ── CARD : zoom pour supprimer les bandes latérales ──
-         page-wrap = 130vw centré dans section 100vw overflow:hidden
-         → 15vw croppés de chaque côté, bandes hors écran ✓ */
-      section { overflow:hidden; }
+      /* ── SECTION : fenêtre A4 fixe ──
+         La section est exactement 100vw × (100vw/0.7071) = A4 visible.
+         Le page-wrap est 135vw (plus large + plus haut) et est centré
+         → crop symétrique gauche/droite (17.5vw) ET haut/bas (12.5vw/0.7071)
+         → bandes et bordures bleues hors écran, ratio A4 maintenu ✓ */
+      section {
+        min-height: unset;
+        height: calc(100vw / 0.7071); /* hauteur A4 de la zone VISIBLE */
+        overflow: hidden;
+        align-items: center; /* centrage vertical → crop symétrique haut/bas */
+      }
       .page-wrap {
-        width:130vw;
-        height:calc(130vw / 0.7071);
-        flex-shrink:0;
-        overflow:hidden;
+        width: 135vw;
+        height: calc(135vw / 0.7071);
+        flex-shrink: 0;
+        overflow: hidden;
       }
       .page-bg {
         position:absolute;
@@ -533,11 +538,12 @@
       }
 
       /* Zone de contenu — positionnement absolu mobile.
-         top:24% (légèrement au-dessus de la bordure bleue 26.1% pour remonter le titre)
-         left/right:26% — symétrique, évite le clip du texte côté gauche */
+         top:26% = bordure interne du cadre. Avec le crop symétrique (13% haut/bas),
+         le contenu apparaît visuellement à ~17% du haut de la fenêtre visible ✓
+         left/right:26% symétrique — texte non coupé, marges équilibrées */
       .page-content {
         position:absolute;
-        top:24%; left:26%; right:26%; bottom:16%;
+        top:26%; left:26%; right:26%; bottom:16%;
         display:flex; flex-direction:column; align-items:center; text-align:center;
         overflow-y:auto; overflow-x:hidden;
         scrollbar-width:none; -ms-overflow-style:none;
