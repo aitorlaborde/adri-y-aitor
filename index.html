@@ -226,10 +226,15 @@
       }
       #detalles .road-dash { display: none; } /* remplacé par le fond CSS */
 
-      /* PAGE 4 — CONFIRMACIÓN (titre aligné avec DETALLES, espacements resserrés en conséquence) */
+      /* PAGE 4 — CONFIRMACIÓN (titre aligné avec DETALLES, espacements aérés) */
       #confirmacion .page-content  { padding-top: 3.5vh; }
       #confirmacion .section-title { margin-bottom: 2vh; }
       #confirmacion .conf-deadline { margin-bottom: 2vh; }
+      #confirmacion .radio-group   { margin-bottom: .5em; }
+      #confirmacion .form-row      { margin-bottom: .4em; }
+      #confirmacion .conf-bus-label{ margin-bottom: .3em; }
+      #confirmacion .check-group   { margin-bottom: .4em; }
+      #confirmacion .form-group    { margin-bottom: .55em; }
 
       /* PAGE 5 — ALOJAMIENTOS (titre aligné avec DETALLES) */
       #alojamientos .page-content  { padding-top: 3.5vh; }
@@ -440,12 +445,15 @@
       padding-top:.55em; border-top:.5px solid #c0bbb5;
     }
     .dresscode-title {
-      font-size:clamp(.38rem,.82vh,.58rem);
-      letter-spacing:.18em; color:#1e3a7a; font-weight:400;
+      font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
+      font-size:clamp(.5rem,1.2vh,.82rem); /* = venue-name-title */
+      letter-spacing:.12em; color:#1e3a7a; font-weight:200; /* Fin pj1 */
       margin-bottom:.2em;
     }
     .dresscode-line {
-      font-size:clamp(.36rem,.78vh,.55rem);
+      font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
+      font-weight:300; /* Maigre pj2 */
+      font-size:clamp(.4rem,.88vh,.62rem); /* = venue-sub */
       color:#2c2c2a; line-height:1.5;
     }
 
@@ -524,15 +532,16 @@
         pointer-events:none; user-select:none;
       }
 
-      /* Zone de contenu — positionnement absolu identique au desktop.
-         Bordures internes frame_bg.jpg : top=26.1% left=23.6% right=29% bottom=16.2% */
+      /* Zone de contenu — positionnement absolu mobile.
+         top:24% (légèrement au-dessus de la bordure bleue 26.1% pour remonter le titre)
+         left/right:26% — symétrique, évite le clip du texte côté gauche */
       .page-content {
         position:absolute;
-        top:26%; left:24%; right:28%; bottom:16%;
+        top:24%; left:26%; right:26%; bottom:16%;
         display:flex; flex-direction:column; align-items:center; text-align:center;
         overflow-y:auto; overflow-x:hidden;
         scrollbar-width:none; -ms-overflow-style:none;
-        padding:.2rem 0 .4rem;
+        padding:.1rem .1rem .4rem .3rem;
       }
       .page-content::-webkit-scrollbar { display:none; }
       .page-content::before, .page-content::after { display:none; }
@@ -552,7 +561,7 @@
       .city-line    { font-size:clamp(.38rem,1.8vw,.6rem); }
 
       /* ── PAGE 1 INICIO ── */
-      #inicio .page-content      { padding-top:.5rem; }
+      #inicio .page-content      { padding-top:0; }
       #inicio .big-title         { margin-bottom:0; }
       #inicio .inicio-date-group { margin-top:2.5vw; }
       #inicio .separator         { margin-top:2.5vw; margin-bottom:0; }
@@ -561,14 +570,14 @@
       .inicio-text-group .body-text { margin-bottom:.25em; }
 
       /* ── PAGE 2 HISTORIA (scroll interne si nécessaire) ── */
-      #historia .page-content    { padding-top:.4rem; }
+      #historia .page-content    { padding-top:0; }
       #historia .section-title   { margin-bottom:2vw; }
       #historia .body-text       { margin-bottom:1.8vw;
         font-size:clamp(.44rem,2.3vw,.74rem); line-height:1.3; text-align:justify; }
       #historia .sign            { margin-top:2vw; }
 
       /* ── PAGE 3 DETALLES ── */
-      #detalles .page-content    { padding-top:.4rem; }
+      #detalles .page-content    { padding-top:0; }
       #detalles .section-title   { margin-bottom:2vw; }
       #detalles .venue-block     { margin-bottom:0; }
       #detalles .venue-note      { margin-bottom:0; }
@@ -585,7 +594,7 @@
       .ubicacion-btn{ font-size:clamp(.3rem,1.6vw,.5rem); padding:2px 4px; }
 
       /* ── PAGE 4 CONFIRMACIÓN ── */
-      #confirmacion .page-content { padding-top:.25rem; }
+      #confirmacion .page-content { padding-top:0; }
       #confirmacion .section-title{ margin-bottom:1.5vw; }
       #confirmacion .conf-deadline{ margin-bottom:1.5vw; }
       .conf-note    { display:none; }
@@ -605,7 +614,7 @@
       .submit-btn   { margin-top:.18em; padding:.15em .55em; font-size:clamp(.3rem,1.8vw,.52rem); }
 
       /* ── PAGE 5 ALOJAMIENTOS ── */
-      #alojamientos .page-content  { padding-top:.4rem; }
+      #alojamientos .page-content  { padding-top:0; }
       #alojamientos .section-title { margin-bottom:2vw; }
       #alojamientos .hotel-block   { margin-bottom:1.8vw; }
       .hotel-block  { margin-bottom:.4em; }
@@ -613,13 +622,13 @@
       .hotel-sub    { font-size:clamp(.3rem,1.6vw,.52rem); }
 
       /* ── PAGE 6 LISTA DE BODAS ── */
-      #lista .page-content    { padding-top:.5rem; }
+      #lista .page-content    { padding-top:0; }
       #lista .section-title   { margin-bottom:3vw; }
       #lista .body-text       { margin-bottom:0; }
       #lista .iban-pw-section { margin-top:3.5vw; }
 
       /* ── PAGE 7 FIN (photo dans le cadre) ── */
-      #fin .page-content { padding-top:.3rem; }
+      #fin .page-content { padding-top:0; }
       #fin .big-title    { font-weight:500; font-size:clamp(1.1rem,5.5vw,1.8rem); margin-bottom:.8vw; }
       #fin .date-line    { margin-bottom:.6vw; }
       #fin .city-line    { margin-bottom:.8vw; }
