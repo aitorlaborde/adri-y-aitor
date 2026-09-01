@@ -513,22 +513,14 @@
     @media(max-width:780px){
       .nav-links { display:none; }
       nav { padding:0 1rem; }
-      /* ── SECTION : fenêtre A4 fixe ──
-         La section est exactement 100vw × (100vw/0.7071) = A4 visible.
-         Le page-wrap est 135vw (plus large + plus haut) et est centré
-         → crop symétrique gauche/droite (17.5vw) ET haut/bas (12.5vw/0.7071)
-         → bandes et bordures bleues hors écran, ratio A4 maintenu ✓ */
-      section {
-        min-height: unset;
-        height: calc(100vw / 0.7071); /* hauteur A4 de la zone VISIBLE */
-        overflow: hidden;
-        align-items: center; /* centrage vertical → crop symétrique haut/bas */
-      }
+      section { min-height:unset; }
+
+      /* ── CARD : proportions A4 FIXES — le cadre (dessin) ne s'étire jamais ──
+         Contenu qui dépasse → scroll interne invisible (swipe dans la carte) */
       .page-wrap {
-        width: 135vw;
-        height: calc(135vw / 0.7071);
-        flex-shrink: 0;
-        overflow: hidden;
+        width:100vw;
+        height:calc(100vw / 0.7071); /* A4 exact — jamais height:auto */
+        overflow:hidden;
       }
       .page-bg {
         position:absolute;
@@ -537,17 +529,13 @@
         pointer-events:none; user-select:none;
       }
 
-      /* Zone de contenu — positionnement absolu mobile.
-         top:26% = bordure interne du cadre. Avec le crop symétrique (13% haut/bas),
-         le contenu apparaît visuellement à ~17% du haut de la fenêtre visible ✓
-         left/right:26% symétrique — texte non coupé, marges équilibrées */
       .page-content {
         position:absolute;
-        top:26%; left:26%; right:26%; bottom:16%;
+        top:26%; left:24%; right:28%; bottom:16%;
         display:flex; flex-direction:column; align-items:center; text-align:center;
         overflow-y:auto; overflow-x:hidden;
         scrollbar-width:none; -ms-overflow-style:none;
-        padding:.1rem .1rem .4rem .3rem;
+        padding:.2rem 0 .4rem;
       }
       .page-content::-webkit-scrollbar { display:none; }
       .page-content::before, .page-content::after { display:none; }
@@ -567,7 +555,7 @@
       .city-line    { font-size:clamp(.38rem,1.8vw,.6rem); }
 
       /* ── PAGE 1 INICIO ── */
-      #inicio .page-content      { padding-top:0; }
+      #inicio .page-content      { padding-top:.5rem; }
       #inicio .big-title         { margin-bottom:0; }
       #inicio .inicio-date-group { margin-top:2.5vw; }
       #inicio .separator         { margin-top:2.5vw; margin-bottom:0; }
@@ -576,14 +564,14 @@
       .inicio-text-group .body-text { margin-bottom:.25em; }
 
       /* ── PAGE 2 HISTORIA (scroll interne si nécessaire) ── */
-      #historia .page-content    { padding-top:0; }
+      #historia .page-content    { padding-top:.4rem; }
       #historia .section-title   { margin-bottom:2vw; }
       #historia .body-text       { margin-bottom:1.8vw;
         font-size:clamp(.44rem,2.3vw,.74rem); line-height:1.3; text-align:justify; }
       #historia .sign            { margin-top:2vw; }
 
       /* ── PAGE 3 DETALLES ── */
-      #detalles .page-content    { padding-top:0; }
+      #detalles .page-content    { padding-top:.4rem; }
       #detalles .section-title   { margin-bottom:2vw; }
       #detalles .venue-block     { margin-bottom:0; }
       #detalles .venue-note      { margin-bottom:0; }
@@ -600,7 +588,7 @@
       .ubicacion-btn{ font-size:clamp(.3rem,1.6vw,.5rem); padding:2px 4px; }
 
       /* ── PAGE 4 CONFIRMACIÓN ── */
-      #confirmacion .page-content { padding-top:0; }
+      #confirmacion .page-content { padding-top:.25rem; padding-left:.4rem; }
       #confirmacion .section-title{ margin-bottom:1.5vw; }
       #confirmacion .conf-deadline{ margin-bottom:1.5vw; }
       .conf-note    { display:none; }
@@ -620,7 +608,7 @@
       .submit-btn   { margin-top:.18em; padding:.15em .55em; font-size:clamp(.3rem,1.8vw,.52rem); }
 
       /* ── PAGE 5 ALOJAMIENTOS ── */
-      #alojamientos .page-content  { padding-top:0; }
+      #alojamientos .page-content  { padding-top:.4rem; }
       #alojamientos .section-title { margin-bottom:2vw; }
       #alojamientos .hotel-block   { margin-bottom:1.8vw; }
       .hotel-block  { margin-bottom:.4em; }
@@ -628,13 +616,13 @@
       .hotel-sub    { font-size:clamp(.3rem,1.6vw,.52rem); }
 
       /* ── PAGE 6 LISTA DE BODAS ── */
-      #lista .page-content    { padding-top:0; }
+      #lista .page-content    { padding-top:.5rem; }
       #lista .section-title   { margin-bottom:3vw; }
       #lista .body-text       { margin-bottom:0; }
       #lista .iban-pw-section { margin-top:3.5vw; }
 
       /* ── PAGE 7 FIN (photo dans le cadre) ── */
-      #fin .page-content { padding-top:0; }
+      #fin .page-content { padding-top:.3rem; }
       #fin .big-title    { font-weight:500; font-size:clamp(1.1rem,5.5vw,1.8rem); margin-bottom:.8vw; }
       #fin .date-line    { margin-bottom:.6vw; }
       #fin .city-line    { margin-bottom:.8vw; }
