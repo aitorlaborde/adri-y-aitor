@@ -207,7 +207,7 @@
       #historia .sign { margin-top: 0.55rem; font-style: italic; text-align: center; }
 
       /* PAGE 3 — DETALLES — titre remonté (pj15), connecteur raccourci (pj15) */
-      #detalles .page-content  { padding-top: 3.5vh; }
+      #detalles .page-content  { padding-top: 1.5vh; }
       #detalles .section-title { margin-bottom: 1.5vh; }
       #detalles .venue-block   { margin-bottom: 0; }
       #detalles .venue-note    { margin-bottom: 0; }
@@ -227,7 +227,7 @@
       #detalles .road-dash { display: none; } /* remplacé par le fond CSS */
 
       /* PAGE 4 — CONFIRMACIÓN (titre aligné avec DETALLES, espacements aérés) */
-      #confirmacion .page-content  { padding-top: 3.5vh; }
+      #confirmacion .page-content  { padding-top: 1.5vh; }
       #confirmacion .section-title { margin-bottom: 2vh; }
       #confirmacion .conf-deadline { margin-bottom: 2vh; }
       #confirmacion .radio-group   { margin-bottom: .5em; }
@@ -237,7 +237,7 @@
       #confirmacion .form-group    { margin-bottom: .55em; }
 
       /* PAGE 5 — ALOJAMIENTOS (titre aligné avec DETALLES) */
-      #alojamientos .page-content  { padding-top: 3.5vh; }
+      #alojamientos .page-content  { padding-top: 1.5vh; }
       #alojamientos .section-title { margin-bottom: 3vh; }
       #alojamientos .hotel-block   { margin-bottom: 1.5vh; }
 
@@ -281,7 +281,7 @@
     .venue-bullet {
       width:clamp(6px,1vh,10px); height:clamp(6px,1vh,10px);
       background:#1e3a7a; border-radius:50%; /* bleu marine pj14 */
-      flex-shrink:0; margin-top:.3em;
+      flex-shrink:0;
     }
     .venue-header { display:flex; align-items:center; gap:.4rem; }
     .venue-name-title {
@@ -323,9 +323,8 @@
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
       font-weight:100; /* Ultrafin pj11 */
       font-size:clamp(.45rem,1vh,.72rem);
-      color:#7a7470; text-align:left;
-      margin-top:.2em; line-height:1.4; font-style:italic;
-      max-width:clamp(65px,13vh,110px); /* même largeur que l'image */
+      color:#7a7470; text-align:center;
+      width:100%; margin-top:.3em; line-height:1.4; font-style:italic;
     }
     .ubicacion-btn {
       display:inline-block; margin-top:.3em;
@@ -583,7 +582,7 @@
       .venue-name-title { font-size:clamp(.45rem,2.5vw,.78rem); }
       .venue-sub, .venue-hour { font-size:clamp(.36rem,1.9vw,.6rem); }
       .venue-img    { width:clamp(40px,10vw,65px); height:clamp(32px,8vw,52px); }
-      .venue-note   { font-size:clamp(.38rem,2vw,.62rem); max-width:clamp(40px,10vw,65px); }
+      .venue-note   { font-size:clamp(.38rem,2vw,.62rem); width:100%; text-align:center; }
       .ubicacion-btn{ font-size:clamp(.3rem,1.6vw,.5rem); padding:2px 4px; }
 
       /* ── PAGE 4 CONFIRMACIÓN ── */
@@ -725,12 +724,11 @@
           <p class="venue-hour">11:30h</p>
           <a href="https://maps.app.goo.gl/PZsPpCzewH7TP7xC7" target="_blank" class="ubicacion-btn" data-i18n="det_ubicacion">[ UBICACIÓN ]</a>
         </div>
-        <!-- image + note sous l'image (pj11) -->
         <div class="venue-right-col">
           <img class="venue-img" src="img/eglise.jpeg" alt="Iglesia Santa Bárbara">
-          <p class="venue-note" data-i18n="det_nota">*No está permitido echar pétalos de flores, arroz, ni burbujas a la salida de la Iglesia. ¡Lo sentimos!</p>
         </div>
       </div>
+      <p class="venue-note" data-i18n="det_nota">*No está permitido echar pétalos de flores, arroz, ni burbujas a la salida de la Iglesia. ¡Lo sentimos!</p>
 
       <!-- Conector -->
       <div class="road-connector">
