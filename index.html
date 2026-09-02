@@ -322,7 +322,7 @@
     .venue-note {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
       font-weight:100; /* Ultrafin pj11 */
-      font-size:clamp(.32rem,.7vh,.5rem);
+      font-size:clamp(.45rem,1vh,.72rem);
       color:#7a7470; text-align:left;
       margin-top:.2em; line-height:1.4; font-style:italic;
       max-width:clamp(65px,13vh,110px); /* même largeur que l'image */
@@ -583,7 +583,7 @@
       .venue-name-title { font-size:clamp(.45rem,2.5vw,.78rem); }
       .venue-sub, .venue-hour { font-size:clamp(.36rem,1.9vw,.6rem); }
       .venue-img    { width:clamp(40px,10vw,65px); height:clamp(32px,8vw,52px); }
-      .venue-note   { font-size:clamp(.28rem,1.4vw,.46rem); max-width:clamp(40px,10vw,65px); }
+      .venue-note   { font-size:clamp(.38rem,2vw,.62rem); max-width:clamp(40px,10vw,65px); }
       .ubicacion-btn{ font-size:clamp(.3rem,1.6vw,.5rem); padding:2px 4px; }
 
       /* ── PAGE 4 CONFIRMACIÓN ── */
@@ -720,7 +720,7 @@
             <div class="venue-bullet"></div>
             <p class="venue-name-title" data-i18n="det_ceremonia">CEREMONIA</p>
           </div>
-          <p class="venue-sub">Iglesia Santa Bárbara</p>
+          <p class="venue-sub">IGLESIA SANTA BÁRBARA</p>
           <p class="venue-sub">Calle del Gral. Castaños, 2, 28004 Madrid</p>
           <p class="venue-hour">11:30h</p>
           <a href="https://maps.app.goo.gl/PZsPpCzewH7TP7xC7" target="_blank" class="ubicacion-btn" data-i18n="det_ubicacion">[ UBICACIÓN ]</a>
@@ -738,7 +738,7 @@
           <div class="road-dash"></div><div class="road-dash"></div>
           <div class="road-dash"></div><div class="road-dash"></div>
         </div>
-        <span class="car-emoji">🚘</span>
+        <!-- car-emoji supprimé -->
         <div class="road-dashes">
           <div class="road-dash"></div><div class="road-dash"></div>
           <div class="road-dash"></div><div class="road-dash"></div>
@@ -752,7 +752,7 @@
             <div class="venue-bullet"></div>
             <p class="venue-name-title" data-i18n="det_celebracion">CELEBRACIÓN</p>
           </div>
-          <p class="venue-sub">Finca Astilbe By Eneldo</p>
+          <p class="venue-sub">FINCA ASTILBE BY ENELDO</p>
           <p class="venue-sub">Carr. de Fuencarral, km 1,9, 28049 Madrid</p>
           <p class="venue-hour">13:30h</p>
           <a href="https://maps.app.goo.gl/icwLbPRPt5NwcUYJ7" target="_blank" class="ubicacion-btn" data-i18n="det_ubicacion">[ UBICACIÓN ]</a>
@@ -766,7 +766,7 @@
           <div class="venue-bullet"></div>
           <p class="dresscode-title" data-i18n="det_dresscode_title">DRESS CODE</p>
         </div>
-        <p class="dresscode-line" data-i18n="det_dresscode_line1">Elegante 🎩 · Chicos: traje y corbata · Chicas: vestido</p>
+        <p class="dresscode-line" data-i18n="det_dresscode_line1" style="letter-spacing:.12em;">ELEGANTE</p>
         <p class="dresscode-line" data-i18n="det_dresscode_line2"><em>El blanco es exclusivo para la novia 🤍</em></p>
       </div>
     </div>
@@ -986,7 +986,7 @@ const T = {
     det_ceremonia:'CEREMONIA', det_celebracion:'CELEBRACIÓN', det_ubicacion:'[ UBICACIÓN ]',
     det_nota:'*No está permitido echar pétalos de flores, arroz, ni burbujas a la salida de la Iglesia. ¡Lo sentimos!',
     det_dresscode_title:'DRESS CODE',
-    det_dresscode_line1:'Elegante 🎩 · Chicos: traje y corbata · Chicas: vestido',
+    det_dresscode_line1:'ELEGANTE',
     det_dresscode_line2:'El blanco es exclusivo para la novia 🤍',
     conf_deadline:'SE RUEGA CONFIRMACIÓN ANTES DEL 20/12/2026',
     conf_asistir:'¿Podrás asistir?', conf_si:'Sí, allí estaré', conf_no:'No, lo siento',
@@ -1024,7 +1024,7 @@ const T = {
     det_ceremonia:'CÉRÉMONIE', det_celebracion:'CÉLÉBRATION', det_ubicacion:'[ LOCALISATION ]',
     det_nota:"*Il n'est pas autorisé de jeter des pétales de fleurs, du riz ou des bulles à la sortie de l'Église. Désolés !",
     det_dresscode_title:'DRESS CODE',
-    det_dresscode_line1:'Élégant 🎩 · Messieurs: costume et cravate · Dames: robe',
+    det_dresscode_line1:'ÉLÉGANT',
     det_dresscode_line2:'Le blanc est réservé à la mariée 🤍',
     conf_deadline:'MERCI DE CONFIRMER AVANT LE 20/12/2026',
     conf_asistir:'Pourrez-vous être présent(e) ?', conf_si:"Oui, j'y serai", conf_no:'Non, désolé(e)',
@@ -1062,7 +1062,7 @@ const T = {
     det_ceremonia:'CEREMONY', det_celebracion:'CELEBRATION', det_ubicacion:'[ LOCATION ]',
     det_nota:'*Throwing flower petals, rice or blowing bubbles is not allowed at the Church exit. We\'re sorry!',
     det_dresscode_title:'DRESS CODE',
-    det_dresscode_line1:'Elegant 🎩 · Men: suit and tie · Ladies: dress',
+    det_dresscode_line1:'ELEGANT',
     det_dresscode_line2:'White is reserved for the bride 🤍',
     conf_deadline:'PLEASE CONFIRM BY 20/12/2026',
     conf_asistir:"Will you be able to attend?", conf_si:"Yes, I'll be there", conf_no:"No, sorry",
@@ -1100,7 +1100,7 @@ const T = {
     det_ceremonia:'CERIMONIA', det_celebracion:'CELEBRAZIONE', det_ubicacion:'[ POSIZIONE ]',
     det_nota:'*Non è consentito lanciare petali di fiori, riso o bolle all\'uscita della Chiesa. Ci dispiace!',
     det_dresscode_title:'DRESS CODE',
-    det_dresscode_line1:'Elegante 🎩 · Uomini: abito e cravatta · Donne: abito',
+    det_dresscode_line1:'ELEGANTE',
     det_dresscode_line2:'Il bianco è riservato alla sposa 🤍',
     conf_deadline:'SI PREGA DI CONFERMARE ENTRO IL 20/12/2026',
     conf_asistir:'Potrete essere presenti?', conf_si:'Sì, ci sarò', conf_no:'No, mi dispiace',
