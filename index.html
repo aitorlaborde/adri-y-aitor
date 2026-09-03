@@ -124,7 +124,7 @@
     .city-line {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
       font-weight:300; /* Maigre */
-      font-size:clamp(.42rem,1.0vh,.75rem);
+      font-size:clamp(.52rem,1.35vh,.92rem);
       letter-spacing:.32em; color:#000;
       margin-bottom:.7em;
     }
@@ -198,20 +198,23 @@
       /* PAGE 2 — NUESTRA HISTORIA
          Titre aligné avec DETALLES (padding-top:3.5vh) + ligne blanche avant le texte.
          Font 1.5vh ≈ 13pt à l'échelle de la carte web (A4 web = ~66% A4 papier). */
-      #historia .page-content  { padding-top: 3.5vh; }
-      #historia .section-title { margin-bottom: 5vh; /* ligne blanche + décalage demandé */ }
+      #historia .page-content  { padding-top: 1.5vh; }
+      #historia .section-title { margin-bottom: 2vh; }
       #historia .body-text     {
-        margin-top: 0; margin-bottom: 0.35rem;
+        margin-top: 0; margin-bottom: 1.2em; /* ligne vide entre paragraphes */
         font-size: clamp(.62rem, 1.5vh, 1.05rem);
-        text-align: justify; line-height: 1.2; /* interlignage source Pages pj7 */
+        text-align: justify; line-height: 1.9; /* interlignage augmenté */
       }
+      #historia .body-text:last-of-type { margin-bottom: 0; }
       #historia .sign { margin-top: 0.55rem; font-style: italic; text-align: center; }
 
-      /* PAGE 3 — DETALLES — titre remonté (pj15), connecteur raccourci (pj15) */
+      /* PAGE 3 — DETALLES */
       #detalles .page-content  { padding-top: 1.5vh; }
-      #detalles .section-title { margin-bottom: 1.5vh; }
+      #detalles .section-title { margin-bottom: 3vh; } /* ligne avant CEREMONIA */
       #detalles .venue-block   { margin-bottom: 0; }
-      #detalles .venue-note    { margin-bottom: 0; }
+      #detalles .venue-note    { text-align:left; font-size:clamp(.55rem,1.2vh,.85rem); margin-bottom:.4em; }
+      #detalles .venue-img     { display:none; } /* photos cachées sur PC */
+      #detalles .dresscode-block { margin-top:2em; } /* ligne avant DRESS CODE */
       /* Connecteur raccourci (pj15) */
       #detalles .road-connector { min-height: 10vh; }
       #detalles .road-dashes   {
@@ -229,13 +232,16 @@
 
       /* PAGE 4 — CONFIRMACIÓN (titre aligné avec DETALLES, espacements aérés) */
       #confirmacion .page-content  { padding-top: 1.5vh; }
-      #confirmacion .section-title { margin-bottom: 2vh; }
-      #confirmacion .conf-deadline { margin-bottom: 2vh; }
+      #confirmacion .section-title { margin-bottom: 1vh; }
+      #confirmacion .conf-formulario{ margin-bottom:1vh; }
+      #confirmacion .conf-deadline { color:#8b1a1a; margin-bottom: 1.5vh; }
       #confirmacion .radio-group   { margin-bottom: .5em; }
-      #confirmacion .form-row      { margin-bottom: .4em; }
+      #confirmacion .form-row      { margin-bottom: .6em; }
       #confirmacion .conf-bus-label{ margin-bottom: .3em; }
       #confirmacion .check-group   { margin-bottom: .4em; }
       #confirmacion .form-group    { margin-bottom: .55em; }
+      #confirmacion .submit-btn    { border-color:#8b1a1a; color:#8b1a1a; }
+      #confirmacion .submit-btn:hover { background:#8b1a1a; color:#fff; }
 
       /* PAGE 5 — ALOJAMIENTOS (titre aligné avec DETALLES) */
       #alojamientos .page-content  { padding-top: 1.5vh; }
@@ -302,6 +308,8 @@
       font-size:clamp(.55rem,1.2vh,.85rem);
       color:#000; margin-top:.05em;
     }
+    .venue-hour-inline { font-weight:300; }
+    .venue-name-link { color:#000; text-decoration:underline; text-underline-offset:2px; }
     .venue-img {
       width:clamp(65px,13vh,110px); height:clamp(55px,11vh,92px);
       object-fit:cover; border-radius:2px; flex-shrink:0;
@@ -337,15 +345,19 @@
     .ubicacion-btn:hover { background:#2c2c2a; color:#fff; }
 
     /* ── CONFIRMACIÓN ── */
+    .conf-formulario {
+      font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
+      font-size:clamp(.4rem,.85vh,.6rem);
+      color:#000; font-style:italic; margin-bottom:.4em; text-align:center;
+    }
     .conf-deadline {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
       font-size:clamp(.45rem,1vh,.7rem);
-      letter-spacing:.1em; color:#000; /* bleu marine pj17 */
-      font-weight:700; /* Gras pj17 */ margin-bottom:.6em; text-align:center;
+      letter-spacing:.1em; color:#000;
+      font-weight:700; margin-bottom:.6em; text-align:center;
     }
     .conf-question {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
-      font-weight:200; /* Fin pj18 */
       font-size:clamp(.48rem,1.05vh,.75rem);
       color:#000; margin-bottom:.3em; text-align:left; width:100%;
     }
@@ -360,7 +372,7 @@
     .conf-note {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
       font-weight:100; /* Ultrafin pj20 */
-      font-size:clamp(.4rem,.88vh,.62rem);
+      font-size:clamp(.43rem,.95vh,.67rem);
       color:#000; text-align:left; width:100%;
       margin-bottom:.6em; line-height:1.5; font-style:italic;
     }
@@ -417,11 +429,11 @@
     .hotel-block {
       width:100%; text-align:left; margin-bottom:.7em;
     }
-    .hotel-header { display:flex; align-items:flex-start; gap:.4rem; }
+    .hotel-header { display:flex; align-items:center; gap:.4rem; }
     .hotel-dot {
       width:clamp(7px,1.1vh,11px); height:clamp(7px,1.1vh,11px);
-      background:#1e3a7a; border-radius:50%; /* bleu marine comme DETALLES */
-      flex-shrink:0; margin-top:.25em;
+      background:#1e3a7a; border-radius:50%;
+      flex-shrink:0;
     }
     .hotel-name {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
@@ -434,9 +446,25 @@
       font-size:clamp(.4rem,.88vh,.62rem);
       color:#000; margin-top:.1em; line-height:1.5;
     }
+    .hotel-subs { padding-left:calc(clamp(7px,1.1vh,11px) + .4rem); }
     .hotel-link {
       font-size:clamp(.38rem,.82vh,.58rem);
       color:#000; word-break:break-all;
+    }
+    .transport-block {
+      width:100%; margin-top:.8em; padding-top:.5em;
+      border-top:.5px solid #c0bbb5; text-align:left;
+    }
+    .transport-title {
+      font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
+      font-size:clamp(.45rem,1vh,.72rem);
+      letter-spacing:.12em; color:#000; font-weight:300; margin-bottom:.3em;
+    }
+    .transport-sub {
+      font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
+      font-weight:100;
+      font-size:clamp(.4rem,.88vh,.62rem);
+      color:#000; margin-top:.1em; line-height:1.5;
     }
 
     /* ── DRESS CODE (DETALLES) ── */
@@ -591,6 +619,7 @@
       #confirmacion .section-title{ margin-bottom:5vw; }
       #confirmacion .conf-deadline{ margin-bottom:1.5vw; }
       .conf-note    { display:none; }
+      .conf-formulario { display:none; }
       .conf-deadline{ font-size:clamp(.36rem,1.9vw,.58rem); }
       .conf-question{ font-size:clamp(.36rem,2vw,.6rem); margin-bottom:.1em; }
       .radio-group  { margin-bottom:.12em; gap:.06em; }
@@ -613,6 +642,7 @@
       .hotel-block  { margin-bottom:.4em; }
       .hotel-name   { font-size:clamp(.38rem,2.1vw,.68rem); }
       .hotel-sub    { font-size:clamp(.3rem,1.6vw,.52rem); }
+      .transport-block { display:none; }
 
       /* ── PAGE 6 LISTA DE BODAS ── */
       #lista .page-content    { padding-top:.5rem; }
@@ -718,15 +748,10 @@
         <div class="venue-left">
           <div class="venue-header">
             <div class="venue-bullet"></div>
-            <p class="venue-name-title" data-i18n="det_ceremonia">CEREMONIA</p>
+            <p class="venue-name-title"><span class="venue-hour-inline">11:30&nbsp;&nbsp;</span><span data-i18n="det_ceremonia">CEREMONIA</span></p>
           </div>
-          <p class="venue-sub">IGLESIA SANTA BÁRBARA</p>
-          <p class="venue-sub">Calle del Gral. Castaños, 2, 28004 Madrid</p>
-          <p class="venue-hour">11:30h</p>
-          <a href="https://maps.app.goo.gl/PZsPpCzewH7TP7xC7" target="_blank" class="ubicacion-btn" data-i18n="det_ubicacion">[ UBICACIÓN ]</a>
-        </div>
-        <div class="venue-right-col">
-          <img class="venue-img" src="img/eglise.jpeg" alt="Iglesia Santa Bárbara">
+          <p class="venue-sub"><a href="https://maps.app.goo.gl/PZsPpCzewH7TP7xC7" target="_blank" class="venue-name-link">IGLESIA SANTA BÁRBARA</a></p>
+          <p class="venue-sub">Calle del Gral. Castaños, 2<br>28004 Madrid</p>
         </div>
       </div>
       <p class="venue-note" data-i18n="det_nota">*No está permitido echar pétalos de flores, arroz, ni burbujas a la salida de la Iglesia. ¡Lo sentimos!</p>
@@ -749,23 +774,19 @@
         <div class="venue-left">
           <div class="venue-header">
             <div class="venue-bullet"></div>
-            <p class="venue-name-title" data-i18n="det_celebracion">CELEBRACIÓN</p>
+            <p class="venue-name-title"><span class="venue-hour-inline">13:30&nbsp;&nbsp;</span><span data-i18n="det_celebracion">CELEBRACIÓN</span></p>
           </div>
-          <p class="venue-sub">FINCA ASTILBE BY ENELDO</p>
-          <p class="venue-sub">Carr. de Fuencarral, km 1,9, 28049 Madrid</p>
-          <p class="venue-hour">13:30h</p>
-          <a href="https://maps.app.goo.gl/icwLbPRPt5NwcUYJ7" target="_blank" class="ubicacion-btn" data-i18n="det_ubicacion">[ UBICACIÓN ]</a>
+          <p class="venue-sub"><a href="https://maps.app.goo.gl/icwLbPRPt5NwcUYJ7" target="_blank" class="venue-name-link">FINCA ASTILBE BY ENELDO</a></p>
+          <p class="venue-sub">Carr. de Fuencarral, km 1,9<br>28049 Madrid</p>
         </div>
-        <img class="venue-img" src="img/finca.jpeg" alt="Finca Astilbe">
       </div>
 
       <!-- Dress Code -->
       <div class="dresscode-block">
         <div class="venue-header" style="margin-bottom:.2em;">
           <div class="venue-bullet"></div>
-          <p class="dresscode-title" data-i18n="det_dresscode_title">DRESS CODE</p>
+          <p class="dresscode-title" data-i18n="det_dresscode_title">DRESS CODE: ELEGANTE</p>
         </div>
-        <p class="dresscode-line" data-i18n="det_dresscode_line1" style="letter-spacing:.12em;">ELEGANTE</p>
         <p class="dresscode-line" data-i18n="det_dresscode_line2"><em>El blanco es exclusivo para la novia 🤍</em></p>
       </div>
     </div>
@@ -781,14 +802,18 @@
     
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_confirmacion">CONFIRMACIÓN</h2>
+      <p class="conf-formulario" data-i18n="conf_formulario">Rellena este formulario (solo los novios tendrán acceso a esta información)</p>
       <p class="conf-deadline" data-i18n="conf_deadline">SE RUEGA CONFIRMACIÓN ANTES DEL 20/12/2026</p>
 
       <form id="rsvpForm" onsubmit="enviarFormulario(event)">
+        <!-- Adultos -->
+        <p class="conf-note" data-i18n="conf_adults">Hemos decidido celebrar nuestra boda exclusivamente para adultos, para que todos podamos disfrutar de un día de fiesta, baile y celebración hasta el final.</p>
+
         <!-- Asistir -->
         <p class="conf-question" data-i18n="conf_asistir">¿Podrás asistir?</p>
         <div class="radio-group">
           <label class="radio-opt">
-            <input type="radio" name="asistir" value="si" required>
+            <input type="radio" name="asistir" value="si" required checked>
             <span data-i18n="conf_si">Sí, allí estaré</span>
           </label>
           <label class="radio-opt">
@@ -796,8 +821,6 @@
             <span data-i18n="conf_no">No, lo siento</span>
           </label>
         </div>
-
-        <p class="conf-note" data-i18n="conf_adults">Hemos decidido celebrar nuestra boda exclusivamente para adultos, para que todos podamos disfrutar de un día fiesta, baile y celebración hasta el final.</p>
 
         <!-- Nombres -->
         <div class="form-row">
@@ -837,16 +860,22 @@
         <!-- Alergias -->
         <div class="form-group" style="width:100%;margin-bottom:.4em;">
           <label class="form-label" data-i18n="conf_alergias">Alergias o dietas especiales</label>
-          <textarea class="form-textarea" name="alergias" rows="1"></textarea>
+          <textarea class="form-textarea" name="alergias" rows="1" placeholder="Ej: vegetariano, sin gluten"></textarea>
         </div>
 
         <!-- Canción -->
         <div class="form-group" style="width:100%;margin-bottom:.4em;">
-          <label class="form-label" data-i18n="conf_cancion">Una canción que no puede faltar</label>
-          <textarea class="form-textarea" name="cancion" rows="1"></textarea>
+          <label class="form-label" data-i18n="conf_cancion">Una canción que no puede faltar 🎵</label>
+          <textarea class="form-textarea" name="cancion" rows="1" placeholder="Artista - canción"></textarea>
         </div>
 
-        <button type="submit" class="submit-btn" data-i18n="conf_enviar">ENVIAR</button>
+        <!-- Mensaje -->
+        <div class="form-group" style="width:100%;margin-bottom:.4em;">
+          <label class="form-label" data-i18n="conf_mensaje">Un mensaje para los novios 💌</label>
+          <textarea class="form-textarea" name="mensaje" rows="1"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" data-i18n="conf_enviar">ENVIAR CONFIRMACIÓN</button>
         <p class="form-success" id="formSuccess" data-i18n="conf_ok">¡Gracias! Hemos recibido tu confirmación.</p>
       </form>
     </div>
@@ -866,45 +895,49 @@
       <div class="hotel-block">
         <div class="hotel-header">
           <div class="hotel-dot"></div>
-          <div>
-            <p class="hotel-name">HOTEL SARDINERO MADRID ★★★★</p>
-            <p class="hotel-sub" data-i18n="aloj_cerca_iglesia">(cerca de la Iglesia Santa Bárbara)</p>
-            <p class="hotel-sub" data-i18n="aloj_descuento">Código descuento 10%: <strong>"adrianaitor2027"</strong></p>
-            <p class="hotel-sub"><a class="hotel-link" href="https://www.hotelsardineromadrid.com" target="_blank">www.hotelsardineromadrid.com</a></p>
-            <p class="hotel-sub" data-i18n="aloj_reservar">Para reservar, proporcionar código a Gregori Mayor<br>E: reservas@sardinerohoteles.com</p>
-          </div>
+          <p class="hotel-name">HOTEL SARDINERO MADRID ★★★★</p>
+        </div>
+        <div class="hotel-subs">
+          <p class="hotel-sub" data-i18n="aloj_cerca_iglesia">(cerca de la Iglesia Santa Bárbara)</p>
+          <p class="hotel-sub" data-i18n="aloj_descuento">Código descuento 10%: <strong>"adrianaitor2027"</strong></p>
+          <p class="hotel-sub"><a class="hotel-link" href="https://www.hotelsardineromadrid.com" target="_blank">www.hotelsardineromadrid.com</a></p>
+          <p class="hotel-sub" data-i18n="aloj_reservar">Para reservar, proporcionar código a Gregori Mayor<br>E: reservas@sardinerohoteles.com</p>
         </div>
       </div>
 
       <div class="hotel-block">
         <div class="hotel-header">
           <div class="hotel-dot"></div>
-          <div>
-            <p class="hotel-name">HOTEL XXXXXX</p>
-            <p class="hotel-sub">(cerca de la Finca Astilbe by Eneldo)</p>
-            <p class="hotel-sub">Código descuento X%</p>
-            <p class="hotel-sub">"Xxxxxxxxxxx"</p>
-            <p class="hotel-sub">Ubicación y página web</p>
-          </div>
+          <p class="hotel-name">HOTEL XXXXXX</p>
+        </div>
+        <div class="hotel-subs">
+          <p class="hotel-sub">(cerca de la Finca Astilbe by Eneldo)</p>
+          <p class="hotel-sub">Código descuento X%</p>
+          <p class="hotel-sub">"Xxxxxxxxxxx"</p>
+          <p class="hotel-sub">Ubicación y página web</p>
         </div>
       </div>
 
       <div class="hotel-block">
         <div class="hotel-header">
           <div class="hotel-dot"></div>
-          <div>
-            <p class="hotel-name" data-i18n="aloj_prox">PRÓXIMAMENTE</p>
-          </div>
+          <p class="hotel-name" data-i18n="aloj_prox">PRÓXIMAMENTE</p>
         </div>
       </div>
 
       <div class="hotel-block">
         <div class="hotel-header">
           <div class="hotel-dot"></div>
-          <div>
-            <p class="hotel-name" data-i18n="aloj_prox">PRÓXIMAMENTE</p>
-          </div>
+          <p class="hotel-name" data-i18n="aloj_prox">PRÓXIMAMENTE</p>
         </div>
+      </div>
+
+      <!-- Transport -->
+      <div class="transport-block">
+        <p class="transport-title" data-i18n="aloj_transport_title">TRANSPORTE DE VUELTA</p>
+        <p class="transport-sub" data-i18n="aloj_transport_text">Contactos para volver del lugar de la celebración a tu hotel:</p>
+        <p class="transport-sub" data-i18n="aloj_transport_phone">📞 Por teléfono: +34 91 547 82 00</p>
+        <p class="transport-sub" data-i18n="aloj_transport_app">📱 Por app: Uber, Cabify, Bolt, Free Now</p>
       </div>
     </div>
   </div>
@@ -951,6 +984,7 @@
       <p class="separator">◆·····················◆</p>
       <p class="tagline" data-i18n="fin_gracias">¡GRACIAS!</p>
       <p class="tagline" data-i18n="fin_esperamos">¡OS ESPERAMOS!</p>
+      <p class="tagline">&nbsp;</p>
       <img class="venise-photo" src="img/venise_final.jpeg" alt="Adri & Aitor en Venecia">
     </div>
   </div>
@@ -972,8 +1006,8 @@ const PW_BODA = 'boda2027';
 const T = {
   es: {
     nav_inicio:'INICIO', nav_historia:'NUESTRA HISTORIA', nav_detalles:'DETALLES',
-    nav_confirmacion:'CONFIRMACIÓN', nav_alojamientos:'ALOJAMIENTOS',
-    nav_lista:'LISTA DE BODAS', nav_fin:'FIN',
+    nav_confirmacion:'CONFIRMACIÓN', nav_alojamientos:'COMODIDADES',
+    nav_lista:'REGALO', nav_fin:'FIN',
     inv_date:'SÁBADO | 6 | MARZO | 2027', inv_tagline:'¡NOS CASAMOS!',
     inv_text1:'Nos sentimos muy afortunados de teneros como familia y amigos.',
     inv_text2:'Por eso, nos gustaría invitaros a compartir este día tan especial con nosotros.',
@@ -984,8 +1018,7 @@ const T = {
     hist_p4:'Ahora queremos compartir nuestro "para siempre" en Madrid, rodeados de las personas que más queremos, nuestra familia y amigos.',
     det_ceremonia:'CEREMONIA', det_celebracion:'CELEBRACIÓN', det_ubicacion:'[ UBICACIÓN ]',
     det_nota:'*No está permitido echar pétalos de flores, arroz, ni burbujas a la salida de la Iglesia. ¡Lo sentimos!',
-    det_dresscode_title:'DRESS CODE',
-    det_dresscode_line1:'ELEGANTE',
+    det_dresscode_title:'DRESS CODE: ELEGANTE',
     det_dresscode_line2:'El blanco es exclusivo para la novia 🤍',
     conf_deadline:'SE RUEGA CONFIRMACIÓN ANTES DEL 20/12/2026',
     conf_asistir:'¿Podrás asistir?', conf_si:'Sí, allí estaré', conf_no:'No, lo siento',
@@ -994,14 +1027,20 @@ const T = {
     conf_nombre_acomp:'Nombre acompañante', conf_apellidos_acomp:'Apellidos acompañante',
     conf_bus_q:'Habrá autobús de la Iglesia a la Finca (20 min). ¿Lo vas a necesitar?',
     conf_bus_si:'Sí, lo usaré', conf_bus_no:'No lo necesito',
+    conf_formulario:'Rellena este formulario (solo los novios tendrán acceso a esta información)',
     conf_alergias:'Alergias o dietas especiales',
     conf_cancion:'Una canción que no puede faltar 🎵',
-    conf_enviar:'ENVIAR', conf_ok:'¡Gracias! Hemos recibido tu confirmación.',
+    conf_mensaje:'Un mensaje para los novios 💌',
+    conf_enviar:'ENVIAR CONFIRMACIÓN', conf_ok:'¡Gracias! Hemos recibido tu confirmación.',
     aloj_cerca_iglesia:'(cerca de la Iglesia Santa Bárbara)',
     aloj_cerca_finca:'(cerca de la Finca Astilbe)',
     aloj_descuento:'Código descuento 10%: "adrianaitor2027"',
     aloj_reservar:'Para reservar, proporcionar código a Gregori Mayor\nE: reservas@sardinerohoteles.com',
     aloj_prox:'PRÓXIMAMENTE',
+    aloj_transport_title:'TRANSPORTE DE VUELTA',
+    aloj_transport_text:'Contactos para volver del lugar de la celebración a tu hotel:',
+    aloj_transport_phone:'📞 Por teléfono: +34 91 547 82 00',
+    aloj_transport_app:'📱 Por app: Uber, Cabify, Bolt, Free Now',
     regalo_text:'Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros, pero si queréis tener un detalle con nosotros, os dejamos aquí nuestro número de cuenta.',
     regalo_pw:'Contraseña', regalo_ver:'VER CUENTA',
     regalo_pw_error:'Contraseña incorrecta',
@@ -1010,8 +1049,8 @@ const T = {
   },
   fr: {
     nav_inicio:'ACCUEIL', nav_historia:'NOTRE HISTOIRE', nav_detalles:'DÉTAILS',
-    nav_confirmacion:'CONFIRMATION', nav_alojamientos:'HÉBERGEMENTS',
-    nav_lista:'LISTE DE MARIAGE', nav_fin:'FIN',
+    nav_confirmacion:'CONFIRMATION', nav_alojamientos:'COMMODITÉS',
+    nav_lista:'CADEAU', nav_fin:'FIN',
     inv_date:'SAMEDI | 6 | MARS | 2027', inv_tagline:'ON SE MARIE !',
     inv_text1:'Nous nous sentons très chanceux de vous avoir comme famille et amis.',
     inv_text2:"C'est pourquoi nous souhaiterions vous inviter à partager ce jour si spécial avec nous.",
@@ -1022,8 +1061,7 @@ const T = {
     hist_p4:"Nous voulons maintenant partager notre 'pour toujours' à Madrid, entourés des personnes que nous aimons le plus, notre famille et nos amis.",
     det_ceremonia:'CÉRÉMONIE', det_celebracion:'CÉLÉBRATION', det_ubicacion:'[ LOCALISATION ]',
     det_nota:"*Il n'est pas autorisé de jeter des pétales de fleurs, du riz ou des bulles à la sortie de l'Église. Désolés !",
-    det_dresscode_title:'DRESS CODE',
-    det_dresscode_line1:'ÉLÉGANT',
+    det_dresscode_title:'DRESS CODE: ÉLÉGANT',
     det_dresscode_line2:'Le blanc est réservé à la mariée 🤍',
     conf_deadline:'MERCI DE CONFIRMER AVANT LE 20/12/2026',
     conf_asistir:'Pourrez-vous être présent(e) ?', conf_si:"Oui, j'y serai", conf_no:'Non, désolé(e)',
@@ -1032,14 +1070,20 @@ const T = {
     conf_nombre_acomp:'Prénom accompagnant(e)', conf_apellidos_acomp:'Nom accompagnant(e)',
     conf_bus_q:"Il y aura un bus de l'Église à la Finca (20 min). En aurez-vous besoin ?",
     conf_bus_si:"Oui, je l'utiliserai", conf_bus_no:'Non merci',
+    conf_formulario:'Remplis ce formulaire (seuls les mariés auront accès à ces informations)',
     conf_alergias:'Allergies ou régimes spéciaux',
     conf_cancion:'Une chanson qui ne peut pas manquer 🎵',
-    conf_enviar:'ENVOYER', conf_ok:'Merci ! Nous avons bien reçu votre confirmation.',
+    conf_mensaje:'Un message pour les mariés 💌',
+    conf_enviar:'ENVOYER LA CONFIRMATION', conf_ok:'Merci ! Nous avons bien reçu votre confirmation.',
     aloj_cerca_iglesia:"(près de l'Église Santa Bárbara)",
     aloj_cerca_finca:'(près de la Finca Astilbe)',
     aloj_descuento:'Code de réduction 10% : "adrianaitor2027"',
     aloj_reservar:'Pour réserver, fournir le code à Gregori Mayor\nE: reservas@sardinerohoteles.com',
     aloj_prox:'PROCHAINEMENT',
+    aloj_transport_title:'TRANSPORT DE RETOUR',
+    aloj_transport_text:'Contacts pour rentrer à votre hôtel après la célébration :',
+    aloj_transport_phone:'📞 Par téléphone : +34 91 547 82 00',
+    aloj_transport_app:'📱 Par app : Uber, Cabify, Bolt, Free Now',
     regalo_text:"Votre présence et votre envie de profiter est le plus beau cadeau de cette journée si spéciale pour nous, mais si vous souhaitez nous faire un petit cadeau, voici notre numéro de compte.",
     regalo_pw:'Mot de passe', regalo_ver:'VOIR LE COMPTE',
     regalo_pw_error:'Mot de passe incorrect',
@@ -1048,8 +1092,8 @@ const T = {
   },
   en: {
     nav_inicio:'HOME', nav_historia:'OUR STORY', nav_detalles:'DETAILS',
-    nav_confirmacion:'CONFIRMATION', nav_alojamientos:'ACCOMMODATION',
-    nav_lista:'GIFT LIST', nav_fin:'THE END',
+    nav_confirmacion:'CONFIRMATION', nav_alojamientos:'AMENITIES',
+    nav_lista:'GIFT', nav_fin:'THE END',
     inv_date:'SATURDAY | 6 | MARCH | 2027', inv_tagline:"WE'RE GETTING MARRIED!",
     inv_text1:'We feel very lucky to have you as family and friends.',
     inv_text2:'That is why we would love to invite you to share this very special day with us.',
@@ -1060,8 +1104,7 @@ const T = {
     hist_p4:"We now want to share our 'forever' in Madrid, surrounded by the people we love most, our family and friends.",
     det_ceremonia:'CEREMONY', det_celebracion:'CELEBRATION', det_ubicacion:'[ LOCATION ]',
     det_nota:'*Throwing flower petals, rice or blowing bubbles is not allowed at the Church exit. We\'re sorry!',
-    det_dresscode_title:'DRESS CODE',
-    det_dresscode_line1:'ELEGANT',
+    det_dresscode_title:'DRESS CODE: ELEGANT',
     det_dresscode_line2:'White is reserved for the bride 🤍',
     conf_deadline:'PLEASE CONFIRM BY 20/12/2026',
     conf_asistir:"Will you be able to attend?", conf_si:"Yes, I'll be there", conf_no:"No, sorry",
@@ -1070,14 +1113,20 @@ const T = {
     conf_nombre_acomp:'Guest first name', conf_apellidos_acomp:'Guest last name',
     conf_bus_q:'There will be a bus from the Church to the Finca (20 min). Will you need it?',
     conf_bus_si:"Yes, I'll use it", conf_bus_no:"No, thanks",
+    conf_formulario:'Fill in this form (only the newlyweds will have access to this information)',
     conf_alergias:'Allergies or special diets',
     conf_cancion:'A song that must be played 🎵',
-    conf_enviar:'SEND', conf_ok:'Thank you! We have received your confirmation.',
+    conf_mensaje:'A message for the newlyweds 💌',
+    conf_enviar:'SEND CONFIRMATION', conf_ok:'Thank you! We have received your confirmation.',
     aloj_cerca_iglesia:'(near Iglesia Santa Bárbara)',
     aloj_cerca_finca:'(near Finca Astilbe)',
     aloj_descuento:'10% discount code: "adrianaitor2027"',
     aloj_reservar:'To book, provide code to Gregori Mayor\nE: reservas@sardinerohoteles.com',
     aloj_prox:'COMING SOON',
+    aloj_transport_title:'RETURN TRANSPORT',
+    aloj_transport_text:'Contacts to get back to your hotel after the celebration:',
+    aloj_transport_phone:'📞 By phone: +34 91 547 82 00',
+    aloj_transport_app:'📱 By app: Uber, Cabify, Bolt, Free Now',
     regalo_text:"Your presence and joy are the best gift on this very special day for us, but if you'd like to give us something, here is our bank account number.",
     regalo_pw:'Password', regalo_ver:'VIEW ACCOUNT',
     regalo_pw_error:'Incorrect password',
@@ -1086,8 +1135,8 @@ const T = {
   },
   it: {
     nav_inicio:'INIZIO', nav_historia:'LA NOSTRA STORIA', nav_detalles:'DETTAGLI',
-    nav_confirmacion:'CONFERMA', nav_alojamientos:'ALLOGGI',
-    nav_lista:'LISTA NOZZE', nav_fin:'FINE',
+    nav_confirmacion:'CONFERMA', nav_alojamientos:'COMODITÀ',
+    nav_lista:'REGALO', nav_fin:'FINE',
     inv_date:'SABATO | 6 | MARZO | 2027', inv_tagline:'CI SPOSIAMO!',
     inv_text1:'Ci sentiamo molto fortunati di avervi come famiglia e amici.',
     inv_text2:'Per questo, vorremmo invitarvi a condividere questo giorno così speciale con noi.',
@@ -1098,8 +1147,7 @@ const T = {
     hist_p4:"Ora vogliamo condividere il nostro 'per sempre' a Madrid, circondati dalle persone che amiamo di più, la nostra famiglia e i nostri amici.",
     det_ceremonia:'CERIMONIA', det_celebracion:'CELEBRAZIONE', det_ubicacion:'[ POSIZIONE ]',
     det_nota:'*Non è consentito lanciare petali di fiori, riso o bolle all\'uscita della Chiesa. Ci dispiace!',
-    det_dresscode_title:'DRESS CODE',
-    det_dresscode_line1:'ELEGANTE',
+    det_dresscode_title:'DRESS CODE: ELEGANTE',
     det_dresscode_line2:'Il bianco è riservato alla sposa 🤍',
     conf_deadline:'SI PREGA DI CONFERMARE ENTRO IL 20/12/2026',
     conf_asistir:'Potrete essere presenti?', conf_si:'Sì, ci sarò', conf_no:'No, mi dispiace',
@@ -1108,14 +1156,20 @@ const T = {
     conf_nombre_acomp:'Nome accompagnatore/trice', conf_apellidos_acomp:'Cognome accompagnatore/trice',
     conf_bus_q:'Ci sarà un autobus dalla Chiesa alla Finca (20 min). Ne avrete bisogno?',
     conf_bus_si:'Sì, lo userò', conf_bus_no:'No, grazie',
+    conf_formulario:'Compila questo modulo (solo gli sposi avranno accesso a queste informazioni)',
     conf_alergias:'Allergie o diete speciali',
     conf_cancion:'Una canzone che non può mancare 🎵',
-    conf_enviar:'INVIA', conf_ok:'Grazie! Abbiamo ricevuto la vostra conferma.',
+    conf_mensaje:'Un messaggio per gli sposi 💌',
+    conf_enviar:'INVIA CONFERMA', conf_ok:'Grazie! Abbiamo ricevuto la vostra conferma.',
     aloj_cerca_iglesia:'(vicino alla Chiesa Santa Bárbara)',
     aloj_cerca_finca:'(vicino alla Finca Astilbe)',
     aloj_descuento:'Codice sconto 10%: "adrianaitor2027"',
     aloj_reservar:'Per prenotare, fornire il codice a Gregori Mayor\nE: reservas@sardinerohoteles.com',
     aloj_prox:'PROSSIMAMENTE',
+    aloj_transport_title:'TRASPORTO DI RITORNO',
+    aloj_transport_text:'Contatti per tornare al vostro hotel dopo la celebrazione:',
+    aloj_transport_phone:'📞 Per telefono: +34 91 547 82 00',
+    aloj_transport_app:'📱 Per app: Uber, Cabify, Bolt, Free Now',
     regalo_text:"La vostra presenza e voglia di divertirvi è il regalo migliore in questo giorno così speciale per noi, ma se volete farci un regalo, vi lasciamo qui il nostro numero di conto.",
     regalo_pw:'Password', regalo_ver:'VEDI CONTO',
     regalo_pw_error:'Password errata',
