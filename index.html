@@ -19,12 +19,12 @@
       sheet.appendRow([
         new Date(),
         p.asistir   || '',
-        p.nombre1   || '',
-        p.apellidos1|| '',
-        p.nombre2   || '',
-        p.apellidos2|| '',
+        p.nombre1   || '',   /* nombre y apellidos completo */
+        p.nombre2   || '',   /* acompañante (nombre y apellidos) */
         p.bus       || '',
-        p.alergias  || ''
+        p.alergias  || '',
+        p.cancion   || '',
+        p.mensaje   || ''
       ]);
       return ContentService.createTextOutput('ok');
     }
@@ -208,13 +208,17 @@
       #historia .body-text:last-of-type { margin-bottom: 0; }
       #historia .sign { margin-top: 0.55rem; font-style: italic; text-align: center; }
 
+      /* PAGE 2 — INICIO */
+      #inicio .city-line { font-weight:100; }
+
       /* PAGE 3 — DETALLES */
       #detalles .page-content  { padding-top: 1.5vh; }
       #detalles .section-title { margin-bottom: 3vh; } /* ligne avant CEREMONIA */
       #detalles .venue-block   { margin-bottom: 0; }
       #detalles .venue-note    { text-align:left; font-size:clamp(.55rem,1.2vh,.85rem); margin-bottom:.4em; }
       #detalles .venue-img     { display:none; } /* photos cachées sur PC */
-      #detalles .dresscode-block { margin-top:2em; } /* ligne avant DRESS CODE */
+      #detalles .road-connector { display:none; } /* supprime pointillés entre cérémonies */
+      #detalles .dresscode-block { margin-top:4.5em; } /* 3 lignes avant DRESS CODE */
       /* Connecteur raccourci (pj15) */
       #detalles .road-connector { min-height: 10vh; }
       #detalles .road-dashes   {
@@ -235,12 +239,14 @@
       #confirmacion .section-title { margin-bottom: 1vh; }
       #confirmacion .conf-formulario{ margin-bottom:1vh; }
       #confirmacion .conf-deadline { color:#8b1a1a; margin-bottom: 1.5vh; }
+      #confirmacion .conf-question  { margin-top:1.2em; }
       #confirmacion .radio-group   { margin-bottom: .5em; }
+      #confirmacion .conf-gap      { margin-top:1.2em; }
       #confirmacion .form-row      { margin-bottom: .6em; }
-      #confirmacion .conf-bus-label{ margin-bottom: .3em; }
+      #confirmacion .conf-bus-label{ margin-top:1.2em; margin-bottom: .3em; }
       #confirmacion .check-group   { margin-bottom: .4em; }
       #confirmacion .form-group    { margin-bottom: .55em; }
-      #confirmacion .submit-btn    { border-color:#8b1a1a; color:#8b1a1a; }
+      #confirmacion .submit-btn    { border-color:#8b1a1a; color:#8b1a1a; margin-top:1em; }
       #confirmacion .submit-btn:hover { background:#8b1a1a; color:#fff; }
 
       /* PAGE 5 — ALOJAMIENTOS (titre aligné avec DETALLES) */
@@ -330,7 +336,6 @@
     }
     .venue-note {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
-      font-weight:100; /* Ultrafin pj11 */
       font-size:clamp(.45rem,1vh,.72rem);
       color:#000; text-align:center;
       width:100%; margin-top:.3em; line-height:1.4; font-style:italic;
@@ -365,13 +370,11 @@
     .radio-opt {
       display:flex; align-items:center; gap:.4rem;
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
-      font-weight:100; /* Ultrafin pj19 */
       font-size:clamp(.43rem,.95vh,.68rem); color:#000; cursor:pointer;
     }
     .radio-opt input { accent-color:#000; cursor:pointer; }
     .conf-note {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
-      font-weight:100; /* Ultrafin pj20 */
       font-size:clamp(.43rem,.95vh,.67rem);
       color:#000; text-align:left; width:100%;
       margin-bottom:.6em; line-height:1.5; font-style:italic;
@@ -397,7 +400,7 @@
     .check-group { display:flex; flex-direction:column; gap:.15em; width:100%; margin-bottom:.45em; }
     .check-opt {
       display:flex; align-items:center; gap:.4rem;
-      font-size:clamp(.4rem,.88vh,.62rem); color:#000; cursor:pointer;
+      font-size:clamp(.43rem,.95vh,.68rem); color:#000; cursor:pointer;
     }
     .check-opt input { accent-color:#000; cursor:pointer; }
     .form-textarea {
@@ -438,11 +441,10 @@
     .hotel-name {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
       font-size:clamp(.5rem,1.2vh,.82rem);
-      letter-spacing:.1em; color:#000; font-weight:200; /* Fin pj1 */
+      letter-spacing:.1em; color:#000;
     }
     .hotel-sub {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
-      font-weight:100; /* Ultrafin pj2 */
       font-size:clamp(.4rem,.88vh,.62rem);
       color:#000; margin-top:.1em; line-height:1.5;
     }
@@ -457,13 +459,12 @@
     }
     .transport-title {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
-      font-size:clamp(.45rem,1vh,.72rem);
-      letter-spacing:.12em; color:#000; font-weight:300; margin-bottom:.3em;
+      font-size:clamp(.5rem,1.1vh,.78rem);
+      letter-spacing:.12em; color:#000; margin-bottom:.3em;
     }
     .transport-sub {
       font-family:'Helvetica Neue','HelveticaNeue',Helvetica,Arial,sans-serif;
-      font-weight:100;
-      font-size:clamp(.4rem,.88vh,.62rem);
+      font-size:clamp(.45rem,.95vh,.68rem);
       color:#000; margin-top:.1em; line-height:1.5;
     }
 
@@ -621,13 +622,14 @@
       .conf-note    { display:none; }
       .conf-formulario { display:none; }
       .conf-deadline{ font-size:clamp(.36rem,1.9vw,.58rem); }
-      .conf-question{ font-size:clamp(.36rem,2vw,.6rem); margin-bottom:.1em; }
+      .conf-question{ font-size:clamp(.36rem,2vw,.6rem); margin-bottom:.1em; margin-top:0; }
       .radio-group  { margin-bottom:.12em; gap:.06em; }
       .radio-opt    { font-size:clamp(.33rem,1.8vw,.55rem); }
+      .conf-gap     { margin-top:.1em; }
       .form-row     { grid-template-columns:1fr 1fr; gap:.15rem; margin-bottom:.12em; }
       .form-label   { font-size:clamp(.28rem,1.5vw,.44rem); }
       .form-input   { font-size:clamp(.32rem,1.8vw,.52rem); padding:1px 0; }
-      .conf-bus-label{ font-size:clamp(.33rem,1.8vw,.55rem); margin-bottom:.08em; }
+      .conf-bus-label{ font-size:clamp(.33rem,1.8vw,.55rem); margin-bottom:.08em; margin-top:0; }
       .check-group  { margin-bottom:.1em; gap:.05em; }
       .check-opt    { font-size:clamp(.3rem,1.6vw,.5rem); }
       .form-textarea{ font-size:clamp(.32rem,1.8vw,.52rem); height:1.6em; }
@@ -805,7 +807,7 @@
       <p class="conf-formulario" data-i18n="conf_formulario">Rellena este formulario (solo los novios tendrán acceso a esta información)</p>
       <p class="conf-deadline" data-i18n="conf_deadline">SE RUEGA CONFIRMACIÓN ANTES DEL 20/12/2026</p>
 
-      <form id="rsvpForm" onsubmit="enviarFormulario(event)">
+      <form id="rsvpForm" onsubmit="enviarFormulario(event)" novalidate>
         <!-- Adultos -->
         <p class="conf-note" data-i18n="conf_adults">Hemos decidido celebrar nuestra boda exclusivamente para adultos, para que todos podamos disfrutar de un día de fiesta, baile y celebración hasta el final.</p>
 
@@ -813,7 +815,7 @@
         <p class="conf-question" data-i18n="conf_asistir">¿Podrás asistir?</p>
         <div class="radio-group">
           <label class="radio-opt">
-            <input type="radio" name="asistir" value="si" required checked>
+            <input type="radio" name="asistir" value="si" checked>
             <span data-i18n="conf_si">Sí, allí estaré</span>
           </label>
           <label class="radio-opt">
@@ -823,58 +825,47 @@
         </div>
 
         <!-- Nombres -->
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" data-i18n="conf_nombre">Nombre</label>
-            <input class="form-input" type="text" name="nombre1" placeholder="" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" data-i18n="conf_apellidos">Apellidos</label>
-            <input class="form-input" type="text" name="apellidos1" placeholder="" required>
-          </div>
+        <div class="form-group conf-gap" style="width:100%;">
+          <label class="form-label" data-i18n="conf_nombre">Nombre y apellidos</label>
+          <input class="form-input" type="text" name="nombre1" placeholder="">
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" data-i18n="conf_nombre_acomp">Nombre acompañante</label>
-            <input class="form-input" type="text" name="nombre2" placeholder="">
-          </div>
-          <div class="form-group">
-            <label class="form-label" data-i18n="conf_apellidos_acomp">Apellidos acompañante</label>
-            <input class="form-input" type="text" name="apellidos2" placeholder="">
-          </div>
+        <div class="form-group" style="width:100%;margin-top:.4em;">
+          <label class="form-label" data-i18n="conf_nombre_acomp">Nombre y apellidos acompañante</label>
+          <input class="form-input" type="text" name="nombre2" placeholder="">
         </div>
 
         <!-- Bus -->
         <p class="conf-bus-label" data-i18n="conf_bus_q">Habrá autobús de la Iglesia a la Finca (20 min). ¿Lo vas a necesitar?</p>
-        <div class="check-group">
-          <label class="check-opt">
-            <input type="checkbox" name="bus" value="si">
+        <div class="radio-group">
+          <label class="radio-opt">
+            <input type="radio" name="bus" value="si">
             <span data-i18n="conf_bus_si">Sí, lo usaré</span>
           </label>
-          <label class="check-opt">
-            <input type="checkbox" name="bus" value="no">
+          <label class="radio-opt">
+            <input type="radio" name="bus" value="no">
             <span data-i18n="conf_bus_no">No lo necesito</span>
           </label>
         </div>
 
         <!-- Alergias -->
-        <div class="form-group" style="width:100%;margin-bottom:.4em;">
+        <div class="form-group conf-gap" style="width:100%;margin-bottom:.4em;">
           <label class="form-label" data-i18n="conf_alergias">Alergias o dietas especiales</label>
           <textarea class="form-textarea" name="alergias" rows="1" placeholder="Ej: vegetariano, sin gluten"></textarea>
         </div>
 
         <!-- Canción -->
-        <div class="form-group" style="width:100%;margin-bottom:.4em;">
+        <div class="form-group conf-gap" style="width:100%;margin-bottom:.4em;">
           <label class="form-label" data-i18n="conf_cancion">Una canción que no puede faltar 🎵</label>
           <textarea class="form-textarea" name="cancion" rows="1" placeholder="Artista - canción"></textarea>
         </div>
 
         <!-- Mensaje -->
-        <div class="form-group" style="width:100%;margin-bottom:.4em;">
+        <div class="form-group conf-gap" style="width:100%;margin-bottom:.4em;">
           <label class="form-label" data-i18n="conf_mensaje">Un mensaje para los novios 💌</label>
           <textarea class="form-textarea" name="mensaje" rows="1"></textarea>
         </div>
 
+        <p class="form-error" id="formError" style="display:none;color:#8b1a1a;font-size:clamp(.38rem,.85vh,.6rem);margin-top:.6em;" data-i18n="conf_error">Por favor, completa todos los campos obligatorios: participación, nombre y autobús.</p>
         <button type="submit" class="submit-btn" data-i18n="conf_enviar">ENVIAR CONFIRMACIÓN</button>
         <p class="form-success" id="formSuccess" data-i18n="conf_ok">¡Gracias! Hemos recibido tu confirmación.</p>
       </form>
@@ -1023,8 +1014,9 @@ const T = {
     conf_deadline:'SE RUEGA CONFIRMACIÓN ANTES DEL 20/12/2026',
     conf_asistir:'¿Podrás asistir?', conf_si:'Sí, allí estaré', conf_no:'No, lo siento',
     conf_adults:'Hemos decidido celebrar nuestra boda exclusivamente para adultos, para que todos podamos disfrutar de un día de fiesta, baile y celebración hasta el final.',
-    conf_nombre:'Nombre', conf_apellidos:'Apellidos',
-    conf_nombre_acomp:'Nombre acompañante', conf_apellidos_acomp:'Apellidos acompañante',
+    conf_nombre:'Nombre y apellidos',
+    conf_nombre_acomp:'Nombre y apellidos acompañante',
+    conf_error:'Por favor, completa todos los campos obligatorios: participación, nombre y autobús.',
     conf_bus_q:'Habrá autobús de la Iglesia a la Finca (20 min). ¿Lo vas a necesitar?',
     conf_bus_si:'Sí, lo usaré', conf_bus_no:'No lo necesito',
     conf_formulario:'Rellena este formulario (solo los novios tendrán acceso a esta información)',
@@ -1066,8 +1058,9 @@ const T = {
     conf_deadline:'MERCI DE CONFIRMER AVANT LE 20/12/2026',
     conf_asistir:'Pourrez-vous être présent(e) ?', conf_si:"Oui, j'y serai", conf_no:'Non, désolé(e)',
     conf_adults:"Nous avons décidé de célébrer notre mariage exclusivement pour les adultes, afin que tout le monde puisse profiter d'une journée de fête, de danse et de célébration jusqu'à la fin.",
-    conf_nombre:'Prénom', conf_apellidos:'Nom de famille',
-    conf_nombre_acomp:'Prénom accompagnant(e)', conf_apellidos_acomp:'Nom accompagnant(e)',
+    conf_nombre:'Prénom et nom de famille',
+    conf_nombre_acomp:'Prénom et nom de l\'accompagnant(e)',
+    conf_error:'Merci de remplir tous les champs obligatoires : participation, nom et bus.',
     conf_bus_q:"Il y aura un bus de l'Église à la Finca (20 min). En aurez-vous besoin ?",
     conf_bus_si:"Oui, je l'utiliserai", conf_bus_no:'Non merci',
     conf_formulario:'Remplis ce formulaire (seuls les mariés auront accès à ces informations)',
@@ -1109,8 +1102,9 @@ const T = {
     conf_deadline:'PLEASE CONFIRM BY 20/12/2026',
     conf_asistir:"Will you be able to attend?", conf_si:"Yes, I'll be there", conf_no:"No, sorry",
     conf_adults:"We've decided to celebrate our wedding exclusively for adults, so that everyone can enjoy a day of celebration, dancing and fun until the end.",
-    conf_nombre:'First name', conf_apellidos:'Last name',
-    conf_nombre_acomp:'Guest first name', conf_apellidos_acomp:'Guest last name',
+    conf_nombre:'Full name',
+    conf_nombre_acomp:'Guest full name',
+    conf_error:'Please fill in all required fields: attendance, name and bus.',
     conf_bus_q:'There will be a bus from the Church to the Finca (20 min). Will you need it?',
     conf_bus_si:"Yes, I'll use it", conf_bus_no:"No, thanks",
     conf_formulario:'Fill in this form (only the newlyweds will have access to this information)',
@@ -1152,8 +1146,9 @@ const T = {
     conf_deadline:'SI PREGA DI CONFERMARE ENTRO IL 20/12/2026',
     conf_asistir:'Potrete essere presenti?', conf_si:'Sì, ci sarò', conf_no:'No, mi dispiace',
     conf_adults:"Abbiamo deciso di celebrare le nostre nozze esclusivamente per adulti, in modo che tutti possano godere di una giornata di festa, ballo e celebrazione fino alla fine.",
-    conf_nombre:'Nome', conf_apellidos:'Cognome',
-    conf_nombre_acomp:'Nome accompagnatore/trice', conf_apellidos_acomp:'Cognome accompagnatore/trice',
+    conf_nombre:'Nome e cognome',
+    conf_nombre_acomp:'Nome e cognome accompagnatore/trice',
+    conf_error:'Per favore, compila tutti i campi obbligatori: partecipazione, nome e autobus.',
     conf_bus_q:'Ci sarà un autobus dalla Chiesa alla Finca (20 min). Ne avrete bisogno?',
     conf_bus_si:'Sì, lo userò', conf_bus_no:'No, grazie',
     conf_formulario:'Compila questo modulo (solo gli sposi avranno accesso a queste informazioni)',
@@ -1215,11 +1210,24 @@ updateCountdown();
 async function enviarFormulario(e) {
   e.preventDefault();
   const form = document.getElementById('rsvpForm');
-  const data = new URLSearchParams(new FormData(form));
+  const fd   = new FormData(form);
+  const errEl = document.getElementById('formError');
+
+  /* ── Validation champs obligatoires ── */
+  const asistir  = fd.get('asistir');   // toujours rempli (pre-checked)
+  const nombre   = (fd.get('nombre1') || '').trim();
+  const bus      = fd.get('bus');
+
+  if (!nombre || !bus) {
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+
+  const data = new URLSearchParams(fd);
 
   if (APPS_SCRIPT_URL === 'PEGAR_URL_APPS_SCRIPT_AQUI') {
-    /* Mode test sans Apps Script configuré */
-    console.log('Form data:', Object.fromEntries(new FormData(form)));
+    console.log('Form data:', Object.fromEntries(fd));
     document.getElementById('formSuccess').style.display = 'block';
     return;
   }
