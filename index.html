@@ -208,7 +208,8 @@
       #historia .body-text:last-of-type { margin-bottom: 0; }
       #historia .sign { margin-top: 0.55rem; font-style: italic; text-align: center; }
 
-      /* PAGE 2 — INICIO */
+      /* PAGE 1 — INICIO */
+      #inicio .page-content { padding-top: 0; }
       #inicio .city-line { font-weight:100; }
 
       /* PAGE 3 — DETALLES */
@@ -218,7 +219,7 @@
       #detalles .venue-note    { text-align:left; font-size:clamp(.55rem,1.2vh,.85rem); margin-bottom:.4em; }
       #detalles .venue-img     { display:none; } /* photos cachées sur PC */
       #detalles .road-connector { display:none; } /* supprime pointillés entre cérémonies */
-      #detalles .dresscode-block { margin-top:4.5em; } /* 3 lignes avant DRESS CODE */
+      #detalles .dresscode-block { margin-top:3em; } /* 2 lignes avant DRESS CODE */
       /* Connecteur raccourci (pj15) */
       #detalles .road-connector { min-height: 10vh; }
       #detalles .road-dashes   {
@@ -249,10 +250,11 @@
       #confirmacion .submit-btn    { border-color:#8b1a1a; color:#8b1a1a; margin-top:1em; }
       #confirmacion .submit-btn:hover { background:#8b1a1a; color:#fff; }
 
-      /* PAGE 5 — ALOJAMIENTOS (titre aligné avec DETALLES) */
+      /* PAGE 5 — COMODIDADES */
       #alojamientos .page-content  { padding-top: 1.5vh; }
       #alojamientos .section-title { margin-bottom: 3vh; }
       #alojamientos .hotel-block   { margin-bottom: 1.5vh; }
+      #alojamientos .transport-block { margin-top:.2em; }
 
       /* PAGE 6 — LISTA DE BODAS (titre y=499→28.4% ; para y=691→39.4% ; IBAN y=1004→57.2%) */
       #lista .page-content    { padding-top: 6.4vh; }
@@ -674,7 +676,7 @@
     <li><a href="#historia"     data-i18n="nav_historia">NUESTRA HISTORIA</a></li>
     <li><a href="#detalles"     data-i18n="nav_detalles">DETALLES</a></li>
     <li><a href="#confirmacion" data-i18n="nav_confirmacion">CONFIRMACIÓN</a></li>
-    <li><a href="#alojamientos" data-i18n="nav_alojamientos">ALOJAMIENTOS</a></li>
+    <li><a href="#alojamientos" data-i18n="nav_alojamientos">COMODIDADES</a></li>
     <li><a href="#lista"        data-i18n="nav_lista">LISTA DE BODAS</a></li>
     <li><a href="#fin"          data-i18n="nav_fin">FIN</a></li>
   </ul>
@@ -881,7 +883,7 @@
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
     
     <div class="page-content">
-      <h2 class="section-title" data-i18n="nav_alojamientos">ALOJAMIENTOS</h2>
+      <h2 class="section-title" data-i18n="nav_alojamientos">COMODIDADES</h2>
 
       <div class="hotel-block">
         <div class="hotel-header">
@@ -975,7 +977,6 @@
       <p class="separator">◆·····················◆</p>
       <p class="tagline" data-i18n="fin_gracias">¡GRACIAS!</p>
       <p class="tagline" data-i18n="fin_esperamos">¡OS ESPERAMOS!</p>
-      <p class="tagline">&nbsp;</p>
       <img class="venise-photo" src="img/venise_final.jpeg" alt="Adri & Aitor en Venecia">
     </div>
   </div>
