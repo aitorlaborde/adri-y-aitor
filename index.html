@@ -198,7 +198,7 @@
       /* PAGE 2 — NUESTRA HISTORIA
          Titre aligné avec DETALLES (padding-top:3.5vh) + ligne blanche avant le texte.
          Font 1.5vh ≈ 13pt à l'échelle de la carte web (A4 web = ~66% A4 papier). */
-      #historia .page-content  { padding-top: 1.5vh; }
+      #historia .page-content  { padding-top: 0; }
       #historia .section-title { margin-bottom: 2vh; }
       #historia .body-text     {
         margin-top: 0; margin-bottom: 1.2em; /* ligne vide entre paragraphes */
@@ -213,7 +213,7 @@
       #inicio .city-line { font-weight:100; }
 
       /* PAGE 3 — DETALLES */
-      #detalles .page-content  { padding-top: 1.5vh; }
+      #detalles .page-content  { padding-top: 0; }
       #detalles .section-title { margin-bottom: 3vh; } /* ligne avant CEREMONIA */
       #detalles .venue-block   { margin-bottom: 0; }
       #detalles .venue-note    { text-align:left; font-size:clamp(.55rem,1.2vh,.85rem); margin-bottom:.4em; }
@@ -236,7 +236,7 @@
       #detalles .road-dash { display: none; } /* remplacé par le fond CSS */
 
       /* PAGE 4 — CONFIRMACIÓN (titre aligné avec DETALLES, espacements aérés) */
-      #confirmacion .page-content  { padding-top: 1.5vh; }
+      #confirmacion .page-content  { padding-top: 0; }
       #confirmacion .section-title { margin-bottom: 1vh; }
       #confirmacion .conf-formulario{ margin-bottom:1vh; }
       #confirmacion .conf-deadline { color:#8b1a1a; margin-bottom: 1.5vh; }
@@ -251,13 +251,13 @@
       #confirmacion .submit-btn:hover { background:#8b1a1a; color:#fff; }
 
       /* PAGE 5 — COMODIDADES */
-      #alojamientos .page-content  { padding-top: 1.5vh; }
+      #alojamientos .page-content  { padding-top: 0; }
       #alojamientos .section-title { margin-bottom: 3vh; }
       #alojamientos .hotel-block   { margin-bottom: 1.5vh; }
       #alojamientos .transport-block { margin-top:.2em; }
 
       /* PAGE 6 — LISTA DE BODAS (titre y=499→28.4% ; para y=691→39.4% ; IBAN y=1004→57.2%) */
-      #lista .page-content    { padding-top: 6.4vh; }
+      #lista .page-content    { padding-top: 4.9vh; }
       #lista .section-title   { margin-bottom: 9.5vh; } /* titre-end(29.9%)→para(39.4%) */
       #lista .body-text       { margin-bottom: 0; }
       #lista .iban-pw-section { margin-top: 4.7vh; }   /* para-end(52.5%)→iban(57.2%) */
@@ -677,7 +677,7 @@
     <li><a href="#detalles"     data-i18n="nav_detalles">DETALLES</a></li>
     <li><a href="#confirmacion" data-i18n="nav_confirmacion">CONFIRMACIÓN</a></li>
     <li><a href="#alojamientos" data-i18n="nav_alojamientos">COMODIDADES</a></li>
-    <li><a href="#lista"        data-i18n="nav_lista">LISTA DE BODAS</a></li>
+    <li><a href="#lista"        data-i18n="nav_lista">REGALO</a></li>
     <li><a href="#fin"          data-i18n="nav_fin">FIN</a></li>
   </ul>
   <div class="lang-bar">
@@ -944,7 +944,7 @@
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
     
     <div class="page-content">
-      <h2 class="section-title" data-i18n="nav_lista">LISTA DE BODAS</h2>
+      <h2 class="section-title" data-i18n="nav_lista">REGALO</h2>
       <p class="body-text" data-i18n="regalo_text">Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros, pero si queréis tener un detalle con nosotros, os dejamos aquí nuestro número de cuenta.</p>
 
       <div class="iban-pw-section">
