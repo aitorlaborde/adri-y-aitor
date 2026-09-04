@@ -96,7 +96,7 @@
       top:22%; left:22%; right:22%; bottom:16%;
       display:flex; flex-direction:column; align-items:center;
       text-align:center;
-      overflow:hidden;  /* clip x et y */
+      overflow-y:auto; overflow-x:hidden;  /* scroll vertical si contenu dépasse (Windows) */
       padding:.8rem 1rem .3rem;  /* 1rem horizontal : garde le texte à l'intérieur de la bordure bleue décorée */
     }
     /* Pas de centrage vertical : le contenu s'aligne en haut comme sur le PDF */
