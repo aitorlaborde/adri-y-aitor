@@ -96,7 +96,7 @@
       top:22%; left:22%; right:22%; bottom:16%;
       display:flex; flex-direction:column; align-items:center;
       text-align:center;
-      overflow-y:auto; overflow-x:hidden;  /* scroll vertical si contenu dépasse (Windows) */
+      overflow:hidden;
       padding:.8rem 1rem .3rem;  /* 1rem horizontal : garde le texte à l'intérieur de la bordure bleue décorée */
     }
     /* Pas de centrage vertical : le contenu s'aligne en haut comme sur le PDF */
@@ -201,9 +201,9 @@
       #historia .page-content  { padding-top: 0; }
       #historia .section-title { margin-bottom: 2vh; }
       #historia .body-text     {
-        margin-top: 0; margin-bottom: 1.2em; /* ligne vide entre paragraphes */
-        font-size: clamp(.62rem, 1.5vh, 1.05rem);
-        text-align: justify; line-height: 1.9; /* interlignage augmenté */
+        margin-top: 0; margin-bottom: 0.7em;
+        font-size: clamp(.60rem, 1.38vh, .95rem);
+        text-align: justify; line-height: 1.65;
       }
       #historia .body-text:last-of-type { margin-bottom: 0; }
       #historia .sign { margin-top: 0.55rem; font-style: italic; text-align: center; }
@@ -237,17 +237,17 @@
 
       /* PAGE 4 — CONFIRMACIÓN (titre aligné avec DETALLES, espacements aérés) */
       #confirmacion .page-content  { padding-top: 0; }
-      #confirmacion .section-title { margin-bottom: 1vh; }
-      #confirmacion .conf-formulario{ margin-bottom:1vh; }
-      #confirmacion .conf-deadline { color:#8b1a1a; margin-bottom: 1.5vh; }
-      #confirmacion .conf-question  { margin-top:1.2em; }
-      #confirmacion .radio-group   { margin-bottom: .5em; }
-      #confirmacion .conf-gap      { margin-top:1.2em; }
-      #confirmacion .form-row      { margin-bottom: .6em; }
-      #confirmacion .conf-bus-label{ margin-top:1.2em; margin-bottom: .3em; }
-      #confirmacion .check-group   { margin-bottom: .4em; }
-      #confirmacion .form-group    { margin-bottom: .55em; }
-      #confirmacion .submit-btn    { border-color:#8b1a1a; color:#8b1a1a; margin-top:1em; }
+      #confirmacion .section-title { margin-bottom: 0.6vh; }
+      #confirmacion .conf-formulario{ margin-bottom:0.5vh; }
+      #confirmacion .conf-deadline { color:#8b1a1a; margin-bottom: 0.8vh; }
+      #confirmacion .conf-question  { margin-top:0.6em; }
+      #confirmacion .radio-group   { margin-bottom: .3em; }
+      #confirmacion .conf-gap      { margin-top:0.6em; }
+      #confirmacion .form-row      { margin-bottom: .4em; }
+      #confirmacion .conf-bus-label{ margin-top:0.6em; margin-bottom: .2em; }
+      #confirmacion .check-group   { margin-bottom: .25em; }
+      #confirmacion .form-group    { margin-bottom: .3em; }
+      #confirmacion .submit-btn    { border-color:#8b1a1a; color:#8b1a1a; margin-top:0.5em; }
       #confirmacion .submit-btn:hover { background:#8b1a1a; color:#fff; }
 
       /* PAGE 5 — COMODIDADES */
