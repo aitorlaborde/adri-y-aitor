@@ -97,7 +97,19 @@
       display:flex; flex-direction:column; align-items:center;
       text-align:center;
       overflow:hidden;
-      padding:.8rem 1rem .3rem;  /* 1rem horizontal : garde le texte à l'intérieur de la bordure bleue décorée */
+      padding:.8rem 1rem .3rem;
+      z-index:2;
+    }
+    /* Pages intermédiaires : logo AA masqué + contenu remonté */
+    #historia .page-content, #detalles .page-content,
+    #confirmacion .page-content, #alojamientos .page-content,
+    #lista .page-content { top: 8%; }
+    #historia .page-wrap::before, #detalles .page-wrap::before,
+    #confirmacion .page-wrap::before, #alojamientos .page-wrap::before,
+    #lista .page-wrap::before {
+      content:''; position:absolute;
+      top:4%; left:18%; right:18%; height:20%;
+      background:#fff; z-index:1;
     }
     /* Pas de centrage vertical : le contenu s'aligne en haut comme sur le PDF */
     .page-content::before,
