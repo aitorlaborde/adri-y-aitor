@@ -224,6 +224,7 @@
       /* PAGE 1 — INICIO */
       #inicio .page-content { padding-top: 0; }
       #inicio .city-line { font-weight:100; }
+      #inicio .inicio-text-group .body-text:first-child { margin-bottom: 0; }
 
       /* PAGE 3 — DETALLES */
       #detalles .page-content  { padding-top: 0; }
@@ -281,7 +282,7 @@
       #fin .tagline + .tagline { margin-bottom: 1.5vh; }
       #fin .venise-photo { width:clamp(102px,25vh,168px); height:clamp(120px,30vh,198px); object-fit:cover; object-position:center 40%; margin-bottom:1.2vh; }
       #fin .separator    { margin: 1vh 0 1vh; }
-      #fin .big-title    { font-weight:400; font-size:clamp(1.4rem,3.8vh,2.4rem); margin-bottom: 0.4vh; }
+      #fin .big-title    { font-weight:400; font-size:clamp(1.4rem,3.1vh,1.75rem); margin-bottom: 0.4vh; }
       #fin .city-line    { margin-bottom: 0; }
 
       /* ── FONTS uniformisés sur PC ── */
@@ -294,7 +295,8 @@
       #detalles .dresscode-line        { font-size: clamp(.55rem, 1.3vh, .90rem); color:#8b1a1a; text-align:left; }
       #alojamientos .hotel-name,
       #alojamientos .hotel-sub,
-      #alojamientos .hotel-link        { font-size: clamp(.55rem, 1.3vh, .90rem); }  /* 11px */
+      #alojamientos .hotel-link,
+      #alojamientos .transport-sub     { font-size: clamp(.55rem, 1.3vh, .90rem); }  /* 11px */
       #confirmacion .conf-formulario, #confirmacion .conf-question, #confirmacion .conf-note,
       #confirmacion .radio-opt, #confirmacion .conf-bus-label,
       #confirmacion .check-opt, #confirmacion .form-input,
@@ -783,7 +785,7 @@
         <div class="venue-left">
           <div class="venue-header">
             <div class="venue-bullet"></div>
-            <p class="venue-name-title"><span class="venue-hour-inline">11:30&nbsp;&nbsp;</span><span data-i18n="det_ceremonia">CEREMONIA</span></p>
+            <p class="venue-name-title"><span class="venue-hour-inline">11:30h&nbsp;&nbsp;</span><span data-i18n="det_ceremonia">CEREMONIA</span></p>
           </div>
           <p class="venue-sub"><a href="https://maps.app.goo.gl/PZsPpCzewH7TP7xC7" target="_blank" class="venue-name-link">IGLESIA SANTA BÁRBARA</a></p>
           <p class="venue-sub">Calle del Gral. Castaños, 2<br>28004 Madrid</p>
@@ -792,7 +794,7 @@
       <p class="venue-note" data-i18n="det_nota">*No está permitido echar pétalos de flores, arroz, ni burbujas a la salida de la Iglesia. ¡Lo sentimos!</p>
 
       <!-- Conector -->
-      <div class="road-connector">
+      <div class="road-connector" style="margin-top:1.6em;margin-bottom:1.6em;">
         <div class="road-dashes">
           <div class="road-dash"></div><div class="road-dash"></div>
           <div class="road-dash"></div><div class="road-dash"></div>
@@ -809,7 +811,7 @@
         <div class="venue-left">
           <div class="venue-header">
             <div class="venue-bullet"></div>
-            <p class="venue-name-title"><span class="venue-hour-inline">13:30&nbsp;&nbsp;</span><span data-i18n="det_celebracion">CELEBRACIÓN</span></p>
+            <p class="venue-name-title"><span class="venue-hour-inline">13:30h&nbsp;&nbsp;</span><span data-i18n="det_celebracion">CELEBRACIÓN</span></p>
           </div>
           <p class="venue-sub"><a href="https://maps.app.goo.gl/icwLbPRPt5NwcUYJ7" target="_blank" class="venue-name-link">FINCA ASTILBE BY ENELDO</a></p>
           <p class="venue-sub">Carr. de Fuencarral, km 1,9<br>28049 Madrid</p>
@@ -822,7 +824,7 @@
           <div class="venue-bullet"></div>
           <p class="dresscode-title" data-i18n="det_dresscode_title">DRESS CODE: ELEGANTE</p>
         </div>
-        <p class="dresscode-line" data-i18n="det_dresscode_line2"><em>El blanco es exclusivo para la novia 🤍</em></p>
+        <p class="dresscode-line" data-i18n="det_dresscode_line2"><em>🤍 El blanco es exclusivo para la novia 🤍</em></p>
       </div>
     </div>
   </div>
@@ -842,7 +844,7 @@
 
       <form id="rsvpForm" onsubmit="enviarFormulario(event)" novalidate>
         <!-- Adultos -->
-        <p class="conf-note" data-i18n="conf_adults">Hemos decidido celebrar nuestra boda exclusivamente para adultos, para que todos podamos disfrutar de un día de fiesta, baile y celebración hasta el final.</p>
+        <p class="conf-note" data-i18n="conf_adults" style="text-align:justify;">Para poder disfrutar plenamente de nuestra boda, hemos decidido que sea exclusivamente para adultos.</p>
 
         <!-- Asistir -->
         <p class="conf-question" data-i18n="conf_asistir">¿Podrás asistir?</p>
@@ -962,7 +964,8 @@
     
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_lista">REGALO</h2>
-      <p class="body-text" data-i18n="regalo_text">Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros, pero si queréis tener un detalle con nosotros, os dejamos aquí nuestro número de cuenta.</p>
+      <p class="body-text" data-i18n="regalo_text" style="text-align:justify;">Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros.</p>
+      <p class="body-text" data-i18n="regalo_text2" style="text-align:justify;margin-top:.6em;">Si queréis ayudarnos con nuestro viaje de novios a Indonesia y Malasia, os dejamos aquí nuestro número de cuenta.</p>
 
       <div class="iban-pw-section">
         <div id="pwSection">
@@ -990,7 +993,7 @@
     <div class="page-content">
       <p class="tagline" data-i18n="fin_gracias">¡GRACIAS!</p>
       <p class="tagline" data-i18n="fin_esperamos">¡OS ESPERAMOS!</p>
-      <img class="venise-photo" src="img/Marseille.jpeg" alt="Adri & Aitor en Marsella">
+      <img class="venise-photo" src="img/Napoles.jpeg" alt="Adri & Aitor en Nápoles">
       <p class="separator">◆·····················◆</p>
       <p class="big-title">ADRI &amp; AITOR</p>
       <p class="city-line">2027</p>
@@ -1006,7 +1009,7 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwDms9PtQAzS73u
 
 /* IBAN real (oculto detrás de la contraseña) */
 const IBAN_REAL = 'ES00 0000 0000 0000 0000 0000'; /* ← pon el IBAN real aquí */
-const PW_BODA = 'boda2027';
+const PW_BODA = 'adri&aitor2027';
 
 /* ══════════════════════════════════
    TRADUCCIONES
@@ -1027,10 +1030,10 @@ const T = {
     det_ceremonia:'CEREMONIA', det_celebracion:'CELEBRACIÓN', det_ubicacion:'[ UBICACIÓN ]',
     det_nota:'*No está permitido echar pétalos de flores, arroz, ni burbujas a la salida de la Iglesia. ¡Lo sentimos!',
     det_dresscode_title:'DRESS CODE: ELEGANTE',
-    det_dresscode_line2:'El blanco es exclusivo para la novia 🤍',
+    det_dresscode_line2:'🤍 El blanco es exclusivo para la novia 🤍',
     conf_deadline:'SE RUEGA CONFIRMACIÓN ANTES DEL 20/12/2026',
     conf_asistir:'¿Podrás asistir?', conf_si:'Sí, allí estaré', conf_no:'No, lo siento',
-    conf_adults:'Hemos decidido celebrar nuestra boda exclusivamente para adultos, para que todos podamos disfrutar de un día de fiesta, baile y celebración hasta el final.',
+    conf_adults:'Para poder disfrutar plenamente de nuestra boda, hemos decidido que sea exclusivamente para adultos.',
     conf_nombre:'Nombre y apellidos',
     conf_nombre_acomp:'Nombre y apellidos acompañante',
     conf_error:'Por favor, completa todos los campos obligatorios: participación, nombre y autobús.',
@@ -1050,7 +1053,8 @@ const T = {
     aloj_transport_text:'Contactos para volver del lugar de la celebración a tu hotel:',
     aloj_transport_phone:'📞 Por teléfono: +34 91 547 82 00',
     aloj_transport_app:'📱 Por app: Uber, Cabify, Bolt, Free Now',
-    regalo_text:'Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros, pero si queréis tener un detalle con nosotros, os dejamos aquí nuestro número de cuenta.',
+    regalo_text:'Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros.',
+    regalo_text2:'Si queréis ayudarnos con nuestro viaje de novios a Indonesia y Malasia, os dejamos aquí nuestro número de cuenta.',
     regalo_pw:'Contraseña', regalo_ver:'VER CUENTA',
     regalo_pw_error:'Contraseña incorrecta',
     regalo_copy:'COPIAR NÚMERO DE CUENTA', regalo_copied:'¡Copiado!',
@@ -1094,7 +1098,8 @@ const T = {
     aloj_transport_text:'Contacts pour rentrer à votre hôtel après la célébration :',
     aloj_transport_phone:'📞 Par téléphone : +34 91 547 82 00',
     aloj_transport_app:'📱 Par app : Uber, Cabify, Bolt, Free Now',
-    regalo_text:"Votre présence et votre envie de profiter est le plus beau cadeau de cette journée si spéciale pour nous, mais si vous souhaitez nous faire un petit cadeau, voici notre numéro de compte.",
+    regalo_text:"Votre présence et votre envie de profiter est le plus beau cadeau de cette journée si spéciale pour nous.",
+    regalo_text2:"Si vous souhaitez nous aider avec notre voyage de noces en Indonésie et en Malaisie, voici notre numéro de compte.",
     regalo_pw:'Mot de passe', regalo_ver:'VOIR LE COMPTE',
     regalo_pw_error:'Mot de passe incorrect',
     regalo_copy:'COPIER LE NUMÉRO DE COMPTE', regalo_copied:'Copié !',
@@ -1138,7 +1143,8 @@ const T = {
     aloj_transport_text:'Contacts to get back to your hotel after the celebration:',
     aloj_transport_phone:'📞 By phone: +34 91 547 82 00',
     aloj_transport_app:'📱 By app: Uber, Cabify, Bolt, Free Now',
-    regalo_text:"Your presence and joy are the best gift on this very special day for us, but if you'd like to give us something, here is our bank account number.",
+    regalo_text:"Your presence and joy are the best gift on this very special day for us.",
+    regalo_text2:"If you would like to help us with our honeymoon to Indonesia and Malaysia, here is our bank account number.",
     regalo_pw:'Password', regalo_ver:'VIEW ACCOUNT',
     regalo_pw_error:'Incorrect password',
     regalo_copy:'COPY ACCOUNT NUMBER', regalo_copied:'Copied!',
@@ -1182,7 +1188,8 @@ const T = {
     aloj_transport_text:'Contatti per tornare al vostro hotel dopo la celebrazione:',
     aloj_transport_phone:'📞 Per telefono: +34 91 547 82 00',
     aloj_transport_app:'📱 Per app: Uber, Cabify, Bolt, Free Now',
-    regalo_text:"La vostra presenza e voglia di divertirvi è il regalo migliore in questo giorno così speciale per noi, ma se volete farci un regalo, vi lasciamo qui il nostro numero di conto.",
+    regalo_text:"La vostra presenza e voglia di divertirvi è il regalo migliore in questo giorno così speciale per noi.",
+    regalo_text2:"Se volete aiutarci con il nostro viaggio di nozze in Indonesia e Malesia, vi lasciamo qui il nostro numero di conto.",
     regalo_pw:'Password', regalo_ver:'VEDI CONTO',
     regalo_pw_error:'Password errata',
     regalo_copy:'COPIA IL NUMERO DI CONTO', regalo_copied:'Copiato!',
