@@ -275,15 +275,14 @@
       #lista .body-text       { margin-bottom: 0; font-size: clamp(.65rem, 1.7vh, 1.15rem); }
       #lista .iban-pw-section { margin-top: 4.7vh; }   /* para-end(52.5%)→iban(57.2%) */
 
-      /* PAGE 7 — FIN — espacements réduits pour que la photo rentre en entier */
-      #fin .page-content { padding-top: 1.5vh; }
-      #fin .big-title    { font-weight:400; font-size:clamp(1.4rem,3.8vh,2.4rem); margin-bottom: 0.8vh; }
-      #fin .date-line    { margin-bottom: .5vh; }
-      #fin .city-line    { margin-bottom: .7vh; }
-      #fin .separator    { margin: 0 0 .7vh; }
-      #fin .tagline      { margin-bottom: 1vh; font-weight:100; }
-      #fin .tagline + .tagline { margin-bottom: 0; }
-      #fin .venise-photo { margin-top: 1vh; }
+      /* PAGE 7 — FIN — ordre : taglines → photo → séparateur → titre → année */
+      #fin .page-content { padding-top: 2.5vh; }
+      #fin .tagline      { margin-bottom: .6vh; font-weight:100; }
+      #fin .tagline + .tagline { margin-bottom: 2vh; }
+      #fin .venise-photo { width:clamp(130px,38vh,250px); height:auto; margin-bottom:1.5vh; }
+      #fin .separator    { margin: 0 0 .8vh; }
+      #fin .big-title    { font-weight:400; font-size:clamp(1.4rem,3.8vh,2.4rem); margin-bottom: 0.4vh; }
+      #fin .city-line    { margin-bottom: 0; }
 
       /* ── FONTS uniformisés sur PC ── */
       #detalles .venue-name-title,
@@ -687,15 +686,14 @@
       #lista .body-text       { margin-bottom:0; }
       #lista .iban-pw-section { margin-top:3.5vw; }
 
-      /* ── PAGE 7 FIN (photo dans le cadre) ── */
-      #fin .page-content { padding-top:.3rem; }
-      #fin .big-title    { font-weight:500; font-size:clamp(1.1rem,5.5vw,1.8rem); margin-bottom:.8vw; }
-      #fin .date-line    { margin-bottom:.6vw; }
-      #fin .city-line    { margin-bottom:.8vw; }
+      /* ── PAGE 7 FIN — ordre : taglines → photo → séparateur → titre → année ── */
+      #fin .page-content { padding-top:.4rem; }
+      #fin .tagline      { font-size:clamp(.55rem,2.8vw,.88rem); margin-bottom:1vw; font-weight:100; }
+      #fin .tagline + .tagline { margin-bottom:2.5vw; }
+      #fin .venise-photo { width:50vw; height:auto; margin-bottom:2vw; }
       #fin .separator    { margin:0 0 .8vw; }
-      #fin .tagline      { font-size:clamp(.55rem,2.8vw,.88rem); margin-bottom:1vw; }
-      #fin .tagline + .tagline { margin-bottom:0; }
-      #fin .venise-photo { margin-top:1.5vw; width:40vw; height:auto; }
+      #fin .big-title    { font-weight:500; font-size:clamp(1.1rem,5.5vw,1.8rem); margin-bottom:.4vw; }
+      #fin .city-line    { margin-bottom:0; }
     }
   </style>
 </head>
@@ -990,13 +988,12 @@
     <img class="page-bg" src="img/frame_bg.jpg" alt="">
     
     <div class="page-content">
-      <p class="big-title">ADRI &amp; AITOR</p>
-      <p class="date-line" data-i18n="inv_date">SÁBADO | 6 | MARZO | 2027</p>
-      <p class="city-line">MADRID</p>
-      <p class="separator">◆·····················◆</p>
       <p class="tagline" data-i18n="fin_gracias">¡GRACIAS!</p>
       <p class="tagline" data-i18n="fin_esperamos">¡OS ESPERAMOS!</p>
       <img class="venise-photo" src="img/venise_final.jpeg" alt="Adri & Aitor en Venecia">
+      <p class="separator">◆·····················◆</p>
+      <p class="big-title">ADRI &amp; AITOR</p>
+      <p class="city-line">2027</p>
     </div>
   </div>
 </section>
