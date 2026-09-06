@@ -230,24 +230,11 @@
       #detalles .page-content  { padding-top: 0; }
       #detalles .section-title { margin-bottom: 3vh; } /* ligne avant CEREMONIA */
       #detalles .venue-block   { margin-bottom: 0; }
-      #detalles .venue-note    { text-align:left; font-size:clamp(.55rem,1.3vh,.90rem); margin-bottom:.4em; padding-left:calc(clamp(6px,1vh,10px) + .4rem); }
+      #detalles .venue-note    { text-align:left; font-size:clamp(.55rem,1.3vh,.90rem); margin-bottom:1.5em; padding-left:calc(clamp(6px,1vh,10px) + .4rem); color:#8b1a1a; }
       #detalles .venue-img     { display:none; } /* photos cachées sur PC */
-      #detalles .road-connector { display:none; } /* supprime pointillés entre cérémonies */
+      #detalles .road-connector { display:none !important; }
       #detalles .dresscode-block { margin-top:1.5em; }
-      /* Connecteur raccourci (pj15) */
-      #detalles .road-connector { min-height: 10vh; }
-      #detalles .road-dashes   {
-        flex: 1;          /* grandit pour remplir l'espace disponible */
-        display: block;   /* remplace flex pour le fond répété */
-        width: 1px; min-width: 1px;
-        margin: 0 auto;
-        background: repeating-linear-gradient(
-          to bottom,
-          #999 0px, #999 5px,
-          transparent 5px, transparent 9px
-        );
-      }
-      #detalles .road-dash { display: none; } /* remplacé par le fond CSS */
+      #detalles .road-dash { display: none; }
 
       /* PAGE 4 — CONFIRMACIÓN (titre aligné avec DETALLES, espacements aérés) */
       #confirmacion .page-content  { padding-top: 0; }
@@ -278,10 +265,10 @@
 
       /* PAGE 7 — FIN — ordre : taglines → photo → séparateur → titre → année */
       #fin .page-content { padding-top: 0.5vh; }
-      #fin .tagline      { margin-bottom: .6vh; font-weight:100; }
+      #fin .tagline      { margin-bottom: 0; font-weight:100; }
       #fin .tagline + .tagline { margin-bottom: 1.5vh; }
       #fin .venise-photo { width:clamp(102px,25vh,168px); height:clamp(120px,30vh,198px); object-fit:cover; object-position:center 40%; margin-bottom:1.2vh; }
-      #fin .separator    { margin: 1vh 0 1vh; }
+      #fin .separator    { margin: 1vh 0 0; }
       #fin .big-title    { font-weight:400; font-size:clamp(1.4rem,3.1vh,1.75rem); margin-bottom: 0.4vh; }
       #fin .city-line    { margin-bottom: 0; }
 
@@ -291,12 +278,14 @@
       #detalles .venue-sub,
       #detalles .venue-hour            { font-size: clamp(.55rem, 1.3vh, .90rem); }  /* 11px */
       #detalles .venue-sub,
-      #detalles .dresscode-line        { padding-left: calc(clamp(6px,1vh,10px) + .4rem); }
+      #detalles .dresscode-line        { padding-left: calc(clamp(6px,1vh,10px) + .4rem); margin-top: 0; }
       #detalles .dresscode-line        { font-size: clamp(.55rem, 1.3vh, .90rem); color:#8b1a1a; text-align:left; }
       #alojamientos .hotel-name,
       #alojamientos .hotel-sub,
       #alojamientos .hotel-link,
-      #alojamientos .transport-sub     { font-size: clamp(.55rem, 1.3vh, .90rem); }  /* 11px */
+      #alojamientos .transport-sub     { font-size: clamp(.55rem, 1.3vh, .90rem); }
+      #alojamientos .hotel-sub         { margin-top: 0; line-height: 1.4; }
+      #alojamientos .transport-block   { margin-top: .4em; padding-top: .3em; }  /* 11px */
       #confirmacion .conf-formulario, #confirmacion .conf-question, #confirmacion .conf-note,
       #confirmacion .radio-opt, #confirmacion .conf-bus-label,
       #confirmacion .check-opt, #confirmacion .form-input,
@@ -491,7 +480,7 @@
     }
     .transport-block {
       width:100%; margin-top:.8em; padding-top:.5em;
-      border-top:.5px solid #c0bbb5; text-align:left;
+      text-align:left;
     }
     .transport-title {
       font-family:'Poiret One','Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -507,7 +496,7 @@
     /* ── DRESS CODE (DETALLES) ── */
     .dresscode-block {
       width:100%; text-align:center; margin-top:.7em;
-      padding-top:.55em; border-top:.5px solid #c0bbb5;
+      padding-top:.55em;
     }
     .dresscode-title {
       font-family:'Poiret One','Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -639,11 +628,7 @@
       #detalles .section-title   { margin-bottom:5.5vw; }
       #detalles .venue-block     { margin-bottom:0; }
       #detalles .venue-note      { margin-bottom:0; }
-      #detalles .road-connector  { min-height:8vw; }
-      #detalles .road-dashes {
-        flex:1; display:block; width:1px; min-width:1px; margin:0 auto;
-        background:repeating-linear-gradient(to bottom,#999 0,#999 4px,transparent 4px,transparent 8px);
-      }
+      #detalles .road-connector  { display:none; }
       #detalles .road-dash { display:none; }
       .venue-name-title { font-size:clamp(.45rem,2.5vw,.78rem); }
       .venue-sub, .venue-hour { font-size:clamp(.36rem,1.9vw,.6rem); }
