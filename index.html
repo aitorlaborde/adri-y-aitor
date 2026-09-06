@@ -130,7 +130,7 @@
     .date-line {
       font-family:'Poiret One','Helvetica Neue',Helvetica,Arial,sans-serif;
       font-weight:300; /* Maigre */
-      font-size:clamp(.6rem,1.6vh,1.05rem);
+      font-size:clamp(.55rem,1.45vh,.95rem);
       letter-spacing:.14em; color:#000;
       margin-bottom:.12em;
     }
@@ -244,13 +244,13 @@
       #confirmacion .conf-formulario{ display:none; }
       #confirmacion .conf-deadline { color:#8b1a1a; margin-top: 1.8vh; margin-bottom: 0.8vh; }
       #confirmacion .conf-question  { margin-top:0.6em; }
-      #confirmacion .radio-group   { margin-bottom: .3em; }
+      #confirmacion .radio-group   { flex-direction: row; gap: 1.8em; align-items: center; margin-bottom: .3em; }
       #confirmacion .conf-gap      { margin-top:0.6em; }
       #confirmacion .form-row      { margin-bottom: .4em; }
       #confirmacion .conf-bus-label{ margin-top:0.6em; margin-bottom: .2em; }
       #confirmacion .check-group   { margin-bottom: .25em; }
       #confirmacion .form-group    { margin-bottom: .3em; }
-      #confirmacion .submit-btn    { border-color:#8b1a1a; color:#8b1a1a; margin-top:0.5em; }
+      #confirmacion .submit-btn    { border-color:#8b1a1a; color:#8b1a1a; margin-top:1.5vh; }
       #confirmacion .submit-btn:hover { background:#8b1a1a; color:#fff; }
 
       /* PAGE 5 — COMODIDADES */
@@ -608,7 +608,7 @@
       .tagline      { font-size:clamp(.65rem,3.5vw,1.1rem); margin-bottom:.2em; }
       .body-text    { font-size:clamp(.5rem,2.5vw,.82rem); margin-bottom:.2em; line-height:1.4; }
       .sign         { font-size:clamp(.5rem,2.5vw,.82rem); }
-      .date-line    { font-size:clamp(.5rem,2.8vw,.85rem); }
+      .date-line    { font-size:clamp(.45rem,2.55vw,.78rem); }
       .city-line    { font-size:clamp(.38rem,1.8vw,.6rem); }
 
       /* ── PAGE 1 INICIO ── */
@@ -634,6 +634,7 @@
       #detalles .section-title   { margin-bottom:5.5vw; }
       #det-mid-sep { margin: 1.5vw 0 1.5vw; }
       #detalles .venue-block     { margin-bottom:0; }
+      #detalles .venue-block + .venue-block { margin-top: 3.5vw; }
       #detalles .venue-note      { margin-bottom:0; }
       #detalles .road-connector  { display:none; }
       #detalles .road-dash { display:none; }
@@ -655,6 +656,7 @@
       .conf-deadline{ font-size:clamp(.40rem,2.1vw,.64rem); font-weight:700; color:#8b1a1a; }
       .conf-question{ font-size:clamp(.33rem,1.8vw,.55rem); margin-bottom:.1em; margin-top:0; font-weight:700; }
       .radio-group  { margin-bottom:.12em; gap:.06em; }
+      #confirmacion .radio-group { flex-direction: row; gap: 1.5vw; align-items: center; }
       .radio-opt    { font-size:clamp(.33rem,1.8vw,.55rem); font-weight:700; }
       .conf-gap     { margin-top:.1em; }
       .form-row     { grid-template-columns:1fr 1fr; gap:.15rem; margin-bottom:.12em; }
@@ -819,7 +821,7 @@
       <!-- Dress Code -->
       <p class="separator" id="det-mid-sep">◆·····················◆</p>
       <div class="dresscode-block">
-        <div class="venue-header" style="margin-bottom:.2em;">
+        <div class="venue-header" style="margin-bottom:0;">
           <div class="venue-bullet"></div>
           <p class="dresscode-title" data-i18n="det_dresscode_title">DRESS CODE: ELEGANTE</p>
         </div>
@@ -940,10 +942,15 @@
       <!-- Transport -->
       <p class="separator" id="aloj-mid-sep">◆·····················◆</p>
       <div class="transport-block">
-        <p class="transport-title" data-i18n="aloj_transport_title">TRANSPORTE DE VUELTA</p>
-        <p class="transport-sub" data-i18n="aloj_transport_text">Contactos para volver del lugar de la celebración a tu hotel:</p>
-        <p class="transport-sub" data-i18n="aloj_transport_phone">📞 Por teléfono: +34 91 547 82 00</p>
-        <p class="transport-sub" data-i18n="aloj_transport_app">📱 Por app: Uber, Cabify, Bolt, Free Now</p>
+        <div class="hotel-header">
+          <div class="hotel-dot"></div>
+          <p class="transport-title" data-i18n="aloj_transport_title">TRANSPORTE DE VUELTA</p>
+        </div>
+        <div class="hotel-subs">
+          <p class="transport-sub" data-i18n="aloj_transport_text">Contactos para volver del lugar de la celebración a tu hotel:</p>
+          <p class="transport-sub" data-i18n="aloj_transport_phone">📞 Por teléfono: +34 91 547 82 00</p>
+          <p class="transport-sub" data-i18n="aloj_transport_app">📱 Por app: Uber, Cabify, Bolt, Free Now</p>
+        </div>
       </div>
     </div>
   </div>
