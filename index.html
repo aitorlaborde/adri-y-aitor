@@ -612,13 +612,15 @@
       .city-line    { font-size:clamp(.38rem,1.8vw,.6rem); }
 
       /* ── PAGE 1 INICIO ── */
-      #inicio .page-content      { top:26%; padding-top:.5rem; } /* sauf inicio : garde top:26% */
-      #inicio .big-title         { margin-bottom:0; }
+      #inicio .page-content      { top:26%; padding-top:.5rem; }
+      #inicio .big-title         { margin-bottom:0; font-weight:700; }
       #inicio .inicio-date-group { margin-top:2.5vw; }
+      #inicio .inicio-date-group .date-line { white-space:normal; text-align:center; font-weight:700; }
+      #inicio .city-line         { font-weight:700; }
       #inicio .separator         { margin-top:2.5vw; margin-bottom:0; }
-      #inicio .tagline           { white-space:nowrap; margin-top:2.5vw; margin-bottom:0; }
+      #inicio .tagline           { white-space:nowrap; margin-top:2.5vw; margin-bottom:0; font-weight:700; }
       #inicio .inicio-text-group { margin-top:10.5vw; }
-      .inicio-text-group .body-text { margin-bottom:.25em; }
+      .inicio-text-group .body-text { margin-bottom:.25em; font-weight:700; }
 
       /* ── PAGE 2 HISTORIA (scroll interne si nécessaire) ── */
       #historia .page-content    { padding-top:.4rem; }
@@ -650,7 +652,7 @@
       #confirmacion .conf-deadline{ margin-bottom:1.5vw; }
       .conf-note    { display:none; }
       .conf-formulario { display:none; }
-      .conf-deadline{ font-size:clamp(.36rem,1.9vw,.58rem); font-weight:700; }
+      .conf-deadline{ font-size:clamp(.36rem,1.9vw,.58rem); font-weight:700; color:#8b1a1a; }
       .conf-question{ font-size:clamp(.36rem,2vw,.6rem); margin-bottom:.1em; margin-top:0; font-weight:700; }
       .radio-group  { margin-bottom:.12em; gap:.06em; }
       .radio-opt    { font-size:clamp(.33rem,1.8vw,.55rem); font-weight:700; }
@@ -686,12 +688,12 @@
 
       /* ── PAGE 7 FIN — ordre : taglines → photo → séparateur → titre → année ── */
       #fin .page-content { padding-top:.4rem; }
-      #fin .tagline      { font-size:clamp(.55rem,2.8vw,.88rem); margin-bottom:1vw; font-weight:100; }
+      #fin .tagline      { font-size:clamp(.55rem,2.8vw,.88rem); margin-bottom:1vw; font-weight:700; }
       #fin .tagline + .tagline { margin-bottom:1.5vw; }
       #fin .venise-photo { width:36vw; height:43vw; object-fit:cover; object-position:center 40%; margin-bottom:1.5vw; }
       #fin .separator    { margin:0 0 .8vw; }
-      #fin .big-title    { font-weight:500; font-size:clamp(1.1rem,5.5vw,1.8rem); margin-bottom:.4vw; }
-      #fin .city-line    { margin-bottom:0; }
+      #fin .big-title    { font-weight:700; font-size:clamp(1.1rem,5.5vw,1.8rem); margin-bottom:.4vw; }
+      #fin .city-line    { margin-bottom:0; font-weight:700; }
     }
   </style>
 </head>
@@ -848,14 +850,14 @@
           <label class="form-label" data-i18n="conf_nombre">Nombre y apellidos</label>
           <input class="form-input" type="text" name="nombre1" placeholder="">
         </div>
-        <div class="form-group" style="width:100%;margin-top:.4em;">
+        <div class="form-group" style="width:100%;margin-top:.4em;margin-bottom:.6em;">
           <label class="form-label" data-i18n="conf_nombre_acomp">Nombre y apellidos acompañante</label>
           <input class="form-input" type="text" name="nombre2" placeholder="">
         </div>
 
         <!-- Asistir -->
         <p class="conf-question conf-gap" data-i18n="conf_asistir">¿Podrás asistir?</p>
-        <div class="radio-group">
+        <div class="radio-group" style="margin-bottom:.6em;">
           <label class="radio-opt">
             <input type="radio" name="asistir" value="si" checked>
             <span data-i18n="conf_si">Sí, allí estaré</span>
@@ -959,16 +961,6 @@
       <p class="body-text" data-i18n="regalo_text" style="text-align:justify;">Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros.</p>
       <p class="body-text" data-i18n="regalo_text2" style="text-align:justify;margin-top:.6em;">Si queréis ayudarnos con nuestro viaje de novios a Indonesia y Malasia, os dejamos aquí nuestro número de cuenta.</p>
 
-      <!-- Mensaje -->
-      <form id="mensajeForm" onsubmit="enviarMensaje(event)" novalidate style="width:100%;margin-top:.8em;">
-        <div class="form-group" style="width:100%;margin-bottom:.5em;">
-          <label class="form-label" data-i18n="conf_mensaje">Un mensaje para los novios 💌</label>
-          <textarea class="form-textarea" name="mensaje" id="mensajeInput" rows="2" style="height:2.6em;"></textarea>
-        </div>
-        <button type="submit" class="submit-btn" data-i18n="conf_enviar">ENVIAR</button>
-        <p class="form-success" id="mensajeSuccess" data-i18n="conf_ok" style="display:none;">¡Gracias! Hemos recibido tu mensaje.</p>
-      </form>
-
       <div class="iban-pw-section">
         <div id="pwSection">
           <input id="pwInput" class="pw-input" type="password" data-i18n-placeholder="regalo_pw" placeholder="Contraseña">
@@ -981,6 +973,16 @@
           <p class="copy-ok" id="copyOk" data-i18n="regalo_copied">¡Copiado!</p>
         </div>
       </div>
+
+      <!-- Mensaje -->
+      <form id="mensajeForm" onsubmit="enviarMensaje(event)" novalidate style="width:100%;margin-top:.8em;">
+        <div class="form-group" style="width:100%;margin-bottom:.5em;">
+          <label class="form-label" data-i18n="conf_mensaje">Un mensaje para los novios 💌</label>
+          <textarea class="form-textarea" name="mensaje" id="mensajeInput" rows="2" style="height:2.6em;"></textarea>
+        </div>
+        <button type="submit" class="submit-btn" style="border-color:#8b1a1a;color:#8b1a1a;" data-i18n="conf_enviar">ENVIAR</button>
+        <p class="form-success" id="mensajeSuccess" data-i18n="conf_ok" style="display:none;">¡Gracias! Hemos recibido tu mensaje.</p>
+      </form>
     </div>
   </div>
 </section>
