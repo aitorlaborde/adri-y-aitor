@@ -228,8 +228,9 @@
 
       /* PAGE 3 — DETALLES */
       #detalles .page-content  { padding-top: 0; }
-      #detalles .section-title { margin-bottom: 1vh; }
-      #det-sep { margin: 0.3vh 0 2vh; }
+      #detalles .section-title { margin-bottom: 3vh; }
+      #det-mid-sep { margin: .8vh 0 .8vh; }
+      #detalles .dresscode-block { margin-top: 0; }
       #detalles .venue-block   { margin-bottom: 0; }
       #detalles .venue-note    { text-align:left; font-size:clamp(.55rem,1.3vh,.90rem); margin-bottom:1.5em; padding-left:calc(clamp(6px,1vh,10px) + .4rem); color:#8b1a1a; }
       #detalles .venue-img     { display:none; } /* photos cachées sur PC */
@@ -254,8 +255,9 @@
 
       /* PAGE 5 — COMODIDADES */
       #alojamientos .page-content  { padding-top: 0; }
-      #alojamientos .section-title { margin-bottom: 1vh; }
-      #aloj-sep { margin: 0.3vh 0 2vh; }
+      #alojamientos .section-title { margin-bottom: 3vh; }
+      #aloj-mid-sep { margin: .8vh 0 .8vh; }
+      #alojamientos .transport-block { margin-top: 0; padding-top: 0; }
       #alojamientos .hotel-block   { margin-bottom: 1.5vh; }
       #alojamientos .transport-block { margin-top:.2em; }
 
@@ -627,8 +629,8 @@
 
       /* ── PAGE 3 DETALLES ── */
       #detalles .page-content    { padding-top:.4rem; }
-      #detalles .section-title   { margin-bottom:1.5vw; }
-      #det-sep { margin: 0 0 3vw; }
+      #detalles .section-title   { margin-bottom:5.5vw; }
+      #det-mid-sep { margin: 1.5vw 0 1.5vw; }
       #detalles .venue-block     { margin-bottom:0; }
       #detalles .venue-note      { margin-bottom:0; }
       #detalles .road-connector  { display:none; }
@@ -666,8 +668,8 @@
 
       /* ── PAGE 5 ALOJAMIENTOS ── */
       #alojamientos .page-content  { padding-top:.4rem; }
-      #alojamientos .section-title { margin-bottom:1.5vw; }
-      #aloj-sep { margin: 0 0 3vw; }
+      #alojamientos .section-title { margin-bottom:5.5vw; }
+      #aloj-mid-sep { margin: 1.5vw 0 1.5vw; }
       #alojamientos .hotel-block   { margin-bottom:1.8vw; }
       .hotel-block  { margin-bottom:.4em; }
       .hotel-name   { font-size:clamp(.38rem,2.1vw,.68rem); font-weight:700; }
@@ -771,7 +773,6 @@
     
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_detalles">DETALLES</h2>
-      <p class="separator" id="det-sep">◆·····················◆</p>
 
       <!-- Ceremonia -->
       <div class="venue-block">
@@ -812,7 +813,7 @@
       </div>
 
       <!-- Dress Code -->
-      <p class="separator">◆·····················◆</p>
+      <p class="separator" id="det-mid-sep">◆·····················◆</p>
       <div class="dresscode-block">
         <div class="venue-header" style="margin-bottom:.2em;">
           <div class="venue-bullet"></div>
@@ -911,7 +912,6 @@
     
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_alojamientos">COMODIDADES</h2>
-      <p class="separator" id="aloj-sep">◆·····················◆</p>
 
       <div class="hotel-block">
         <div class="hotel-header">
@@ -940,7 +940,7 @@
       </div>
 
       <!-- Transport -->
-      <p class="separator">◆·····················◆</p>
+      <p class="separator" id="aloj-mid-sep">◆·····················◆</p>
       <div class="transport-block">
         <p class="transport-title" data-i18n="aloj_transport_title">TRANSPORTE DE VUELTA</p>
         <p class="transport-sub" data-i18n="aloj_transport_text">Contactos para volver del lugar de la celebración a tu hotel:</p>
