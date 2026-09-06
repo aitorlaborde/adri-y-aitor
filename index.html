@@ -674,7 +674,7 @@
       .hotel-block  { margin-bottom:.4em; }
       .hotel-name   { font-size:clamp(.38rem,2.1vw,.68rem); font-weight:700; }
       .hotel-sub    { font-size:clamp(.3rem,1.6vw,.52rem); font-weight:700; }
-      .transport-block { display:block; }
+      .transport-block { display:block; margin-top:0; padding-top:0; }
       .transport-title { font-size:clamp(.38rem,2.1vw,.68rem); font-weight:700; }
       .transport-sub   { font-size:clamp(.3rem,1.6vw,.52rem); font-weight:700; }
 
@@ -843,8 +843,18 @@
         <!-- Adultos -->
         <p class="conf-note" data-i18n="conf_adults" style="text-align:justify;">Para poder disfrutar plenamente de nuestra boda, hemos decidido que sea exclusivamente para adultos.</p>
 
+        <!-- Nombres -->
+        <div class="form-group conf-gap" style="width:100%;">
+          <label class="form-label" data-i18n="conf_nombre">Nombre y apellidos</label>
+          <input class="form-input" type="text" name="nombre1" placeholder="">
+        </div>
+        <div class="form-group" style="width:100%;margin-top:.4em;">
+          <label class="form-label" data-i18n="conf_nombre_acomp">Nombre y apellidos acompañante</label>
+          <input class="form-input" type="text" name="nombre2" placeholder="">
+        </div>
+
         <!-- Asistir -->
-        <p class="conf-question" data-i18n="conf_asistir">¿Podrás asistir?</p>
+        <p class="conf-question conf-gap" data-i18n="conf_asistir">¿Podrás asistir?</p>
         <div class="radio-group">
           <label class="radio-opt">
             <input type="radio" name="asistir" value="si" checked>
@@ -854,16 +864,6 @@
             <input type="radio" name="asistir" value="no">
             <span data-i18n="conf_no">No, lo siento</span>
           </label>
-        </div>
-
-        <!-- Nombres -->
-        <div class="form-group conf-gap" style="width:100%;">
-          <label class="form-label" data-i18n="conf_nombre">Nombre y apellidos</label>
-          <input class="form-input" type="text" name="nombre1" placeholder="">
-        </div>
-        <div class="form-group" style="width:100%;margin-top:.4em;">
-          <label class="form-label" data-i18n="conf_nombre_acomp">Nombre y apellidos acompañante</label>
-          <input class="form-input" type="text" name="nombre2" placeholder="">
         </div>
 
         <!-- Bus -->
@@ -889,12 +889,6 @@
         <div class="form-group conf-gap" style="width:100%;margin-bottom:.4em;">
           <label class="form-label" data-i18n="conf_cancion">Una canción que no puede faltar 🎵</label>
           <textarea class="form-textarea" name="cancion" rows="1" placeholder="Artista - canción"></textarea>
-        </div>
-
-        <!-- Mensaje -->
-        <div class="form-group conf-gap" style="width:100%;margin-bottom:.4em;">
-          <label class="form-label" data-i18n="conf_mensaje">Un mensaje para los novios 💌</label>
-          <textarea class="form-textarea" name="mensaje" rows="1"></textarea>
         </div>
 
         <p class="form-error" id="formError" style="display:none;color:#8b1a1a;font-size:clamp(.38rem,.85vh,.6rem);margin-top:.6em;" data-i18n="conf_error">Por favor, completa todos los campos obligatorios: participación, nombre y autobús.</p>
@@ -964,6 +958,16 @@
       <h2 class="section-title" data-i18n="nav_lista">REGALO</h2>
       <p class="body-text" data-i18n="regalo_text" style="text-align:justify;">Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros.</p>
       <p class="body-text" data-i18n="regalo_text2" style="text-align:justify;margin-top:.6em;">Si queréis ayudarnos con nuestro viaje de novios a Indonesia y Malasia, os dejamos aquí nuestro número de cuenta.</p>
+
+      <!-- Mensaje -->
+      <form id="mensajeForm" onsubmit="enviarMensaje(event)" novalidate style="width:100%;margin-top:.8em;">
+        <div class="form-group" style="width:100%;margin-bottom:.5em;">
+          <label class="form-label" data-i18n="conf_mensaje">Un mensaje para los novios 💌</label>
+          <textarea class="form-textarea" name="mensaje" id="mensajeInput" rows="2" style="height:2.6em;"></textarea>
+        </div>
+        <button type="submit" class="submit-btn" data-i18n="conf_enviar">ENVIAR</button>
+        <p class="form-success" id="mensajeSuccess" data-i18n="conf_ok" style="display:none;">¡Gracias! Hemos recibido tu mensaje.</p>
+      </form>
 
       <div class="iban-pw-section">
         <div id="pwSection">
@@ -1261,6 +1265,19 @@ async function enviarFormulario(e) {
   } catch(err) {
     console.error('Erreur envoi:', err);
   }
+}
+
+/* ── MENSAJE REGALO ── */
+async function enviarMensaje(e) {
+  e.preventDefault();
+  const mensaje = document.getElementById('mensajeInput').value.trim();
+  if (!mensaje) return;
+  const data = new URLSearchParams({ type: 'mensaje', mensaje });
+  try {
+    fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', body:data });
+    document.getElementById('mensajeSuccess').style.display = 'block';
+    document.getElementById('mensajeInput').value = '';
+  } catch(err) { console.error('Erreur envoi mensaje:', err); }
 }
 
 /* ── IBAN PASSWORD ── */
