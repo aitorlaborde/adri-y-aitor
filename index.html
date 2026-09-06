@@ -229,7 +229,7 @@
       #detalles .page-content  { padding-top: 0; }
       #detalles .section-title { margin-bottom: 3vh; } /* ligne avant CEREMONIA */
       #detalles .venue-block   { margin-bottom: 0; }
-      #detalles .venue-note    { text-align:left; font-size:clamp(.55rem,1.2vh,.85rem); margin-bottom:.4em; }
+      #detalles .venue-note    { text-align:left; font-size:clamp(.55rem,1.3vh,.90rem); margin-bottom:.4em; padding-left:calc(clamp(6px,1vh,10px) + .4rem); }
       #detalles .venue-img     { display:none; } /* photos cachées sur PC */
       #detalles .road-connector { display:none; } /* supprime pointillés entre cérémonies */
       #detalles .dresscode-block { margin-top:1.5em; }
@@ -272,7 +272,7 @@
       /* PAGE 6 — LISTA DE BODAS (titre y=499→28.4% ; para y=691→39.4% ; IBAN y=1004→57.2%) */
       #lista .page-content    { padding-top: 4.9vh; }
       #lista .section-title   { margin-bottom: 9.5vh; } /* titre-end(29.9%)→para(39.4%) */
-      #lista .body-text       { margin-bottom: 0; font-size: clamp(.55rem, 1.42vh, .95rem); }
+      #lista .body-text       { margin-bottom: 0; font-size: clamp(.65rem, 1.7vh, 1.15rem); }
       #lista .iban-pw-section { margin-top: 4.7vh; }   /* para-end(52.5%)→iban(57.2%) */
 
       /* PAGE 7 — FIN — espacements réduits pour que la photo rentre en entier */
@@ -285,19 +285,23 @@
       #fin .tagline + .tagline { margin-bottom: 0; }
       #fin .venise-photo { margin-top: 1vh; }
 
-      /* ── FONTS 12px uniformisés sur PC ── */
+      /* ── FONTS uniformisés sur PC ── */
       #detalles .venue-name-title,
-      #detalles .dresscode-title  { font-size: clamp(.55rem, 1.42vh, .95rem); }
-      #detalles .dresscode-line   { font-size: clamp(.55rem, 1.42vh, .95rem); }
+      #detalles .dresscode-title       { font-size: clamp(.55rem, 1.42vh, .95rem); } /* 12px */
+      #detalles .venue-sub,
+      #detalles .venue-hour            { font-size: clamp(.55rem, 1.3vh, .90rem); }  /* 11px */
+      #detalles .venue-sub,
+      #detalles .dresscode-line        { padding-left: calc(clamp(6px,1vh,10px) + .4rem); }
+      #detalles .dresscode-line        { font-size: clamp(.55rem, 1.3vh, .90rem); color:#8b1a1a; }
       #alojamientos .hotel-name,
       #alojamientos .hotel-sub,
-      #alojamientos .hotel-link   { font-size: clamp(.55rem, 1.42vh, .95rem); }
+      #alojamientos .hotel-link        { font-size: clamp(.55rem, 1.3vh, .90rem); }  /* 11px */
       #confirmacion .conf-formulario, #confirmacion .conf-deadline,
       #confirmacion .conf-question, #confirmacion .conf-note,
       #confirmacion .radio-opt, #confirmacion .form-label,
       #confirmacion .form-input, #confirmacion .conf-bus-label,
       #confirmacion .check-opt, #confirmacion .form-textarea,
-      #confirmacion .submit-btn   { font-size: clamp(.55rem, 1.42vh, .95rem); }
+      #confirmacion .submit-btn        { font-size: clamp(.55rem, 1.3vh, .90rem); }  /* 11px */
     }
 
     /* ── COUNTDOWN ── */
@@ -928,27 +932,13 @@
       <div class="hotel-block">
         <div class="hotel-header">
           <div class="hotel-dot"></div>
-          <p class="hotel-name">HOTEL XXXXXX</p>
+          <p class="hotel-name">EUROSTARS MADRID CONGRESS ★★★★</p>
         </div>
         <div class="hotel-subs">
-          <p class="hotel-sub">(cerca de la Finca Astilbe by Eneldo)</p>
-          <p class="hotel-sub">Código descuento X%</p>
-          <p class="hotel-sub">"Xxxxxxxxxxx"</p>
-          <p class="hotel-sub">Ubicación y página web</p>
-        </div>
-      </div>
-
-      <div class="hotel-block">
-        <div class="hotel-header">
-          <div class="hotel-dot"></div>
-          <p class="hotel-name" data-i18n="aloj_prox">PRÓXIMAMENTE</p>
-        </div>
-      </div>
-
-      <div class="hotel-block">
-        <div class="hotel-header">
-          <div class="hotel-dot"></div>
-          <p class="hotel-name" data-i18n="aloj_prox">PRÓXIMAMENTE</p>
+          <p class="hotel-sub" data-i18n="aloj_cerca_finca">(cerca de la Finca Astilbe)</p>
+          <p class="hotel-sub">Avda. de la Transición Española, 22</p>
+          <p class="hotel-sub">Parque Empresarial Omega A-1, salida 17</p>
+          <p class="hotel-sub">28108 Alcobendas, Madrid</p>
         </div>
       </div>
 
