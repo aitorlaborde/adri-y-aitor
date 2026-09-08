@@ -536,7 +536,7 @@
       display:none; font-size:clamp(.38rem,.82vh,.58rem);
       color:#c0392b; margin-top:.3em;
     }
-    .iban-block { display:none; margin-top:.7em; }
+    .iban-block { display:block; margin-top:.7em; }
     .iban-text {
       font-size:clamp(.52rem,1.2vh,.82rem);
       letter-spacing:.1em; color:#000;
@@ -969,11 +969,6 @@
       <p class="body-text" data-i18n="regalo_text2" style="text-align:justify;margin-top:.6em;">Si queréis ayudarnos con nuestro viaje de novios a Indonesia y Malasia, os dejamos aquí nuestro número de cuenta.</p>
 
       <div class="iban-pw-section">
-        <div id="pwSection">
-          <input id="pwInput" class="pw-input" type="password" data-i18n-placeholder="regalo_pw" placeholder="Contraseña">
-          <button class="pw-btn" onclick="verIBAN()" data-i18n="regalo_ver">VER CUENTA</button>
-          <p class="pw-error" id="pwError" data-i18n="regalo_pw_error">Contraseña incorrecta</p>
-        </div>
         <div class="iban-block" id="ibanBlock">
           <p class="iban-text" id="ibanText"></p>
           <button class="copy-btn" onclick="copiarIBAN()" data-i18n="regalo_copy">COPIAR NÚMERO DE CUENTA</button>
@@ -1012,6 +1007,66 @@
   </div>
 </section>
 
+<!-- ── SITE PASSWORD OVERLAY ── -->
+<div id="siteGate" style="
+  position:fixed;inset:0;z-index:99999;
+  background:url('frame_bg.jpg') center/cover no-repeat;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Poiret One','Helvetica Neue',Helvetica,Arial,sans-serif;
+">
+  <div style="
+    background:rgba(255,255,255,0.82);backdrop-filter:blur(8px);
+    border-radius:4px;padding:2.4em 2.8em;text-align:center;
+    box-shadow:0 4px 24px rgba(0,0,0,0.10);
+    max-width:320px;width:88%;
+  ">
+    <p style="font-size:1.05rem;letter-spacing:.18em;color:#1e3a7a;margin:0 0 .15em;">ADRI &amp; AITOR</p>
+    <p style="font-size:.7rem;letter-spacing:.12em;color:#555;margin:0 0 1.6em;">06 · 03 · 2027</p>
+    <input id="gateInput" type="password" placeholder="Contraseña"
+      style="
+        width:100%;box-sizing:border-box;
+        border:none;border-bottom:1px solid #1e3a7a;
+        background:transparent;outline:none;
+        font-family:inherit;font-size:.85rem;letter-spacing:.1em;
+        color:#1e3a7a;padding:.45em 0;text-align:center;margin-bottom:1.2em;
+      "
+      onkeydown="if(event.key==='Enter'){event.preventDefault();checkGate();}"
+    >
+    <button onclick="checkGate()" style="
+      border:1px solid #1e3a7a;background:transparent;
+      color:#1e3a7a;font-family:inherit;font-size:.7rem;
+      letter-spacing:.15em;padding:.45em 1.6em;cursor:pointer;
+      transition:background .2s,color .2s;
+    "
+    onmouseover="this.style.background='#1e3a7a';this.style.color='#fff';"
+    onmouseout="this.style.background='transparent';this.style.color='#1e3a7a';"
+    >ENTRAR</button>
+    <p id="gateError" style="color:#8b1a1a;font-size:.65rem;letter-spacing:.08em;margin:.9em 0 0;display:none;">
+      Contraseña incorrecta
+    </p>
+  </div>
+</div>
+
+<script>
+/* ── GATE ── */
+(function(){
+  if(localStorage.getItem('boda_auth')==='1'){
+    document.getElementById('siteGate').style.display='none';
+  }
+})();
+function checkGate(){
+  var v=document.getElementById('gateInput').value;
+  if(v==='adri2027'){
+    localStorage.setItem('boda_auth','1');
+    document.getElementById('siteGate').style.display='none';
+  } else {
+    document.getElementById('gateError').style.display='block';
+    document.getElementById('gateInput').value='';
+    document.getElementById('gateInput').focus();
+  }
+}
+</script>
+
 <script>
 /* ══════════════════════════════════════════════════════
    CONFIGURACIÓN — sustituye esta URL por la de tu Apps Script
@@ -1020,7 +1075,7 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwDms9PtQAzS73u
 
 /* IBAN real (oculto detrás de la contraseña) */
 const IBAN_REAL = 'ES00 0000 0000 0000 0000 0000'; /* ← pon el IBAN real aquí */
-const PW_BODA = 'adri&aitor2027';
+const PW_BODA = 'adri2027';
 
 /* ══════════════════════════════════
    TRADUCCIONES
@@ -1289,22 +1344,8 @@ async function enviarMensaje(e) {
   } catch(err) { console.error('Erreur envoi mensaje:', err); }
 }
 
-/* ── IBAN PASSWORD ── */
-function verIBAN() {
-  const pw = document.getElementById('pwInput').value;
-  const err = document.getElementById('pwError');
-  if (pw === PW_BODA) {
-    document.getElementById('pwSection').style.display = 'none';
-    document.getElementById('ibanBlock').style.display = 'block';
-    document.getElementById('ibanText').textContent = 'IBAN: ' + IBAN_REAL;
-  } else {
-    err.style.display = 'block';
-  }
-}
-
-document.getElementById('pwInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') { e.preventDefault(); verIBAN(); }
-});
+/* ── IBAN (affiché directement après auth globale) ── */
+document.getElementById('ibanText').textContent = 'IBAN: ' + IBAN_REAL;
 
 /* ── COPIER IBAN ── */
 function copiarIBAN() {
