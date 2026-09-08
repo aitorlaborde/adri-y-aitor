@@ -1315,5 +1315,64 @@ function copiarIBAN() {
   });
 }
 </script>
+<!-- ── MUSIC PLAYER ── -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="musica/sway.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn" onclick="toggleMusic()" title="Música" aria-label="Reproducir música">
+  <span id="musicIcon">♪</span>
+</button>
+
+<style>
+  #musicBtn {
+    position: fixed;
+    bottom: 1.4rem;
+    right: 1.4rem;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    border: 1.5px solid rgba(30,58,122,0.55);
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(6px);
+    color: #1e3a7a;
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+    transition: background .2s, transform .15s;
+    padding: 0;
+    line-height: 1;
+  }
+  #musicBtn:hover { background: rgba(255,255,255,0.97); transform: scale(1.08); }
+  #musicBtn.playing #musicIcon { animation: pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse {
+    0%,100% { opacity:1; }
+    50%      { opacity:.45; }
+  }
+</style>
+
+<script>
+  var _musicPlaying = false;
+  function toggleMusic() {
+    var audio = document.getElementById('bgMusic');
+    var btn   = document.getElementById('musicBtn');
+    var icon  = document.getElementById('musicIcon');
+    if (_musicPlaying) {
+      audio.pause();
+      icon.textContent = '♪';
+      btn.classList.remove('playing');
+    } else {
+      audio.play();
+      icon.textContent = '❚❚';
+      btn.classList.add('playing');
+    }
+    _musicPlaying = !_musicPlaying;
+  }
+</script>
+
 </body>
 </html>
