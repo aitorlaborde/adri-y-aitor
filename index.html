@@ -1009,8 +1009,8 @@
 
 <!-- ── SITE PASSWORD OVERLAY ── -->
 <div id="siteGate" style="
-  position:fixed;inset:0;z-index:99999;
-  background:url('frame_bg.jpg') center/cover no-repeat;
+  position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;
+  background:#f5f2ec;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   font-family:'Poiret One','Helvetica Neue',Helvetica,Arial,sans-serif;
 ">
@@ -1050,14 +1050,14 @@
 <script>
 /* ── GATE ── */
 (function(){
-  if(localStorage.getItem('boda_auth')==='1'){
+  if(localStorage.getItem('boda_auth_v2')==='1'){
     document.getElementById('siteGate').style.display='none';
   }
 })();
 function checkGate(){
   var v=document.getElementById('gateInput').value;
   if(v==='adri2027'){
-    localStorage.setItem('boda_auth','1');
+    localStorage.setItem('boda_auth_v2','1');
     document.getElementById('siteGate').style.display='none';
   } else {
     document.getElementById('gateError').style.display='block';
