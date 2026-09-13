@@ -701,6 +701,71 @@
 </head>
 <body>
 
+<!-- ── SITE PASSWORD GATE ── -->
+<div id="siteGate" style="
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;
+  background:#f5f2ec;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Poiret One','Helvetica Neue',Helvetica,Arial,sans-serif;
+  -webkit-overflow-scrolling:auto;
+">
+  <div style="
+    background:rgba(255,255,255,0.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border-radius:4px;padding:2.4em 2.8em;text-align:center;
+    box-shadow:0 4px 24px rgba(0,0,0,0.10);
+    max-width:320px;width:88%;box-sizing:border-box;
+  ">
+    <p style="font-size:1.05rem;letter-spacing:.18em;color:#1e3a7a;margin:0 0 .15em;">ADRI &amp; AITOR</p>
+    <p style="font-size:.7rem;letter-spacing:.12em;color:#555;margin:0 0 1.6em;">06 · 03 · 2027</p>
+    <input id="gateInput" type="password" placeholder="Contraseña"
+      autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+      style="
+        width:100%;box-sizing:border-box;
+        border:none;border-bottom:1px solid #1e3a7a;
+        background:transparent;outline:none;
+        font-family:inherit;font-size:.85rem;letter-spacing:.1em;
+        color:#1e3a7a;padding:.55em 0;text-align:center;margin-bottom:1.4em;
+        -webkit-appearance:none;border-radius:0;
+      "
+      onkeydown="if(event.key==='Enter'){event.preventDefault();checkGate();}"
+    >
+    <button onclick="checkGate()" style="
+      border:1px solid #1e3a7a;background:transparent;
+      color:#1e3a7a;font-family:inherit;font-size:.7rem;
+      letter-spacing:.15em;padding:.55em 1.8em;cursor:pointer;
+      -webkit-appearance:none;border-radius:0;
+    ">ENTRAR</button>
+    <p id="gateError" style="color:#8b1a1a;font-size:.65rem;letter-spacing:.08em;margin:.9em 0 0;display:none;">
+      Contraseña incorrecta
+    </p>
+  </div>
+</div>
+
+<script>
+/* ── GATE ── */
+(function(){
+  if(localStorage.getItem('boda_auth_v2')==='1'){
+    document.getElementById('siteGate').style.display='none';
+  } else {
+    document.documentElement.style.overflow='hidden';
+    document.body.style.overflow='hidden';
+  }
+})();
+function checkGate(){
+  var v=document.getElementById('gateInput').value;
+  if(v==='adri+aitor'){
+    localStorage.setItem('boda_auth_v2','1');
+    document.getElementById('siteGate').style.display='none';
+    document.documentElement.style.overflow='';
+    document.body.style.overflow='';
+  } else {
+    document.getElementById('gateError').style.display='block';
+    document.getElementById('gateInput').value='';
+    document.getElementById('gateInput').focus();
+  }
+}
+</script>
+
 <!-- ── NAV ── -->
 <nav>
   <a href="#inicio" class="nav-brand">A & A · 2027</a>
@@ -1008,65 +1073,6 @@
 </section>
 
 <!-- ── SITE PASSWORD OVERLAY ── -->
-<div id="siteGate" style="
-  position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;
-  background:#f5f2ec;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  font-family:'Poiret One','Helvetica Neue',Helvetica,Arial,sans-serif;
-">
-  <div style="
-    background:rgba(255,255,255,0.82);backdrop-filter:blur(8px);
-    border-radius:4px;padding:2.4em 2.8em;text-align:center;
-    box-shadow:0 4px 24px rgba(0,0,0,0.10);
-    max-width:320px;width:88%;
-  ">
-    <p style="font-size:1.05rem;letter-spacing:.18em;color:#1e3a7a;margin:0 0 .15em;">ADRI &amp; AITOR</p>
-    <p style="font-size:.7rem;letter-spacing:.12em;color:#555;margin:0 0 1.6em;">06 · 03 · 2027</p>
-    <input id="gateInput" type="password" placeholder="Contraseña"
-      style="
-        width:100%;box-sizing:border-box;
-        border:none;border-bottom:1px solid #1e3a7a;
-        background:transparent;outline:none;
-        font-family:inherit;font-size:.85rem;letter-spacing:.1em;
-        color:#1e3a7a;padding:.45em 0;text-align:center;margin-bottom:1.2em;
-      "
-      onkeydown="if(event.key==='Enter'){event.preventDefault();checkGate();}"
-    >
-    <button onclick="checkGate()" style="
-      border:1px solid #1e3a7a;background:transparent;
-      color:#1e3a7a;font-family:inherit;font-size:.7rem;
-      letter-spacing:.15em;padding:.45em 1.6em;cursor:pointer;
-      transition:background .2s,color .2s;
-    "
-    onmouseover="this.style.background='#1e3a7a';this.style.color='#fff';"
-    onmouseout="this.style.background='transparent';this.style.color='#1e3a7a';"
-    >ENTRAR</button>
-    <p id="gateError" style="color:#8b1a1a;font-size:.65rem;letter-spacing:.08em;margin:.9em 0 0;display:none;">
-      Contraseña incorrecta
-    </p>
-  </div>
-</div>
-
-<script>
-/* ── GATE ── */
-(function(){
-  if(localStorage.getItem('boda_auth_v2')==='1'){
-    document.getElementById('siteGate').style.display='none';
-  }
-})();
-function checkGate(){
-  var v=document.getElementById('gateInput').value;
-  if(v==='adri+aitor'){
-    localStorage.setItem('boda_auth_v2','1');
-    document.getElementById('siteGate').style.display='none';
-  } else {
-    document.getElementById('gateError').style.display='block';
-    document.getElementById('gateInput').value='';
-    document.getElementById('gateInput').focus();
-  }
-}
-</script>
-
 <script>
 /* ══════════════════════════════════════════════════════
    CONFIGURACIÓN — sustituye esta URL por la de tu Apps Script
