@@ -196,6 +196,10 @@
 
     /* ── PAGE 1 — desktop : marges précises mesurées depuis le PDF ──
        ADRI&AITOR=30.6vh, SÁBADO=36.4vh, Separator=51.3vh, ¡NOS!=56.0vh, Para=64.7vh */
+    /* Logo décalé 3% droite sur INICIO et FIN — toutes versions */
+    #inicio .page-wrap, #fin .page-wrap { overflow:hidden; }
+    #inicio .page-bg, #fin .page-bg    { width:106%; margin-left:-3%; }
+
     @media(min-width:781px){
       .section-title { white-space: nowrap; }
       #inicio .page-content  { padding-top: 5.5vh; }
@@ -585,6 +589,7 @@
         object-fit:fill;
         pointer-events:none; user-select:none;
       }
+      #inicio .page-bg, #fin .page-bg { left:-3%; width:106%; margin-left:0; }
 
       .page-content {
         position:absolute;
