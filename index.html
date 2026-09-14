@@ -197,18 +197,19 @@
     /* ── PAGE 1 — desktop : marges précises mesurées depuis le PDF ──
        ADRI&AITOR=30.6vh, SÁBADO=36.4vh, Separator=51.3vh, ¡NOS!=56.0vh, Para=64.7vh */
     @media(min-width:781px){
-      /* ── NAV : centrage left:50% + translateX(-50%) ── */
-      .nav-links {
-        position:absolute;
-        top:0; bottom:0;
-        left:50%;
-        transform:translateX(-50%);
-        width:max-content;
-        display:flex; align-items:center; gap:1.2rem;
-        list-style:none; flex:unset;
-        pointer-events:none;
+      /* ── NAV : grid 3 colonnes — liens exactement au centre ── */
+      nav {
+        display:grid;
+        grid-template-columns:1fr auto 1fr;
+        align-items:center;
       }
-      .nav-links li { pointer-events:auto; }
+      .lang-bar { justify-self:end; }
+      .nav-links {
+        position:static;
+        display:flex; align-items:center; gap:1.2rem;
+        list-style:none; flex:unset; justify-content:center;
+        pointer-events:auto;
+      }
       .section-title { white-space: nowrap; }
       #inicio .page-content  { padding-top: 5.5vh; }
       #inicio .big-title     { margin-bottom: 0; }
