@@ -55,7 +55,7 @@
       justify-content:center; flex-wrap:nowrap;
     }
     .nav-links a {
-      font-size:.48rem; letter-spacing:.14em; text-transform:uppercase;
+      font-size:.60rem; letter-spacing:.14em; text-transform:uppercase;
       color:#000; text-decoration:none; transition:color .2s; white-space:nowrap;
     }
     .nav-links a:hover { color:#000; }
@@ -197,10 +197,13 @@
     /* ── PAGE 1 — desktop : marges précises mesurées depuis le PDF ──
        ADRI&AITOR=30.6vh, SÁBADO=36.4vh, Separator=51.3vh, ¡NOS!=56.0vh, Para=64.7vh */
     @media(min-width:781px){
-      /* ── NAV : grid 1fr-auto-1fr → liens vraiment centrés sans déplacer la hauteur ── */
-      nav { display:grid; grid-template-columns:1fr auto 1fr; }
-      .nav-links { display:flex; gap:1.2rem; justify-content:center; flex:unset; }
-      .lang-bar  { justify-self:end; }
+      /* ── NAV : couche absolue pleine-largeur → centrage horizontal garanti ── */
+      .nav-links {
+        position:absolute; left:0; right:0; top:0; bottom:0;
+        display:flex; align-items:center; justify-content:center;
+        pointer-events:none; flex:unset;
+      }
+      .nav-links li { pointer-events:auto; }
       .section-title { white-space: nowrap; }
       #inicio .page-content  { padding-top: 5.5vh; }
       #inicio .big-title     { margin-bottom: 0; }
