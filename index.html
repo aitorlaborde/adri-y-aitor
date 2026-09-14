@@ -197,11 +197,10 @@
     /* ── PAGE 1 — desktop : marges précises mesurées depuis le PDF ──
        ADRI&AITOR=30.6vh, SÁBADO=36.4vh, Separator=51.3vh, ¡NOS!=56.0vh, Para=64.7vh */
     @media(min-width:781px){
-      /* ── NAV : centrage absolu des liens (la zone brand ≠ lang-bar) ── */
-      .nav-links {
-        position:absolute; left:50%; top:50%;
-        transform:translate(-50%, -50%);
-      }
+      /* ── NAV : grid 1fr-auto-1fr → liens vraiment centrés sans déplacer la hauteur ── */
+      nav { display:grid; grid-template-columns:1fr auto 1fr; }
+      .nav-links { display:flex; gap:1.2rem; justify-content:center; flex:unset; }
+      .lang-bar  { justify-self:end; }
       .section-title { white-space: nowrap; }
       #inicio .page-content  { padding-top: 5.5vh; }
       #inicio .big-title     { margin-bottom: 0; }
@@ -237,7 +236,7 @@
       #det-mid-sep { margin: .8vh 0 .8vh; }
       #detalles .dresscode-block { margin-top: 0; padding-top: 0; }
       #detalles .venue-block   { margin-bottom: 0; }
-      #detalles .venue-note    { text-align:left; font-size:clamp(.55rem,1.3vh,.90rem); margin-bottom:1.5em; padding-left:calc(clamp(6px,1vh,10px) + .4rem); color:#8b1a1a; }
+      #detalles .venue-note    { text-align:left; font-size:clamp(.55rem,1.3vh,.90rem); margin-top:.4em; margin-bottom:1.5em; color:#8b1a1a; }
       #detalles .venue-img     { display:none; } /* photos cachées sur PC */
       #detalles .road-connector { display:none !important; }
       #detalles .dresscode-block { margin-top:1.5em; }
@@ -259,7 +258,7 @@
       #confirmacion .submit-btn:hover { background:#8b1a1a; color:#fff; }
       /* Ligne vide avant/après la section ¿Podrás asistir? */
       #conf-question-asistir { margin-top: 1.4em; }
-      #radio-asistir         { margin-bottom: 1.4em; }
+      #radio-asistir         { margin-bottom: 1.4em !important; }
 
       /* PAGE 5 — COMODIDADES */
       #alojamientos .page-content  { padding-top: 0; }
@@ -267,8 +266,6 @@
       #aloj-mid-sep { margin: .8vh 0 .8vh; }
       #alojamientos .transport-block { margin-top: 0; padding-top: 0; }
       #alojamientos .hotel-block   { margin-bottom: 1.5vh; }
-      #alojamientos .transport-block { margin-top:.2em; }
-
       /* PAGE 6 — LISTA DE BODAS (titre y=499→28.4% ; para y=691→39.4% ; IBAN y=1004→57.2%) */
       #lista .page-content    { padding-top: 4.9vh; }
       #lista .section-title   { margin-bottom: 7vh; }
@@ -460,6 +457,9 @@
       transition:background .2s, color .2s;
     }
     .submit-btn:hover { background:#2c2c2a; color:#fff; }
+    /* Ligne vide ¿Podrás asistir? — toutes versions */
+    #conf-question-asistir { margin-top: 1em; }
+    #radio-asistir         { margin-bottom: 1em; }
     .form-success {
       display:none; margin-top:.6em;
       font-size:clamp(.45rem,1vh,.72rem);
@@ -492,14 +492,15 @@
       color:#000; word-break:break-all;
     }
     .transport-block {
-      width:100%; margin-top:.8em; padding-top:.5em;
+      width:100%; margin-top:.8em;
       text-align:left;
     }
     .transport-title {
       font-family:'Poiret One','Helvetica Neue',Helvetica,Arial,sans-serif;
       font-size:clamp(.5rem,1.1vh,.78rem);
-      letter-spacing:.12em; color:#000; margin-bottom:.3em;
+      letter-spacing:.12em; color:#000;
     }
+    .transport-block .hotel-subs { margin-top:.25em; }
     .transport-sub {
       font-family:'Poiret One','Helvetica Neue',Helvetica,Arial,sans-serif;
       font-size:clamp(.45rem,.95vh,.68rem);
@@ -644,7 +645,7 @@
       #det-mid-sep { margin: 1.5vw 0 1.5vw; }
       #detalles .venue-block     { margin-bottom:0; }
       #detalles .venue-block + .venue-block { margin-top: 3.5vw; }
-      #detalles .venue-note      { margin-bottom:0; color:#8b1a1a; text-align:left; padding-left:calc(clamp(5px,0.8vw,8px) + .4rem); }
+      #detalles .venue-note      { margin-bottom:0; color:#8b1a1a; text-align:left; }
       #detalles .road-connector  { display:none; }
       #detalles .road-dash { display:none; }
       .venue-name-title { font-size:clamp(.45rem,2.5vw,.78rem); font-weight:700; }
@@ -866,9 +867,9 @@ function checkGate(){
           </div>
           <p class="venue-sub"><a href="https://maps.app.goo.gl/PZsPpCzewH7TP7xC7" target="_blank" class="venue-name-link">IGLESIA SANTA BÁRBARA</a></p>
           <p class="venue-sub">Calle del Gral. Castaños, 2<br>28004 Madrid</p>
+          <p class="venue-note" data-i18n="det_nota">La Iglesia no permite echar pétalos de flores, arroz, ni burbujas a la salida de la ceremonia ¡Lo sentimos!</p>
         </div>
       </div>
-      <p class="venue-note" data-i18n="det_nota">*No está permitido echar pétalos de flores, arroz, ni burbujas a la salida de la Iglesia. ¡Lo sentimos!</p>
 
       <!-- Conector -->
       <div class="road-connector" style="margin-top:1.6em;margin-bottom:1.6em;">
