@@ -197,12 +197,13 @@
     /* ── PAGE 1 — desktop : marges précises mesurées depuis le PDF ──
        ADRI&AITOR=30.6vh, SÁBADO=36.4vh, Separator=51.3vh, ¡NOS!=56.0vh, Para=64.7vh */
     @media(min-width:781px){
-      /* ── NAV : centrage absolu classique inset:0 margin:auto ── */
+      /* ── NAV : centrage left:50% + translateX(-50%) ── */
       .nav-links {
         position:absolute;
-        top:0; bottom:0; left:0; right:0;
-        margin:auto;
-        width:max-content; height:fit-content;
+        top:0; bottom:0;
+        left:50%;
+        transform:translateX(-50%);
+        width:max-content;
         display:flex; align-items:center; gap:1.2rem;
         list-style:none; flex:unset;
         pointer-events:none;
@@ -653,6 +654,8 @@
       #detalles .venue-block     { margin-bottom:0; }
       #detalles .venue-block + .venue-block { margin-top: 0.5vw; }
       #detalles .venue-note      { margin-bottom:0; color:#8b1a1a; text-align:left; }
+      #detalles .venue-bullet    { display:none; }
+      #detalles .venue-header    { gap:0; }
       #detalles .road-connector  { display:none; }
       #detalles .road-dash { display:none; }
       .venue-name-title { font-size:clamp(.45rem,2.5vw,.78rem); font-weight:700; }
