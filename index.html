@@ -197,6 +197,11 @@
     /* ── PAGE 1 — desktop : marges précises mesurées depuis le PDF ──
        ADRI&AITOR=30.6vh, SÁBADO=36.4vh, Separator=51.3vh, ¡NOS!=56.0vh, Para=64.7vh */
     @media(min-width:781px){
+      /* ── NAV : centrage absolu des liens (la zone brand ≠ lang-bar) ── */
+      .nav-links {
+        position:absolute; left:50%; transform:translateX(-50%);
+        top:0; height:52px; display:flex; align-items:center;
+      }
       .section-title { white-space: nowrap; }
       #inicio .page-content  { padding-top: 5.5vh; }
       #inicio .big-title     { margin-bottom: 0; }
@@ -252,6 +257,9 @@
       #confirmacion .form-group    { margin-bottom: .3em; }
       #confirmacion .submit-btn    { border-color:#8b1a1a; color:#8b1a1a; margin-top:1.5vh; }
       #confirmacion .submit-btn:hover { background:#8b1a1a; color:#fff; }
+      /* Ligne vide avant/après la section ¿Podrás asistir? */
+      #conf-question-asistir { margin-top: 1.4em; }
+      #radio-asistir         { margin-bottom: 1.4em; }
 
       /* PAGE 5 — COMODIDADES */
       #alojamientos .page-content  { padding-top: 0; }
@@ -287,6 +295,7 @@
       #alojamientos .hotel-name,
       #alojamientos .hotel-sub,
       #alojamientos .hotel-link,
+      #alojamientos .transport-title,
       #alojamientos .transport-sub     { font-size: clamp(.55rem, 1.3vh, .90rem); }
       #alojamientos .hotel-sub         { margin-top: 0; line-height: 1.4; }
       #alojamientos .transport-block   { margin-top: .4em; padding-top: .3em; }  /* 11px */
@@ -618,8 +627,8 @@
       #inicio .inicio-date-group .date-line { white-space:normal; text-align:center; font-weight:700; }
       #inicio .city-line         { font-weight:700; }
       #inicio .separator         { margin-top:2.5vw; margin-bottom:0; }
-      #inicio .tagline           { white-space:nowrap; margin-top:2.5vw; margin-bottom:0; font-weight:700; }
-      #inicio .inicio-text-group { margin-top:10.5vw; }
+      #inicio .tagline           { white-space:nowrap; margin-top:5.5vw; margin-bottom:0; font-weight:700; }
+      #inicio .inicio-text-group { margin-top:5.5vw; }
       .inicio-text-group .body-text { margin-bottom:.25em; font-weight:700; }
 
       /* ── PAGE 2 HISTORIA (scroll interne si nécessaire) ── */
@@ -635,7 +644,7 @@
       #det-mid-sep { margin: 1.5vw 0 1.5vw; }
       #detalles .venue-block     { margin-bottom:0; }
       #detalles .venue-block + .venue-block { margin-top: 3.5vw; }
-      #detalles .venue-note      { margin-bottom:0; }
+      #detalles .venue-note      { margin-bottom:0; color:#8b1a1a; text-align:left; padding-left:calc(clamp(5px,0.8vw,8px) + .4rem); }
       #detalles .road-connector  { display:none; }
       #detalles .road-dash { display:none; }
       .venue-name-title { font-size:clamp(.45rem,2.5vw,.78rem); font-weight:700; }
@@ -688,13 +697,16 @@
       #lista .body-text       { margin-bottom:0; font-weight:700; }
       #lista .iban-pw-section { margin-top:3.5vw; }
 
+      /* ── EN : date légèrement plus petite (ne rentre pas sur une ligne) ── */
+      .lang-en #inicio .date-line { font-size:clamp(.41rem,2.3vw,.74rem); }
+
       /* ── PAGE 7 FIN — ordre : taglines → photo → séparateur → titre → année ── */
       #fin .page-content { padding-top:.4rem; }
       #fin .tagline      { font-size:clamp(.55rem,2.8vw,.88rem); margin-bottom:1vw; font-weight:700; }
       #fin .tagline + .tagline { margin-bottom:1.5vw; }
       #fin .venise-photo { width:36vw; height:43vw; object-fit:cover; object-position:center 40%; margin-bottom:1.5vw; }
-      #fin .separator    { margin:0 0 .8vw; }
-      #fin .big-title    { font-weight:400; font-size:clamp(1.1rem,5.5vw,1.8rem); margin-bottom:.4vw; }
+      #fin .separator    { margin:0; }
+      #fin .big-title    { font-weight:400; font-size:clamp(1.04rem,5.3vw,1.74rem); margin-bottom:.4vw; }
       #fin .city-line    { margin-bottom:0; font-weight:700; }
     }
   </style>
@@ -850,7 +862,7 @@ function checkGate(){
         <div class="venue-left">
           <div class="venue-header">
             <div class="venue-bullet"></div>
-            <p class="venue-name-title"><span class="venue-hour-inline">11:30h&nbsp;&nbsp;</span><span data-i18n="det_ceremonia">CEREMONIA</span></p>
+            <p class="venue-name-title"><span class="venue-hour-inline" data-i18n="det_hora_ceremonia">11:30h</span>&nbsp;&nbsp;<span data-i18n="det_ceremonia">CEREMONIA RELIGIOSA</span></p>
           </div>
           <p class="venue-sub"><a href="https://maps.app.goo.gl/PZsPpCzewH7TP7xC7" target="_blank" class="venue-name-link">IGLESIA SANTA BÁRBARA</a></p>
           <p class="venue-sub">Calle del Gral. Castaños, 2<br>28004 Madrid</p>
@@ -876,7 +888,7 @@ function checkGate(){
         <div class="venue-left">
           <div class="venue-header">
             <div class="venue-bullet"></div>
-            <p class="venue-name-title"><span class="venue-hour-inline">13:30h&nbsp;&nbsp;</span><span data-i18n="det_celebracion">CELEBRACIÓN</span></p>
+            <p class="venue-name-title"><span class="venue-hour-inline" data-i18n="det_hora_celebracion">13:30h</span>&nbsp;&nbsp;<span data-i18n="det_celebracion">CELEBRACIÓN Y BAILE</span></p>
           </div>
           <p class="venue-sub"><a href="https://maps.app.goo.gl/icwLbPRPt5NwcUYJ7" target="_blank" class="venue-name-link">FINCA ASTILBE BY ENELDO</a></p>
           <p class="venue-sub">Carr. de Fuencarral, km 1,9<br>28049 Madrid</p>
@@ -923,8 +935,8 @@ function checkGate(){
         </div>
 
         <!-- Asistir -->
-        <p class="conf-question conf-gap" data-i18n="conf_asistir">¿Podrás asistir?</p>
-        <div class="radio-group" style="margin-bottom:.6em;">
+        <p id="conf-question-asistir" class="conf-question conf-gap" data-i18n="conf_asistir">¿Podrás asistir?</p>
+        <div id="radio-asistir" class="radio-group" style="margin-bottom:.6em;">
           <label class="radio-opt">
             <input type="radio" name="asistir" value="si" checked>
             <span data-i18n="conf_si">Sí, allí estaré</span>
@@ -951,13 +963,13 @@ function checkGate(){
         <!-- Alergias -->
         <div class="form-group conf-gap" style="width:100%;margin-bottom:.4em;margin-top:1.4em;">
           <label class="form-label" data-i18n="conf_alergias">Alergias o dietas especiales</label>
-          <textarea class="form-textarea" name="alergias" rows="1" placeholder="Ej: vegetariano, sin gluten"></textarea>
+          <textarea class="form-textarea" name="alergias" rows="1" placeholder="Ej: vegetariano, sin gluten" data-i18n-placeholder="conf_alergias_ph"></textarea>
         </div>
 
         <!-- Canción -->
         <div class="form-group conf-gap" style="width:100%;margin-bottom:.4em;margin-top:0.8em;">
           <label class="form-label" data-i18n="conf_cancion">Una canción que no puede faltar 🎵</label>
-          <textarea class="form-textarea" name="cancion" rows="1" placeholder="Artista - canción"></textarea>
+          <textarea class="form-textarea" name="cancion" rows="1" placeholder="Artista - canción" data-i18n-placeholder="conf_cancion_ph"></textarea>
         </div>
 
         <p class="form-error" id="formError" style="display:none;color:#8b1a1a;font-size:clamp(.38rem,.85vh,.6rem);margin-top:.6em;" data-i18n="conf_error">Por favor, completa todos los campos obligatorios: participación, nombre y autobús.</p>
@@ -981,18 +993,18 @@ function checkGate(){
       <div class="hotel-block">
         <div class="hotel-header">
           <div class="hotel-dot"></div>
-          <p class="hotel-name">HOTEL SARDINERO MADRID ★★★★</p>
+          <p class="hotel-name"><a href="https://www.hotelsardineromadrid.com/" target="_blank" class="venue-name-link">HOTEL SARDINERO MADRID</a></p>
         </div>
         <div class="hotel-subs">
           <p class="hotel-sub" data-i18n="aloj_descuento">10% descuento con código adrianaitor2027</p>
-          <p class="hotel-sub" data-i18n="aloj_reservar">Reservas: Gregori Mayor reservas@sardinerohoteles.com</p>
+          <p class="hotel-sub" data-i18n="aloj_reservar">Reservas: Gregori Mayor madrid-reservas@sardinerohoteles.com</p>
         </div>
       </div>
 
       <div class="hotel-block">
         <div class="hotel-header">
           <div class="hotel-dot"></div>
-          <p class="hotel-name">EUROSTARS MADRID CONGRESS ★★★★</p>
+          <p class="hotel-name"><a href="https://www.eurostarshotels.com/eurostars-madrid-congress.html" target="_blank" class="venue-name-link">EUROSTARS MADRID CONGRESS</a></p>
         </div>
         <div class="hotel-subs">
           <p class="hotel-sub" data-i18n="aloj_eurostars_desc">15% descuento con código BODADRIANA</p>
@@ -1009,6 +1021,7 @@ function checkGate(){
         <div class="hotel-subs">
           <p class="transport-sub" data-i18n="aloj_transport_text">Contactos para volver del lugar de la celebración a tu hotel:</p>
           <p class="transport-sub" data-i18n="aloj_transport_phone">📞 Por teléfono: +34 91 547 82 00</p>
+          <p class="transport-sub" data-i18n="aloj_transport_taxi">🚕 Taxi: +34 913 71 21 31</p>
           <p class="transport-sub" data-i18n="aloj_transport_app">📱 Por app: Uber, Cabify, Bolt, Free Now</p>
         </div>
       </div>
@@ -1039,7 +1052,7 @@ function checkGate(){
       <!-- Mensaje -->
       <form id="mensajeForm" onsubmit="enviarMensaje(event)" novalidate style="width:100%;margin-top:2.4em;">
         <div class="form-group" style="width:100%;margin-bottom:.5em;">
-          <label class="form-label" data-i18n="conf_mensaje">Un mensaje para los novios 💌</label>
+          <label class="form-label" data-i18n="conf_mensaje" style="font-size:clamp(.52rem,1.2vh,.82rem);text-transform:none;letter-spacing:.06em;margin-bottom:.3em;">Un mensaje para los novios 💌</label>
           <textarea class="form-textarea" name="mensaje" id="mensajeInput" rows="2" style="height:2.6em;"></textarea>
         </div>
         <button type="submit" class="submit-btn" style="border-color:#8b1a1a;color:#8b1a1a;" data-i18n="conf_enviar">ENVIAR</button>
@@ -1094,11 +1107,12 @@ const T = {
     hist_p2:'Desde que comenzó nuestra historia de amor hemos compartido viajes, miradas, risas, idiomas, aventuras y muchos pequeños momentos que nos han hecho elegirnos cada día.',
     hist_p3:'Un año después, desde el Pont de le Acque en Venecia, llegó un anillo y un "sí" para toda la vida, que cambió nuestro futuro para siempre.',
     hist_p4:'Ahora queremos compartir nuestro "para siempre" en Madrid, rodeados de las personas que más queremos, nuestra familia y amigos.',
-    det_ceremonia:'CEREMONIA', det_celebracion:'CELEBRACIÓN', det_ubicacion:'[ UBICACIÓN ]',
-    det_nota:'*No está permitido echar pétalos de flores, arroz, ni burbujas a la salida de la Iglesia. ¡Lo sentimos!',
+    det_hora_ceremonia:'11:30h', det_hora_celebracion:'13:30h',
+    det_ceremonia:'CEREMONIA RELIGIOSA', det_celebracion:'CELEBRACIÓN Y BAILE', det_ubicacion:'[ UBICACIÓN ]',
+    det_nota:'La Iglesia no permite echar pétalos de flores, arroz, ni burbujas a la salida de la ceremonia ¡Lo sentimos!',
     det_dresscode_title:'DRESS CODE: ELEGANTE',
     det_dresscode_line2:'🤍 El blanco es exclusivo para la novia 🤍',
-    conf_deadline:'SE RUEGA CONFIRMACIÓN ANTES DEL 20/12/2026',
+    conf_deadline:'SE RUEGA CONFIRMACIÓN ANTES DEL 15/12/2026',
     conf_asistir:'¿Podrás asistir?', conf_si:'Sí, allí estaré', conf_no:'No, lo siento',
     conf_adults:'Para poder disfrutar plenamente de nuestra boda, hemos decidido que sea exclusivamente para adultos.',
     conf_nombre:'Nombre y apellidos',
@@ -1108,18 +1122,21 @@ const T = {
     conf_bus_si:'Sí, lo usaré', conf_bus_no:'No lo necesito',
     conf_formulario:'Rellena este formulario (solo los novios tendrán acceso a esta información)',
     conf_alergias:'Alergias o dietas especiales',
+    conf_alergias_ph:'Ej: vegetariano, sin gluten',
     conf_cancion:'Una canción que no puede faltar 🎵',
+    conf_cancion_ph:'Artista - canción',
     conf_mensaje:'Un mensaje para los novios 💌',
     conf_enviar:'ENVIAR CONFIRMACIÓN', conf_ok:'¡Gracias! Hemos recibido tu confirmación.',
     aloj_cerca_iglesia:'',
     aloj_cerca_finca:'(cerca de la Finca Astilbe)',
     aloj_eurostars_desc:'15% descuento con código BODADRIANA',
     aloj_descuento:'10% descuento con código adrianaitor2027',
-    aloj_reservar:'Reservas: Gregori Mayor reservas@sardinerohoteles.com',
+    aloj_reservar:'Reservas: Gregori Mayor madrid-reservas@sardinerohoteles.com',
     aloj_prox:'PRÓXIMAMENTE',
     aloj_transport_title:'TRANSPORTE DE VUELTA',
     aloj_transport_text:'Contactos para volver del lugar de la celebración a tu hotel:',
     aloj_transport_phone:'📞 Por teléfono: +34 91 547 82 00',
+    aloj_transport_taxi:'🚕 Taxi: +34 913 71 21 31',
     aloj_transport_app:'📱 Por app: Uber, Cabify, Bolt, Free Now',
     regalo_text:'Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros.',
     regalo_text2:'Si queréis ayudarnos con nuestro viaje de novios a Indonesia y Malasia, os dejamos aquí nuestro número de cuenta.',
@@ -1140,11 +1157,12 @@ const T = {
     hist_p2:"Depuis le début de notre histoire d'amour, nous avons partagé des voyages, des regards, des rires, des langues, des aventures et de nombreux petits moments qui nous ont fait nous choisir chaque jour.",
     hist_p3:"Un an plus tard, depuis le Pont de le Acque à Venise, est arrivée une bague et un 'oui' pour la vie, qui a changé notre avenir pour toujours.",
     hist_p4:"Nous voulons maintenant partager notre 'pour toujours' à Madrid, entourés des personnes que nous aimons le plus, notre famille et nos amis.",
-    det_ceremonia:'CÉRÉMONIE', det_celebracion:'CÉLÉBRATION', det_ubicacion:'[ LOCALISATION ]',
-    det_nota:"*Il n'est pas autorisé de jeter des pétales de fleurs, du riz ou des bulles à la sortie de l'Église. Désolés !",
+    det_hora_ceremonia:'11h30', det_hora_celebracion:'13h30',
+    det_ceremonia:'CÉRÉMONIE RELIGIEUSE', det_celebracion:'CÉLÉBRATION ET BAL', det_ubicacion:'[ LOCALISATION ]',
+    det_nota:"L'Église n'autorise pas de jeter des pétales de fleurs, du riz ou des bulles à la sortie de la cérémonie. Désolés !",
     det_dresscode_title:'DRESS CODE: ÉLÉGANT',
     det_dresscode_line2:'Le blanc est réservé à la mariée 🤍',
-    conf_deadline:'MERCI DE CONFIRMER AVANT LE 20/12/2026',
+    conf_deadline:'MERCI DE CONFIRMER AVANT LE 15/12/2026',
     conf_asistir:'Pourrez-vous être présent(e) ?', conf_si:"Oui, j'y serai", conf_no:'Non, désolé(e)',
     conf_adults:"Nous avons décidé de célébrer notre mariage exclusivement pour les adultes, afin que tout le monde puisse profiter d'une journée de fête, de danse et de célébration jusqu'à la fin.",
     conf_nombre:'Prénom et nom de famille',
@@ -1154,18 +1172,21 @@ const T = {
     conf_bus_si:"Oui, je l'utiliserai", conf_bus_no:'Non merci',
     conf_formulario:'Remplis ce formulaire (seuls les mariés auront accès à ces informations)',
     conf_alergias:'Allergies ou régimes spéciaux',
+    conf_alergias_ph:'Ex : végétarien, sans gluten',
     conf_cancion:'Une chanson qui ne peut pas manquer 🎵',
+    conf_cancion_ph:'Artiste - chanson',
     conf_mensaje:'Un message pour les mariés 💌',
     conf_enviar:'ENVOYER LA CONFIRMATION', conf_ok:'Merci ! Nous avons bien reçu votre confirmation.',
     aloj_cerca_iglesia:'',
     aloj_cerca_finca:'(près de la Finca Astilbe)',
     aloj_eurostars_desc:'15% de réduction avec le code BODADRIANA',
     aloj_descuento:'10% de réduction avec le code adrianaitor2027',
-    aloj_reservar:'Réservations : Gregori Mayor reservas@sardinerohoteles.com',
+    aloj_reservar:'Réservations : Gregori Mayor madrid-reservas@sardinerohoteles.com',
     aloj_prox:'PROCHAINEMENT',
     aloj_transport_title:'TRANSPORT DE RETOUR',
     aloj_transport_text:'Contacts pour rentrer à votre hôtel après la célébration :',
     aloj_transport_phone:'📞 Par téléphone : +34 91 547 82 00',
+    aloj_transport_taxi:'🚕 Taxi : +34 913 71 21 31',
     aloj_transport_app:'📱 Par app : Uber, Cabify, Bolt, Free Now',
     regalo_text:"Votre présence et votre envie de profiter est le plus beau cadeau de cette journée si spéciale pour nous.",
     regalo_text2:"Si vous souhaitez nous aider avec notre voyage de noces en Indonésie et en Malaisie, voici notre numéro de compte.",
@@ -1178,7 +1199,7 @@ const T = {
     nav_inicio:'HOME', nav_historia:'OUR STORY', nav_detalles:'DETAILS',
     nav_confirmacion:'CONFIRMATION', nav_alojamientos:'AMENITIES',
     nav_lista:'GIFT', nav_fin:'THE END',
-    inv_date:'SATURDAY | 6 | MARCH | 2027', inv_tagline:"WE'RE GETTING MARRIED!",
+    inv_date:'SATURDAY | 6th | MARCH | 2027', inv_tagline:'WE ARE GETTING MARRIED!',
     inv_text1:'We feel very lucky to have you as family and friends.',
     inv_text2:'That is why we would love to invite you to share this very special day with us.',
     cd_dias:'days', cd_horas:'hours', cd_min:'minutes', cd_seg:'seconds',
@@ -1186,11 +1207,12 @@ const T = {
     hist_p2:'Since our love story began, we have shared travels, glances, laughter, languages, adventures and many small moments that have made us choose each other every day.',
     hist_p3:"One year later, from the Pont de le Acque in Venice, came a ring and a 'yes' for life, which changed our future forever.",
     hist_p4:"We now want to share our 'forever' in Madrid, surrounded by the people we love most, our family and friends.",
-    det_ceremonia:'CEREMONY', det_celebracion:'CELEBRATION', det_ubicacion:'[ LOCATION ]',
-    det_nota:'*Throwing flower petals, rice or blowing bubbles is not allowed at the Church exit. We\'re sorry!',
+    det_hora_ceremonia:'11:30am', det_hora_celebracion:'1:30pm',
+    det_ceremonia:'RELIGIOUS CEREMONY', det_celebracion:'CELEBRATION AND DANCING', det_ubicacion:'[ LOCATION ]',
+    det_nota:'The Church does not allow throwing flower petals, rice or blowing bubbles at the exit of the ceremony. We\'re sorry!',
     det_dresscode_title:'DRESS CODE: ELEGANT',
     det_dresscode_line2:'White is reserved for the bride 🤍',
-    conf_deadline:'PLEASE CONFIRM BY 20/12/2026',
+    conf_deadline:'PLEASE CONFIRM BY 15/12/2026',
     conf_asistir:"Will you be able to attend?", conf_si:"Yes, I'll be there", conf_no:"No, sorry",
     conf_adults:"We've decided to celebrate our wedding exclusively for adults, so that everyone can enjoy a day of celebration, dancing and fun until the end.",
     conf_nombre:'Full name',
@@ -1200,25 +1222,28 @@ const T = {
     conf_bus_si:"Yes, I'll use it", conf_bus_no:"No, thanks",
     conf_formulario:'Fill in this form (only the newlyweds will have access to this information)',
     conf_alergias:'Allergies or special diets',
+    conf_alergias_ph:'E.g.: vegetarian, gluten-free',
     conf_cancion:'A song that must be played 🎵',
+    conf_cancion_ph:'Artist - song',
     conf_mensaje:'A message for the newlyweds 💌',
     conf_enviar:'SEND CONFIRMATION', conf_ok:'Thank you! We have received your confirmation.',
     aloj_cerca_iglesia:'',
     aloj_cerca_finca:'(near Finca Astilbe)',
     aloj_eurostars_desc:'15% discount with code BODADRIANA',
     aloj_descuento:'10% discount with code adrianaitor2027',
-    aloj_reservar:'Bookings: Gregori Mayor reservas@sardinerohoteles.com',
+    aloj_reservar:'Bookings: Gregori Mayor madrid-reservas@sardinerohoteles.com',
     aloj_prox:'COMING SOON',
     aloj_transport_title:'RETURN TRANSPORT',
     aloj_transport_text:'Contacts to get back to your hotel after the celebration:',
     aloj_transport_phone:'📞 By phone: +34 91 547 82 00',
+    aloj_transport_taxi:'🚕 Taxi: +34 913 71 21 31',
     aloj_transport_app:'📱 By app: Uber, Cabify, Bolt, Free Now',
     regalo_text:"Your presence and joy are the best gift on this very special day for us.",
-    regalo_text2:"If you would like to help us with our honeymoon to Indonesia and Malaysia, here is our bank account number.",
+    regalo_text2:"If you would like to help us with our honeymoon to Indonesia and Malaysia, please see below our bank details.",
     regalo_pw:'Password', regalo_ver:'VIEW ACCOUNT',
     regalo_pw_error:'Incorrect password',
     regalo_copy:'COPY ACCOUNT NUMBER', regalo_copied:'Copied!',
-    fin_gracias:'THANK YOU!', fin_esperamos:"WE CAN'T WAIT TO SEE YOU!"
+    fin_gracias:'THANK YOU!', fin_esperamos:'LOOKING FORWARD TO SEEING YOU!'
   },
   it: {
     nav_inicio:'INIZIO', nav_historia:'LA NOSTRA STORIA', nav_detalles:'DETTAGLI',
@@ -1232,11 +1257,12 @@ const T = {
     hist_p2:"Da quando è iniziata la nostra storia d'amore abbiamo condiviso viaggi, sguardi, risate, lingue, avventure e tanti piccoli momenti che ci hanno fatto sceglierci ogni giorno.",
     hist_p3:"Un anno dopo, dal Pont de le Acque a Venezia, è arrivato un anello e un 'sì' per tutta la vita, che ha cambiato il nostro futuro per sempre.",
     hist_p4:"Ora vogliamo condividere il nostro 'per sempre' a Madrid, circondati dalle persone che amiamo di più, la nostra famiglia e i nostri amici.",
-    det_ceremonia:'CERIMONIA', det_celebracion:'CELEBRAZIONE', det_ubicacion:'[ POSIZIONE ]',
-    det_nota:'*Non è consentito lanciare petali di fiori, riso o bolle all\'uscita della Chiesa. Ci dispiace!',
+    det_hora_ceremonia:'11:30am', det_hora_celebracion:'1:30pm',
+    det_ceremonia:'CERIMONIA RELIGIOSA', det_celebracion:'CELEBRAZIONE E BALLO', det_ubicacion:'[ POSIZIONE ]',
+    det_nota:'La Chiesa non consente di lanciare petali di fiori, riso o bolle all\'uscita della cerimonia. Ci dispiace!',
     det_dresscode_title:'DRESS CODE: ELEGANTE',
     det_dresscode_line2:'Il bianco è riservato alla sposa 🤍',
-    conf_deadline:'SI PREGA DI CONFERMARE ENTRO IL 20/12/2026',
+    conf_deadline:'SI PREGA DI CONFERMARE ENTRO IL 15/12/2026',
     conf_asistir:'Potrete essere presenti?', conf_si:'Sì, ci sarò', conf_no:'No, mi dispiace',
     conf_adults:"Abbiamo deciso di celebrare le nostre nozze esclusivamente per adulti, in modo che tutti possano godere di una giornata di festa, ballo e celebrazione fino alla fine.",
     conf_nombre:'Nome e cognome',
@@ -1246,18 +1272,21 @@ const T = {
     conf_bus_si:'Sì, lo userò', conf_bus_no:'No, grazie',
     conf_formulario:'Compila questo modulo (solo gli sposi avranno accesso a queste informazioni)',
     conf_alergias:'Allergie o diete speciali',
+    conf_alergias_ph:'Es: vegetariano, senza glutine',
     conf_cancion:'Una canzone che non può mancare 🎵',
+    conf_cancion_ph:'Artista - canzone',
     conf_mensaje:'Un messaggio per gli sposi 💌',
     conf_enviar:'INVIA CONFERMA', conf_ok:'Grazie! Abbiamo ricevuto la vostra conferma.',
     aloj_cerca_iglesia:'',
     aloj_cerca_finca:'(vicino alla Finca Astilbe)',
     aloj_eurostars_desc:'15% di sconto con il codice BODADRIANA',
     aloj_descuento:'10% di sconto con il codice adrianaitor2027',
-    aloj_reservar:'Prenotazioni: Gregori Mayor reservas@sardinerohoteles.com',
+    aloj_reservar:'Prenotazioni: Gregori Mayor madrid-reservas@sardinerohoteles.com',
     aloj_prox:'PROSSIMAMENTE',
     aloj_transport_title:'TRASPORTO DI RITORNO',
     aloj_transport_text:'Contatti per tornare al vostro hotel dopo la celebrazione:',
     aloj_transport_phone:'📞 Per telefono: +34 91 547 82 00',
+    aloj_transport_taxi:'🚕 Taxi: +34 913 71 21 31',
     aloj_transport_app:'📱 Per app: Uber, Cabify, Bolt, Free Now',
     regalo_text:"La vostra presenza e voglia di divertirvi è il regalo migliore in questo giorno così speciale per noi.",
     regalo_text2:"Se volete aiutarci con il nostro viaggio di nozze in Indonesia e Malesia, vi lasciamo qui il nostro numero di conto.",
@@ -1269,9 +1298,13 @@ const T = {
 };
 
 let lang = 'es';
+document.body.classList.add('lang-es');
 
 function setLang(l) {
   lang = l;
+  /* Classe CSS pour cibler la langue (ex: .lang-en) */
+  ['es','fr','en','it'].forEach(function(ll){ document.body.classList.remove('lang-'+ll); });
+  document.body.classList.add('lang-'+l);
   document.querySelectorAll('.lb').forEach(b => b.classList.toggle('active', b.textContent === l.toUpperCase()));
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const k = el.dataset.i18n;
