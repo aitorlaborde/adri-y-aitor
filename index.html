@@ -88,9 +88,10 @@
       pointer-events:none; user-select:none;
     }
     /* ── CITRON ANIMÉ ── */
-    @keyframes lemon-rotate {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
+    @keyframes lemon-swing {
+      0%   { transform: rotate(-30deg); }
+      50%  { transform: rotate(30deg); }
+      100% { transform: rotate(-30deg); }
     }
     .lemon-anim {
       position:absolute;
@@ -98,7 +99,7 @@
       width:9.8%;
       pointer-events:none; user-select:none;
       z-index:5;
-      animation: lemon-rotate 10s linear infinite;
+      animation: lemon-swing 3s ease-in-out infinite;
       transform-origin: center center;
     }
     /* Zone de contenu — calibrée depuis la photo du rectangle rouge (utilisateur).
