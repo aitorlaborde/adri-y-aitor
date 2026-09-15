@@ -685,9 +685,9 @@
       #confirmacion .page-content { padding-top:.25rem; }
       #confirmacion .section-title{ margin-bottom:5vw; }
       #confirmacion .conf-deadline{ margin-top:3vw; margin-bottom:1.5vw; }
-      .conf-note    { display:none; }
+      .conf-note    { display:block; font-size:clamp(.33rem,1.7vw,.52rem); margin-bottom:.3em; }
       .conf-formulario { display:none; }
-      .conf-deadline{ font-size:clamp(.40rem,2.1vw,.64rem); font-weight:700; color:#8b1a1a; }
+      .conf-deadline{ font-size:clamp(.40rem,2.1vw,.64rem); font-weight:700; color:#8b1a1a; margin-top:0; }
       .conf-question{ font-size:clamp(.33rem,1.8vw,.55rem); margin-bottom:.1em; margin-top:0; font-weight:700; }
       .radio-group  { margin-bottom:.12em; gap:.06em; }
       #confirmacion .radio-group { flex-direction: row; gap: 1.5vw; align-items: center; }
@@ -887,7 +887,7 @@ function checkGate(){
         <div class="venue-left">
           <div class="venue-header">
             <div class="venue-bullet"></div>
-            <p class="venue-name-title"><span class="venue-hour-inline" data-i18n="det_hora_ceremonia">11:30h</span>&nbsp;&nbsp;<span data-i18n="det_ceremonia">CEREMONIA RELIGIOSA</span></p>
+            <p class="venue-name-title"><span class="venue-hour-inline" data-i18n="det_hora_ceremonia">11:30h</span> - <span data-i18n="det_ceremonia">CEREMONIA RELIGIOSA</span></p>
           </div>
           <p class="venue-sub"><a href="https://maps.app.goo.gl/PZsPpCzewH7TP7xC7" target="_blank" class="venue-name-link">IGLESIA SANTA BÁRBARA</a></p>
           <p class="venue-sub">Calle del Gral. Castaños, 2<br>28004 Madrid</p>
@@ -913,7 +913,7 @@ function checkGate(){
         <div class="venue-left">
           <div class="venue-header">
             <div class="venue-bullet"></div>
-            <p class="venue-name-title"><span class="venue-hour-inline" data-i18n="det_hora_celebracion">13:30h</span>&nbsp;&nbsp;<span data-i18n="det_celebracion">CELEBRACIÓN Y BAILE</span></p>
+            <p class="venue-name-title"><span class="venue-hour-inline" data-i18n="det_hora_celebracion">13:30h</span> - <span data-i18n="det_celebracion">CELEBRACIÓN Y BAILE</span></p>
           </div>
           <p class="venue-sub"><a href="https://maps.app.goo.gl/icwLbPRPt5NwcUYJ7" target="_blank" class="venue-name-link">FINCA ASTILBE BY ENELDO</a></p>
           <p class="venue-sub">Carr. de Fuencarral, km 1,9<br>28049 Madrid</p>
@@ -927,7 +927,7 @@ function checkGate(){
           <div class="venue-bullet"></div>
           <p class="dresscode-title" data-i18n="det_dresscode_title">DRESS CODE: ELEGANTE</p>
         </div>
-        <p class="dresscode-line" data-i18n="det_dresscode_line2"><em>🤍 El blanco es exclusivo para la novia 🤍</em></p>
+        <p class="dresscode-line" style="margin-top:0;" data-i18n="det_dresscode_line2"><em>🤍 El blanco es exclusivo para la novia 🤍</em></p>
       </div>
     </div>
   </div>
@@ -973,7 +973,7 @@ function checkGate(){
         </div>
 
         <!-- Bus -->
-        <p class="conf-bus-label" data-i18n="conf_bus_q">Habrá autobús de la Iglesia a la Finca (20 min). ¿Lo vas a necesitar?</p>
+        <p class="conf-bus-label" data-i18n="conf_bus_q">Habrá servicio de Autobús para el traslado desde la Iglesia a la Finca (20 minutos). ¿Lo vas a necesitar?</p>
         <div class="radio-group">
           <label class="radio-opt">
             <input type="radio" name="bus" value="si">
@@ -1062,7 +1062,7 @@ function checkGate(){
     
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_lista">REGALO</h2>
-      <p class="body-text" data-i18n="regalo_text" style="text-align:justify;">Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros.</p>
+      <p class="body-text" data-i18n="regalo_text" style="text-align:justify;">Vuestra presencia y ganas de disfrutar son el mejor regalo en este día tan especial para nosotros.</p>
       <p class="body-text" data-i18n="regalo_text2" style="text-align:justify;margin-top:.6em;">Si queréis ayudarnos con nuestro viaje de novios a Indonesia y Malasia, os dejamos aquí nuestro número de cuenta.</p>
 
       <div class="iban-pw-section">
@@ -1097,7 +1097,6 @@ function checkGate(){
       <p class="tagline" data-i18n="fin_gracias">¡GRACIAS!</p>
       <p class="tagline" data-i18n="fin_esperamos">¡OS ESPERAMOS!</p>
       <img class="venise-photo" src="img/Napoles.jpeg" alt="Adri & Aitor en Nápoles">
-      <p class="separator">◆·····················◆</p>
       <p class="big-title">ADRI &amp; AITOR</p>
       <p class="city-line">2027</p>
     </div>
@@ -1142,7 +1141,7 @@ const T = {
     conf_nombre:'Nombre y apellidos',
     conf_nombre_acomp:'Nombre y apellidos acompañante',
     conf_error:'Por favor, completa todos los campos obligatorios: participación, nombre y autobús.',
-    conf_bus_q:'Habrá autobús de la Iglesia a la Finca (20 min). ¿Lo vas a necesitar?',
+    conf_bus_q:'Habrá servicio de Autobús para el traslado desde la Iglesia a la Finca (20 minutos). ¿Lo vas a necesitar?',
     conf_bus_si:'Sí, lo usaré', conf_bus_no:'No lo necesito',
     conf_formulario:'Rellena este formulario (solo los novios tendrán acceso a esta información)',
     conf_alergias:'Alergias o dietas especiales',
@@ -1161,7 +1160,7 @@ const T = {
     aloj_transport_text:'Contactos para volver del lugar de la celebración a tu hotel:',
     aloj_transport_taxi:'🚕 +34 915 47 82 00 o +34 913 71 21 31',
     aloj_transport_app:'📱 Por app: Uber, Cabify, Bolt, Free Now',
-    regalo_text:'Vuestra presencia y ganas de disfrutar es el mejor regalo en este día tan especial para nosotros.',
+    regalo_text:'Vuestra presencia y ganas de disfrutar son el mejor regalo en este día tan especial para nosotros.',
     regalo_text2:'Si queréis ayudarnos con nuestro viaje de novios a Indonesia y Malasia, os dejamos aquí nuestro número de cuenta.',
     regalo_pw:'Contraseña', regalo_ver:'VER CUENTA',
     regalo_pw_error:'Contraseña incorrecta',
@@ -1184,7 +1183,7 @@ const T = {
     det_ceremonia:'CÉRÉMONIE RELIGIEUSE', det_celebracion:'CÉLÉBRATION ET BAL', det_ubicacion:'[ LOCALISATION ]',
     det_nota:"L'Église n'autorise pas de jeter des pétales de fleurs, du riz ou des bulles à la sortie de la cérémonie. Désolés !",
     det_dresscode_title:'DRESS CODE: ÉLÉGANT',
-    det_dresscode_line2:'Le blanc est réservé à la mariée 🤍',
+    det_dresscode_line2:'🤍 Le blanc est réservé à la mariée 🤍',
     conf_deadline:'MERCI DE CONFIRMER AVANT LE 15/12/2026',
     conf_asistir:'Pourrez-vous être présent(e) ?', conf_si:"Oui, j'y serai", conf_no:'Non, désolé(e)',
     conf_adults:"Nous avons décidé de célébrer notre mariage exclusivement pour les adultes, afin que tout le monde puisse profiter d'une journée de fête, de danse et de célébration jusqu'à la fin.",
@@ -1233,7 +1232,7 @@ const T = {
     det_ceremonia:'RELIGIOUS CEREMONY', det_celebracion:'CELEBRATION AND DANCING', det_ubicacion:'[ LOCATION ]',
     det_nota:'The Church does not allow throwing flower petals, rice or blowing bubbles at the exit of the ceremony. We\'re sorry!',
     det_dresscode_title:'DRESS CODE: ELEGANT',
-    det_dresscode_line2:'White is reserved for the bride 🤍',
+    det_dresscode_line2:'🤍 White is reserved for the bride 🤍',
     conf_deadline:'PLEASE CONFIRM BY 15/12/2026',
     conf_asistir:"Will you be able to attend?", conf_si:"Yes, I'll be there", conf_no:"No, sorry",
     conf_adults:"We've decided to celebrate our wedding exclusively for adults, so that everyone can enjoy a day of celebration, dancing and fun until the end.",
@@ -1282,7 +1281,7 @@ const T = {
     det_ceremonia:'CERIMONIA RELIGIOSA', det_celebracion:'CELEBRAZIONE E BALLO', det_ubicacion:'[ POSIZIONE ]',
     det_nota:'La Chiesa non consente di lanciare petali di fiori, riso o bolle all\'uscita della cerimonia. Ci dispiace!',
     det_dresscode_title:'DRESS CODE: ELEGANTE',
-    det_dresscode_line2:'Il bianco è riservato alla sposa 🤍',
+    det_dresscode_line2:'🤍 Il bianco è riservato alla sposa 🤍',
     conf_deadline:'SI PREGA DI CONFERMARE ENTRO IL 15/12/2026',
     conf_asistir:'Potrete essere presenti?', conf_si:'Sì, ci sarò', conf_no:'No, mi dispiace',
     conf_adults:"Abbiamo deciso di celebrare le nostre nozze esclusivamente per adulti, in modo che tutti possano godere di una giornata di festa, ballo e celebrazione fino alla fine.",
