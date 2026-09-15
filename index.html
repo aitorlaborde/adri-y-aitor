@@ -87,6 +87,20 @@
       display:block; object-fit:fill;
       pointer-events:none; user-select:none;
     }
+    /* ── CITRON ANIMÉ ── */
+    @keyframes lemon-rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .lemon-anim {
+      position:absolute;
+      left:73.3%; top:17.5%;
+      width:9.8%;
+      pointer-events:none; user-select:none;
+      z-index:5;
+      animation: lemon-rotate 10s linear infinite;
+      transform-origin: center center;
+    }
     /* Zone de contenu — calibrée depuis la photo du rectangle rouge (utilisateur).
        Zone blanche frame_bg.jpg (A&A_(1).pdf):
          left=390(23.6%), right=1174(marge 29%), top=610(26.1%), bottom=1960(marge 16.2%)
@@ -828,7 +842,8 @@ function checkGate(){
      ══════════════════════════════════ -->
 <section id="inicio">
   <div class="page-wrap">
-    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <img class="page-bg" src="img/sin_limon.jpeg" alt="">
+    <img class="lemon-anim" src="img/limon_anim.png" alt="">
     
     <div class="page-content">
       <p class="big-title">ADRI &amp; AITOR</p>
@@ -859,7 +874,8 @@ function checkGate(){
      ══════════════════════════════════ -->
 <section id="historia">
   <div class="page-wrap">
-    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <img class="page-bg" src="img/sin_limon.jpeg" alt="">
+    <img class="lemon-anim" src="img/limon_anim.png" alt="">
     
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_historia">NUESTRA HISTORIA</h2>
@@ -877,7 +893,8 @@ function checkGate(){
      ══════════════════════════════════ -->
 <section id="detalles">
   <div class="page-wrap">
-    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <img class="page-bg" src="img/sin_limon.jpeg" alt="">
+    <img class="lemon-anim" src="img/limon_anim.png" alt="">
     
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_detalles">DETALLES</h2>
@@ -938,7 +955,8 @@ function checkGate(){
      ══════════════════════════════════ -->
 <section id="confirmacion">
   <div class="page-wrap">
-    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <img class="page-bg" src="img/sin_limon.jpeg" alt="">
+    <img class="lemon-anim" src="img/limon_anim.png" alt="">
     
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_confirmacion">CONFIRMACIÓN</h2>
@@ -1010,7 +1028,8 @@ function checkGate(){
      ══════════════════════════════════ -->
 <section id="alojamientos">
   <div class="page-wrap">
-    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <img class="page-bg" src="img/sin_limon.jpeg" alt="">
+    <img class="lemon-anim" src="img/limon_anim.png" alt="">
     
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_alojamientos">COMODIDADES</h2>
@@ -1058,7 +1077,8 @@ function checkGate(){
      ══════════════════════════════════ -->
 <section id="lista">
   <div class="page-wrap">
-    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <img class="page-bg" src="img/sin_limon.jpeg" alt="">
+    <img class="lemon-anim" src="img/limon_anim.png" alt="">
     
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_lista">REGALO</h2>
@@ -1091,7 +1111,8 @@ function checkGate(){
      ══════════════════════════════════ -->
 <section id="fin">
   <div class="page-wrap">
-    <img class="page-bg" src="img/frame_bg.jpg" alt="">
+    <img class="page-bg" src="img/sin_limon.jpeg" alt="">
+    <img class="lemon-anim" src="img/limon_anim.png" alt="">
     
     <div class="page-content">
       <p class="tagline" data-i18n="fin_gracias">¡GRACIAS!</p>
