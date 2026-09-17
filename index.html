@@ -820,6 +820,13 @@ function checkGate(){
     document.getElementById('siteGate').style.display='none';
     document.documentElement.style.overflow='';
     document.body.style.overflow='';
+    var audio=document.getElementById('bgMusic');
+    if(audio){
+      audio.play().then(function(){
+        var btn=document.getElementById('musicBtn');
+        if(btn){ btn.classList.add('playing'); document.getElementById('musicIcon').textContent='♫'; }
+      }).catch(function(){});
+    }
   } else {
     document.getElementById('gateError').style.display='block';
     document.getElementById('gateInput').value='';
