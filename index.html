@@ -537,6 +537,14 @@
       letter-spacing:.12em; color:#000;
     }
     .transport-block .hotel-subs { margin-top:.25em; }
+    .hotel-zone-title {
+      font-family:'Poiret One','Helvetica Neue',Helvetica,Arial,sans-serif;
+      font-size:clamp(.45rem,1.0vh,.72rem);
+      font-style:italic; font-weight:700;
+      color:#1e3a7a;
+      margin-top:.6em; margin-bottom:.15em;
+      width:100%; text-align:left;
+    }
     .transport-sub {
       font-family:'Poiret One','Helvetica Neue',Helvetica,Arial,sans-serif;
       font-size:clamp(.45rem,.95vh,.68rem);
@@ -727,6 +735,7 @@
       .hotel-block  { margin-bottom:.4em; }
       .hotel-name   { font-size:clamp(.38rem,2.1vw,.68rem); font-weight:700; }
       .hotel-sub    { font-size:clamp(.3rem,1.6vw,.52rem); font-weight:700; }
+      .hotel-zone-title { font-size:clamp(.3rem,1.55vw,.5rem); margin-top:1.2vw; margin-bottom:.1em; }
       .transport-block { display:block; margin-top:0; padding-top:0; }
       .transport-title { font-size:clamp(.38rem,2.1vw,.68rem); font-weight:700; }
       .transport-sub   { font-size:clamp(.3rem,1.6vw,.52rem); font-weight:700; }
@@ -1035,14 +1044,20 @@ function checkGate(){
     <div class="page-content">
       <h2 class="section-title" data-i18n="nav_alojamientos">COMODIDADES</h2>
 
+      <!-- A 15min de la Finca -->
+      <p class="hotel-zone-title" data-i18n="aloj_titulo_finca">A 15 min de la Finca</p>
+
       <div class="hotel-block">
         <div class="hotel-header">
           <div class="hotel-dot"></div>
-          <p class="hotel-name"><a href="https://www.hotelsardineromadrid.com/" target="_blank" class="venue-name-link">HOTEL SARDINERO MADRID</a></p>
+          <p class="hotel-name"><a href="https://ibisnortelastablas.madridhotels360.net/es/" target="_blank" class="venue-name-link">HOTEL IBIS MADRID NORTE LAS TABLAS</a></p>
         </div>
-        <div class="hotel-subs">
-          <p class="hotel-sub" data-i18n="aloj_descuento">10% descuento con código adrianaitor2027</p>
-          <p class="hotel-sub" data-i18n="aloj_reservar">Reservas: Gregori Mayor madrid-reservas@sardinerohoteles.com</p>
+      </div>
+
+      <div class="hotel-block">
+        <div class="hotel-header">
+          <div class="hotel-dot"></div>
+          <p class="hotel-name"><a href="https://www.nh-hotels.com/es/hotel/nh-madrid-las-tablas" target="_blank" class="venue-name-link">HOTEL NH MADRID LAS TABLAS</a></p>
         </div>
       </div>
 
@@ -1053,6 +1068,33 @@ function checkGate(){
         </div>
         <div class="hotel-subs">
           <p class="hotel-sub" data-i18n="aloj_eurostars_desc">15% descuento con código BODADRIANA</p>
+        </div>
+      </div>
+
+      <!-- A 15min de la Iglesia -->
+      <p class="hotel-zone-title" data-i18n="aloj_titulo_iglesia">A 15 min de la Iglesia</p>
+
+      <div class="hotel-block">
+        <div class="hotel-header">
+          <div class="hotel-dot"></div>
+          <p class="hotel-name"><a href="https://www.hotelsardineromadrid.com/" target="_blank" class="venue-name-link">HOTEL SARDINERO MADRID</a></p>
+        </div>
+        <div class="hotel-subs">
+          <p class="hotel-sub" data-i18n="aloj_descuento">10% descuento con código adrianaitor2027</p>
+        </div>
+      </div>
+
+      <div class="hotel-block">
+        <div class="hotel-header">
+          <div class="hotel-dot"></div>
+          <p class="hotel-name"><a href="https://www.bypillow.com/alojamientos/hoteles-en-madrid/castellana/" target="_blank" class="venue-name-link">HOTEL BYPILLOW CASTELLANA</a></p>
+        </div>
+      </div>
+
+      <div class="hotel-block">
+        <div class="hotel-header">
+          <div class="hotel-dot"></div>
+          <p class="hotel-name"><a href="https://abeba.zenithoteles.com" target="_blank" class="venue-name-link">HOTEL ZENIT ABEBA</a></p>
         </div>
       </div>
 
@@ -1172,12 +1214,10 @@ const T = {
     conf_cancion_ph:'Artista - canción',
     conf_mensaje:'Un mensaje para los novios 💌',
     conf_enviar:'ENVIAR CONFIRMACIÓN', conf_ok:'¡Gracias! Hemos recibido tu confirmación.',
-    aloj_cerca_iglesia:'',
-    aloj_cerca_finca:'(cerca de la Finca Astilbe)',
+    aloj_titulo_finca:'A 15 min de la Finca',
+    aloj_titulo_iglesia:'A 15 min de la Iglesia',
     aloj_eurostars_desc:'15% descuento con código BODADRIANA',
     aloj_descuento:'10% descuento con código adrianaitor2027',
-    aloj_reservar:'Reservas: Gregori Mayor madrid-reservas@sardinerohoteles.com',
-    aloj_prox:'PRÓXIMAMENTE',
     aloj_transport_title:'TRANSPORTE DE VUELTA',
     aloj_transport_text:'Contactos para volver del lugar de la celebración a tu hotel:',
     aloj_transport_taxi:'🚕 +34 915 47 82 00 o +34 913 71 21 31',
@@ -1221,12 +1261,10 @@ const T = {
     conf_cancion_ph:'Artiste - chanson',
     conf_mensaje:'Un message pour les mariés 💌',
     conf_enviar:'ENVOYER LA CONFIRMATION', conf_ok:'Merci ! Nous avons bien reçu votre confirmation.',
-    aloj_cerca_iglesia:'',
-    aloj_cerca_finca:'(près de la Finca Astilbe)',
+    aloj_titulo_finca:'À 15 min de la Finca',
+    aloj_titulo_iglesia:'À 15 min de l\'Église',
     aloj_eurostars_desc:'15% de réduction avec le code BODADRIANA',
     aloj_descuento:'10% de réduction avec le code adrianaitor2027',
-    aloj_reservar:'Réservations : Gregori Mayor madrid-reservas@sardinerohoteles.com',
-    aloj_prox:'PROCHAINEMENT',
     aloj_transport_title:'TRANSPORT DE RETOUR',
     aloj_transport_text:'Contacts pour rentrer à votre hôtel après la célébration :',
     aloj_transport_taxi:'🚕 +34 915 47 82 00 ou +34 913 71 21 31',
@@ -1270,12 +1308,10 @@ const T = {
     conf_cancion_ph:'Artist - song',
     conf_mensaje:'A message for the newlyweds 💌',
     conf_enviar:'SEND CONFIRMATION', conf_ok:'Thank you! We have received your confirmation.',
-    aloj_cerca_iglesia:'',
-    aloj_cerca_finca:'(near Finca Astilbe)',
+    aloj_titulo_finca:'15 min from the Venue',
+    aloj_titulo_iglesia:'15 min from the Church',
     aloj_eurostars_desc:'15% discount with code BODADRIANA',
     aloj_descuento:'10% discount with code adrianaitor2027',
-    aloj_reservar:'Bookings: Gregori Mayor madrid-reservas@sardinerohoteles.com',
-    aloj_prox:'COMING SOON',
     aloj_transport_title:'RETURN TRANSPORT',
     aloj_transport_text:'Contacts to get back to your hotel after the celebration:',
     aloj_transport_taxi:'🚕 +34 915 47 82 00 or +34 913 71 21 31',
@@ -1319,12 +1355,10 @@ const T = {
     conf_cancion_ph:'Artista - canzone',
     conf_mensaje:'Un messaggio per gli sposi 💌',
     conf_enviar:'INVIA CONFERMA', conf_ok:'Grazie! Abbiamo ricevuto la vostra conferma.',
-    aloj_cerca_iglesia:'',
-    aloj_cerca_finca:'(vicino alla Finca Astilbe)',
+    aloj_titulo_finca:'A 15 min dalla Finca',
+    aloj_titulo_iglesia:'A 15 min dalla Chiesa',
     aloj_eurostars_desc:'15% di sconto con il codice BODADRIANA',
     aloj_descuento:'10% di sconto con il codice adrianaitor2027',
-    aloj_reservar:'Prenotazioni: Gregori Mayor madrid-reservas@sardinerohoteles.com',
-    aloj_prox:'PROSSIMAMENTE',
     aloj_transport_title:'TRASPORTO DI RITORNO',
     aloj_transport_text:'Contatti per tornare al vostro hotel dopo la celebrazione:',
     aloj_transport_taxi:'🚕 +34 915 47 82 00 o +34 913 71 21 31',
